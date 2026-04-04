@@ -101,13 +101,4 @@
     runLoader();
   });
 
-  /* ---------- VanillaTilt init for [data-tilt] (non-touch) ---------- */
-  if (!('ontouchstart' in window)) {
-    VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
-      max: 5,
-      speed: 400,
-      glare: false
-    });
-  }
-
 })();

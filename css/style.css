@@ -4,22 +4,22 @@
    ============================================================ */
 
 /* ---------- Google Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap');
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  /* Accent — Blue-Green */
-  --accent-h: 172;
-  --accent-s: 66%;
-  --accent-l: 50%;
+  /* Accent — Steel Blue (extracted from profile: mountain mist, snow, clouds) */
+  --accent-h: 210;
+  --accent-s: 40%;
+  --accent-l: 58%;
   --accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-  --accent-light: hsl(var(--accent-h), var(--accent-s), 65%);
-  --accent-dark: hsl(var(--accent-h), var(--accent-s), 35%);
-  --accent-glow: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.25);
+  --accent-light: hsl(var(--accent-h), var(--accent-s), 72%);
+  --accent-dark: hsl(var(--accent-h), var(--accent-s), 40%);
+  --accent-glow: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.2);
 
-  /* Typography */
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Playfair Display', Georgia, serif;
+  /* Typography — Poppins (Google Product Sans alternative) */
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --fs-xs: clamp(0.7rem, 0.8vw, 0.8rem);
   --fs-sm: clamp(0.85rem, 1vw, 0.95rem);
   --fs-base: clamp(1rem, 1.1vw, 1.1rem);
@@ -57,41 +57,41 @@
 
 /* ---------- Dark Theme (Default) ---------- */
 [data-theme="dark"] {
-  --bg-primary: #050505;
-  --bg-secondary: #0f0f0f;
-  --bg-card: #161616;
-  --bg-card-hover: #1e1e1e;
-  --bg-nav: rgba(15, 15, 15, 0.7);
-  --text-primary: #f5f5f7;
-  --text-secondary: #a1a1a6;
-  --text-tertiary: #6e6e73;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-color-hover: rgba(255, 255, 255, 0.15);
+  --bg-primary: #08090c;
+  --bg-secondary: #0e1015;
+  --bg-card: #13161c;
+  --bg-card-hover: #1a1d25;
+  --bg-nav: rgba(14, 16, 21, 0.75);
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0a6;
+  --text-tertiary: #5f6368;
+  --border-color: rgba(255, 255, 255, 0.07);
+  --border-color-hover: rgba(255, 255, 255, 0.14);
   --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.3);
   --shadow-card-hover: 0 20px 60px rgba(0, 0, 0, 0.5);
   --shadow-nav: 0 4px 30px rgba(0, 0, 0, 0.4);
-  --cursor-color: var(--accent);
-  --gradient-hero: radial-gradient(ellipse at 50% 0%, hsla(var(--accent-h), 40%, 20%, 0.3) 0%, transparent 60%);
-  --dot-grid-color: rgba(255, 255, 255, 0.03);
+  --cursor-color: var(--accent-light);
+  --gradient-hero: radial-gradient(ellipse at 50% 0%, hsla(210, 30%, 18%, 0.4) 0%, transparent 60%);
+  --dot-grid-color: rgba(255, 255, 255, 0.025);
 }
 
 /* ---------- Light Theme ---------- */
 [data-theme="light"] {
-  --bg-primary: #fafafa;
-  --bg-secondary: #f0f0f2;
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #f0f1f3;
   --bg-card: #ffffff;
-  --bg-card-hover: #f7f7f9;
-  --bg-nav: rgba(250, 250, 250, 0.75);
-  --text-primary: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-tertiary: #a1a1a6;
+  --bg-card-hover: #f5f6f8;
+  --bg-nav: rgba(248, 249, 250, 0.75);
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --text-tertiary: #9aa0a6;
   --border-color: rgba(0, 0, 0, 0.06);
   --border-color-hover: rgba(0, 0, 0, 0.12);
   --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
   --shadow-card-hover: 0 20px 50px rgba(0, 0, 0, 0.1);
   --shadow-nav: 0 4px 20px rgba(0, 0, 0, 0.06);
   --cursor-color: var(--accent-dark);
-  --gradient-hero: radial-gradient(ellipse at 50% 0%, hsla(var(--accent-h), 50%, 85%, 0.4) 0%, transparent 60%);
+  --gradient-hero: radial-gradient(ellipse at 50% 0%, hsla(210, 40%, 88%, 0.5) 0%, transparent 60%);
   --dot-grid-color: rgba(0, 0, 0, 0.03);
 }
 
@@ -617,12 +617,12 @@ ul, ol {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   transition: all var(--dur-normal) var(--ease-out), background var(--theme-transition), border-color var(--theme-transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .stat-card:hover {
   border-color: var(--accent);
-  background: var(--bg-card-hover);
-  transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -689,13 +689,12 @@ ul, ol {
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   transition: all var(--dur-normal) var(--ease-out), background var(--theme-transition), border-color var(--theme-transition);
-  will-change: transform;
+  position: relative;
+  overflow: hidden;
 }
 
 .timeline-card:hover {
   border-color: var(--accent);
-  background: var(--bg-card-hover);
-  transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -777,12 +776,12 @@ ul, ol {
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   transition: all var(--dur-normal) var(--ease-out), background var(--theme-transition), border-color var(--theme-transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .skill-category:hover {
   border-color: var(--accent);
-  background: var(--bg-card-hover);
-  transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -852,7 +851,6 @@ ul, ol {
 .project-card:hover {
   border-color: var(--accent);
   box-shadow: var(--shadow-card-hover);
-  transform: translateY(-6px);
 }
 
 .project-card-image {
@@ -954,12 +952,33 @@ ul, ol {
   padding: var(--space-lg);
   margin-top: var(--space-md);
   transition: all var(--dur-normal) var(--ease-out), background var(--theme-transition), border-color var(--theme-transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .cert-card:hover {
   border-color: var(--accent);
-  transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
+}
+
+/* ---------- Glow Overlay (follows mouse) ---------- */
+.glow-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.timeline-card:hover .glow-overlay,
+.skill-category:hover .glow-overlay,
+.stat-card:hover .glow-overlay,
+.project-card:hover .glow-overlay,
+.cert-card:hover .glow-overlay,
+.contact-link:hover .glow-overlay {
+  opacity: 1;
 }
 
 .cert-icon {
@@ -1021,11 +1040,12 @@ ul, ol {
   border-radius: var(--radius-lg);
   min-width: 180px;
   transition: all var(--dur-normal) var(--ease-out), background var(--theme-transition), border-color var(--theme-transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .contact-link:hover {
   border-color: var(--accent);
-  transform: translateY(-6px);
   box-shadow: var(--shadow-card-hover);
 }
 
