@@ -47,7 +47,11 @@
 
   <!-- ===== Hero Section ===== -->
   <section class="hero" id="hero">
-    <canvas id="heroParticles" class="hero-particles"></canvas>
+    <div class="hero-video-bg">
+      <video id="heroVideo" autoplay loop muted playsinline>
+        <source src="assets/hero-bg.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-glow" id="heroGlow"></div>
 
     <div class="hero-greeting reveal">Hello, I'm</div>
@@ -104,6 +108,14 @@
           <div class="about-slide" data-color="147, 155, 161">
             <img src="assets/pf-5.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
           </div>
+        </div>
+        <!-- Progress Indicators -->
+        <div class="slider-indicators" id="sliderIndicators">
+          <div class="indicator-dot active"><div class="indicator-fill"></div></div>
+          <div class="indicator-dot"><div class="indicator-fill"></div></div>
+          <div class="indicator-dot"><div class="indicator-fill"></div></div>
+          <div class="indicator-dot"><div class="indicator-fill"></div></div>
+          <div class="indicator-dot"><div class="indicator-fill"></div></div>
         </div>
       </div>
       <div class="about-text">

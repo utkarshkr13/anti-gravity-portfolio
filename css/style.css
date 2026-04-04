@@ -375,13 +375,26 @@ ul, ol {
   pointer-events: none;
 }
 
-.hero-particles {
+.hero-video-bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
   z-index: 0;
+  overflow: hidden;
+}
+
+.hero-video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15; /* Subdued blend into background */
+  transform: scale(1.05); /* Slight scale to hide edges */
+  transition: opacity var(--theme-transition);
+}
+
+[data-theme="light"] .hero-video-bg video {
+  opacity: 0.3;
 }
 
 .hero-glow {
@@ -602,6 +615,48 @@ ul, ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Dots Progress Overlay */
+.slider-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+  padding: 0 40px;
+}
+
+.indicator-dot {
+  height: 4px;
+  flex: 1;
+  max-width: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.indicator-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+.indicator-dot.active .indicator-fill {
+  animation: fillProgress 4s linear forwards;
+}
+
+@keyframes fillProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
 }
 
 .about-image-wrap::after {

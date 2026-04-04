@@ -153,6 +153,8 @@
   function initAboutSlider() {
     const slider = document.getElementById('aboutSlider');
     const container = document.getElementById('aboutGridContainer');
+    const indicators = document.querySelectorAll('#sliderIndicators .indicator-dot');
+    
     if (!slider || !container) return;
 
     const slides = slider.querySelectorAll('.about-slide');
@@ -161,9 +163,22 @@
     let currentIndex = 0;
     
     function showNextSlide() {
+      // Remove active from old
       slides[currentIndex].classList.remove('active');
+      if (indicators[currentIndex]) {
+        indicators[currentIndex].classList.remove('active');
+        // Force reflow to restart css animation
+        void indicators[currentIndex].offsetWidth;
+      }
+
+      // Advance
       currentIndex = (currentIndex + 1) % slides.length;
+      
+      // Add active to new
       slides[currentIndex].classList.add('active');
+      if (indicators[currentIndex]) {
+        indicators[currentIndex].classList.add('active');
+      }
       
       const bgColor = slides[currentIndex].dataset.color;
       if (bgColor) {
