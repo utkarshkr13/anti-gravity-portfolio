@@ -149,6 +149,38 @@
     });
   }
 
+  /* ---------- About Section Image Slider ---------- */
+  function initAboutSlider() {
+    const slider = document.getElementById('aboutSlider');
+    const container = document.getElementById('aboutGridContainer');
+    if (!slider || !container) return;
+
+    const slides = slider.querySelectorAll('.about-slide');
+    if (slides.length <= 1) return;
+
+    let currentIndex = 0;
+    
+    function showNextSlide() {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add('active');
+      
+      const bgColor = slides[currentIndex].dataset.color;
+      if (bgColor) {
+        container.style.setProperty('--slide-accent', bgColor);
+      }
+    }
+
+    // Set initial color
+    const initialColor = slides[0].dataset.color;
+    if (initialColor) {
+        container.style.setProperty('--slide-accent', initialColor);
+    }
+
+    // Change slide every 4 seconds
+    setInterval(showNextSlide, 4000);
+  }
+
   /* ---------- Scroll-triggered reveal animations ---------- */
   function initScrollReveals() {
     // Standard fade-up reveals
@@ -341,6 +373,7 @@
     initHeroAnimations();
     initHeroParallax();
     initParticles();
+    initAboutSlider();
     initScrollReveals();
     initNavBarScroll();
     initActiveNavLink();
