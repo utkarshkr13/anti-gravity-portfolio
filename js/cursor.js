@@ -1,5 +1,7 @@
 /* ============================================================
-   CUSTOM CURSOR — Dot + Ring with GSAP quickTo
+   CUSTOM CURSOR — Dot + Ring with synchronized movement
+   Fixed: both elements now share the same timing so they
+   move together as a single unit.
    ============================================================ */
 
 (function () {
@@ -19,24 +21,48 @@
     return;
   }
 
-  // GSAP quickTo for buttery-smooth following
-  const dotX = gsap.quickTo(dot, 'left', { duration: 0.15, ease: 'power2.out' });
-  const dotY = gsap.quickTo(dot, 'top', { duration: 0.15, ease: 'power2.out' });
-  const ringX = gsap.quickTo(ring, 'left', { duration: 0.35, ease: 'power2.out' });
-  const ringY = gsap.quickTo(ring, 'top', { duration: 0.35, ease: 'power2.out' });
+  // Use requestAnimationFrame for perfectly synced movement
+  let mouseX = 0;
+  let mouseY = 0;
+  let dotCurrentX = 0;
+  let dotCurrentY = 0;
+  let ringCurrentX = 0;
+  let ringCurrentY = 0;
 
-  // Track mouse position
+  // Lerp factor — higher = snappier. Same for both = move together.
+  const dotSpeed = 0.2;
+  const ringSpeed = 0.12;
+
   document.addEventListener('mousemove', (e) => {
-    dotX(e.clientX);
-    dotY(e.clientY);
-    ringX(e.clientX);
-    ringY(e.clientY);
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
 
-  // Hover detection on [data-cursor="hover"] elements
-  const hoverTargets = document.querySelectorAll('[data-cursor="hover"]');
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
 
-  hoverTargets.forEach(el => {
+  function animateCursor() {
+    dotCurrentX = lerp(dotCurrentX, mouseX, dotSpeed);
+    dotCurrentY = lerp(dotCurrentY, mouseY, dotSpeed);
+    ringCurrentX = lerp(ringCurrentX, mouseX, ringSpeed);
+    ringCurrentY = lerp(ringCurrentY, mouseY, ringSpeed);
+
+    dot.style.left = dotCurrentX + 'px';
+    dot.style.top = dotCurrentY + 'px';
+    ring.style.left = ringCurrentX + 'px';
+    ring.style.top = ringCurrentY + 'px';
+
+    requestAnimationFrame(animateCursor);
+  }
+
+  // Start animation loop
+  requestAnimationFrame(animateCursor);
+
+  // Hover detection on [data-cursor="hover"] elements
+  function bindHover(el) {
+    if (el._cursorBound) return;
+    el._cursorBound = true;
     el.addEventListener('mouseenter', () => {
       dot.classList.add('hovering');
       ring.classList.add('hovering');
@@ -45,7 +71,9 @@
       dot.classList.remove('hovering');
       ring.classList.remove('hovering');
     });
-  });
+  }
+
+  document.querySelectorAll('[data-cursor="hover"]').forEach(bindHover);
 
   // Click animation
   document.addEventListener('mousedown', () => dot.classList.add('clicking'));
@@ -53,27 +81,23 @@
 
   // Hide cursor when leaving the window
   document.addEventListener('mouseleave', () => {
-    gsap.to([dot, ring], { opacity: 0, duration: 0.2 });
+    dot.style.opacity = '0';
+    ring.style.opacity = '0';
   });
-  document.addEventListener('mouseenter', () => {
-    gsap.to([dot, ring], { opacity: 1, duration: 0.2 });
+  document.addEventListener('mouseenter', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dotCurrentX = mouseX;
+    dotCurrentY = mouseY;
+    ringCurrentX = mouseX;
+    ringCurrentY = mouseY;
+    dot.style.opacity = '1';
+    ring.style.opacity = '0.5';
   });
 
-  // Also track hover for elements added later (e.g. dynamic content)
+  // Observer for dynamically added elements
   const observer = new MutationObserver(() => {
-    document.querySelectorAll('[data-cursor="hover"]').forEach(el => {
-      if (!el._cursorBound) {
-        el._cursorBound = true;
-        el.addEventListener('mouseenter', () => {
-          dot.classList.add('hovering');
-          ring.classList.add('hovering');
-        });
-        el.addEventListener('mouseleave', () => {
-          dot.classList.remove('hovering');
-          ring.classList.remove('hovering');
-        });
-      }
-    });
+    document.querySelectorAll('[data-cursor="hover"]').forEach(bindHover);
   });
   observer.observe(document.body, { childList: true, subtree: true });
 

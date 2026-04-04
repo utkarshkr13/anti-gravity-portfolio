@@ -13,6 +13,7 @@
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -38,8 +39,8 @@
     <a href="#contact" class="nav-link" data-cursor="hover">Contact</a>
     <div class="nav-divider"></div>
     <button class="theme-toggle" id="themeToggle" data-cursor="hover" aria-label="Toggle dark/light mode">
-      <span class="icon-sun">☀️</span>
-      <span class="icon-moon">🌙</span>
+      <span class="icon-sun"><i data-lucide="sun" style="width:18px;height:18px"></i></span>
+      <span class="icon-moon"><i data-lucide="moon" style="width:18px;height:18px"></i></span>
     </button>
   </nav>
 
@@ -52,10 +53,7 @@
 
     <h1 class="hero-name">
       <span class="hero-title-line">
-        <span class="hero-title-inner">Utkarsh Kumar</span>
-      </span>
-      <span class="hero-title-line">
-        <span class="hero-title-inner accent-text">Rajput</span>
+        <span class="hero-title-inner">Utkarsh<span class="accent-text">.</span></span>
       </span>
     </h1>
 
@@ -105,23 +103,6 @@
           Backed by a <strong>B.Tech from VIT</strong> and hands-on experience in data analytics, BI dashboards,
           and Python-based automation, I bridge the gap between business vision and technical execution.
         </p>
-      </div>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat-card reveal">
-        <div class="stat-number" data-count="5">0</div>
-        <div class="stat-label">Global Clients</div>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-number" data-count="3">0</div>
-        <div class="stat-label">Countries Served</div>
-      </div>
-      <div class="stat-card reveal">
-        <div class="stat-number" data-count="10">0</div>
-        <div class="stat-label">Product Modules Delivered</div>
-      </div>
-    </div>
   </section>
 
   <!-- ===== Experience Section ===== -->
@@ -277,7 +258,7 @@
 
     <!-- Azure Certification -->
     <div class="cert-card reveal" style="margin-top: var(--space-xl);">
-      <div class="cert-icon">🏆</div>
+      <div class="cert-icon"><i data-lucide="award" style="width:28px;height:28px;color:var(--accent)"></i></div>
       <div class="cert-info">
         <h3>Microsoft Certified: Azure Administrator Associate (AZ-104)</h3>
         <p>Cloud infrastructure management, virtual networks, storage solutions, and identity/access management — Microsoft, 2024</p>
@@ -294,7 +275,7 @@
     <div class="skills-grid">
 
       <div class="skill-category reveal">
-        <div class="skill-category-icon">📋</div>
+        <div class="skill-category-icon"><i data-lucide="file-text" style="width:22px;height:22px"></i></div>
         <div class="skill-category-title">Business Analysis</div>
         <div class="skill-tags">
           <span class="skill-tag" data-cursor="hover">BRD / FRD</span>
@@ -308,7 +289,7 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-icon">🏭</div>
+        <div class="skill-category-icon"><i data-lucide="factory" style="width:22px;height:22px"></i></div>
         <div class="skill-category-title">Domain Expertise</div>
         <div class="skill-tags">
           <span class="skill-tag" data-cursor="hover">Route-to-Market</span>
@@ -320,7 +301,7 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-icon">🛠️</div>
+        <div class="skill-category-icon"><i data-lucide="wrench" style="width:22px;height:22px"></i></div>
         <div class="skill-category-title">PM & Collaboration</div>
         <div class="skill-tags">
           <span class="skill-tag" data-cursor="hover">Jira</span>
@@ -332,7 +313,7 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-icon">📊</div>
+        <div class="skill-category-icon"><i data-lucide="bar-chart-3" style="width:22px;height:22px"></i></div>
         <div class="skill-category-title">Analytics & BI</div>
         <div class="skill-tags">
           <span class="skill-tag" data-cursor="hover">Tableau</span>
@@ -346,7 +327,7 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-icon">☁️</div>
+        <div class="skill-category-icon"><i data-lucide="cloud" style="width:22px;height:22px"></i></div>
         <div class="skill-category-title">Cloud & Engineering</div>
         <div class="skill-tags">
           <span class="skill-tag" data-cursor="hover">Azure (AZ-104)</span>
@@ -371,17 +352,17 @@
 
     <div class="contact-links">
       <a href="mailto:utkarshkr.13@outlook.com" class="contact-link magnetic-wrap reveal" data-cursor="hover">
-        <div class="contact-link-icon">✉️</div>
+        <div class="contact-link-icon"><i data-lucide="mail" style="width:22px;height:22px"></i></div>
         <div class="contact-link-label">Email</div>
         <div class="contact-link-value">utkarshkr.13@outlook.com</div>
       </a>
       <a href="https://linkedin.com/in/utkarsh-kumar-rajput" target="_blank" rel="noopener" class="contact-link magnetic-wrap reveal" data-cursor="hover">
-        <div class="contact-link-icon">💼</div>
+        <div class="contact-link-icon"><i data-lucide="linkedin" style="width:22px;height:22px"></i></div>
         <div class="contact-link-label">LinkedIn</div>
         <div class="contact-link-value">utkarsh-kumar-rajput</div>
       </a>
       <a href="tel:+919969396063" class="contact-link magnetic-wrap reveal" data-cursor="hover">
-        <div class="contact-link-icon">📱</div>
+        <div class="contact-link-icon"><i data-lucide="phone" style="width:22px;height:22px"></i></div>
         <div class="contact-link-label">Phone</div>
         <div class="contact-link-value">+91 9969396063</div>
       </a>
@@ -411,5 +392,6 @@
   <script src="js/magnetic.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>

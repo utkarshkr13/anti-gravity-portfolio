@@ -242,7 +242,6 @@
     initHeroAnimations();
     initHeroParallax();
     initScrollReveals();
-    initCounters();
     initNavBarScroll();
     initActiveNavLink();
     initSkillTagFloat();
