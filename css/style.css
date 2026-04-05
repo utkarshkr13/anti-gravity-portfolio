@@ -206,12 +206,13 @@ ul, ol {
   align-items: center;
   gap: var(--space-xs);
   padding: 8px 12px;
-  background: var(--bg-nav);
+  /* Premium Glass Gradient integrating deep accents */
+  background: linear-gradient(135deg, rgba(82, 113, 255, 0.15) 0%, var(--bg-nav) 50%, rgba(200, 80, 192, 0.1) 100%);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-full);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: var(--shadow-nav);
+  box-shadow: 0 8px 32px rgba(82, 113, 255, 0.15); /* Matches gradient shadow */
   transition: transform 0.5s var(--ease-out), background var(--theme-transition), border-color var(--theme-transition), box-shadow var(--theme-transition);
 }
 
@@ -397,16 +398,17 @@ ul, ol {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 110vw; /* Massive size covering middle */
-  height: 60vh;
+  width: 850px;
+  max-width: 90vw;
+  height: 400px;
+  border-radius: 40px; /* Square with rounded corners shape */
+  background: rgba(0, 0, 0, 0.02); /* Slight frosted glass tint */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Premium glass edge */
   z-index: 1; /* Sits above canvas, behind text */
   pointer-events: none;
-  /* Glass tunnel progressive blur */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  /* Radially masks the blur so it's only heavy in the dead center and perfectly clear on the exterior edges */
-  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+  /* Glass card blur */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .hero-greeting {

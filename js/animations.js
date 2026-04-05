@@ -68,7 +68,7 @@
         this.vx = 0;
         this.vy = 0;
         this.opacity = 0.55; 
-        this.scrollSpeed = 0.6 + Math.random() * 0.3; // Slight parallax speed variance between lanes
+        this.scrollSpeed = 0.8; // Uniform tracking speed for all market nodes
       }
       update() {
         // Continuous rightward CNBC scroll
