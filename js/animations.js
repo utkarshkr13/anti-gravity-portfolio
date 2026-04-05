@@ -58,8 +58,8 @@
     let width, height;
     let particles = [];
     const mouse = { x: 0, y: 0 };
-    const numParticles = 600;
-    const radius = 350; 
+    let numParticles = 1000;
+    let radius = 800; // Will be scaled dynamically
 
     function initGlobe() {
       particles = [];
@@ -84,11 +84,13 @@
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
+      // Dynamically make it massive enough to cover the screen
+      radius = Math.max(width, height) * 0.65; 
+      initGlobe();
     }
 
     window.addEventListener('resize', resize);
     resize();
-    initGlobe();
 
     document.addEventListener('mousemove', (e) => {
       mouse.x = (e.clientX / width - 0.5) * 2;
@@ -101,40 +103,40 @@
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      // Spin smoothly, influenced by cursor
-      rotationY += 0.003 + (mouse.x * 0.005);
-      rotationX += (mouse.y * 0.005 - rotationX) * 0.05; // spring to mouse Y
+      // Spin smoothly, influenced by cursor smoothly over massive structure
+      rotationY += 0.0015 + (mouse.x * 0.002);
+      rotationX += (mouse.y * 0.002 - rotationX) * 0.05; 
 
       const sinY = Math.sin(rotationY);
       const cosY = Math.cos(rotationY);
       const sinX = Math.sin(rotationX);
       const cosX = Math.cos(rotationX);
 
-      // Determine dot color based on active theme
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
       const colorPrefix = isLight ? '0, 0, 0' : '255, 255, 255';
+      
+      const fov = 1500; // Flatter depth perception for massive globe
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // 3D Rotation Matrix
         let rotX = p.x * cosY - p.z * sinY;
         let rotZ = p.z * cosY + p.x * sinY;
 
         let rotY2 = p.y * cosX - rotZ * sinX;
         let rotZ2 = rotZ * cosX + p.y * sinX;
 
-        // Perspective Projection
-        const scale = 1000 / (1000 + rotZ2);
+        const scale = fov / (fov + rotZ2);
         const projX = width / 2 + rotX * scale;
         const projY = height / 2 + rotY2 * scale;
 
-        // Alpha fade for depth (further away = darker/smaller)
-        const depthAlpha = Math.max(0.1, (rotZ2 + radius) / (radius * 2));
+        // Ensure particles close to screen are larger and visible
+        const depthAlpha = Math.max(0.05, (rotZ2 + radius) / (radius * 1.8));
         
         ctx.beginPath();
-        ctx.arc(projX, projY, 1.5 * scale, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${colorPrefix}, ${depthAlpha * 0.8})`;
+        // Dynamic scale based on z-depth
+        ctx.arc(projX, projY, Math.max(0.5, 2.5 * scale), 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${colorPrefix}, ${depthAlpha * 0.6})`;
         ctx.fill();
       }
 
