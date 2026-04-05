@@ -74,9 +74,17 @@
         // Continuous rightward CNBC scroll
         this.baseX += this.scrollSpeed;
         
-        // Wrap around off-screen seamlessly
+        // Wrap around off-screen seamlessly without overlapping
         if (this.baseX > width + 100) {
-          this.baseX = -this.textWidth - 100 - (Math.random() * 100);
+          // Find the left-most element currently in THIS specific row
+          let minX = this.baseX;
+          for (let i = 0; i < texts.length; i++) {
+            if (texts[i].baseY === this.baseY && texts[i].baseX < minX) {
+              minX = texts[i].baseX;
+            }
+          }
+          // Attach to the extreme tail behind the last node smoothly (60px gap)
+          this.baseX = minX - this.textWidth - 60;
           this.x = this.baseX;
         }
 

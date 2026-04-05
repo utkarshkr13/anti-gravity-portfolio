@@ -199,8 +199,10 @@ ul, ol {
 .navbar {
   position: fixed;
   top: 20px;
-  left: 50%;
-  transform: translateX(-50%) translateY(0);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -533,30 +535,34 @@ ul, ol {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #1D3C34 0%, #0E2A24 100%); /* Patchi Emerald */
-  color: #DED7BE; /* Patchi Cream */
-  box-shadow: 0 4px 20px rgba(29, 60, 52, 0.4);
-  border: 1px solid transparent;
+  background: linear-gradient(135deg, hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.6) 0%, hsla(var(--accent-h), var(--accent-s), 72%, 0.3) 100%);
+  color: #fff;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #D4AF37 0%, #8C6A3C 100%); /* Patchi Gold */
-  color: #111;
-  box-shadow: 0 8px 40px rgba(212, 175, 55, 0.4);
-  border-color: #D4AF37;
+  background: linear-gradient(135deg, hsla(var(--accent-h), var(--accent-s), 72%, 0.7) 0%, hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.4) 100%);
+  color: #fff;
+  box-shadow: 0 8px 40px var(--accent-glow);
+  border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.05) 100%);
+  background: linear-gradient(135deg, transparent 0%, hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.1) 100%);
   color: var(--text-primary);
-  border: 1px solid #D4AF37; /* Patchi Gold outline */
+  border: 1px solid var(--border-color-hover);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover {
-  background: linear-gradient(135deg, #D4AF37 0%, #8C6A3C 100%);
-  border-color: #D4AF37;
-  color: #111;
+  background: linear-gradient(135deg, hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.4) 0%, hsla(var(--accent-h), var(--accent-s), 72%, 0.2) 100%);
+  border-color: var(--accent);
+  color: var(--text-primary);
   transform: translateY(-2px);
 }
 
