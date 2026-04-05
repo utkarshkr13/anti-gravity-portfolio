@@ -50,103 +50,98 @@
     });
   }
 
-  /* ---------- Hero Interactive Particles ---------- */
+  /* ---------- Hero Interactive 3D Globe ---------- */
   function initParticles() {
-    const canvas = document.getElementById('heroParticles');
+    const canvas = document.getElementById('heroGlobe');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    const mouse = { x: null, y: null, radius: 150 };
+    const mouse = { x: 0, y: 0 };
+    const numParticles = 600;
+    const radius = 350; 
+
+    function initGlobe() {
+      particles = [];
+      const goldenRatio = (1 + Math.sqrt(5)) / 2;
+      const angleIncrement = Math.PI * 2 * goldenRatio;
+
+      for (let i = 0; i < numParticles; i++) {
+        const t = i / numParticles;
+        const inclination = Math.acos(1 - 2 * t);
+        const azimuth = angleIncrement * i;
+
+        const x = radius * Math.sin(inclination) * Math.cos(azimuth);
+        const y = radius * Math.cos(inclination);
+        const z = radius * Math.sin(inclination) * Math.sin(azimuth);
+
+        particles.push({ x, y, z });
+      }
+    }
 
     function resize() {
-      width = canvas.parentElement.offsetWidth;
-      height = canvas.parentElement.offsetHeight;
+      width = window.innerWidth;
+      height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
     }
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.size = Math.random() * 2 + 1;
-        this.density = (Math.random() * 20) + 1;
-        this.color = getComputedStyle(document.body).getPropertyValue('--accent').trim();
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.fill();
-      }
-      update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        let forceDirectionX = dx / distance;
-        let forceDirectionY = dy / distance;
-        let maxDistance = mouse.radius;
-        let force = (maxDistance - distance) / maxDistance;
-        let directionX = forceDirectionX * force * this.density;
-        let directionY = forceDirectionY * force * this.density;
+    window.addEventListener('resize', resize);
+    resize();
+    initGlobe();
 
-        if (distance < mouse.radius && mouse.x !== null) {
-          this.x -= directionX;
-          this.y -= directionY;
-        } else {
-          if (this.x !== this.baseX) {
-            let dx = this.x - this.baseX;
-            this.x -= dx / 10;
-          }
-          if (this.y !== this.baseY) {
-            let dy = this.y - this.baseY;
-            this.y -= dy / 10;
-          }
-        }
-      }
-    }
+    document.addEventListener('mousemove', (e) => {
+      mouse.x = (e.clientX / width - 0.5) * 2;
+      mouse.y = (e.clientY / height - 0.5) * 2;
+    });
 
-    function init() {
-      resize();
-      particles = [];
-      const numParticles = Math.min((width * height) / 10000, 150); // density
-      for (let i = 0; i < numParticles; i++) {
-        particles.push(new Particle());
-      }
-    }
+    let rotationY = 0;
+    let rotationX = 0;
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
+
+      // Spin smoothly, influenced by cursor
+      rotationY += 0.003 + (mouse.x * 0.005);
+      rotationX += (mouse.y * 0.005 - rotationX) * 0.05; // spring to mouse Y
+
+      const sinY = Math.sin(rotationY);
+      const cosY = Math.cos(rotationY);
+      const sinX = Math.sin(rotationX);
+      const cosX = Math.cos(rotationX);
+
+      // Determine dot color based on active theme
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const colorPrefix = isLight ? '0, 0, 0' : '255, 255, 255';
+
       for (let i = 0; i < particles.length; i++) {
-        particles[i].color = getComputedStyle(document.body).getPropertyValue('--accent').trim();
-        particles[i].update();
-        particles[i].draw();
+        const p = particles[i];
+
+        // 3D Rotation Matrix
+        let rotX = p.x * cosY - p.z * sinY;
+        let rotZ = p.z * cosY + p.x * sinY;
+
+        let rotY2 = p.y * cosX - rotZ * sinX;
+        let rotZ2 = rotZ * cosX + p.y * sinX;
+
+        // Perspective Projection
+        const scale = 1000 / (1000 + rotZ2);
+        const projX = width / 2 + rotX * scale;
+        const projY = height / 2 + rotY2 * scale;
+
+        // Alpha fade for depth (further away = darker/smaller)
+        const depthAlpha = Math.max(0.1, (rotZ2 + radius) / (radius * 2));
+        
+        ctx.beginPath();
+        ctx.arc(projX, projY, 1.5 * scale, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${colorPrefix}, ${depthAlpha * 0.8})`;
+        ctx.fill();
       }
+
       requestAnimationFrame(animate);
     }
 
-    init();
     animate();
-
-    window.addEventListener('resize', () => {
-      resize();
-      init();
-    });
-
-    canvas.parentElement.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
-
-    canvas.parentElement.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
   }
 
   /* ---------- About Section Image Slider ---------- */

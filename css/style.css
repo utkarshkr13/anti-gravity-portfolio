@@ -375,22 +375,13 @@ ul, ol {
   pointer-events: none;
 }
 
-.hero-video-bg {
+.hero-particles {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
   z-index: 0;
-  overflow: hidden;
-}
-
-.hero-video-bg video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 1; /* Real colors without transparency */
-  transform: scale(2.2); /* Massive scale to crop the square letterboxing from 16:9 bounds */
-  transition: opacity var(--theme-transition);
 }
 
 .hero-glow {
@@ -426,11 +417,11 @@ ul, ol {
   font-size: var(--fs-hero);
   font-weight: 700;
   line-height: 1.05;
-  color: #ffffff;
+  color: var(--text-primary);
   position: relative;
   z-index: 10;
   letter-spacing: -0.03em;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9), 0 2px 10px rgba(0, 0, 0, 0.7);
+  transition: color var(--theme-transition);
 }
 
 .hero-name .accent-text {
@@ -453,13 +444,12 @@ ul, ol {
 
 .hero-subtitle {
   font-size: var(--fs-md);
-  color: #e8eaed;
+  color: var(--text-secondary);
   max-width: 600px;
   margin-top: var(--space-md);
   position: relative;
   z-index: 10;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.01em;
   transition: color var(--theme-transition);
 }
