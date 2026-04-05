@@ -27,6 +27,23 @@
       ease: 'power3.out',
       stagger: 0.12
     }, '-=0.6');
+
+    /* ---------- Matrix Hyperdrive Easter Egg ---------- */
+    let clickCount = 0;
+    let clickTimeout;
+    const heroNameExt = document.querySelector('.hero-name');
+    if (heroNameExt) {
+      heroNameExt.addEventListener('click', () => {
+        clickCount++;
+        clearTimeout(clickTimeout);
+        clickTimeout = setTimeout(() => { clickCount = 0; }, 1000);
+        
+        if (clickCount >= 5) {
+          clickCount = 0;
+          window.dispatchEvent(new Event('matrix-hyperdrive'));
+        }
+      });
+    }
   }
 
   // Removed hero glow as per tunnel background update.
@@ -50,6 +67,22 @@
     let mouse = { x: -1000, y: -1000 };
     const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
     let texts = [];
+
+    // Hyperdrive State
+    let isHyperdrive = false;
+    window.addEventListener('matrix-hyperdrive', () => {
+      isHyperdrive = !isHyperdrive;
+      if (isHyperdrive) {
+        document.body.style.setProperty('background-color', '#020602', 'important');
+        texts.forEach(t => {
+          t.scrollSpeed = 35.0; // Warp speed matrix
+          t.isPositive = true; // Force all green
+          t.opacity = 0.9;
+        });
+      } else {
+        location.reload(); // Refresh to exit matrix cleanly
+      }
+    });
 
     class TextNode {
       constructor(stockData, colX, rowY) {

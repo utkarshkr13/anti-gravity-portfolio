@@ -108,7 +108,7 @@
   window.addEventListener('DOMContentLoaded', () => {
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     if (scrollTopBtn) {
-      lenis.on('scroll', () => {
+      window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
           scrollTopBtn.classList.add('visible');
         } else {
