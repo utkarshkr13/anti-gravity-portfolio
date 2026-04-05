@@ -52,25 +52,26 @@
     });
   }
 
-  /* ---------- Hero Interactive Zero-Gravity Physics ---------- */
+  /* ---------- Hero Hyperspace News Matrix & Spaceships ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe'); 
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
-    let particles = [];
     
-    // Precise bounding client mouse data
-    const mouse = { x: -1000, y: -1000, radius: 200 };
-
-    // Diverse, premium gradient colors for the dots
-    const colors = [
-      'rgba(59, 130, 246, 0.8)',   // Blue anchor
-      'rgba(147, 51, 234, 0.7)',   // Deep Purple
-      'rgba(16, 185, 129, 0.8)',   // Emerald Green
-      'rgba(244, 63, 94, 0.7)',    // Soft Ruby
-      'rgba(255, 255, 255, 0.6)'   // Clean Silver
+    // Starter fallbacks while Python JSON loads natively
+    let headlines = [
+      "Establishing secure connection...",
+      "Fetching global tech markets...",
+      "Neural link initialized.",
+      "Parsing hyperspace matrix..."
     ];
+
+    // Background asynchronous fetch to grab API JSON (created by our scheduled job)
+    fetch('assets/news.json')
+      .then(r => r.json())
+      .then(data => { if(data.headlines && data.headlines.length > 0) headlines = data.headlines; })
+      .catch(e => console.log('Using local fallback tech strings'));
 
     function resize() {
       width = window.innerWidth;
@@ -82,120 +83,181 @@
     window.addEventListener('resize', resize);
     resize();
 
-    class Particle {
+    let mouse = { x: width/2, y: height/2 };
+
+    const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
+
+    // 1. 3D Spaceships Class
+    class Spaceship {
       constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 3 + 1.5;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.reset(true);
+      }
+      reset(randomizeZ = false) {
+        // Spawn slightly off-center randomly
+        this.x = width / 2 + (Math.random() - 0.5) * 50;
+        this.y = height / 2 + (Math.random() - 0.5) * 50;
+        this.z = randomizeZ ? Math.random() * 2000 + 100 : 2000; // depth coordinate (Z axis)
         
-        // Zero gravity random ambient float base speeds
-        this.baseVx = (Math.random() - 0.5) * 1.5;
-        this.baseVy = (Math.random() - 0.5) * 1.5;
-        this.vx = this.baseVx;
-        this.vy = this.baseVy;
+        // Massive warp speed
+        this.speed = Math.random() * 15 + 10;
+        
+        // Slight strafing drift
+        this.vx = (Math.random() - 0.5) * 2;
+        this.vy = (Math.random() - 0.5) * 2;
       }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
-      }
-
       update() {
-        // True physics intersection tracking
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < mouse.radius) {
-          // Anti-Gravity dynamic repulsive force scatter
-          const force = (mouse.radius - distance) / mouse.radius;
-          const forceX = (dx / distance) * force * 15;
-          const forceY = (dy / distance) * force * 15;
-          
-          this.vx -= forceX;
-          this.vy -= forceY;
-        }
-
-        // Natural resistance to slow down the violent scatter back to drifting
-        this.vx *= 0.94;
-        this.vy *= 0.94;
-
-        // Maintain ambient speed drifting if standing semi-still
-        if (Math.abs(this.vx) < Math.abs(this.baseVx)) {
-          this.vx += (this.baseVx - this.vx) * 0.05;
-        }
-        if (Math.abs(this.vy) < Math.abs(this.baseVy)) {
-          this.vy += (this.baseVy - this.vy) * 0.05;
-        }
-
+        this.z -= this.speed; // Fly towards the camera (closer = smaller Z)
         this.x += this.vx;
         this.y += this.vy;
+        
+        if (this.z < 10) this.reset(); // Pass perfectly behind the screen
+      }
+      draw() {
+        // 3D Perspective Projection
+        const fov = 400; // Field of view
+        const scale = fov / this.z;
+        const projX = (this.x - width/2) * scale + width/2;
+        const projY = (this.y - height/2) * scale + height/2;
+        const size = scale * 12; // Base size of spaceship scales up drastically as it gets closer
 
-        // Elastic container barriers (bouncing off walls)
-        if (this.x < 0) { this.x = 0; this.vx *= -1; this.baseVx *= -1; }
-        if (this.x > width) { this.x = width; this.vx *= -1; this.baseVx *= -1; }
-        if (this.y < 0) { this.y = 0; this.vy *= -1; this.baseVy *= -1; }
-        if (this.y > height) { this.y = height; this.vy *= -1; this.baseVy *= -1; }
+        if (projX < 0 || projX > width || projY < 0 || projY > height) {
+          this.reset();
+          return;
+        }
+
+        ctx.save();
+        ctx.translate(projX, projY);
+        
+        // Nose always points directly outward from the exact dead-center of screen
+        const angle = Math.atan2(projY - height/2, projX - width/2);
+        ctx.rotate(angle);
+
+        // Vector Spaceship Design (Star Wars aesthetic)
+        ctx.beginPath();
+        ctx.moveTo(size * 1.8, 0);             // Extended nose
+        ctx.lineTo(-size, -size * 0.9);        // Left vast wing
+        ctx.lineTo(-size * 0.5, 0);            // Engine notch
+        ctx.lineTo(-size, size * 0.9);         // Right vast wing
+        ctx.closePath();
+        
+        ctx.fillStyle = isLightMode() ? 'rgba(0,0,0,0.9)' : 'rgba(255,255,255,0.9)';
+        ctx.fill();
+
+        // Reactor Thrust Glow
+        ctx.beginPath();
+        ctx.arc(-size * 0.5, 0, size * 0.3, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(59, 130, 246, 0.9)'; // Electric Blue Engine
+        ctx.fill();
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgb(59, 130, 246)'; // Engine bloom effect
+        ctx.restore();
+
+        // Exposing absolute projection coords manually for text collision
+        this.px = projX;
+        this.py = projY;
+        this.psize = size;
       }
     }
 
-    function initSim() {
-      particles = [];
-      const particleCount = Math.min((width * height) / 10000, 200); 
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+    // 2. The Blurred News Node Class
+    class TextNode {
+      constructor(text, yPos) {
+        this.text = text;
+        this.baseX = Math.random() * width;
+        this.y = yPos;
+        this.x = this.baseX;
+        this.vx = 0;
+        
+        // Matrix flow upward
+        this.speed = (Math.random() * 0.8) + 0.2; 
+        this.opacity = Math.random() * 0.4 + 0.1;
+        this.fontSize = Math.floor(Math.random() * 5) + 12; // Dynamic code-size
+      }
+      update(ships) {
+        // Continuous scroll loop
+        this.y -= this.speed;
+        if (this.y < -50) {
+          this.y = height + 50;
+          this.text = headlines[Math.floor(Math.random() * headlines.length)];
+          this.baseX = Math.random() * width;
+          this.x = this.baseX;
+        }
+
+        // Violent Collision checks against all Spaceships!
+        for (let ship of ships) {
+          if (!ship.px) continue;
+          const dx = ship.px - this.x;
+          const dy = ship.py - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          // Size-based hitboxes (as ships get closer to the screen they grow, carving larger swathes)
+          const influenceRadius = ship.psize * 4 + 40; 
+          
+          if (dist < influenceRadius) {
+            // Apply horizontal force depending on which side of the ship it is
+            const force = (influenceRadius - dist) / influenceRadius;
+            this.vx -= (dx / dist) * force * 5; 
+          }
+        }
+
+        // Kinetic recovery physics
+        this.vx *= 0.90; // Natural braking friction
+        
+        if (Math.abs(this.vx) < 0.2) {
+          // Snap slowly back to original flow line
+          const recoverDx = this.baseX - this.x;
+          this.x += recoverDx * 0.08;
+        } else {
+          this.x += this.vx;
+        }
+      }
+      draw() {
+        ctx.font = `${this.fontSize}px 'Courier New', Courier, monospace`;
+        ctx.fillStyle = isLightMode() ? `rgba(0,0,0,${this.opacity})` : `rgba(255,255,255,${this.opacity})`;
+        ctx.fillText(this.text, this.x, this.y);
       }
     }
+
+    // Instantiation
+    const ships = [];
+    for (let i = 0; i < 30; i++) ships.push(new Spaceship()); // 30 simultaneous ships zooming
+
+    const texts = [];
+    for (let i = 0; i < 70; i++) texts.push(new TextNode(headlines[i % headlines.length], Math.random() * height)); // 70 lines of data stream
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+      // Slight 3D pan tilt responsive to user mouse
+      const panX = (mouse.x - width/2) * 0.02;
+      const panY = (mouse.y - height/2) * 0.02;
+      
+      ctx.save();
+      ctx.translate(-panX, -panY);
+
+      // RENDER TEXT PASS (Blurred Pre-text layer)
+      ctx.filter = 'blur(1.5px)'; // Heavy depth of field blur for text
+      for (let txt of texts) {
+        txt.update(ships);
+        txt.draw();
       }
-      connect();
+
+      // RENDER SHIPS PASS (Crisp Foreground Zooming)
+      ctx.filter = 'none'; // Unblur hardware context
+      for (let ship of ships) {
+        ship.update();
+        ship.draw();
+      }
+      
+      ctx.restore();
       requestAnimationFrame(animate);
     }
 
-    function connect() {
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a + 1; b < particles.length; b++) {
-          let dx = particles[a].x - particles[b].x;
-          let dy = particles[a].y - particles[b].y;
-          let distance = dx * dx + dy * dy;
-
-          if (distance < 15000) {
-            let opacityValue = 1 - (distance / 15000);
-            ctx.strokeStyle = isLight ? `rgba(0,0,0,${opacityValue * 0.15})` : `rgba(255,255,255,${opacityValue * 0.15})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
     document.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     });
 
-    document.addEventListener('mouseleave', () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
-    });
-
-    initSim();
     animate();
   }
 
