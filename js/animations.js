@@ -52,204 +52,121 @@
     });
   }
 
-  /* ---------- Hero Hyperspace News Matrix & Spaceships ---------- */
+  /* ---------- Hero Seamless News Matrix ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe'); 
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
     
-    // Starter fallbacks while Python JSON loads natively
     let headlines = [
       "Establishing secure connection...",
       "Fetching global tech markets...",
       "Neural link initialized.",
-      "Parsing hyperspace matrix..."
+      "Parsing background matrix..."
     ];
 
-    // Background asynchronous fetch to grab API JSON (created by our scheduled job)
+    // Background fetch
     fetch('assets/news.json')
       .then(r => r.json())
       .then(data => { if(data.headlines && data.headlines.length > 0) headlines = data.headlines; })
       .catch(e => console.log('Using local fallback tech strings'));
+
+    let mouse = { x: -1000, y: -1000 };
+    const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
+    let texts = [];
+
+    class TextNode {
+      constructor(text, colX, startY) {
+        this.text = text;
+        this.baseX = colX;
+        this.x = this.baseX;
+        this.y = startY;
+        this.vx = 0;
+        
+        // Matrix flow upward
+        this.speed = 0.4 + Math.random() * 0.3; 
+        this.opacity = Math.random() * 0.25 + 0.15;
+      }
+      update() {
+        this.y -= this.speed;
+        if (this.y < -50) {
+          this.y = height + 50;
+          this.text = headlines[Math.floor(Math.random() * headlines.length)];
+          this.x = this.baseX;
+        }
+
+        // Mouse Collision (Text strictly parts outward making space for mouse)
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        const influenceRadius = 250; 
+        
+        if (dist < influenceRadius) {
+          const force = (influenceRadius - dist) / influenceRadius;
+          // Text pushes sideways forcefully to clear path
+          this.vx -= (dx / dist) * force * 5.0; 
+        }
+
+        // Kinetic recovery physics
+        this.vx *= 0.88; 
+        
+        if (Math.abs(this.vx) < 0.1) {
+          // Snap slowly back to original uniform grid column
+          const recoverDx = this.baseX - this.x;
+          this.x += recoverDx * 0.06;
+        } else {
+          this.x += this.vx;
+        }
+      }
+      draw() {
+        ctx.fillStyle = isLightMode() ? `rgba(0,0,0,${this.opacity})` : `rgba(255,255,255,${this.opacity})`;
+        ctx.fillText(this.text, this.x, this.y);
+      }
+    }
+
+    function initGrid() {
+      texts = [];
+      const colWidth = 350; // Spacious even columns
+      const cols = Math.ceil(width / colWidth) + 1;
+      const rowHeight = 45; // Dense enough vertically to be matrix-like
+      const rows = Math.ceil(height / rowHeight) + 1;
+
+      for (let c = -1; c < cols; c++) {
+        for (let r = -1; r < rows; r++) {
+          const xPos = c * colWidth + ((r % 2 === 0) ? colWidth/2 : 0); // Stagger rows beautifully like bricks
+          const yPos = r * rowHeight;
+          const text = headlines[Math.floor(Math.random() * headlines.length)];
+          texts.push(new TextNode(text, xPos, yPos));
+        }
+      }
+    }
 
     function resize() {
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
+      initGrid();
     }
 
     window.addEventListener('resize', resize);
     resize();
 
-    let mouse = { x: width/2, y: height/2 };
-
-    const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
-
-    // 1. 3D Spaceships Class
-    class Spaceship {
-      constructor() {
-        this.reset(true);
-      }
-      reset(randomizeZ = false) {
-        // Spawn slightly off-center randomly
-        this.x = width / 2 + (Math.random() - 0.5) * 50;
-        this.y = height / 2 + (Math.random() - 0.5) * 50;
-        this.z = randomizeZ ? Math.random() * 2000 + 100 : 2000; // depth coordinate (Z axis)
-        
-        // Massive warp speed
-        this.speed = Math.random() * 15 + 10;
-        
-        // Slight strafing drift
-        this.vx = (Math.random() - 0.5) * 2;
-        this.vy = (Math.random() - 0.5) * 2;
-      }
-      update() {
-        this.z -= this.speed; // Fly towards the camera (closer = smaller Z)
-        this.x += this.vx;
-        this.y += this.vy;
-        
-        if (this.z < 10) this.reset(); // Pass perfectly behind the screen
-      }
-      draw() {
-        // 3D Perspective Projection
-        const fov = 400; // Field of view
-        const scale = fov / this.z;
-        const projX = (this.x - width/2) * scale + width/2;
-        const projY = (this.y - height/2) * scale + height/2;
-        const size = scale * 12; // Base size of spaceship scales up drastically as it gets closer
-
-        if (projX < 0 || projX > width || projY < 0 || projY > height) {
-          this.reset();
-          return;
-        }
-
-        ctx.save();
-        ctx.translate(projX, projY);
-        
-        // Nose always points directly outward from the exact dead-center of screen
-        const angle = Math.atan2(projY - height/2, projX - width/2);
-        ctx.rotate(angle);
-
-        // Vector Spaceship Design (Star Wars aesthetic)
-        ctx.beginPath();
-        ctx.moveTo(size * 1.8, 0);             // Extended nose
-        ctx.lineTo(-size, -size * 0.9);        // Left vast wing
-        ctx.lineTo(-size * 0.5, 0);            // Engine notch
-        ctx.lineTo(-size, size * 0.9);         // Right vast wing
-        ctx.closePath();
-        
-        ctx.fillStyle = isLightMode() ? 'rgba(0,0,0,0.9)' : 'rgba(255,255,255,0.9)';
-        ctx.fill();
-
-        // Reactor Thrust Glow
-        ctx.beginPath();
-        ctx.arc(-size * 0.5, 0, size * 0.3, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(59, 130, 246, 0.9)'; // Electric Blue Engine
-        ctx.fill();
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgb(59, 130, 246)'; // Engine bloom effect
-        ctx.restore();
-
-        // Exposing absolute projection coords manually for text collision
-        this.px = projX;
-        this.py = projY;
-        this.psize = size;
-      }
-    }
-
-    // 2. The Blurred News Node Class
-    class TextNode {
-      constructor(text, yPos) {
-        this.text = text;
-        this.baseX = Math.random() * width;
-        this.y = yPos;
-        this.x = this.baseX;
-        this.vx = 0;
-        
-        // Matrix flow upward
-        this.speed = (Math.random() * 0.8) + 0.2; 
-        this.opacity = Math.random() * 0.4 + 0.1;
-        this.fontSize = Math.floor(Math.random() * 5) + 12; // Dynamic code-size
-      }
-      update(ships) {
-        // Continuous scroll loop
-        this.y -= this.speed;
-        if (this.y < -50) {
-          this.y = height + 50;
-          this.text = headlines[Math.floor(Math.random() * headlines.length)];
-          this.baseX = Math.random() * width;
-          this.x = this.baseX;
-        }
-
-        // Violent Collision checks against all Spaceships!
-        for (let ship of ships) {
-          if (!ship.px) continue;
-          const dx = ship.px - this.x;
-          const dy = ship.py - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          
-          // Size-based hitboxes (as ships get closer to the screen they grow, carving larger swathes)
-          const influenceRadius = ship.psize * 4 + 40; 
-          
-          if (dist < influenceRadius) {
-            // Apply horizontal force depending on which side of the ship it is
-            const force = (influenceRadius - dist) / influenceRadius;
-            this.vx -= (dx / dist) * force * 5; 
-          }
-        }
-
-        // Kinetic recovery physics
-        this.vx *= 0.90; // Natural braking friction
-        
-        if (Math.abs(this.vx) < 0.2) {
-          // Snap slowly back to original flow line
-          const recoverDx = this.baseX - this.x;
-          this.x += recoverDx * 0.08;
-        } else {
-          this.x += this.vx;
-        }
-      }
-      draw() {
-        ctx.font = `${this.fontSize}px 'Courier New', Courier, monospace`;
-        ctx.fillStyle = isLightMode() ? `rgba(0,0,0,${this.opacity})` : `rgba(255,255,255,${this.opacity})`;
-        ctx.fillText(this.text, this.x, this.y);
-      }
-    }
-
-    // Instantiation
-    const ships = [];
-    for (let i = 0; i < 30; i++) ships.push(new Spaceship()); // 30 simultaneous ships zooming
-
-    const texts = [];
-    for (let i = 0; i < 70; i++) texts.push(new TextNode(headlines[i % headlines.length], Math.random() * height)); // 70 lines of data stream
-
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      // Slight 3D pan tilt responsive to user mouse
-      const panX = (mouse.x - width/2) * 0.02;
-      const panY = (mouse.y - height/2) * 0.02;
+      // RENDER TEXT PASS 
+      ctx.filter = 'blur(1.5px)'; // Depth of field
+      ctx.font = `14px 'Courier New', Courier, monospace`; // Set once for performance
       
-      ctx.save();
-      ctx.translate(-panX, -panY);
-
-      // RENDER TEXT PASS (Blurred Pre-text layer)
-      ctx.filter = 'blur(1.5px)'; // Heavy depth of field blur for text
       for (let txt of texts) {
-        txt.update(ships);
+        txt.update();
         txt.draw();
       }
-
-      // RENDER SHIPS PASS (Crisp Foreground Zooming)
-      ctx.filter = 'none'; // Unblur hardware context
-      for (let ship of ships) {
-        ship.update();
-        ship.draw();
-      }
       
-      ctx.restore();
+      ctx.filter = 'none'; 
       requestAnimationFrame(animate);
     }
 
