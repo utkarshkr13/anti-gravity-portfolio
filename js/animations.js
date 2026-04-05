@@ -36,113 +36,166 @@
 
     if (!heroGlow || !hero) return;
 
-    hero.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', (e) => {
       const rect = hero.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const pointerX = e.clientX - rect.left;
+      const pointerY = e.clientY - rect.top;
 
       gsap.to(heroGlow, {
-        x: x - 300,
-        y: y - 300,
+        x: pointerX,
+        y: pointerY,
+        xPercent: -50,
+        yPercent: -50,
         duration: 1.2,
         ease: 'power2.out'
       });
     });
   }
 
-  /* ---------- Hero Interactive 3D Globe ---------- */
+  /* ---------- Hero Interactive Zero-Gravity Physics ---------- */
   function initParticles() {
-    const canvas = document.getElementById('heroGlobe');
+    const canvas = document.getElementById('heroGlobe'); 
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    const mouse = { x: 0, y: 0 };
-    let numParticles = 1000;
-    let radius = 800; // Will be scaled dynamically
+    
+    // Precise bounding client mouse data
+    const mouse = { x: -1000, y: -1000, radius: 200 };
 
-    function initGlobe() {
-      particles = [];
-      const goldenRatio = (1 + Math.sqrt(5)) / 2;
-      const angleIncrement = Math.PI * 2 * goldenRatio;
-
-      for (let i = 0; i < numParticles; i++) {
-        const t = i / numParticles;
-        const inclination = Math.acos(1 - 2 * t);
-        const azimuth = angleIncrement * i;
-
-        const x = radius * Math.sin(inclination) * Math.cos(azimuth);
-        const y = radius * Math.cos(inclination);
-        const z = radius * Math.sin(inclination) * Math.sin(azimuth);
-
-        particles.push({ x, y, z });
-      }
-    }
+    // Diverse, premium gradient colors for the dots
+    const colors = [
+      'rgba(59, 130, 246, 0.8)',   // Blue anchor
+      'rgba(147, 51, 234, 0.7)',   // Deep Purple
+      'rgba(16, 185, 129, 0.8)',   // Emerald Green
+      'rgba(244, 63, 94, 0.7)',    // Soft Ruby
+      'rgba(255, 255, 255, 0.6)'   // Clean Silver
+    ];
 
     function resize() {
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      // Dynamically make it massive enough to cover the screen
-      radius = Math.max(width, height) * 0.65; 
-      initGlobe();
     }
 
     window.addEventListener('resize', resize);
     resize();
 
-    document.addEventListener('mousemove', (e) => {
-      mouse.x = (e.clientX / width - 0.5) * 2;
-      mouse.y = (e.clientY / height - 0.5) * 2;
-    });
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 3 + 1.5;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Zero gravity random ambient float base speeds
+        this.baseVx = (Math.random() - 0.5) * 1.5;
+        this.baseVy = (Math.random() - 0.5) * 1.5;
+        this.vx = this.baseVx;
+        this.vy = this.baseVy;
+      }
 
-    let rotationY = 0;
-    let rotationX = 0;
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
+      }
+
+      update() {
+        // True physics intersection tracking
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius) {
+          // Anti-Gravity dynamic repulsive force scatter
+          const force = (mouse.radius - distance) / mouse.radius;
+          const forceX = (dx / distance) * force * 15;
+          const forceY = (dy / distance) * force * 15;
+          
+          this.vx -= forceX;
+          this.vy -= forceY;
+        }
+
+        // Natural resistance to slow down the violent scatter back to drifting
+        this.vx *= 0.94;
+        this.vy *= 0.94;
+
+        // Maintain ambient speed drifting if standing semi-still
+        if (Math.abs(this.vx) < Math.abs(this.baseVx)) {
+          this.vx += (this.baseVx - this.vx) * 0.05;
+        }
+        if (Math.abs(this.vy) < Math.abs(this.baseVy)) {
+          this.vy += (this.baseVy - this.vy) * 0.05;
+        }
+
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Elastic container barriers (bouncing off walls)
+        if (this.x < 0) { this.x = 0; this.vx *= -1; this.baseVx *= -1; }
+        if (this.x > width) { this.x = width; this.vx *= -1; this.baseVx *= -1; }
+        if (this.y < 0) { this.y = 0; this.vy *= -1; this.baseVy *= -1; }
+        if (this.y > height) { this.y = height; this.vy *= -1; this.baseVy *= -1; }
+      }
+    }
+
+    function initSim() {
+      particles = [];
+      const particleCount = Math.min((width * height) / 10000, 200); 
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      // Spin smoothly, influenced by cursor smoothly over massive structure
-      rotationY += 0.0015 + (mouse.x * 0.002);
-      rotationX += (mouse.y * 0.002 - rotationX) * 0.05; 
-
-      const sinY = Math.sin(rotationY);
-      const cosY = Math.cos(rotationY);
-      const sinX = Math.sin(rotationX);
-      const cosX = Math.cos(rotationX);
-
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      const colorPrefix = isLight ? '0, 0, 0' : '255, 255, 255';
-      
-      const fov = 1500; // Flatter depth perception for massive globe
-
       for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-
-        let rotX = p.x * cosY - p.z * sinY;
-        let rotZ = p.z * cosY + p.x * sinY;
-
-        let rotY2 = p.y * cosX - rotZ * sinX;
-        let rotZ2 = rotZ * cosX + p.y * sinX;
-
-        const scale = fov / (fov + rotZ2);
-        const projX = width / 2 + rotX * scale;
-        const projY = height / 2 + rotY2 * scale;
-
-        // Ensure particles close to screen are larger and visible
-        const depthAlpha = Math.max(0.05, (rotZ2 + radius) / (radius * 1.8));
-        
-        ctx.beginPath();
-        // Dynamic scale based on z-depth
-        ctx.arc(projX, projY, Math.max(0.5, 2.5 * scale), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${colorPrefix}, ${depthAlpha * 0.6})`;
-        ctx.fill();
+        particles[i].update();
+        particles[i].draw();
       }
-
+      connect();
       requestAnimationFrame(animate);
     }
 
+    function connect() {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          let dx = particles[a].x - particles[b].x;
+          let dy = particles[a].y - particles[b].y;
+          let distance = dx * dx + dy * dy;
+
+          if (distance < 15000) {
+            let opacityValue = 1 - (distance / 15000);
+            ctx.strokeStyle = isLight ? `rgba(0,0,0,${opacityValue * 0.15})` : `rgba(255,255,255,${opacityValue * 0.15})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    document.addEventListener('mouseleave', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    initSim();
     animate();
   }
 
