@@ -420,8 +420,10 @@
     </div>
 
     <div class="contact-cta reveal" style="display: flex; flex-direction: column; align-items: center; gap: var(--space-lg); margin-top: var(--space-xl);">
-      <div class="qr-code-wrapper" style="padding: 10px; background: white; border-radius: 12px; box-shadow: var(--shadow-nav); transform: rotate(-2deg); transition: transform 0.3s;" onmouseover="this.style.transform='rotate(0deg) scale(1.05)'" onmouseout="this.style.transform='rotate(-2deg)'" title="Scan to connect on LinkedIn">
-        <img src="assets/linkedin_qr.png" alt="LinkedIn QR Code" width="130" height="130" style="display: block; border-radius: 8px;">
+      <div class="qr-code-wrapper" onmouseover="this.classList.add('hovered')" onmouseout="this.classList.remove('hovered')">
+        <span class="qr-text left">Scan</span>
+        <img src="assets/linkedin_qr.png" alt="LinkedIn QR Code" width="130" height="130" style="position: relative; z-index: 2; border-radius: 8px;">
+        <span class="qr-text right">Me!</span>
       </div>
       <div class="magnetic-wrap">
         <a href="mailto:utkarshkr.13@outlook.com" class="btn btn-primary" data-cursor="hover" style="font-size: var(--fs-md); padding: 18px 48px;">
@@ -452,6 +454,7 @@
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 
   <!-- ===== App Scripts ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <script src="js/cursor.js"></script>
   <script src="js/glow.js"></script>
   <script src="js/magnetic.js"></script>

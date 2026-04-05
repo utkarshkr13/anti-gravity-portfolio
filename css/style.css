@@ -1249,6 +1249,51 @@ ul, ol {
   margin-bottom: var(--space-md);
 }
 
+/* ---------- Interactive QR Code Component ---------- */
+.qr-code-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow-nav);
+  cursor: crosshair;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.qr-code-wrapper:hover {
+  transform: scale(1.05); /* Straight orientation by default, pops outward playfully */
+}
+.qr-text {
+  position: absolute;
+  color: #1e293b;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  opacity: 0;
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+.qr-text.left {
+  right: 50%; /* Start collapsed in the exact center */
+}
+.qr-text.right {
+  left: 50%;
+}
+.qr-code-wrapper.hovered .qr-text {
+  opacity: 1; /* Appear smoothly when hovered */
+}
+.qr-code-wrapper.hovered .qr-text.left {
+  right: calc(100% + 15px); /* Slide out left */
+}
+.qr-code-wrapper.hovered .qr-text.right {
+  left: calc(100% + 15px); /* Slide out right */
+}
+
 /* ---------- Footer ---------- */
 .footer {
   padding: var(--space-lg);
