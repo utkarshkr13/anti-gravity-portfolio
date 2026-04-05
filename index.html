@@ -419,8 +419,11 @@
       </a>
     </div>
 
-    <div class="contact-cta reveal">
-      <div class="magnetic-wrap" style="margin-top: var(--space-xl);">
+    <div class="contact-cta reveal" style="display: flex; flex-direction: column; align-items: center; gap: var(--space-lg); margin-top: var(--space-xl);">
+      <div class="qr-code-wrapper" style="padding: 10px; background: white; border-radius: 12px; box-shadow: var(--shadow-nav); transform: rotate(-2deg); transition: transform 0.3s;" onmouseover="this.style.transform='rotate(0deg) scale(1.05)'" onmouseout="this.style.transform='rotate(-2deg)'" title="Scan to connect on LinkedIn">
+        <img src="assets/linkedin_qr.png" alt="LinkedIn QR Code" width="130" height="130" style="display: block; border-radius: 8px;">
+      </div>
+      <div class="magnetic-wrap">
         <a href="mailto:utkarshkr.13@outlook.com" class="btn btn-primary" data-cursor="hover" style="font-size: var(--fs-md); padding: 18px 48px;">
           Let's Connect <span class="btn-arrow">→</span>
         </a>
@@ -430,7 +433,14 @@
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
-    <p>Designed & Built by <a href="#hero" data-cursor="hover">Utkarsh Kumar Rajput</a> · 2026</p>
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; gap: var(--space-md);">
+      <div class="visitor-count" style="display: flex; align-items: center; gap: 8px;" title="Total Profile Views">
+        <i data-lucide="eye" style="width:16px;height:16px;opacity:0.7"></i>
+        <img src="https://visitor-badge.laobi.icu/badge?page_id=utkarshkr13.anti-gravity-portfolio&left_color=2970f5&right_color=1e293b" alt="Visitor Count" style="vertical-align: middle; border-radius: 4px; height: 20px;">
+      </div>
+      <p style="margin: 0; flex: 1; text-align: center;">Designed & Built by <a href="#hero" data-cursor="hover">Utkarsh Kumar Rajput</a> · 2026</p>
+      <div style="min-width: 80px;"></div>
+    </div>
   </footer>
 
   <button class="scroll-top-btn" id="scrollTopBtn" data-cursor="hover" aria-label="Scroll to Top">
