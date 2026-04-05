@@ -1316,6 +1316,7 @@ ul, ol {
     gap: var(--space-xl);
   }
   .about-image-wrap {
+    width: 100%; /* Fix 0px width grid collapse bug on mobile Safari */
     max-width: 400px;
     margin: 0 auto;
   }
