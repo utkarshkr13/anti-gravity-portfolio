@@ -123,18 +123,32 @@
 
     function initGrid() {
       texts = [];
-      const colWidth = 350; // Exact even spacing
-      const cols = Math.ceil(width / colWidth) + 1;
-      const rowHeight = 40; // Exact uniform vertical line-height
+      ctx.font = `14px 'Courier New', Courier, monospace`; // Must set font before measuring
+      
+      // Exact physical length measurement (Pretext-style wrapping strategy)
+      const marginX = 80; // Secure guaranteed gap between text
+      const rowHeight = 40; 
       const rows = Math.ceil(height / rowHeight) + 1;
 
       let index = 0;
+      
       for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const xPos = c * colWidth;
-          const yPos = r * rowHeight + 20; 
+        let currentX = 0; // Starts at left 0 for every new row
+        
+        // Dynamically wrap text exactly like a continuous paragraph till edge of screen
+        while (currentX < width) {
           const text = headlines[index % headlines.length];
-          texts.push(new TextNode(text, xPos, yPos));
+          
+          // Physically measure exactly how wide this specific headline is!
+          const textWidth = ctx.measureText(text).width;
+          
+          const yPos = r * rowHeight + 20; 
+
+          // Push text node using actual physical calculated position locking in zero overlap
+          texts.push(new TextNode(text, currentX, yPos));
+          
+          // Update currentX to the exact end of this string + margin
+          currentX += textWidth + marginX;
           index++;
         }
       }
@@ -162,7 +176,7 @@
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      ctx.filter = 'blur(1.5px)'; 
+      // NO ctx.filter HERE! Render pure text here. GPU Hardware CSS handles blurring.
       ctx.font = `14px 'Courier New', Courier, monospace`; 
       
       for (let txt of texts) {
@@ -170,7 +184,6 @@
         txt.draw();
       }
       
-      ctx.filter = 'none'; 
       requestAnimationFrame(animate);
     }
 
