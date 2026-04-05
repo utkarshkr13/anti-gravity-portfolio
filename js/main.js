@@ -96,6 +96,22 @@
     }, '+=0.1');
   }
 
+  /* ---------- Scroll to Top Button ---------- */
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    lenis.on('scroll', (e) => {
+      if (e.animatedScroll > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      lenis.scrollTo(0, { duration: 1.5, ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    });
+  }
+
   /* ---------- Run Everything ---------- */
   window.addEventListener('DOMContentLoaded', () => {
     runLoader();
