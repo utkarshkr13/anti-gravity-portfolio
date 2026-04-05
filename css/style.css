@@ -398,17 +398,20 @@ ul, ol {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 850px;
-  max-width: 90vw;
-  height: 400px;
+  width: 900px;
+  max-width: 95vw;
+  height: 520px;
   border-radius: 40px; /* Square with rounded corners shape */
   background: rgba(0, 0, 0, 0.02); /* Slight frosted glass tint */
   border: 1px solid rgba(255, 255, 255, 0.05); /* Premium glass edge */
   z-index: 1; /* Sits above canvas, behind text */
   pointer-events: none;
   /* Glass card blur */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* The dissolve effect: fades to 0% opacity heavily at the absolute borders */
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 80%);
 }
 
 .hero-greeting {
@@ -469,7 +472,7 @@ ul, ol {
   gap: var(--space-sm);
   margin-top: var(--space-xl);
   position: relative;
-  z-index: 1;
+  z-index: 10;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -530,26 +533,30 @@ ul, ol {
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 4px 20px var(--accent-glow);
+  background: linear-gradient(135deg, #1D3C34 0%, #0E2A24 100%); /* Patchi Emerald */
+  color: #DED7BE; /* Patchi Cream */
+  box-shadow: 0 4px 20px rgba(29, 60, 52, 0.4);
+  border: 1px solid transparent;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 8px 40px var(--accent-glow);
+  background: linear-gradient(135deg, #D4AF37 0%, #8C6A3C 100%); /* Patchi Gold */
+  color: #111;
+  box-shadow: 0 8px 40px rgba(212, 175, 55, 0.4);
+  border-color: #D4AF37;
   transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background: transparent;
+  background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.05) 100%);
   color: var(--text-primary);
-  border: 1px solid var(--border-color-hover);
+  border: 1px solid #D4AF37; /* Patchi Gold outline */
 }
 
 .btn-secondary:hover {
-  background: var(--border-color);
-  border-color: var(--accent);
-  color: var(--accent);
+  background: linear-gradient(135deg, #D4AF37 0%, #8C6A3C 100%);
+  border-color: #D4AF37;
+  color: #111;
   transform: translateY(-2px);
 }
 
