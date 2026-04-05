@@ -348,27 +348,8 @@
 
   /* ---------- Navbar hide/show on scroll direction ---------- */
   function initNavBarScroll() {
-    const navbar = document.getElementById('navbar');
-    let lastScroll = 0;
-
-    ScrollTrigger.create({
-      trigger: document.body,
-      start: 'top top',
-      end: 'bottom bottom',
-      onUpdate: (self) => {
-        const currentScroll = self.scroll();
-        if (currentScroll > 100) {
-          if (currentScroll > lastScroll && self.direction === 1) {
-            navbar.classList.add('hidden');
-          } else {
-            navbar.classList.remove('hidden');
-          }
-        } else {
-          navbar.classList.remove('hidden');
-        }
-        lastScroll = currentScroll;
-      }
-    });
+    // Disabled dynamically hiding navbar to prevent inertial smooth-scroll jitter bugs.
+    // The navbar will remain permanently locked and fully visible.
   }
 
   /* ---------- Active nav link on scroll ---------- */
