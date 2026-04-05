@@ -196,12 +196,19 @@ ul, ol {
 }
 
 /* ---------- Glassmorphism Navbar ---------- */
-.navbar {
+.nav-wrapper {
   position: fixed;
   top: 20px;
-  left: 50%;
-  transform: translateX(-50%) translateY(0);
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
   z-index: 9999;
+  pointer-events: none; /* Let clicks pass through empty space */
+}
+
+.navbar {
+  pointer-events: auto; /* Re-enable clicks for the nav itself */
   display: flex;
   align-items: center;
   gap: var(--space-xs);
@@ -212,7 +219,7 @@ ul, ol {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow: var(--shadow-nav);
-  transition: transform 0.5s var(--ease-out), background var(--theme-transition), border-color var(--theme-transition), box-shadow var(--theme-transition);
+  transition: background var(--theme-transition), border-color var(--theme-transition), box-shadow var(--theme-transition);
 }
 
 .navbar.hidden {
