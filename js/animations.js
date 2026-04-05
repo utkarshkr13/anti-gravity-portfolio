@@ -52,7 +52,7 @@
     });
   }
 
-  /* ---------- Hero Seamless News Matrix ---------- */
+  /* ---------- Hero Static Pre-Text Background ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe'); 
     if (!canvas) return;
@@ -66,37 +66,28 @@
       "Parsing background matrix..."
     ];
 
-    // Background fetch
     fetch('assets/news.json')
       .then(r => r.json())
       .then(data => { if(data.headlines && data.headlines.length > 0) headlines = data.headlines; })
-      .catch(e => console.log('Using local fallback tech strings'));
+      .catch(e => console.log('Using fallback strings'));
 
     let mouse = { x: -1000, y: -1000 };
     const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
     let texts = [];
 
     class TextNode {
-      constructor(text, colX, startY) {
+      constructor(text, colX, rowY) {
         this.text = text;
         this.baseX = colX;
+        this.baseY = rowY;
         this.x = this.baseX;
-        this.y = startY;
+        this.y = this.baseY;
         this.vx = 0;
-        
-        // Matrix flow upward
-        this.speed = 0.4 + Math.random() * 0.3; 
-        this.opacity = Math.random() * 0.25 + 0.15;
+        this.vy = 0;
+        this.opacity = 0.25; 
       }
       update() {
-        this.y -= this.speed;
-        if (this.y < -50) {
-          this.y = height + 50;
-          this.text = headlines[Math.floor(Math.random() * headlines.length)];
-          this.x = this.baseX;
-        }
-
-        // Mouse Collision (Text strictly parts outward making space for mouse)
+        // True Mouse Collision
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -105,20 +96,24 @@
         
         if (dist < influenceRadius) {
           const force = (influenceRadius - dist) / influenceRadius;
-          // Text pushes sideways forcefully to clear path
-          this.vx -= (dx / dist) * force * 5.0; 
+          // Pushes text spherically away from cursor
+          this.vx -= (dx / dist) * force * 5.0;
+          this.vy -= (dy / dist) * force * 5.0;
         }
 
-        // Kinetic recovery physics
-        this.vx *= 0.88; 
+        // Spring physics to snap back to exact uniform position
+        const springDx = (this.baseX - this.x) * 0.05;
+        const springDy = (this.baseY - this.y) * 0.05;
         
-        if (Math.abs(this.vx) < 0.1) {
-          // Snap slowly back to original uniform grid column
-          const recoverDx = this.baseX - this.x;
-          this.x += recoverDx * 0.06;
-        } else {
-          this.x += this.vx;
-        }
+        this.vx += springDx;
+        this.vy += springDy;
+
+        // Friction to steady the oscillation
+        this.vx *= 0.85;
+        this.vy *= 0.85;
+
+        this.x += this.vx;
+        this.y += this.vy;
       }
       draw() {
         ctx.fillStyle = isLightMode() ? `rgba(0,0,0,${this.opacity})` : `rgba(255,255,255,${this.opacity})`;
@@ -128,17 +123,19 @@
 
     function initGrid() {
       texts = [];
-      const colWidth = 350; // Spacious even columns
+      const colWidth = 350; // Exact even spacing
       const cols = Math.ceil(width / colWidth) + 1;
-      const rowHeight = 45; // Dense enough vertically to be matrix-like
+      const rowHeight = 40; // Exact uniform vertical line-height
       const rows = Math.ceil(height / rowHeight) + 1;
 
-      for (let c = -1; c < cols; c++) {
-        for (let r = -1; r < rows; r++) {
-          const xPos = c * colWidth + ((r % 2 === 0) ? colWidth/2 : 0); // Stagger rows beautifully like bricks
-          const yPos = r * rowHeight;
-          const text = headlines[Math.floor(Math.random() * headlines.length)];
+      let index = 0;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const xPos = c * colWidth;
+          const yPos = r * rowHeight + 20; 
+          const text = headlines[index % headlines.length];
           texts.push(new TextNode(text, xPos, yPos));
+          index++;
         }
       }
     }
@@ -154,12 +151,19 @@
     window.addEventListener('resize', resize);
     resize();
 
+    // Hot-reload grid once the live API text hydrates so spacing initializes beautifully
+    const reinitInterval = setInterval(() => {
+      if (headlines.length > 4) {
+        initGrid();
+        clearInterval(reinitInterval);
+      }
+    }, 500);
+
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      // RENDER TEXT PASS 
-      ctx.filter = 'blur(1.5px)'; // Depth of field
-      ctx.font = `14px 'Courier New', Courier, monospace`; // Set once for performance
+      ctx.filter = 'blur(1.5px)'; 
+      ctx.font = `14px 'Courier New', Courier, monospace`; 
       
       for (let txt of texts) {
         txt.update();
@@ -171,8 +175,9 @@
     }
 
     document.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
     });
 
     animate();
