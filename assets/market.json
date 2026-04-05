@@ -1,0 +1,44 @@
+{
+  "tickers": [
+    {
+      "symbol": "AAPL",
+      "currency": "$",
+      "price": 175.25,
+      "change": 1.5,
+      "change_pct": 1.01,
+      "is_positive": true
+    },
+    {
+      "symbol": "TSLA",
+      "currency": "$",
+      "price": 180.1,
+      "change": -2.3,
+      "change_pct": -1.26,
+      "is_positive": false
+    },
+    {
+      "symbol": "NVDA",
+      "currency": "$",
+      "price": 850.5,
+      "change": 45.2,
+      "change_pct": 5.61,
+      "is_positive": true
+    },
+    {
+      "symbol": "RELIANCE",
+      "currency": "₹",
+      "price": 2900.0,
+      "change": 15.0,
+      "change_pct": 0.52,
+      "is_positive": true
+    },
+    {
+      "symbol": "TCS",
+      "currency": "₹",
+      "price": 3800.0,
+      "change": -25.0,
+      "change_pct": -0.65,
+      "is_positive": false
+    }
+  ]
+}

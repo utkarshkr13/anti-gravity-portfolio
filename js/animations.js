@@ -31,41 +31,55 @@
 
   // Removed hero glow as per tunnel background update.
 
-  /* ---------- Hero Static Pre-Text Background ---------- */
+  /* ---------- Hero Market Ticker Background ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe'); 
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
     
-    let headlines = [
-      "Establishing secure connection...",
-      "Fetching global tech markets...",
-      "Neural link initialized.",
-      "Parsing background matrix..."
+    let marketData = [
+      {"symbol": "AAPL", "currency": "$", "price": 175.00, "change_pct": 1.2, "is_positive": true},
     ];
 
-    fetch('assets/news.json')
+    fetch('assets/market.json')
       .then(r => r.json())
-      .then(data => { if(data.headlines && data.headlines.length > 0) headlines = data.headlines; })
-      .catch(e => console.log('Using fallback strings'));
+      .then(data => { if(data.tickers && data.tickers.length > 0) marketData = data.tickers; })
+      .catch(e => console.log('Using fallback market strings'));
 
     let mouse = { x: -1000, y: -1000 };
     const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
     let texts = [];
 
     class TextNode {
-      constructor(text, colX, rowY) {
-        this.text = text;
+      constructor(stockData, colX, rowY) {
+        // Format CNBC Style: AAPL $175.00 (+1.2%)
+        const sign = stockData.change_pct >= 0 ? '+' : '';
+        this.text = `${stockData.symbol}  ${stockData.currency}${stockData.price}  (${sign}${stockData.change_pct}%)`;
+        this.isPositive = stockData.is_positive;
+        
+        ctx.font = `14px 'Courier New', Courier, monospace`;
+        this.textWidth = ctx.measureText(this.text).width;
+        
         this.baseX = colX;
         this.baseY = rowY;
         this.x = this.baseX;
         this.y = this.baseY;
         this.vx = 0;
         this.vy = 0;
-        this.opacity = 0.25; 
+        this.opacity = 0.55; 
+        this.scrollSpeed = 0.6 + Math.random() * 0.3; // Slight parallax speed variance between lanes
       }
       update() {
+        // Continuous rightward CNBC scroll
+        this.baseX += this.scrollSpeed;
+        
+        // Wrap around off-screen seamlessly
+        if (this.baseX > width + 100) {
+          this.baseX = -this.textWidth - 100 - (Math.random() * 100);
+          this.x = this.baseX;
+        }
+
         // True Mouse Collision
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
@@ -80,7 +94,7 @@
           this.vy -= (dy / dist) * force * 5.0;
         }
 
-        // Spring physics to snap back to exact uniform position
+        // Spring physics to snap back to exact horizontal sequence
         const springDx = (this.baseX - this.x) * 0.05;
         const springDy = (this.baseY - this.y) * 0.05;
         
@@ -95,39 +109,37 @@
         this.y += this.vy;
       }
       draw() {
-        ctx.fillStyle = isLightMode() ? `rgba(100, 100, 100, 0.45)` : `rgba(150, 150, 150, 0.45)`;
+        // Green for positive returns, Red for negative returns
+        if (this.isPositive) {
+            ctx.fillStyle = `rgba(34, 197, 94, ${this.opacity})`; // Neon Green
+        } else {
+            ctx.fillStyle = `rgba(239, 68, 68, ${this.opacity})`; // Hot Red
+        }
+        
         ctx.fillText(this.text, this.x, this.y);
       }
     }
 
     function initGrid() {
       texts = [];
-      ctx.font = `14px 'Courier New', Courier, monospace`; // Must set font before measuring
+      ctx.font = `14px 'Courier New', Courier, monospace`; 
       
-      // Exact physical length measurement (Pretext-style wrapping strategy)
-      const marginX = 80; // Secure guaranteed gap between text
+      const marginX = 60; // Gap between discrete tickers
       const rowHeight = 40; 
       const rows = Math.ceil(height / rowHeight) + 1;
 
       let index = 0;
       
       for (let r = 0; r < rows; r++) {
-        let currentX = 0; // Starts at left 0 for every new row
+        let currentX = -Math.random() * 200; // Stagger start positions dynamically
         
-        // Dynamically wrap text exactly like a continuous paragraph till edge of screen
-        while (currentX < width) {
-          const text = headlines[index % headlines.length];
+        // Spawn multiple tickers per lane
+        while (currentX < width + 500) {
+          const stockData = marketData[index % marketData.length];
+          const node = new TextNode(stockData, currentX, r * rowHeight + 20);
+          texts.push(node);
           
-          // Physically measure exactly how wide this specific headline is!
-          const textWidth = ctx.measureText(text).width;
-          
-          const yPos = r * rowHeight + 20; 
-
-          // Push text node using actual physical calculated position locking in zero overlap
-          texts.push(new TextNode(text, currentX, yPos));
-          
-          // Update currentX to the exact end of this string + margin
-          currentX += textWidth + marginX;
+          currentX += node.textWidth + marginX;
           index++;
         }
       }
@@ -144,9 +156,9 @@
     window.addEventListener('resize', resize);
     resize();
 
-    // Hot-reload grid once the live API text hydrates so spacing initializes beautifully
+    // Hot-reload grid once the live API data hydrates so spacing initializes beautifully
     const reinitInterval = setInterval(() => {
-      if (headlines.length > 4) {
+      if (marketData.length > 1) {
         initGrid();
         clearInterval(reinitInterval);
       }
@@ -412,7 +424,6 @@
   /* ---------- Expose init function ---------- */
   window.initAnimations = function () {
     initHeroAnimations();
-    initHeroParallax();
     initParticles();
     initAboutSlider();
     initScrollReveals();

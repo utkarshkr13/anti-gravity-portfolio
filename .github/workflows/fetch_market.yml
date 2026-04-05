@@ -20,16 +20,16 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Run Fetch Script
+      - name: Fetch Live Market Data
         run: |
-          mkdir -p assets
-          python scripts/fetch_news.py
+          pip install yfinance pandas
+          python scripts/fetch_market.py
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name 'GitHub Action Bot'
           git config --global user.email 'action@github.com'
-          git add assets/news.json
+          git add assets/market.json
           git status
-          git diff --quiet && git diff --staged --quiet || git commit -m "chore(api): Auto-fetch latest news for background matrix"
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore(api): Auto-update live market data"
           git push
