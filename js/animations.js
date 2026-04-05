@@ -29,28 +29,7 @@
     }, '-=0.6');
   }
 
-  /* ---------- Hero mouse parallax (glow follows cursor) ---------- */
-  function initHeroParallax() {
-    const heroGlow = document.getElementById('heroGlow');
-    const hero = document.getElementById('hero');
-
-    if (!heroGlow || !hero) return;
-
-    document.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      const pointerX = e.clientX - rect.left;
-      const pointerY = e.clientY - rect.top;
-
-      gsap.to(heroGlow, {
-        x: pointerX,
-        y: pointerY,
-        xPercent: -50,
-        yPercent: -50,
-        duration: 1.2,
-        ease: 'power2.out'
-      });
-    });
-  }
+  // Removed hero glow as per tunnel background update.
 
   /* ---------- Hero Static Pre-Text Background ---------- */
   function initParticles() {
@@ -116,7 +95,7 @@
         this.y += this.vy;
       }
       draw() {
-        ctx.fillStyle = isLightMode() ? `rgba(0,0,0,${this.opacity})` : `rgba(255,255,255,${this.opacity})`;
+        ctx.fillStyle = isLightMode() ? `rgba(100, 100, 100, 0.45)` : `rgba(150, 150, 150, 0.45)`;
         ctx.fillText(this.text, this.x, this.y);
       }
     }
