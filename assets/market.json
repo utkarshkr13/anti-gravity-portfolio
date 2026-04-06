@@ -4,15 +4,15 @@
       "symbol": "AAPL",
       "currency": "$",
       "price": 258.86,
-      "change": 2.35,
-      "change_pct": 0.92,
+      "change": 1.9,
+      "change_pct": 0.74,
       "is_positive": true
     },
     {
       "symbol": "MSFT",
       "currency": "$",
       "price": 372.88,
-      "change": -0.61,
+      "change": -0.58,
       "change_pct": -0.16,
       "is_positive": false
     },
@@ -28,8 +28,8 @@
       "symbol": "GOOGL",
       "currency": "$",
       "price": 299.99,
-      "change": 4.12,
-      "change_pct": 1.39,
+      "change": 3.91,
+      "change_pct": 1.32,
       "is_positive": true
     },
     {
@@ -44,24 +44,24 @@
       "symbol": "META",
       "currency": "$",
       "price": 573.02,
-      "change": -4.67,
-      "change_pct": -0.81,
+      "change": -4.18,
+      "change_pct": -0.72,
       "is_positive": false
     },
     {
       "symbol": "AMZN",
       "currency": "$",
       "price": 212.79,
-      "change": 2.99,
-      "change_pct": 1.43,
+      "change": 3.05,
+      "change_pct": 1.45,
       "is_positive": true
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 69483.36,
-      "change": 504.45,
-      "change_pct": 0.73,
+      "price": 69302.34,
+      "change": 323.42,
+      "change_pct": 0.47,
       "is_positive": true
     },
     {
