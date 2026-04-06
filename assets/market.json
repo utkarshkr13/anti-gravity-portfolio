@@ -59,10 +59,10 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 69302.34,
-      "change": 323.42,
-      "change_pct": 0.47,
-      "is_positive": true
+      "price": 68651.42,
+      "change": -327.49,
+      "change_pct": -0.47,
+      "is_positive": false
     },
     {
       "symbol": "RELIANCE",
