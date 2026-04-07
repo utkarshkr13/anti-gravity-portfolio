@@ -3,65 +3,65 @@
     {
       "symbol": "AAPL",
       "currency": "$",
-      "price": 246.71,
-      "change": -9.44,
-      "change_pct": -3.69,
+      "price": 251.96,
+      "change": -4.2,
+      "change_pct": -1.64,
       "is_positive": false
     },
     {
       "symbol": "MSFT",
       "currency": "$",
-      "price": 367.4,
-      "change": -2.95,
-      "change_pct": -0.8,
-      "is_positive": false
+      "price": 370.88,
+      "change": 0.54,
+      "change_pct": 0.14,
+      "is_positive": true
     },
     {
       "symbol": "NVDA",
       "currency": "$",
-      "price": 174.42,
-      "change": -1.23,
-      "change_pct": -0.7,
-      "is_positive": false
+      "price": 175.79,
+      "change": 0.14,
+      "change_pct": 0.08,
+      "is_positive": true
     },
     {
       "symbol": "GOOGL",
       "currency": "$",
-      "price": 299.82,
-      "change": -2.9,
-      "change_pct": -0.96,
+      "price": 302.55,
+      "change": -0.18,
+      "change_pct": -0.06,
       "is_positive": false
     },
     {
       "symbol": "TSLA",
       "currency": "$",
-      "price": 338.51,
-      "change": -7.93,
-      "change_pct": -2.29,
+      "price": 342.14,
+      "change": -4.3,
+      "change_pct": -1.24,
       "is_positive": false
     },
     {
       "symbol": "META",
       "currency": "$",
-      "price": 566.12,
-      "change": -5.78,
-      "change_pct": -1.01,
+      "price": 569.5,
+      "change": -2.4,
+      "change_pct": -0.42,
       "is_positive": false
     },
     {
       "symbol": "AMZN",
       "currency": "$",
-      "price": 209.57,
-      "change": -1.67,
-      "change_pct": -0.79,
-      "is_positive": false
+      "price": 211.88,
+      "change": 0.64,
+      "change_pct": 0.3,
+      "is_positive": true
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 67801.15,
-      "change": -1059.31,
-      "change_pct": -1.54,
+      "price": 68211.87,
+      "change": -648.59,
+      "change_pct": -0.94,
       "is_positive": false
     },
     {
