@@ -3,65 +3,65 @@
     {
       "symbol": "AAPL",
       "currency": "$",
-      "price": 251.96,
-      "change": -4.2,
-      "change_pct": -1.64,
+      "price": 250.74,
+      "change": -5.42,
+      "change_pct": -2.12,
       "is_positive": false
     },
     {
       "symbol": "MSFT",
       "currency": "$",
-      "price": 370.88,
-      "change": 0.54,
-      "change_pct": 0.14,
-      "is_positive": true
+      "price": 369.06,
+      "change": -1.29,
+      "change_pct": -0.35,
+      "is_positive": false
     },
     {
       "symbol": "NVDA",
       "currency": "$",
-      "price": 175.79,
-      "change": 0.14,
-      "change_pct": 0.08,
-      "is_positive": true
+      "price": 175.47,
+      "change": -0.18,
+      "change_pct": -0.1,
+      "is_positive": false
     },
     {
       "symbol": "GOOGL",
       "currency": "$",
-      "price": 302.55,
-      "change": -0.18,
-      "change_pct": -0.06,
+      "price": 301.62,
+      "change": -1.11,
+      "change_pct": -0.37,
       "is_positive": false
     },
     {
       "symbol": "TSLA",
       "currency": "$",
-      "price": 342.14,
-      "change": -4.3,
-      "change_pct": -1.24,
+      "price": 340.38,
+      "change": -6.06,
+      "change_pct": -1.75,
       "is_positive": false
     },
     {
       "symbol": "META",
       "currency": "$",
-      "price": 569.5,
-      "change": -2.4,
-      "change_pct": -0.42,
+      "price": 565.78,
+      "change": -6.12,
+      "change_pct": -1.07,
       "is_positive": false
     },
     {
       "symbol": "AMZN",
       "currency": "$",
       "price": 211.88,
-      "change": 0.64,
+      "change": 0.63,
       "change_pct": 0.3,
       "is_positive": true
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 68211.87,
-      "change": -648.59,
-      "change_pct": -0.94,
+      "price": 68432.87,
+      "change": -427.59,
+      "change_pct": -0.62,
       "is_positive": false
     },
     {
