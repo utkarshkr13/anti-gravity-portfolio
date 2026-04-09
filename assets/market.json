@@ -4,8 +4,8 @@
       "symbol": "AAPL",
       "currency": "$",
       "price": 260.49,
-      "change": 1.49,
-      "change_pct": 0.58,
+      "change": 1.12,
+      "change_pct": 0.43,
       "is_positive": true
     },
     {
@@ -36,8 +36,8 @@
       "symbol": "TSLA",
       "currency": "$",
       "price": 345.62,
-      "change": 2.47,
-      "change_pct": 0.72,
+      "change": 2.59,
+      "change_pct": 0.75,
       "is_positive": true
     },
     {
@@ -59,9 +59,9 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 72309.91,
-      "change": 1216.16,
-      "change_pct": 1.71,
+      "price": 72408.7,
+      "change": 1314.95,
+      "change_pct": 1.85,
       "is_positive": true
     },
     {
