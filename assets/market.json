@@ -3,66 +3,66 @@
     {
       "symbol": "AAPL",
       "currency": "$",
-      "price": 258.3,
-      "change": -1.07,
-      "change_pct": -0.41,
+      "price": 257.83,
+      "change": -1.54,
+      "change_pct": -0.59,
       "is_positive": false
     },
     {
       "symbol": "MSFT",
       "currency": "$",
-      "price": 369.97,
-      "change": -2.53,
-      "change_pct": -0.68,
+      "price": 369.23,
+      "change": -3.27,
+      "change_pct": -0.88,
       "is_positive": false
     },
     {
       "symbol": "NVDA",
       "currency": "$",
-      "price": 181.78,
-      "change": -0.06,
-      "change_pct": -0.03,
-      "is_positive": false
+      "price": 183.15,
+      "change": 1.31,
+      "change_pct": 0.72,
+      "is_positive": true
     },
     {
       "symbol": "GOOGL",
       "currency": "$",
-      "price": 313.15,
-      "change": -2.75,
-      "change_pct": -0.87,
+      "price": 315.3,
+      "change": -0.61,
+      "change_pct": -0.19,
       "is_positive": false
     },
     {
       "symbol": "TSLA",
       "currency": "$",
-      "price": 340.6,
-      "change": -2.43,
-      "change_pct": -0.71,
+      "price": 342.16,
+      "change": -0.87,
+      "change_pct": -0.25,
       "is_positive": false
     },
     {
       "symbol": "META",
       "currency": "$",
-      "price": 630.24,
-      "change": 3.27,
-      "change_pct": 0.52,
+      "price": 631.44,
+      "change": 4.47,
+      "change_pct": 0.71,
       "is_positive": true
     },
     {
       "symbol": "AMZN",
       "currency": "$",
-      "price": 225.52,
-      "change": 0.29,
-      "change_pct": 0.13,
+      "price": 229.6,
+      "change": 4.37,
+      "change_pct": 1.94,
       "is_positive": true
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 70818.25,
-      "change": -275.51,
-      "change_pct": -0.39,
-      "is_positive": false
+      "price": 71527.88,
+      "change": 434.12,
+      "change_pct": 0.61,
+      "is_positive": true
     },
     {
       "symbol": "RELIANCE",
