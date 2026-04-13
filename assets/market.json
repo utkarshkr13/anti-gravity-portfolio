@@ -27,9 +27,9 @@
     {
       "symbol": "GOOGL",
       "currency": "$",
-      "price": 321.23,
-      "change": 4.1,
-      "change_pct": 1.29,
+      "price": 321.31,
+      "change": 4.17,
+      "change_pct": 1.32,
       "is_positive": true
     },
     {
@@ -59,9 +59,9 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 73248.28,
-      "change": 2506.98,
-      "change_pct": 3.54,
+      "price": 73264.23,
+      "change": 2522.94,
+      "change_pct": 3.57,
       "is_positive": true
     },
     {
