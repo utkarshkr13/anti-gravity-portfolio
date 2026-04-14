@@ -3,106 +3,42 @@
     {
       "symbol": "AAPL",
       "currency": "$",
-      "price": 259.2,
-      "change": -0.66,
-      "change_pct": -0.25,
-      "is_positive": false
-    },
-    {
-      "symbol": "MSFT",
-      "currency": "$",
-      "price": 384.37,
-      "change": 10.84,
-      "change_pct": 2.9,
-      "is_positive": true
-    },
-    {
-      "symbol": "NVDA",
-      "currency": "$",
-      "price": 189.31,
-      "change": 3.29,
-      "change_pct": 1.77,
-      "is_positive": true
-    },
-    {
-      "symbol": "GOOGL",
-      "currency": "$",
-      "price": 321.31,
-      "change": 4.17,
-      "change_pct": 1.32,
+      "price": 175.25,
+      "change": 1.5,
+      "change_pct": 1.01,
       "is_positive": true
     },
     {
       "symbol": "TSLA",
       "currency": "$",
-      "price": 352.42,
-      "change": 2.25,
-      "change_pct": 0.64,
-      "is_positive": true
+      "price": 180.1,
+      "change": -2.3,
+      "change_pct": -1.26,
+      "is_positive": false
     },
     {
-      "symbol": "META",
+      "symbol": "NVDA",
       "currency": "$",
-      "price": 634.53,
-      "change": 5.03,
-      "change_pct": 0.8,
-      "is_positive": true
-    },
-    {
-      "symbol": "AMZN",
-      "currency": "$",
-      "price": 239.89,
-      "change": 2.62,
-      "change_pct": 1.1,
-      "is_positive": true
-    },
-    {
-      "symbol": "BTC-USD",
-      "currency": "$",
-      "price": 74595.63,
-      "change": 3854.34,
-      "change_pct": 5.45,
+      "price": 850.5,
+      "change": 45.2,
+      "change_pct": 5.61,
       "is_positive": true
     },
     {
       "symbol": "RELIANCE",
       "currency": "₹",
-      "price": 1315.1,
-      "change": -6.1,
-      "change_pct": -0.46,
-      "is_positive": false
+      "price": 2900.0,
+      "change": 15.0,
+      "change_pct": 0.52,
+      "is_positive": true
     },
     {
       "symbol": "TCS",
       "currency": "₹",
-      "price": 2472.6,
-      "change": -17.3,
-      "change_pct": -0.69,
+      "price": 3800.0,
+      "change": -25.0,
+      "change_pct": -0.65,
       "is_positive": false
-    },
-    {
-      "symbol": "INFY",
-      "currency": "₹",
-      "price": 1276.8,
-      "change": 4.8,
-      "change_pct": 0.38,
-      "is_positive": true
-    },
-    {
-      "symbol": "HDFCBANK",
-      "currency": "₹",
-      "price": 794.7,
-      "change": 3.2,
-      "change_pct": 0.4,
-      "is_positive": true
-    },
-    {
-      "symbol": "SBIN",
-      "currency": "₹",
-      "price": 1063.55,
-      "change": 21.55,
-      "change_pct": 2.07,
-      "is_positive": true
     }
   ]
 }
