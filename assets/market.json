@@ -3,41 +3,81 @@
     {
       "symbol": "AAPL",
       "currency": "$",
-      "price": 175.25,
-      "change": 1.5,
-      "change_pct": 1.01,
+      "price": 258.8,
+      "change": 0.7,
+      "change_pct": 0.27,
       "is_positive": true
-    },
-    {
-      "symbol": "TSLA",
-      "currency": "$",
-      "price": 180.1,
-      "change": -2.3,
-      "change_pct": -1.26,
-      "is_positive": false
     },
     {
       "symbol": "NVDA",
       "currency": "$",
-      "price": 850.5,
-      "change": 45.2,
-      "change_pct": 5.61,
+      "price": 197.36,
+      "change": 0.81,
+      "change_pct": 0.41,
       "is_positive": true
     },
     {
-      "symbol": "RELIANCE",
-      "currency": "₹",
-      "price": 2900.0,
-      "change": 15.0,
-      "change_pct": 0.52,
+      "symbol": "GOOGL",
+      "currency": "$",
+      "price": 331.41,
+      "change": -1.48,
+      "change_pct": -0.44,
+      "is_positive": false
+    },
+    {
+      "symbol": "TSLA",
+      "currency": "$",
+      "price": 367.24,
+      "change": 0.44,
+      "change_pct": 0.12,
       "is_positive": true
+    },
+    {
+      "symbol": "META",
+      "currency": "$",
+      "price": 664.82,
+      "change": -2.18,
+      "change_pct": -0.33,
+      "is_positive": false
+    },
+    {
+      "symbol": "BTC-USD",
+      "currency": "$",
+      "price": 73905.34,
+      "change": -269.89,
+      "change_pct": -0.36,
+      "is_positive": false
     },
     {
       "symbol": "TCS",
       "currency": "₹",
-      "price": 3800.0,
-      "change": -25.0,
-      "change_pct": -0.65,
+      "price": 2554.9,
+      "change": 53.0,
+      "change_pct": 2.12,
+      "is_positive": true
+    },
+    {
+      "symbol": "INFY",
+      "currency": "₹",
+      "price": 1305.3,
+      "change": -1.0,
+      "change_pct": -0.08,
+      "is_positive": false
+    },
+    {
+      "symbol": "HDFCBANK",
+      "currency": "₹",
+      "price": 809.9,
+      "change": 4.95,
+      "change_pct": 0.61,
+      "is_positive": true
+    },
+    {
+      "symbol": "SBIN",
+      "currency": "₹",
+      "price": 1071.5,
+      "change": -4.5,
+      "change_pct": -0.42,
       "is_positive": false
     }
   ]
