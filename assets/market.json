@@ -52,16 +52,16 @@
       "symbol": "AMZN",
       "currency": "$",
       "price": 249.7,
-      "change": 1.19,
-      "change_pct": 0.48,
+      "change": 0.72,
+      "change_pct": 0.29,
       "is_positive": true
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 75183.7,
-      "change": 370.48,
-      "change_pct": 0.5,
+      "price": 74995.9,
+      "change": 182.68,
+      "change_pct": 0.24,
       "is_positive": true
     },
     {
