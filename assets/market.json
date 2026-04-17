@@ -3,65 +3,65 @@
     {
       "symbol": "AAPL",
       "currency": "$",
-      "price": 268.27,
-      "change": 1.17,
-      "change_pct": 0.44,
+      "price": 270.3,
+      "change": 3.21,
+      "change_pct": 1.2,
       "is_positive": true
     },
     {
       "symbol": "MSFT",
       "currency": "$",
-      "price": 425.74,
-      "change": 0.95,
-      "change_pct": 0.22,
+      "price": 430.05,
+      "change": 5.26,
+      "change_pct": 1.24,
       "is_positive": true
     },
     {
       "symbol": "NVDA",
       "currency": "$",
-      "price": 201.37,
-      "change": 1.49,
-      "change_pct": 0.75,
+      "price": 200.31,
+      "change": 0.43,
+      "change_pct": 0.22,
       "is_positive": true
     },
     {
       "symbol": "GOOGL",
       "currency": "$",
-      "price": 336.73,
-      "change": -1.0,
-      "change_pct": -0.3,
+      "price": 337.43,
+      "change": -0.3,
+      "change_pct": -0.09,
       "is_positive": false
     },
     {
       "symbol": "TSLA",
       "currency": "$",
-      "price": 396.64,
-      "change": 0.72,
-      "change_pct": 0.18,
+      "price": 406.71,
+      "change": 10.79,
+      "change_pct": 2.73,
       "is_positive": true
     },
     {
       "symbol": "META",
       "currency": "$",
-      "price": 685.38,
-      "change": 6.78,
-      "change_pct": 1.0,
+      "price": 687.53,
+      "change": 8.93,
+      "change_pct": 1.32,
       "is_positive": true
     },
     {
       "symbol": "AMZN",
       "currency": "$",
-      "price": 253.36,
-      "change": -1.59,
-      "change_pct": -0.62,
-      "is_positive": false
+      "price": 254.95,
+      "change": 0.0,
+      "change_pct": 0.0,
+      "is_positive": true
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 77351.94,
-      "change": 2199.95,
-      "change_pct": 2.93,
+      "price": 78042.13,
+      "change": 2890.14,
+      "change_pct": 3.85,
       "is_positive": true
     },
     {
@@ -93,6 +93,14 @@
       "currency": "₹",
       "price": 799.9,
       "change": 9.8,
+      "change_pct": 1.24,
+      "is_positive": true
+    },
+    {
+      "symbol": "SBIN",
+      "currency": "₹",
+      "price": 1080.25,
+      "change": 13.25,
       "change_pct": 1.24,
       "is_positive": true
     }
