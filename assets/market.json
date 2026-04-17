@@ -4,8 +4,8 @@
       "symbol": "AAPL",
       "currency": "$",
       "price": 270.23,
-      "change": 3.27,
-      "change_pct": 1.22,
+      "change": 3.13,
+      "change_pct": 1.17,
       "is_positive": true
     },
     {
@@ -20,8 +20,8 @@
       "symbol": "NVDA",
       "currency": "$",
       "price": 201.68,
-      "change": 1.78,
-      "change_pct": 0.89,
+      "change": 1.8,
+      "change_pct": 0.9,
       "is_positive": true
     },
     {
@@ -52,16 +52,16 @@
       "symbol": "AMZN",
       "currency": "$",
       "price": 250.56,
-      "change": -4.43,
-      "change_pct": -1.74,
+      "change": -4.39,
+      "change_pct": -1.72,
       "is_positive": false
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 77333.16,
-      "change": 2181.16,
-      "change_pct": 2.9,
+      "price": 77438.87,
+      "change": 2286.88,
+      "change_pct": 3.04,
       "is_positive": true
     },
     {
