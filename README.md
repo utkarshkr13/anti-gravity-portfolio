@@ -46,3 +46,4 @@ To add an element of interactivity and surprise for developers and recruiters br
 ### 5. 👨‍💻 Hacker Console Signature
 **Activation:** Hit `F12` to open the browser Developer Tools and look at the Console logs.
 **Effect:** The console will not show standard debugging text, but rather a massive, perfectly formatted ASCII-art rendering of the name "UTKARSH" rendered in an aggressive blue font alongside a customized "Welcome to the Matrix" greeting.
+

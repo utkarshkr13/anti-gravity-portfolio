@@ -1501,3 +1501,184 @@ ul, ol {
   transition-duration: var(--dur-normal);
   transition-timing-function: var(--ease-out);
 }
+/* ============================================================
+   EASTER EGGS & ADVANCED STATES
+   ============================================================ */
+
+/* ---------- 1. Google Askew ---------- */
+body.egg-askew {
+  transform: rotate(3deg) !important;
+  transform-origin: center center;
+  transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow-x: hidden;
+}
+
+/* ---------- 2. Apple Vision Pro (Spatial UI) ---------- */
+body.egg-visionpro {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  background: radial-gradient(circle at center, #222, #000) !important;
+  transition: all 3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+body.egg-visionpro > * {
+  transform: rotateX(15deg) rotateY(-15deg) translateZ(-100px) scale(0.85);
+  box-shadow: 20px 40px 100px rgba(0,0,0,0.8), inset 0 0 0 2px rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(20px) saturate(150%);
+  border-radius: 20px;
+  transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 3s;
+}
+
+/* ---------- 3. GTA Wasted ---------- */
+body.egg-wasted {
+  filter: grayscale(100%) contrast(150%) sepia(30%) hue-rotate(-30deg) brightness(60%);
+  transition: filter 3s cubic-bezier(0.1, 0.7, 0.1, 1);
+}
+.wasted-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  color: #ff0000;
+  font-family: 'Impact', Impact, sans-serif;
+  font-size: 15vw;
+  letter-spacing: 5px;
+  text-shadow: 4px 4px 0 #000;
+  opacity: 0;
+  z-index: 9999999;
+  pointer-events: none;
+  animation: wastedThud 4s ease-out forwards 1s;
+}
+@keyframes wastedThud {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+  10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* ---------- 4. GTA Wanted / Police Sirens ---------- */
+body.egg-wanted {
+  animation: policeSirens 0.6s infinite alternate;
+}
+@keyframes policeSirens {
+  0% { box-shadow: inset 0 0 100px rgba(255,0,0,0.4); }
+  100% { box-shadow: inset 0 0 100px rgba(0,0,255,0.4); }
+}
+.wanted-stars {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 999999;
+}
+.wanted-star {
+  width: 30px;
+  height: 30px;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  background: white;
+  animation: starBlink 1s infinite alternate;
+}
+@keyframes starBlink { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* ---------- 5. Windows BSoD ---------- */
+.bsod-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #0078d7;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 99999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10vw;
+  cursor: none;
+}
+.bsod-overlay h1 { font-size: 10vw; font-weight: normal; margin-bottom: 2rem; line-height: 1; }
+.bsod-overlay p { font-size: 2vw; max-width: 80%; margin-bottom: 1rem; }
+.bsod-overlay .qr { display: flex; align-items: center; gap: 2rem; margin-top: 3rem; }
+
+/* ---------- 6. Cyberpunk Glitch ---------- */
+body.egg-cyberpunk {
+  animation: rgbGlitch 0.5s infinite linear alternate-reverse;
+  font-family: 'Courier New', Courier, monospace !important;
+}
+@keyframes rgbGlitch {
+  0% { text-shadow: 4px 0 red, -4px 0 blue; filter: contrast(120%) hue-rotate(90deg); transform: skewX(0deg); }
+  25% { text-shadow: -4px 0 red, 4px 0 blue; transform: skewX(2deg); }
+  50% { text-shadow: 4px 0 green, -4px 0 blue; filter: contrast(200%) invert(20%); transform: skewX(-2deg); }
+  75% { text-shadow: -4px 0 red, 4px 0 green; transform: skewX(3deg); }
+  100% { text-shadow: 4px 0 blue, -4px 0 red; filter: contrast(100%); transform: skewX(0deg); }
+}
+
+/* ---------- 7. High-Tech Jarvis HUD ---------- */
+.jarvis-hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  border: 4px solid rgba(0, 220, 255, 0.3);
+  box-shadow: inset 0 0 50px rgba(0, 220, 255, 0.1);
+  background: 
+    linear-gradient(90deg, rgba(0,220,255,0.05) 1px, transparent 1px) 0 0 / 100px 100px,
+    linear-gradient(rgba(0,220,255,0.05) 1px, transparent 1px) 0 0 / 100px 100px;
+}
+.jarvis-hud::before {
+  content: "TARGET ACQUIRED // PROTOCOL V.103.4";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #00dcff;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+.jarvis-hud::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 220, 255, 0.4);
+  animation: hudRotate 10s linear infinite;
+}
+@keyframes hudRotate { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* ---------- 8. One More Thing (Apple Spotlight) ---------- */
+.apple-spotlight {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: -2px;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+/* ---------- 9. Zerg Rush (Tiny Enemies) ---------- */
+.zergling {
+  position: fixed;
+  width: 15px; height: 15px;
+  border: 4px solid #ea4335;
+  border-radius: 50%;
+  z-index: 999999;
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+/* ---------- 10. Thanos Element Dissolve ---------- */
+.thanos-dust {
+  transition: opacity 3s, filter 3s, pointer-events 0s 3s;
+  opacity: 0 !important;
+  filter: blur(10px) grayscale(100%);
+  pointer-events: none !important;
+}
+
