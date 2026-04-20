@@ -304,7 +304,7 @@ function triggerLeaveMeAlone() {
 function triggerBsod() {
   let div = document.createElement('div');
   div.className = 'bsod-overlay';
-  div.innerHTML = '<h1>:(</h1><p>Your PC ran into a problem and needs to restart. We\\'re just collecting some error info, and then we\\'ll restart for you.</p><div class="qr"><img src="assets/linkedin_qr.png" width="100"/><div>For more information about this issue and possible fixes, visit<br/>https://www.windows.com/stopcode<br/><br/>If you call a support person, give them this info:<br/>Stop code: CRITICAL_PROCESS_DIED</div></div>';
+  div.innerHTML = `<h1>:(</h1><p>Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p><div class="qr"><img src="assets/linkedin_qr.png" width="100"/><div>For more information about this issue and possible fixes, visit<br/>https://www.windows.com/stopcode<br/><br/>If you call a support person, give them this info:<br/>Stop code: CRITICAL_PROCESS_DIED</div></div>`;
   div.onclick = () => div.remove();
   document.body.appendChild(div);
 }
