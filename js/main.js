@@ -13,21 +13,19 @@
   const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
   html.setAttribute('data-theme', savedTheme);
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('themeToggle');
-    if (toggle) {
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const current = html.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', next);
-        localStorage.setItem(THEME_KEY, next);
-        
-        // Broadcast theme change for Canvas drawing
-        window.dispatchEvent(new Event('theme-change'));
-      });
-    }
-  });
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem(THEME_KEY, next);
+      
+      // Broadcast theme change for Canvas drawing
+      window.dispatchEvent(new Event('theme-change'));
+    });
+  }
 
   /* ---------- Smooth Scroll (Lenis) ---------- */
   const lenis = new Lenis({
@@ -105,22 +103,20 @@
   }
 
   /* ---------- Scroll to Top Button ---------- */
-  window.addEventListener('DOMContentLoaded', () => {
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-    if (scrollTopBtn) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-          scrollTopBtn.classList.add('visible');
-        } else {
-          scrollTopBtn.classList.remove('visible');
-        }
-      });
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
 
-      scrollTopBtn.addEventListener('click', () => {
-        lenis.scrollTo(0, { duration: 1.5, ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-      });
-    }
-  });
+    scrollTopBtn.addEventListener('click', () => {
+      lenis.scrollTo(0, { duration: 1.5, ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    });
+  }
   /* ---------- Interactive Key-Sequence Easter Eggs ---------- */
   function triggerThunderRain() {
     let flashes = 0;
@@ -211,8 +207,10 @@
   });
 
   /* ---------- Run Everything ---------- */
-  window.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', runLoader);
+  } else {
     runLoader();
-  });
+  }
 
 })();
