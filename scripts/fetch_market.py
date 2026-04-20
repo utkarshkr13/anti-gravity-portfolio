@@ -2,8 +2,13 @@ import yfinance as yf
 import json
 import os
 
-SYMBOLS = ["AAPL", "MSFT", "NVDA", "GOOGL", "TSLA", "META", "AMZN", "BTC-USD", "RELIANCE.NS", "TCS.NS", "INFY.NS", "HDFCBANK.NS", "SBIN.NS"]
-
+SYMBOLS = [
+    "AAPL", "MSFT", "NVDA", "GOOGL", "TSLA", "META", "AMZN", "BTC-USD", "ETH-USD", "SOL-USD", "BNB-USD",
+    "NFLX", "AMD", "INTC", "ORCL", "IBM", "CRM", "ADBE", "QCOM", "CSCO", "JPM", "V", "MA", "WMT", "DIS", "UBER",
+    "RELIANCE.NS", "TCS.NS", "INFY.NS", "HDFCBANK.NS", "SBIN.NS", "WIPRO.NS", "HCLTECH.NS", "TECHM.NS", "LT.NS",
+    "ICICIBANK.NS", "AXISBANK.NS", "KOTAKBANK.NS", "BAJFINANCE.NS", "MARUTI.NS", "TATAMOTORS.NS", "SUNPHARMA.NS",
+    "ITC.NS", "ASIANPAINT.NS", "HINDUNILVR.NS", "BHARTIARTL.NS"
+]
 def fetch_market():
     tickers_data = []
     try:
