@@ -59,17 +59,17 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 78303.0,
-      "change": 110.02,
-      "change_pct": 0.14,
+      "price": 78315.26,
+      "change": 122.27,
+      "change_pct": 0.16,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2335.51,
-      "change": -39.61,
-      "change_pct": -1.67,
+      "price": 2332.84,
+      "change": -42.28,
+      "change_pct": -1.78,
       "is_positive": false
     },
     {
@@ -83,9 +83,9 @@
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 639.28,
-      "change": 1.36,
-      "change_pct": 0.21,
+      "price": 638.41,
+      "change": 0.49,
+      "change_pct": 0.08,
       "is_positive": true
     },
     {
