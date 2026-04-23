@@ -20,8 +20,8 @@
       "symbol": "NVDA",
       "currency": "$",
       "price": 199.64,
-      "change": -2.82,
-      "change_pct": -1.39,
+      "change": -2.76,
+      "change_pct": -1.36,
       "is_positive": false
     },
     {
@@ -36,8 +36,8 @@
       "symbol": "TSLA",
       "currency": "$",
       "price": 373.72,
-      "change": -1.56,
-      "change_pct": -0.42,
+      "change": -1.76,
+      "change_pct": -0.47,
       "is_positive": false
     },
     {
@@ -52,41 +52,41 @@
       "symbol": "AMZN",
       "currency": "$",
       "price": 255.08,
-      "change": -0.31,
-      "change_pct": -0.12,
+      "change": -0.22,
+      "change_pct": -0.09,
       "is_positive": false
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 77912.52,
-      "change": -280.46,
-      "change_pct": -0.36,
+      "price": 78032.45,
+      "change": -160.53,
+      "change_pct": -0.21,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2323.89,
-      "change": -51.23,
-      "change_pct": -2.16,
+      "price": 2328.28,
+      "change": -46.84,
+      "change_pct": -1.97,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 85.72,
-      "change": -1.2,
-      "change_pct": -1.38,
+      "price": 86.0,
+      "change": -0.92,
+      "change_pct": -1.05,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 637.85,
-      "change": -0.07,
-      "change_pct": -0.01,
-      "is_positive": false
+      "price": 639.04,
+      "change": 1.12,
+      "change_pct": 0.18,
+      "is_positive": true
     },
     {
       "symbol": "NFLX",
@@ -140,24 +140,24 @@
       "symbol": "ADBE",
       "currency": "$",
       "price": 238.98,
-      "change": -5.9,
-      "change_pct": -2.41,
+      "change": -6.17,
+      "change_pct": -2.52,
       "is_positive": false
     },
     {
       "symbol": "QCOM",
       "currency": "$",
       "price": 133.95,
-      "change": -2.05,
-      "change_pct": -1.51,
+      "change": -2.25,
+      "change_pct": -1.65,
       "is_positive": false
     },
     {
       "symbol": "CSCO",
       "currency": "$",
       "price": 88.59,
-      "change": -0.73,
-      "change_pct": -0.82,
+      "change": -0.63,
+      "change_pct": -0.71,
       "is_positive": false
     },
     {
