@@ -28,16 +28,16 @@
       "symbol": "GOOGL",
       "currency": "$",
       "price": 400.8,
-      "change": 3.8,
-      "change_pct": 0.96,
+      "change": 3.74,
+      "change_pct": 0.94,
       "is_positive": true
     },
     {
       "symbol": "TSLA",
       "currency": "$",
       "price": 428.35,
-      "change": 11.88,
-      "change_pct": 2.85,
+      "change": 10.92,
+      "change_pct": 2.62,
       "is_positive": true
     },
     {
@@ -59,33 +59,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 80165.6,
-      "change": 150.34,
-      "change_pct": 0.19,
+      "price": 80279.31,
+      "change": 264.05,
+      "change_pct": 0.33,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2306.79,
-      "change": 15.81,
-      "change_pct": 0.69,
+      "price": 2310.97,
+      "change": 19.99,
+      "change_pct": 0.87,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 92.16,
-      "change": 3.76,
-      "change_pct": 4.25,
+      "price": 92.27,
+      "change": 3.87,
+      "change_pct": 4.37,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 646.78,
-      "change": 9.77,
-      "change_pct": 1.53,
+      "price": 650.18,
+      "change": 13.17,
+      "change_pct": 2.07,
       "is_positive": true
     },
     {
@@ -108,8 +108,8 @@
       "symbol": "INTC",
       "currency": "$",
       "price": 124.92,
-      "change": 13.11,
-      "change_pct": 11.73,
+      "change": 13.08,
+      "change_pct": 11.7,
       "is_positive": true
     },
     {
@@ -148,8 +148,8 @@
       "symbol": "QCOM",
       "currency": "$",
       "price": 219.09,
-      "change": 6.09,
-      "change_pct": 2.86,
+      "change": 6.69,
+      "change_pct": 3.15,
       "is_positive": true
     },
     {
