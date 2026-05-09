@@ -3,362 +3,42 @@
     {
       "symbol": "AAPL",
       "currency": "$",
-      "price": 293.32,
-      "change": 3.21,
-      "change_pct": 1.11,
-      "is_positive": true
-    },
-    {
-      "symbol": "MSFT",
-      "currency": "$",
-      "price": 415.12,
-      "change": -2.27,
-      "change_pct": -0.54,
-      "is_positive": false
-    },
-    {
-      "symbol": "NVDA",
-      "currency": "$",
-      "price": 215.2,
-      "change": 2.17,
-      "change_pct": 1.02,
-      "is_positive": true
-    },
-    {
-      "symbol": "GOOGL",
-      "currency": "$",
-      "price": 400.8,
-      "change": 3.74,
-      "change_pct": 0.94,
+      "price": 175.25,
+      "change": 1.5,
+      "change_pct": 1.01,
       "is_positive": true
     },
     {
       "symbol": "TSLA",
       "currency": "$",
-      "price": 428.35,
-      "change": 10.92,
-      "change_pct": 2.62,
-      "is_positive": true
-    },
-    {
-      "symbol": "META",
-      "currency": "$",
-      "price": 609.63,
-      "change": -5.57,
-      "change_pct": -0.91,
+      "price": 180.1,
+      "change": -2.3,
+      "change_pct": -1.26,
       "is_positive": false
     },
     {
-      "symbol": "AMZN",
+      "symbol": "NVDA",
       "currency": "$",
-      "price": 272.68,
-      "change": 1.05,
-      "change_pct": 0.39,
+      "price": 850.5,
+      "change": 45.2,
+      "change_pct": 5.61,
       "is_positive": true
-    },
-    {
-      "symbol": "BTC-USD",
-      "currency": "$",
-      "price": 80279.31,
-      "change": 264.05,
-      "change_pct": 0.33,
-      "is_positive": true
-    },
-    {
-      "symbol": "ETH-USD",
-      "currency": "$",
-      "price": 2310.97,
-      "change": 19.99,
-      "change_pct": 0.87,
-      "is_positive": true
-    },
-    {
-      "symbol": "SOL-USD",
-      "currency": "$",
-      "price": 92.27,
-      "change": 3.87,
-      "change_pct": 4.37,
-      "is_positive": true
-    },
-    {
-      "symbol": "BNB-USD",
-      "currency": "$",
-      "price": 650.18,
-      "change": 13.17,
-      "change_pct": 2.07,
-      "is_positive": true
-    },
-    {
-      "symbol": "NFLX",
-      "currency": "$",
-      "price": 87.49,
-      "change": -0.22,
-      "change_pct": -0.25,
-      "is_positive": false
-    },
-    {
-      "symbol": "AMD",
-      "currency": "$",
-      "price": 455.19,
-      "change": 36.89,
-      "change_pct": 8.82,
-      "is_positive": true
-    },
-    {
-      "symbol": "INTC",
-      "currency": "$",
-      "price": 124.92,
-      "change": 13.08,
-      "change_pct": 11.7,
-      "is_positive": true
-    },
-    {
-      "symbol": "ORCL",
-      "currency": "$",
-      "price": 195.95,
-      "change": 3.37,
-      "change_pct": 1.75,
-      "is_positive": true
-    },
-    {
-      "symbol": "IBM",
-      "currency": "$",
-      "price": 229.76,
-      "change": 0.03,
-      "change_pct": 0.01,
-      "is_positive": true
-    },
-    {
-      "symbol": "CRM",
-      "currency": "$",
-      "price": 181.82,
-      "change": 2.14,
-      "change_pct": 1.19,
-      "is_positive": true
-    },
-    {
-      "symbol": "ADBE",
-      "currency": "$",
-      "price": 253.04,
-      "change": -0.21,
-      "change_pct": -0.08,
-      "is_positive": false
-    },
-    {
-      "symbol": "QCOM",
-      "currency": "$",
-      "price": 219.09,
-      "change": 6.69,
-      "change_pct": 3.15,
-      "is_positive": true
-    },
-    {
-      "symbol": "CSCO",
-      "currency": "$",
-      "price": 96.57,
-      "change": 3.24,
-      "change_pct": 3.47,
-      "is_positive": true
-    },
-    {
-      "symbol": "JPM",
-      "currency": "$",
-      "price": 302.1,
-      "change": -6.15,
-      "change_pct": -2.0,
-      "is_positive": false
-    },
-    {
-      "symbol": "V",
-      "currency": "$",
-      "price": 318.79,
-      "change": -2.19,
-      "change_pct": -0.68,
-      "is_positive": false
-    },
-    {
-      "symbol": "MA",
-      "currency": "$",
-      "price": 495.48,
-      "change": -4.65,
-      "change_pct": -0.93,
-      "is_positive": false
-    },
-    {
-      "symbol": "WMT",
-      "currency": "$",
-      "price": 130.43,
-      "change": 0.02,
-      "change_pct": 0.02,
-      "is_positive": true
-    },
-    {
-      "symbol": "DIS",
-      "currency": "$",
-      "price": 108.02,
-      "change": -1.01,
-      "change_pct": -0.93,
-      "is_positive": false
-    },
-    {
-      "symbol": "UBER",
-      "currency": "$",
-      "price": 75.45,
-      "change": -1.6,
-      "change_pct": -2.08,
-      "is_positive": false
     },
     {
       "symbol": "RELIANCE",
       "currency": "₹",
-      "price": 1435.2,
-      "change": 9.2,
-      "change_pct": 0.65,
+      "price": 2900.0,
+      "change": 15.0,
+      "change_pct": 0.52,
       "is_positive": true
     },
     {
       "symbol": "TCS",
       "currency": "₹",
-      "price": 2394.4,
-      "change": -3.6,
-      "change_pct": -0.15,
+      "price": 3800.0,
+      "change": -25.0,
+      "change_pct": -0.65,
       "is_positive": false
-    },
-    {
-      "symbol": "INFY",
-      "currency": "₹",
-      "price": 1179.2,
-      "change": 18.2,
-      "change_pct": 1.57,
-      "is_positive": true
-    },
-    {
-      "symbol": "HDFCBANK",
-      "currency": "₹",
-      "price": 780.85,
-      "change": -3.15,
-      "change_pct": -0.4,
-      "is_positive": false
-    },
-    {
-      "symbol": "SBIN",
-      "currency": "₹",
-      "price": 1019.3,
-      "change": -70.7,
-      "change_pct": -6.49,
-      "is_positive": false
-    },
-    {
-      "symbol": "WIPRO",
-      "currency": "₹",
-      "price": 197.91,
-      "change": -0.09,
-      "change_pct": -0.05,
-      "is_positive": false
-    },
-    {
-      "symbol": "HCLTECH",
-      "currency": "₹",
-      "price": 1198.4,
-      "change": 18.6,
-      "change_pct": 1.58,
-      "is_positive": true
-    },
-    {
-      "symbol": "TECHM",
-      "currency": "₹",
-      "price": 1463.0,
-      "change": 9.5,
-      "change_pct": 0.65,
-      "is_positive": true
-    },
-    {
-      "symbol": "LT",
-      "currency": "₹",
-      "price": 3974.5,
-      "change": -35.5,
-      "change_pct": -0.89,
-      "is_positive": false
-    },
-    {
-      "symbol": "ICICIBANK",
-      "currency": "₹",
-      "price": 1264.8,
-      "change": -14.8,
-      "change_pct": -1.16,
-      "is_positive": false
-    },
-    {
-      "symbol": "AXISBANK",
-      "currency": "₹",
-      "price": 1268.3,
-      "change": -11.7,
-      "change_pct": -0.91,
-      "is_positive": false
-    },
-    {
-      "symbol": "KOTAKBANK",
-      "currency": "₹",
-      "price": 380.8,
-      "change": 1.8,
-      "change_pct": 0.47,
-      "is_positive": true
-    },
-    {
-      "symbol": "BAJFINANCE",
-      "currency": "₹",
-      "price": 955.35,
-      "change": -15.65,
-      "change_pct": -1.61,
-      "is_positive": false
-    },
-    {
-      "symbol": "MARUTI",
-      "currency": "₹",
-      "price": 13726.0,
-      "change": 54.0,
-      "change_pct": 0.39,
-      "is_positive": true
-    },
-    {
-      "symbol": "SUNPHARMA",
-      "currency": "₹",
-      "price": 1847.9,
-      "change": 25.9,
-      "change_pct": 1.42,
-      "is_positive": true
-    },
-    {
-      "symbol": "ITC",
-      "currency": "₹",
-      "price": 307.45,
-      "change": -1.45,
-      "change_pct": -0.47,
-      "is_positive": false
-    },
-    {
-      "symbol": "ASIANPAINT",
-      "currency": "₹",
-      "price": 2599.9,
-      "change": 59.9,
-      "change_pct": 2.36,
-      "is_positive": true
-    },
-    {
-      "symbol": "HINDUNILVR",
-      "currency": "₹",
-      "price": 2287.7,
-      "change": 15.5,
-      "change_pct": 0.68,
-      "is_positive": true
-    },
-    {
-      "symbol": "BHARTIARTL",
-      "currency": "₹",
-      "price": 1834.5,
-      "change": 14.5,
-      "change_pct": 0.8,
-      "is_positive": true
     }
   ]
 }
