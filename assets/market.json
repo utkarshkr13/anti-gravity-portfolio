@@ -59,34 +59,34 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 81679.7,
-      "change": -484.73,
-      "change_pct": -0.59,
+      "price": 81825.14,
+      "change": -339.29,
+      "change_pct": -0.41,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2337.59,
-      "change": -31.81,
-      "change_pct": -1.34,
+      "price": 2341.72,
+      "change": -27.68,
+      "change_pct": -1.17,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 97.47,
-      "change": 1.05,
-      "change_pct": 1.09,
+      "price": 97.63,
+      "change": 1.21,
+      "change_pct": 1.25,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 662.64,
-      "change": -0.95,
-      "change_pct": -0.14,
-      "is_positive": false
+      "price": 669.24,
+      "change": 5.65,
+      "change_pct": 0.85,
+      "is_positive": true
     },
     {
       "symbol": "NFLX",
