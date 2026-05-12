@@ -4,16 +4,16 @@
       "symbol": "AAPL",
       "currency": "$",
       "price": 294.8,
-      "change": 2.24,
-      "change_pct": 0.77,
+      "change": 2.04,
+      "change_pct": 0.7,
       "is_positive": true
     },
     {
       "symbol": "MSFT",
       "currency": "$",
       "price": 407.77,
-      "change": -6.71,
-      "change_pct": -1.62,
+      "change": -6.65,
+      "change_pct": -1.6,
       "is_positive": false
     },
     {
@@ -52,24 +52,24 @@
       "symbol": "AMZN",
       "currency": "$",
       "price": 265.82,
-      "change": -0.89,
-      "change_pct": -0.33,
+      "change": -0.45,
+      "change_pct": -0.17,
       "is_positive": false
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 80682.11,
-      "change": -1039.3,
-      "change_pct": -1.27,
+      "price": 80652.0,
+      "change": -1069.41,
+      "change_pct": -1.31,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2283.37,
-      "change": -56.03,
-      "change_pct": -2.4,
+      "price": 2286.88,
+      "change": -52.52,
+      "change_pct": -2.25,
       "is_positive": false
     },
     {
@@ -83,9 +83,9 @@
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 664.5,
-      "change": -5.47,
-      "change_pct": -0.82,
+      "price": 667.75,
+      "change": -2.22,
+      "change_pct": -0.33,
       "is_positive": false
     },
     {
@@ -156,8 +156,8 @@
       "symbol": "CSCO",
       "currency": "$",
       "price": 99.29,
-      "change": -0.23,
-      "change_pct": -0.23,
+      "change": -0.4,
+      "change_pct": -0.4,
       "is_positive": false
     },
     {
@@ -188,8 +188,8 @@
       "symbol": "WMT",
       "currency": "$",
       "price": 130.35,
-      "change": 2.28,
-      "change_pct": 1.78,
+      "change": 2.34,
+      "change_pct": 1.83,
       "is_positive": true
     },
     {
