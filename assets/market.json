@@ -4,23 +4,23 @@
       "symbol": "AAPL",
       "currency": "$",
       "price": 300.23,
-      "change": 2.33,
-      "change_pct": 0.78,
+      "change": 2.48,
+      "change_pct": 0.83,
       "is_positive": true
     },
     {
       "symbol": "MSFT",
       "currency": "$",
       "price": 421.92,
-      "change": 7.65,
-      "change_pct": 1.85,
+      "change": 7.51,
+      "change_pct": 1.81,
       "is_positive": true
     },
     {
       "symbol": "NVDA",
       "currency": "$",
       "price": 225.32,
-      "change": -4.44,
+      "change": -4.43,
       "change_pct": -1.93,
       "is_positive": false
     },
@@ -36,64 +36,64 @@
       "symbol": "TSLA",
       "currency": "$",
       "price": 422.24,
-      "change": -11.74,
-      "change_pct": -2.71,
+      "change": -11.86,
+      "change_pct": -2.73,
       "is_positive": false
     },
     {
       "symbol": "META",
       "currency": "$",
       "price": 614.23,
-      "change": 0.24,
-      "change_pct": 0.04,
+      "change": 0.12,
+      "change_pct": 0.02,
       "is_positive": true
     },
     {
       "symbol": "AMZN",
       "currency": "$",
       "price": 264.14,
-      "change": 1.64,
-      "change_pct": 0.62,
+      "change": 1.55,
+      "change_pct": 0.59,
       "is_positive": true
     },
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 79081.21,
-      "change": -1988.33,
-      "change_pct": -2.45,
+      "price": 79058.17,
+      "change": -2011.37,
+      "change_pct": -2.48,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2220.39,
-      "change": -62.07,
-      "change_pct": -2.72,
+      "price": 2222.47,
+      "change": -59.99,
+      "change_pct": -2.63,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 89.23,
-      "change": -2.92,
-      "change_pct": -3.17,
+      "price": 89.27,
+      "change": -2.88,
+      "change_pct": -3.13,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 673.69,
-      "change": -4.26,
-      "change_pct": -0.63,
+      "price": 673.08,
+      "change": -4.87,
+      "change_pct": -0.72,
       "is_positive": false
     },
     {
       "symbol": "NFLX",
       "currency": "$",
       "price": 87.02,
-      "change": -0.67,
-      "change_pct": -0.76,
+      "change": -0.75,
+      "change_pct": -0.85,
       "is_positive": false
     },
     {
@@ -140,8 +140,8 @@
       "symbol": "ADBE",
       "currency": "$",
       "price": 247.6,
-      "change": 5.84,
-      "change_pct": 2.42,
+      "change": 5.81,
+      "change_pct": 2.4,
       "is_positive": true
     },
     {
@@ -188,8 +188,8 @@
       "symbol": "WMT",
       "currency": "$",
       "price": 131.45,
-      "change": -2.24,
-      "change_pct": -1.68,
+      "change": -2.29,
+      "change_pct": -1.71,
       "is_positive": false
     },
     {
