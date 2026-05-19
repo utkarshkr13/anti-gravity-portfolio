@@ -59,33 +59,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 76951.58,
-      "change": -0.47,
-      "change_pct": -0.0,
+      "price": 76656.05,
+      "change": -296.0,
+      "change_pct": -0.38,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2116.58,
-      "change": -11.97,
-      "change_pct": -0.56,
+      "price": 2105.46,
+      "change": -23.09,
+      "change_pct": -1.08,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 84.47,
-      "change": -0.83,
-      "change_pct": -0.97,
+      "price": 84.08,
+      "change": -1.22,
+      "change_pct": -1.43,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 640.92,
-      "change": -2.14,
-      "change_pct": -0.33,
+      "price": 638.45,
+      "change": -4.61,
+      "change_pct": -0.72,
       "is_positive": false
     },
     {
