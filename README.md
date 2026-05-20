@@ -1,49 +1,85 @@
-# Utkarsh Kumar Rajput - Portfolio
+# 🚀 Utkarsh Kumar Rajput — Portfolio
 
-A high-performance, interactive, and responsive portfolio designed explicitly for a modern engineering aesthetic. It showcases a live financial stock ticker, glass-morphism UI layering, custom smooth-scrolling engines (Lenis), robust animation timelines (GSAP), and hidden interactive developer easter eggs.
+A high-performance, interactive portfolio featuring a live financial ticker, glassmorphism UI, Lenis smooth-scrolling, GSAP animations, and **15 hidden interactive Easter eggs**. Inspired by Apple and Google design philosophy.
 
-## 📈 Live Market Ticker
+🔗 **Live Site:** [utkarsh.ind.in](https://www.utkarsh.ind.in/)
 
-The hero section natively supports an auto-scrolling financial market ticker querying live data in the background (using a Python/yfinance GitHub Action pipeline).
-
-**Currently Ingested Shares (US & India):**
-*   `AAPL` (Apple Inc.)
-*   `MSFT` (Microsoft)
-*   `NVDA` (Nvidia)
-*   `GOOGL` (Alphabet/Google)
-*   `TSLA` (Tesla)
-*   `META` (Meta Platforms)
-*   `AMZN` (Amazon)
-*   `BTC-USD` (Bitcoin)
-*   `RELIANCE.NS` (Reliance Industries)
-*   `TCS.NS` (Tata Consultancy Services)
-*   `INFY.NS` (Infosys)
-*   `HDFCBANK.NS` (HDFC Bank)
-*   `SBIN.NS` (State Bank of India)
+**Tech Stack:** Vanilla HTML / CSS / JS · GSAP · Lenis · yfinance (Python)
 
 ---
 
-## 🥚 Hidden Easter Eggs
+## 📈 Live Market Ticker
 
-To add an element of interactivity and surprise for developers and recruiters browsing the site, several hidden features have been engineered into the frontend logic:
+The hero background auto-scrolls **45 real financial tickers** with live price data, powered by a **Python / yfinance GitHub Actions pipeline** that refreshes `market.json` every hour.
 
-### 1. 🚀 Matrix Hyperdrive
-**Activation:** Rapidly click the main hero name ("Utkarsh") exactly 5 times.
-**Effect:** Safeties are disabled. The entire background collapses into pitch black. All trailing market tickers turn pure Matrix neon-green and the scroll velocity multiplies by 35x into a hyper-warp blur!
+### Tracked Symbols
 
-### 2. 🎮 The Konami Code (Anti-Gravity Protocol)
-**Activation:** Type the classic Konami code anywhere on the site using your keyboard arrows and keys: `↑ ↑ ↓ ↓ ← → ← → B A`
-**Effect:** Triggers a literal zero-gravity GSAP physics event. All major UI blocks, buttons, and content cards detach from the DOM grid and seamlessly float away off-screen into the sky.
+| Category | Tickers |
+|---|---|
+| **🇺🇸 US Tech** | `AAPL` · `MSFT` · `NVDA` · `GOOGL` · `TSLA` · `META` · `AMZN` · `NFLX` · `AMD` · `INTC` · `ORCL` · `IBM` · `CRM` · `ADBE` · `QCOM` · `CSCO` |
+| **🇺🇸 US Finance & Consumer** | `JPM` · `V` · `MA` · `WMT` · `DIS` · `UBER` |
+| **₿ Crypto** | `BTC-USD` · `ETH-USD` · `SOL-USD` · `BNB-USD` |
+| **🇮🇳 Nifty 50 (India `.NS`)** | `RELIANCE` · `TCS` · `INFY` · `HDFCBANK` · `SBIN` · `WIPRO` · `HCLTECH` · `TECHM` · `LT` · `ICICIBANK` · `AXISBANK` · `KOTAKBANK` · `BAJFINANCE` · `MARUTI` · `SUNPHARMA` · `ITC` · `ASIANPAINT` · `HINDUNILVR` · `BHARTIARTL` |
 
-### 3. 🎉 The "Hire" Command
-**Activation:** Blindly type the word `hire` using your keyboard while on the page.
-**Effect:** A massive, colorful physics-based confetti explosion blasts upward from the bottom of the screen covering the viewport.
+---
 
-### 4. ⛈️ "Salescode" Thunderstorm
-**Activation:** Blindly type the word `salescode` using your keyboard.
-**Effect:** Triggers a heavy digital thunderstorm over the site. The background violently flashes white to simulate lightning strikes, while a custom HTML5 Canvas rendering engine spawns hundreds of heavy raindrops streaking straight down your screen.
+## 🥚 Hidden Easter Eggs (15 Total)
 
-### 5. 👨‍💻 Hacker Console Signature
-**Activation:** Hit `F12` to open the browser Developer Tools and look at the Console logs.
-**Effect:** The console will not show standard debugging text, but rather a massive, perfectly formatted ASCII-art rendering of the name "UTKARSH" rendered in an aggressive blue font alongside a customized "Welcome to the Matrix" greeting.
+Fifteen interactive surprises are engineered into the frontend for developers and recruiters to discover.
 
+### ✨ Original Five
+
+| # | Name | Activation | Effect |
+|---|---|---|---|
+| 1 | **🚀 Matrix Hyperdrive** | Click the hero name **"Utkarsh"** 5× rapidly | All tickers turn neon green, scroll velocity × 35 |
+| 2 | **🎮 Konami Code (Anti-Gravity)** | Type `↑ ↑ ↓ ↓ ← → ← → B A` | All UI elements float away off-screen |
+| 3 | **🎉 "hire" Command** | Type `hire` anywhere on the page | Massive confetti explosion |
+| 4 | **⛈️ "salescode" Thunderstorm** | Type `salescode` | Lightning flashes + HTML5 Canvas rain |
+| 5 | **👨‍💻 Hacker Console Signature** | Open `F12` → Console | ASCII art "UTKARSH" in blue with welcome message |
+
+### 🔥 Ten Advanced Easter Eggs
+
+| # | Name | Trigger | Effect |
+|---|---|---|---|
+| 6 | **💀 Thanos Snap** | Type `thanos` | 50 % of DOM elements dissolve into particle dust |
+| 7 | **🔫 GTA Wasted** | Type `wasted` | Screen desaturates, bullet-time slow-mo, red **WASTED** text |
+| 8 | **🚔 GTA Wanted** | Type `wanted` | 5-star wanted level + police siren strobes. Type `leavemealone` to clear |
+| 9 | **🟦 Windows BSOD** | Type `bsod` or `windows` | Full Blue Screen of Death overlay. Click to dismiss |
+| 10 | **🤖 Iron Man Jarvis HUD** | Type `jarvis` | Holographic targeting HUD overlay *(toggle on/off)* |
+| 11 | **🍎 Apple "One More Thing"** | Type `onemorething` | Dramatic Steve Jobs spotlight moment |
+| 12 | **🥽 Apple Vision Pro** | Type `visionpro` | 3D isometric spatial UI tilt *(toggle on/off)* |
+| 13 | **🌆 Cyberpunk Glitch** | Type `cyberpunk` | RGB chromatic aberration + screen tearing *(toggle on/off)* |
+| 14 | **📐 Google Askew** | Type `askew` | Entire page tilts 3° *(toggle on/off)* |
+| 15 | **👾 Google Zerg Rush** | Type `zergrush` | Red **O** circles fall and eat page content. Click to kill |
+
+---
+
+## 🛠️ Setup & Development
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/utkarshkr13/anti-gravity-portfolio.git
+cd anti-gravity-portfolio
+
+# Option A — just open in a browser
+open index.html        # macOS
+start index.html       # Windows
+
+# Option B — local dev server
+python -m http.server 8000
+```
+
+### Market Data Pipeline
+
+```bash
+pip install yfinance pandas
+python scripts/fetch_market.py
+```
+
+> A **GitHub Action** runs every hour to automatically refresh `market.json` with the latest prices.
+
+---
+
+<p align="center"><b>⭐ Star this repo if you find the Easter eggs!</b></p>
