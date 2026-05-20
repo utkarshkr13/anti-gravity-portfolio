@@ -186,12 +186,23 @@
       }
     }
 
+    let lastWidth = 0;
     function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const currentWidth = window.innerWidth;
+      const currentHeight = window.innerHeight;
+      
+      // Only re-initialize the grid if width changed significantly (prevents mobile resize jitter on vertical scroll address bar changes)
+      const widthChanged = Math.abs(currentWidth - lastWidth) > 15;
+      
+      width = currentWidth;
+      height = currentHeight;
       canvas.width = width;
       canvas.height = height;
-      initGrid();
+      
+      if (widthChanged || texts.length === 0) {
+        lastWidth = currentWidth;
+        initGrid();
+      }
     }
 
     window.addEventListener('resize', resize);
