@@ -44,8 +44,8 @@
       "symbol": "META",
       "currency": "$",
       "price": 610.26,
-      "change": 2.38,
-      "change_pct": 0.39,
+      "change": 2.77,
+      "change_pct": 0.46,
       "is_positive": true
     },
     {
@@ -59,32 +59,32 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 75902.74,
-      "change": -1643.79,
-      "change_pct": -2.12,
+      "price": 75689.99,
+      "change": -1856.54,
+      "change_pct": -2.39,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2070.87,
-      "change": -60.84,
-      "change_pct": -2.85,
+      "price": 2072.06,
+      "change": -59.65,
+      "change_pct": -2.8,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 84.96,
-      "change": -2.22,
-      "change_pct": -2.54,
+      "price": 84.95,
+      "change": -2.23,
+      "change_pct": -2.55,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 652.0,
-      "change": -5.35,
+      "price": 652.04,
+      "change": -5.31,
       "change_pct": -0.81,
       "is_positive": false
     },
