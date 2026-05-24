@@ -3,25 +3,67 @@ import json
 import os
 
 SYMBOLS = [
-    "AAPL", "MSFT", "NVDA", "GOOGL", "TSLA", "META", "AMZN", "BTC-USD", "ETH-USD", "SOL-USD", "BNB-USD",
-    "NFLX", "AMD", "INTC", "ORCL", "IBM", "CRM", "ADBE", "QCOM", "CSCO", "JPM", "V", "MA", "WMT", "DIS", "UBER",
-    "RELIANCE.NS", "TCS.NS", "INFY.NS", "HDFCBANK.NS", "SBIN.NS", "WIPRO.NS", "HCLTECH.NS", "TECHM.NS", "LT.NS",
-    "ICICIBANK.NS", "AXISBANK.NS", "KOTAKBANK.NS", "BAJFINANCE.NS", "MARUTI.NS", "SUNPHARMA.NS",
-    "ITC.NS", "ASIANPAINT.NS", "HINDUNILVR.NS", "BHARTIARTL.NS"
+    # ==================== 60 US STOCKS & CRYPTOCURRENCIES ====================
+    # Big Tech (Magnificent Seven)
+    "AAPL", "MSFT", "NVDA", "GOOGL", "TSLA", "META", "AMZN",
+    # Semiconductors & Hardware
+    "AMD", "INTC", "QCOM", "AVGO", "TSM", "ARM", "MU", 
+    # Enterprise Software, Cloud & SaaS
+    "NFLX", "ORCL", "IBM", "CRM", "ADBE", "PLTR", "NOW", "SNOW", "PANW", "INTU", "WDAY",
+    # Banking & Payments
+    "JPM", "V", "MA", "BAC", "WFC", "GS", "MS", "PYPL", "COIN",
+    # Consumer Giants & Retailers
+    "WMT", "DIS", "UBER", "KO", "PEP", "NKE", "COST", "SBUX", "TGT",
+    # Industrials, Defense & Energy
+    "CAT", "GE", "HON", "NOC", "LMT", "DE", "FDX",
+    # Cryptocurrencies
+    "BTC-USD", "ETH-USD", "SOL-USD", "BNB-USD", "ADA-USD", "XRP-USD", "DOGE-USD", "DOT-USD", "LINK-USD",
+
+    # ==================== 60 INDIAN BLUE-CHIP STOCKS ====================
+    # Conglomerate & IT Services
+    "RELIANCE.NS", "TCS.NS", "INFY.NS", "WIPRO.NS", "HCLTECH.NS", "TECHM.NS", "LTIM.NS",
+    # Private & Public Banking / NBFCs
+    "HDFCBANK.NS", "ICICIBANK.NS", "AXISBANK.NS", "KOTAKBANK.NS", "SBIN.NS", "BAJFINANCE.NS", "BAJAJFINSV.NS", "LICI.NS", "RECLTD.NS",
+    # Automotive & Mobility
+    "MARUTI.NS", "TATAMOTORS.NS", "M&M.NS", "BAJAJ-AUTO.NS", "HEROMOTOCO.NS", "EICHERMOT.NS", "TVSMOTOR.NS",
+    # FMCG & Consumer Durables
+    "ITC.NS", "HINDUNILVR.NS", "ASIANPAINT.NS", "NESTLEIND.NS", "BRITANNIA.NS", "COLPAL.NS", "DABUR.NS", "GODREJCP.NS", "TATACONSUM.NS",
+    # Healthcare & Pharma
+    "SUNPHARMA.NS", "CIPLA.NS", "DRREDDY.NS", "APOLLOHOSP.NS", "DIVISLAB.NS", "LUPIN.NS", "MAXHEALTH.NS",
+    # Infra, Utilities, Metal & Mining
+    "LT.NS", "ADANIENT.NS", "ADANIPORTS.NS", "POWERGRID.NS", "NTPC.NS", "TATASTEEL.NS", "JINDALSTEL.NS", "JSWSTEEL.NS", "HINDALCO.NS", "GRASIM.NS", "COALINDIA.NS",
+    # Telecom, Transport, Defence & Public Services
+    "BHARTIARTL.NS", "ONGC.NS", "BPCL.NS", "IOC.NS", "GAIL.NS", "INDIGO.NS", "DLF.NS", "HAL.NS", "BEL.NS", "ZOMATO.NS"
 ]
+
 def fetch_market():
     tickers_data = []
     try:
         # Batch download 1-day pricing to get opening and current closing
         data = yf.download(SYMBOLS, period="1d", group_by="ticker", progress=False)
+        
+        # Determine columns structure (batch returns multi-index columns on success)
+        has_multi_index = hasattr(data.columns, 'levels')
+        
         for symbol in SYMBOLS:
-            # Handle multi-index dataframe structure from yfinance batch downloads
-            ticker_df = data[symbol] if len(SYMBOLS) > 1 else data
-            if not ticker_df.empty:
+            try:
+                # Safely extract ticker dataframe from batch result
+                if has_multi_index:
+                    if symbol not in data.columns.levels[0]:
+                        continue
+                    ticker_df = data[symbol]
+                else:
+                    ticker_df = data
+                
+                # Clean and drop NaN values to handle weekend gaps between crypto & stock indices seamlessly
+                clean_df = ticker_df.dropna(subset=['Open', 'Close'])
+                if clean_df.empty:
+                    continue
+                    
                 import math
                 
-                open_price = float(ticker_df['Open'].iloc[0])
-                current_price = float(ticker_df['Close'].iloc[-1])
+                open_price = float(clean_df['Open'].iloc[0])
+                current_price = float(clean_df['Close'].iloc[-1])
                 
                 # Sanitize NaNs
                 if math.isnan(open_price) or math.isnan(current_price):
@@ -41,6 +83,10 @@ def fetch_market():
                     "change_pct": round(change_pct, 2),
                     "is_positive": change >= 0
                 })
+            except Exception as inner_e:
+                # Silently skip single symbol parse errors to preserve high-res aggregate data
+                continue
+                
         return tickers_data
     except Exception as e:
         print(f"Error fetching yfinance: {e}")
