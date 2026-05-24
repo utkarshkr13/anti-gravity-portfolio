@@ -86,9 +86,10 @@
 
     class TextNode {
       constructor(stockData, colX, rowY, rowSpeed) {
-        // Format CNBC Style: AAPL $175.00 (+1.2%)
+        // Format CNBC Style: AAPL $175.00 ▲ +1.2%
         const sign = stockData.change_pct >= 0 ? '+' : '';
-        this.text = `${stockData.symbol}  ${stockData.currency}${stockData.price}  (${sign}${stockData.change_pct}%)`;
+        const arrow = stockData.change_pct >= 0 ? '▲' : '▼';
+        this.text = `${stockData.symbol}  ${stockData.currency}${stockData.price}  ${arrow} ${sign}${stockData.change_pct}%`;
         this.isPositive = stockData.is_positive;
         
         ctx.font = `14px 'Courier New', Courier, monospace`;
@@ -172,9 +173,9 @@
       let index = 0;
       
       for (let r = 0; r < rows; r++) {
-        // Different speed per row (varying between 0.4 and 1.2 pixels per frame) for realistic market board depth
-        const baseSpeed = 0.4 + (r % 4) * 0.18; 
-        const rowSpeed = baseSpeed + Math.random() * 0.12;
+        // Ramped up speeds (varying between 0.65 and 1.5 pixels per frame) to prevent any row from looking stationary
+        const baseSpeed = 0.65 + (r % 4) * 0.22; 
+        const rowSpeed = baseSpeed + Math.random() * 0.15;
         
         let currentX = -Math.random() * 200; // Stagger start positions dynamically
         
