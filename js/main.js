@@ -332,6 +332,32 @@
     }
   });
 
+  // Expose triggers globally for AI Copilot Diagnostics Panel
+  window.easterEggs = {
+    trigger: (name) => {
+      const actions = {
+        'hire': () => { if(window.confetti) confetti({ particleCount: 200, spread: 120, origin: { y: 0.6 }, zIndex: 999999 }); },
+        'salescode': triggerThunderRain,
+        'antigravity': triggerAntiGravity,
+        'thanos': triggerThanos,
+        'wasted': triggerWasted,
+        'wanted': triggerWanted,
+        'leavemealone': triggerLeaveMeAlone,
+        'bsod': triggerBsod,
+        'jarvis': triggerJarvis,
+        'onemorething': triggerOneMoreThing,
+        'visionpro': () => document.body.classList.toggle('egg-visionpro'),
+        'cyberpunk': () => document.body.classList.toggle('egg-cyberpunk'),
+        'askew': () => document.body.classList.toggle('egg-askew'),
+        'zergrush': triggerZergRush
+      };
+      if (actions[name]) {
+        actions[name]();
+        console.log(`%c[Diagnostics Activated] ${name}`, "color: #22c55e; font-weight: bold;");
+      }
+    }
+  };
+
   /* ---------- Run Everything ---------- */
   if (document.readyState === 'loading') {
     window.addEventListener('DOMContentLoaded', runLoader);
