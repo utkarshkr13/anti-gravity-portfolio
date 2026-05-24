@@ -85,7 +85,7 @@
     });
 
     class TextNode {
-      constructor(stockData, colX, rowY) {
+      constructor(stockData, colX, rowY, rowSpeed) {
         // Format CNBC Style: AAPL $175.00 (+1.2%)
         const sign = stockData.change_pct >= 0 ? '+' : '';
         this.text = `${stockData.symbol}  ${stockData.currency}${stockData.price}  (${sign}${stockData.change_pct}%)`;
@@ -101,7 +101,7 @@
         this.vx = 0;
         this.vy = 0;
         this.opacity = 0.55; 
-        this.scrollSpeed = 0.8; // Uniform tracking speed for all market nodes
+        this.scrollSpeed = rowSpeed || 0.8; // Row-specific tracking speed
       }
       update() {
         // Continuous rightward CNBC scroll
@@ -172,12 +172,16 @@
       let index = 0;
       
       for (let r = 0; r < rows; r++) {
+        // Different speed per row (varying between 0.4 and 1.2 pixels per frame) for realistic market board depth
+        const baseSpeed = 0.4 + (r % 4) * 0.18; 
+        const rowSpeed = baseSpeed + Math.random() * 0.12;
+        
         let currentX = -Math.random() * 200; // Stagger start positions dynamically
         
         // Spawn multiple tickers per lane
         while (currentX < width + 500) {
           const stockData = marketData[index % marketData.length];
-          const node = new TextNode(stockData, currentX, r * rowHeight + 20);
+          const node = new TextNode(stockData, currentX, r * rowHeight + 20, rowSpeed);
           texts.push(node);
           
           currentX += node.textWidth + marginX;
