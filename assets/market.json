@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 77380.48,
-      "change": 411.45,
-      "change_pct": 0.53,
+      "price": 77268.84,
+      "change": 299.81,
+      "change_pct": 0.39,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2119.67,
-      "change": 22.12,
-      "change_pct": 1.05,
+      "price": 2109.21,
+      "change": 11.66,
+      "change_pct": 0.56,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 85.72,
-      "change": 0.48,
-      "change_pct": 0.56,
+      "price": 85.37,
+      "change": 0.13,
+      "change_pct": 0.15,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 661.92,
-      "change": 5.86,
-      "change_pct": 0.89,
+      "price": 661.3,
+      "change": 5.24,
+      "change_pct": 0.8,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
-      "price": 0.25,
+      "price": 0.24,
       "change": 0.0,
-      "change_pct": 1.43,
+      "change_pct": 0.98,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.36,
-      "change": 0.01,
-      "change_pct": 0.55,
+      "price": 1.35,
+      "change": 0.0,
+      "change_pct": 0.35,
       "is_positive": true
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.1,
       "change": 0.0,
-      "change_pct": 0.49,
+      "change_pct": 0.23,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 1.28,
-      "change": 0.04,
-      "change_pct": 3.01,
+      "price": 1.27,
+      "change": 0.03,
+      "change_pct": 2.45,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 9.56,
-      "change": 0.13,
-      "change_pct": 1.37,
+      "price": 9.51,
+      "change": 0.08,
+      "change_pct": 0.82,
       "is_positive": true
     },
     {
@@ -678,14 +678,6 @@
       "price": 5327.0,
       "change": -43.0,
       "change_pct": -0.8,
-      "is_positive": false
-    },
-    {
-      "symbol": "COLPAL",
-      "currency": "₹",
-      "price": 2097.0,
-      "change": -88.7,
-      "change_pct": -4.06,
       "is_positive": false
     },
     {
