@@ -339,6 +339,134 @@
     </div>
   </section>
 
+  <!-- ===== AI-First Product Lab Section ===== -->
+  <section class="section" id="product-lab">
+    <div class="section-label reveal">Interactive Lab</div>
+    <h2 class="section-title reveal">AI-First <span class="accent-text">Product Lab.</span></h2>
+    <p class="section-subtitle reveal">Recruiter Sandbox · Test my operational PM &amp; BA skills by generating live, industry-standard Product Requirements in real-time.</p>
+
+    <div class="playground-wrapper reveal">
+      
+      <!-- Left column: Control Panel -->
+      <div class="playground-control-card">
+        <div class="playground-card-header">
+          <i data-lucide="sliders" style="width:20px;height:20px;color:var(--accent)"></i>
+          <h3>Control Panel</h3>
+        </div>
+        <p class="playground-panel-desc">Select an operational business challenge and choose target parameters to generate detailed specifications.</p>
+        
+        <div class="playground-domain-selector">
+          <label class="playground-label">1. Choose Business Challenge</label>
+          
+          <button class="playground-domain-btn active" data-domain="fmcg" data-cursor="hover">
+            <div class="domain-btn-header">
+              <i data-lucide="truck" style="width:16px;height:16px;"></i>
+              <span>FMCG offline inventory sync</span>
+            </div>
+            <p>Field agents experiencing sync failure, causing inventory double-submissions &amp; invoicing lag.</p>
+          </button>
+          
+          <button class="playground-domain-btn" data-domain="escalation" data-cursor="hover">
+            <div class="domain-btn-header">
+              <i data-lucide="life-buoy" style="width:16px;height:16px;"></i>
+              <span>Enterprise SLA Escalations</span>
+            </div>
+            <p>High-volume ticket classification errors causing critical 2-hour support breaches.</p>
+          </button>
+          
+          <button class="playground-domain-btn" data-domain="geospatial" data-cursor="hover">
+            <div class="domain-btn-header">
+              <i data-lucide="map-pin" style="width:16px;height:16px;"></i>
+              <span>Geospatial Transit Pricing</span>
+            </div>
+            <p>Static bus route schedules ignoring real-time traffic demand, bleeding margins.</p>
+          </button>
+        </div>
+
+        <div class="playground-parameters">
+          <label class="playground-label">2. Target Architecture Parameters</label>
+          <div class="playground-params-grid">
+            <div class="playground-param-group">
+              <label for="playgroundParamChannel">Target Channel</label>
+              <select id="playgroundParamChannel" data-cursor="hover">
+                <option value="Web SaaS Platform">Web SaaS Platform</option>
+                <option value="Mobile PWA Native">Mobile PWA Native</option>
+                <option value="Microservice Rest API">Microservice Rest API</option>
+              </select>
+            </div>
+            <div class="playground-param-group">
+              <label for="playgroundParamMode">Delivery Framework</label>
+              <select id="playgroundParamMode" data-cursor="hover">
+                <option value="Agile Scrum">Agile Scrum</option>
+                <option value="Lean Kanban">Lean Kanban</option>
+                <option value="XP (Extreme Programming)">XP Programming</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary playground-generate-btn" id="playgroundGenerateBtn" data-cursor="hover" style="width: 100%; display: inline-flex; align-items: center; justify-content: center;">
+          Generate PM Artifacts <i data-lucide="cpu" style="width:16px;height:16px;margin-left:6px;"></i>
+        </button>
+      </div>
+
+      <!-- Right column: Simulated Workspace Doc Viewer -->
+      <div class="playground-workspace-card">
+        
+        <!-- State 1: Waiting / Empty -->
+        <div class="playground-workspace-empty active" id="playgroundWorkspaceEmpty">
+          <div class="empty-state-content">
+            <div class="empty-state-icon">
+              <i data-lucide="terminal" style="width:48px;height:48px;color:rgba(255,255,255,0.15)"></i>
+            </div>
+            <h3>Workspace Idle</h3>
+            <p>Select a business challenge and click "Generate PM Artifacts" to compile specifications, Gherkin user stories, and test scenarios.</p>
+          </div>
+        </div>
+
+        <!-- State 2: Simulated high-tech loading -->
+        <div class="playground-workspace-loader" id="playgroundWorkspaceLoader">
+          <div class="loader-state-content">
+            <div class="loader-spinner"></div>
+            <h3 id="playgroundLoaderStepText">Analyzing operational workflows and process gaps...</h3>
+            <div class="playground-loader-bar">
+              <div class="playground-loader-bar-inner" id="playgroundLoaderBarInner"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- State 3: Active Document Viewer -->
+        <div class="playground-workspace-content" id="playgroundWorkspaceContent">
+          <div class="playground-tabs">
+            <button class="playground-tab-btn active" id="tabBtnBrief" data-cursor="hover">📋 Product Brief</button>
+            <button class="playground-tab-btn" id="tabBtnBacklog" data-cursor="hover">🎫 Jira Stories</button>
+            <button class="playground-tab-btn" id="tabBtnQA" data-cursor="hover">🧪 Edge Cases &amp; QA</button>
+          </div>
+          
+          <div class="playground-doc-header">
+            <h4 id="playgroundSpecTitle">Spec Title</h4>
+            <div class="playground-spec-meta" id="playgroundSpecMeta">Environment: <strong>Web SaaS</strong> · Workflow: <strong>Agile Scrum</strong></div>
+            
+            <div class="playground-doc-actions">
+              <button class="playground-action-btn" id="playgroundCopyBtn" title="Copy Markdown to Clipboard" data-cursor="hover">
+                <i data-lucide="copy" style="width:16px;height:16px;"></i> Copy Spec
+              </button>
+              <button class="playground-action-btn" id="playgroundExportBtn" title="Download Markdown File" data-cursor="hover">
+                <i data-lucide="download" style="width:16px;height:16px;"></i> Export .MD
+              </button>
+            </div>
+          </div>
+
+          <div class="playground-doc-view">
+            <pre><code id="playgroundSpecText">Generating...</code></pre>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- ===== Skills Section ===== -->
   <section class="section" id="skills">
     <div class="section-label reveal">Skills & Tools</div>
@@ -498,6 +626,22 @@
       </button>
     </div>
     <div class="panel-body">
+      <!-- System HUD status panel -->
+      <div class="system-status-hud" style="margin-bottom: 6px; padding: 12px 16px; background: rgba(59, 130, 246, 0.04); border: 1px solid var(--border-color); border-radius: var(--radius-md); flex-shrink: 0;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">
+          <span>Diagnostics Status:</span>
+          <span style="color: #10b981; font-weight: 600; font-family: monospace;">● SECURE</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">
+          <span>Active Market Tickers:</span>
+          <span style="color: var(--accent); font-weight: 600; font-family: monospace;">116 Live Tickers</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary);">
+          <span>Easter Eggs Discovered:</span>
+          <span id="eggUnlockCounter" style="color: #f59e0b; font-weight: 600; font-family: monospace;">0 / 14</span>
+        </div>
+      </div>
+
       <div class="egg-item">
         <div class="egg-info">
           <div class="egg-name-wrapper">
@@ -640,8 +784,14 @@
     </div>
   </div>
 
+  <!-- ===== Apple-Style System Toasts Container ===== -->
+  <div class="system-toast-container" id="toastContainer"></div>
+
   <script>
-    // Easter egg diagnostic trigger script
+    // Easter egg diagnostic trigger script & unlock game controller
+    const unlockedEggs = new Set();
+    const eggCount = 14;
+
     document.addEventListener('DOMContentLoaded', () => {
       const aiOrb = document.getElementById('aiOrb');
       const easterEggsPanel = document.getElementById('easterEggsPanel');
@@ -664,6 +814,160 @@
       }
     });
 
+    function updateHud(name) {
+      const displayNames = {
+        'hire': 'hire',
+        'salescode': 'salescode',
+        'antigravity': 'Konami Code',
+        'thanos': 'thanos',
+        'wasted': 'wasted',
+        'wanted': 'wanted',
+        'leavemealone': 'leavemealone',
+        'bsod': 'bsod',
+        'jarvis': 'jarvis',
+        'onemorething': 'onemorething',
+        'visionpro': 'visionpro',
+        'cyberpunk': 'cyberpunk',
+        'askew': 'askew',
+        'zergrush': 'zergrush'
+      };
+      
+      const cleanName = displayNames[name] || name;
+      if (!unlockedEggs.has(cleanName)) {
+        unlockedEggs.add(cleanName);
+        const counter = document.getElementById('eggUnlockCounter');
+        if (counter) {
+          counter.innerText = `${unlockedEggs.size} / ${eggCount}`;
+          if (unlockedEggs.size === eggCount) {
+            counter.style.color = '#10b981';
+            setTimeout(() => {
+              triggerSuperSecretEvent();
+            }, 2000);
+          }
+        }
+      }
+      showSystemToast(name);
+    }
+
+    function showSystemToast(name) {
+      const toastContainer = document.getElementById('toastContainer');
+      if (!toastContainer) return;
+
+      const eggDetails = {
+        'hire': { title: 'System Celebration', desc: 'Confetti burst diagnostic check complete.', icon: 'award' },
+        'salescode': { title: 'Weather System Active', desc: 'Lightning and heavy rain simulation running.', icon: 'cloud-lightning' },
+        'antigravity': { title: 'Anti-Gravity Space Physics', desc: 'Float mode engaged. CSS 3D translation running.', icon: 'orbit' },
+        'thanos': { title: 'Infinity Snap Active', desc: 'Element dissolution test running. Half of cards snapped.', icon: 'sparkles' },
+        'wasted': { title: 'GTA Wasted State Toggled', desc: 'GTA slow-mo red vignette overlay active.', icon: 'skull' },
+        'wanted': { title: 'GTA Wanted Level Initiated', desc: 'Diagnostics 5-star wanted levels active.', icon: 'shield-alert' },
+        'leavemealone': { title: 'Diagnostics Restored', desc: 'Wanted level cleared. Console HUD safe.', icon: 'shield-check' },
+        'bsod': { title: 'System Mock Stopcode Active', desc: 'Windows Kernel stopcode BSOD scanner mock running.', icon: 'alert-triangle' },
+        'jarvis': { title: 'Stark HUD Overlay Active', desc: 'Visual scanner overlays mapping page coordinates.', icon: 'eye' },
+        'onemorething': { title: 'Apple Spotlight Transformed', desc: 'Cupertino fade Spotlight animation active.', icon: 'apple' },
+        'visionpro': { title: 'Glassy Spatial Mode Toggled', desc: 'Apple Vision Pro immersive spatial overlay.', icon: 'glasses' },
+        'cyberpunk': { title: 'Neon Glitch Grid Toggled', desc: 'Retro cyberpunk theme styles active.', icon: 'zap' },
+        'askew': { title: 'Google Slant Toggled', desc: 'Perspective tilt rotation active.', icon: 'compass' },
+        'zergrush': { title: 'System Overload Active', desc: 'Swarms of active elements attacking text layers.', icon: 'activity' }
+      };
+
+      const info = eggDetails[name] || { title: 'Diagnostic Code Run', desc: `Diagnostic code '${name}' was successfully active.`, icon: 'terminal' };
+
+      const toast = document.createElement('div');
+      toast.className = 'system-toast';
+      toast.innerHTML = `
+        <div class="toast-icon">
+          <i data-lucide="${info.icon}" style="width: 18px; height: 18px;"></i>
+        </div>
+        <div class="toast-body">
+          <div class="toast-title">${info.title}</div>
+          <div class="toast-desc">${info.desc}</div>
+        </div>
+      `;
+
+      toastContainer.appendChild(toast);
+      lucide.createIcons({ node: toast });
+
+      setTimeout(() => {
+        toast.classList.add('active');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.remove('active');
+        setTimeout(() => {
+          toast.remove();
+        }, 600);
+      }, 4000);
+    }
+
+    function triggerSuperSecretEvent() {
+      if (window.confetti) {
+        let duration = 5 * 1000;
+        let animationEnd = Date.now() + duration;
+        let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999999 };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        let interval = setInterval(function() {
+          let timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          let particleCount = 50 * (timeLeft / duration);
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
+      }
+      
+      showSystemToast('hire');
+      
+      const congrats = document.createElement('div');
+      congrats.style.position = 'fixed';
+      congrats.style.inset = '0';
+      congrats.style.background = 'rgba(8, 9, 12, 0.95)';
+      congrats.style.zIndex = '99999999';
+      congrats.style.display = 'flex';
+      congrats.style.flexDirection = 'column';
+      congrats.style.alignItems = 'center';
+      congrats.style.justifyContent = 'center';
+      congrats.style.gap = '20px';
+      congrats.style.textAlign = 'center';
+      congrats.style.padding = '40px';
+      congrats.style.backdropFilter = 'blur(20px)';
+      congrats.style.webkitBackdropFilter = 'blur(20px)';
+      congrats.style.opacity = '0';
+      congrats.style.transition = 'opacity 0.6s var(--ease-out)';
+
+      congrats.innerHTML = `
+        <i data-lucide="shield-check" style="width: 80px; height: 80px; color: #10b981;"></i>
+        <h1 style="font-size: 2.2rem; font-weight: 700; color: #fff; letter-spacing: -1px; margin-bottom: -10px;">DIAGNOSTICS COMPLETE</h1>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; line-height: 1.6;">
+          System fully unlocked! You discovered all 14 portfolio Easter eggs. Utkarsh Rajput is 100% prepared to engineer, optimize, and scale your product operations.
+        </p>
+        <button id="closeCongrats" class="btn btn-primary" style="padding: 12px 36px; font-size: 0.9rem; margin-top: 10px;" data-cursor="hover">Return to System</button>
+      `;
+
+      document.body.appendChild(congrats);
+      lucide.createIcons({ node: congrats });
+
+      setTimeout(() => {
+        congrats.style.opacity = '1';
+      }, 50);
+
+      const closeBtn = document.getElementById('closeCongrats');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          congrats.style.opacity = '0';
+          setTimeout(() => {
+            congrats.remove();
+          }, 600);
+        });
+      }
+    }
+
     function triggerEgg(name, btn) {
       if (btn) {
         btn.classList.add('triggered');
@@ -674,6 +978,8 @@
           btn.innerText = oldText;
         }, 1500);
       }
+
+      updateHud(name);
 
       if (window.easterEggs && typeof window.easterEggs.trigger === 'function') {
         window.easterEggs.trigger(name);
@@ -720,6 +1026,7 @@
   <script src="js/magnetic.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/playground.js"></script>
   <script>lucide.createIcons();</script>
 </body>
 </html>
