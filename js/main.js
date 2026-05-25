@@ -35,6 +35,9 @@
     smoothTouch: false
   });
 
+  // Expose Lenis globally so other components can access or control it
+  window.lenis = lenis;
+
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
@@ -45,6 +48,34 @@
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
+
+  // Bulletproof Scroll Containment delegation for data-lenis-prevent
+  // Temporarily stops Lenis during interaction inside any element with data-lenis-prevent
+  document.addEventListener('mouseover', (e) => {
+    if (e.target && typeof e.target.closest === 'function') {
+      const container = e.target.closest('[data-lenis-prevent]');
+      if (container) {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchstart', (e) => {
+    if (e.target && typeof e.target.closest === 'function') {
+      const container = e.target.closest('[data-lenis-prevent]');
+      if (container) {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    lenis.start();
+  }, { passive: true });
 
   /* ---------- Smooth anchor scrolling ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(link => {

@@ -280,6 +280,30 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
   let activeTab = 'brief';
   let isTyping = false;
 
+  function updateDomainGlow(domain) {
+    const wrapper = document.getElementById('playgroundWrapper');
+    if (!wrapper) return;
+
+    const glowColors = {
+      fmcg: {
+        bg: 'rgba(16, 185, 129, 0.04)', // Emerald
+        border: 'rgba(16, 185, 129, 0.2)'
+      },
+      escalation: {
+        bg: 'rgba(59, 130, 246, 0.04)', // Electric Blue
+        border: 'rgba(59, 130, 246, 0.2)'
+      },
+      geospatial: {
+        bg: 'rgba(168, 85, 247, 0.04)', // Amethyst
+        border: 'rgba(168, 85, 247, 0.2)'
+      }
+    };
+
+    const activeColor = glowColors[domain] || glowColors.fmcg;
+    wrapper.style.setProperty('--lab-glow-color', activeColor.bg);
+    wrapper.style.setProperty('--lab-active-border', activeColor.border);
+  }
+
   function initPlayground() {
     const domainSelects = document.querySelectorAll('.playground-domain-btn');
     const paramChannel = document.getElementById('playgroundParamChannel');
@@ -295,15 +319,20 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     const tabBacklog = document.getElementById('tabBtnBacklog');
     const tabQA = document.getElementById('tabBtnQA');
     const tabFlow = document.getElementById('tabBtnFlow');
+    const tabROI = document.getElementById('tabBtnROI');
 
     const specTextContainer = document.getElementById('playgroundSpecText');
     const specTitle = document.getElementById('playgroundSpecTitle');
     const specMeta = document.getElementById('playgroundSpecMeta');
+    const workspaceTitle = document.getElementById('playgroundWorkspaceTitle');
 
     const copyBtn = document.getElementById('playgroundCopyBtn');
     const exportBtn = document.getElementById('playgroundExportBtn');
 
     if (!generateBtn || !workspaceEmpty || !workspaceLoader || !workspaceContent) return;
+
+    // Apply initial dynamic glow based on default FMCG selection
+    updateDomainGlow(activeDomain);
 
     // Domain Selection
     domainSelects.forEach(btn => {
@@ -313,11 +342,15 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
         domainSelects.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         activeDomain = btn.dataset.domain;
+        
+        // Update dynamic ambient glows
+        updateDomainGlow(activeDomain);
 
         // Reset workspace to empty state when domain changes
         workspaceContent.classList.remove('active');
         workspaceLoader.classList.remove('active');
         workspaceEmpty.classList.add('active');
+        if (workspaceTitle) workspaceTitle.innerText = "specs_compiler.log";
       });
     });
 
@@ -326,7 +359,8 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
       { element: tabBrief, name: 'brief' },
       { element: tabBacklog, name: 'backlog' },
       { element: tabQA, name: 'qa' },
-      { element: tabFlow, name: 'flow' }
+      { element: tabFlow, name: 'flow' },
+      { element: tabROI, name: 'roi' }
     ];
 
     tabs.forEach(t => {
@@ -346,11 +380,11 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     if (copyBtn) {
       copyBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (activeTab === 'flow') {
-          alertSuccessToast("Info", "Flow chart diagram is rendered visually, switch to another tab to copy markdown specs.");
+        if (activeTab === 'flow' || activeTab === 'roi') {
+          alertSuccessToast("Info", "This visual panel can be experienced interactively, switch to another tab to copy markdown specs.");
           return;
         }
-        const text = specTextContainer.innerText;
+        const text = specsData[activeDomain][activeTab];
         navigator.clipboard.writeText(text).then(() => {
           if (window.showSystemToast) {
             window.showSystemToast('hire'); // Celebration ripple toast
@@ -366,11 +400,11 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     if (exportBtn) {
       exportBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (activeTab === 'flow') {
-          alertSuccessToast("Info", "Flow chart diagram is rendered visually, switch to another tab to export markdown specs.");
+        if (activeTab === 'flow' || activeTab === 'roi') {
+          alertSuccessToast("Info", "This visual panel can be experienced interactively, switch to another tab to export markdown specs.");
           return;
         }
-        const text = specTextContainer.innerText;
+        const text = specsData[activeDomain][activeTab];
         const blob = new Blob([text], { type: 'text/markdown;charset=utf-8;' });
         const link = document.createElement('a');
         const filename = `Utkarsh_Rajput_PM_Spec_${activeDomain}_${activeTab}.md`;
@@ -400,17 +434,30 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
       workspaceEmpty.classList.remove('active');
       workspaceContent.classList.remove('active');
       workspaceLoader.classList.add('active');
+      
+      if (workspaceTitle) workspaceTitle.innerText = "compilation_terminal.sh";
 
       runHighTechSimulation(channel, mode);
     });
 
     function runHighTechSimulation(channel, mode) {
+      const logger = document.getElementById('playgroundTerminalLogger');
+      if (logger) logger.innerHTML = ''; // Reset logging rows
+
       const steps = [
-        "Analyzing operational workflows and process gaps...",
-        `Parsing framework variables for [${channel}] target channel...`,
-        `Auditing edge case boundary coverage using [${mode}] methodology...`,
-        "Injecting dynamic idempotency safeguards & API contracts...",
-        "Drafting complete business and technical artifacts..."
+        { text: "PM_COMPILER_V3: Booting integration compiler core...", type: 'info' },
+        { text: `[CONFIG] target_channel  = [${channel}]`, type: 'info' },
+        { text: `[CONFIG] agile_framework = [${mode}]`, type: 'info' },
+        { text: `[CONFIG] target_domain    = [${activeDomain.toUpperCase()}]`, type: 'info' },
+        { text: "--------------------------------------------------------", type: 'info' },
+        { text: "> Fetching workflow repositories & requirements variables...", type: 'process' },
+        { text: "> Analyzing operational loops and integration bottlenecks...", type: 'process' },
+        { text: "> Auditing edge-case boundary parameters...", type: 'process' },
+        { text: "> Validating data calculator floating-point safety...", type: 'process' },
+        { text: "> Generating Gherkin Given-When-Then backlog stories...", type: 'process' },
+        { text: "> Assembling dynamic SVG sequence interaction flows...", type: 'process' },
+        { text: "--------------------------------------------------------", type: 'info' },
+        { text: "COMPILER_SUCCESS: Specifications compiled successfully in 3200ms.", type: 'success' }
       ];
 
       let currentStep = 0;
@@ -418,16 +465,98 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
       
       const stepInterval = setInterval(() => {
         if (currentStep < steps.length) {
-          loaderStepText.innerText = steps[currentStep];
+          const logData = steps[currentStep];
+          loaderStepText.innerText = logData.text;
           loaderBarInner.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+          
+          if (logger) {
+            const line = document.createElement('div');
+            line.className = 'terminal-log-line';
+            line.style.cssText = "margin-bottom: 5px; line-height: 1.4; font-family: monospace; font-size: 0.72rem;";
+            
+            if (logData.type === 'success') {
+              line.style.color = '#10b981'; // Emerald Green
+              line.innerHTML = `<strong>${logData.text}</strong>`;
+            } else if (logData.type === 'info') {
+              line.style.color = '#3b82f6'; // Blue
+              line.innerText = logData.text;
+            } else {
+              line.style.color = '#9aa0a6'; // Gray
+              line.innerText = logData.text;
+            }
+            logger.appendChild(line);
+            logger.scrollTop = logger.scrollHeight;
+          }
+          
           currentStep++;
         } else {
           clearInterval(stepInterval);
           workspaceLoader.classList.remove('active');
           workspaceContent.classList.add('active');
+          if (workspaceTitle) workspaceTitle.innerText = `specs_${activeDomain}_output.md`;
           streamActiveTab(channel, mode);
         }
-      }, 700);
+      }, 350); // Fast log stream rate
+    }
+
+    function parseMarkdownToHTML(text) {
+      if (!text) return '';
+      
+      // Standardize line endings and escape HTML
+      let html = text.replace(/\r\n/g, '\n')
+                     .replace(/&/g, '&amp;')
+                     .replace(/</g, '&lt;')
+                     .replace(/>/g, '&gt;');
+      
+      // Headers
+      html = html.replace(/^# (.*?)$/gm, '<h1 class="spec-h1">$1</h1>');
+      html = html.replace(/^## (.*?)$/gm, '<h2 class="spec-h2">$1</h2>');
+      html = html.replace(/^### (.*?)$/gm, '<h3 class="spec-h3">$1</h3>');
+      
+      // Bold: **text**
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      
+      // Inline Code: `code`
+      html = html.replace(/`(.*?)`/g, '<code class="inline-code">$1</code>');
+      
+      // Bullet lists
+      const lines = html.split('\n');
+      let inList = false;
+      const parsedLines = [];
+      
+      for (let line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+          if (!inList) {
+            parsedLines.push('<ul>');
+            inList = true;
+          }
+          parsedLines.push(`<li>${trimmed.substring(2)}</li>`);
+        } else {
+          if (inList) {
+            parsedLines.push('</ul>');
+            inList = false;
+          }
+          parsedLines.push(line);
+        }
+      }
+      if (inList) {
+        parsedLines.push('</ul>');
+      }
+      
+      // Wrap paragraphs
+      const finalLines = [];
+      for (let line of parsedLines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('</ul') || trimmed.startsWith('<li')) {
+          finalLines.push(trimmed);
+        } else {
+          finalLines.push(`<p class="spec-p">${trimmed}</p>`);
+        }
+      }
+      
+      return finalLines.join('\n');
     }
 
     function streamActiveTab(channel, mode) {
@@ -443,13 +572,19 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
         return;
       }
 
+      if (activeTab === 'roi') {
+        isTyping = false;
+        renderROICalculator();
+        return;
+      }
+
       isTyping = true;
       const rawText = data[activeTab];
       specTextContainer.innerHTML = '';
       
       // Fast typewriter speed
       let index = 0;
-      const charsPerTick = 12; // Stream blocks of characters for high responsiveness
+      const charsPerTick = 20; // Highly responsive chunk typing
       
       function type() {
         if (index < rawText.length) {
@@ -466,7 +601,11 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
           requestAnimationFrame(type);
         } else {
           isTyping = false;
-          specTextContainer.innerText = rawText; // set exact text to avoid truncation
+          specTextContainer.innerHTML = parseMarkdownToHTML(rawText);
+          const docView = specTextContainer.closest('.playground-doc-view');
+          if (docView) {
+            docView.scrollTop = 0;
+          }
         }
       }
       type();
@@ -476,15 +615,141 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
       const data = specsData[activeDomain];
       if (activeTab === 'flow') {
         specTextContainer.innerHTML = data.flow;
+      } else if (activeTab === 'roi') {
+        renderROICalculator();
       } else {
         const rawText = data[activeTab];
-        specTextContainer.innerText = rawText;
+        specTextContainer.innerHTML = parseMarkdownToHTML(rawText);
       }
       
       const docView = specTextContainer.closest('.playground-doc-view');
       if (docView) {
         docView.scrollTop = 0;
       }
+    }
+
+    function renderROICalculator() {
+      specTextContainer.innerHTML = `
+        <div class="roi-calculator-container" style="display: flex; flex-direction: column; gap: var(--space-xs); animation: fadeIn 0.4s ease;">
+          <div class="roi-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 6px; text-align: left;">
+            <span class="roi-badge" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block;">BA Automation Business Case</span>
+            <p style="font-size: 0.76rem; color: var(--text-secondary); margin: 6px 0 0 0; line-height: 1.5;">Recruiter ROI Simulator: Calculate the operational efficiency & annualized cost savings generated by hiring Utkarsh (with AI-driven ticket routing, automations, and integration tools).</p>
+          </div>
+          
+          <!-- Sliders Grid -->
+          <div class="roi-sliders-grid" style="display: flex; flex-direction: column; gap: 14px; margin: 6px 0;">
+            <div class="roi-slider-group" style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem;">
+                <span style="font-weight: 600; color: var(--text-primary);">Weekly Support Escalations</span>
+                <span style="color: var(--accent); font-family: monospace; font-weight: 700;" id="valTickets">150 tickets</span>
+              </div>
+              <input type="range" id="sliderTickets" min="20" max="500" value="150" class="roi-range-slider" style="width: 100%; height: 6px; border-radius: var(--radius-full); background: var(--border-color); outline: none; cursor: none;">
+            </div>
+            
+            <div class="roi-slider-group" style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem;">
+                <span style="font-weight: 600; color: var(--text-primary);">BA / Support Team Size</span>
+                <span style="color: var(--accent); font-family: monospace; font-weight: 700;" id="valTeam">4 members</span>
+              </div>
+              <input type="range" id="sliderTeam" min="1" max="15" value="4" class="roi-range-slider" style="width: 100%; height: 6px; border-radius: var(--radius-full); background: var(--border-color); outline: none; cursor: none;">
+            </div>
+            
+            <div class="roi-slider-group" style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem;">
+                <span style="font-weight: 600; color: var(--text-primary);">Average BA Hourly Rate</span>
+                <span style="color: var(--accent); font-family: monospace; font-weight: 700;" id="valRate">$45 / hr</span>
+              </div>
+              <input type="range" id="sliderRate" min="20" max="120" value="45" class="roi-range-slider" style="width: 100%; height: 6px; border-radius: var(--radius-full); background: var(--border-color); outline: none; cursor: none;">
+            </div>
+          </div>
+          
+          <!-- Results Grid -->
+          <div class="roi-results-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px;">
+            <div class="roi-result-card" style="background: rgba(255,255,255,0.015); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; text-align: left;">
+              <span style="font-size: 0.68rem; color: var(--text-secondary); text-transform: uppercase;">Hours Saved / Month</span>
+              <span style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary); font-family: monospace;" id="resHours">161 hrs</span>
+              <span style="font-size: 0.64rem; color: #10b981; font-weight: 600;">⚡ Equivalent to +1.1 Full-Time BAs</span>
+            </div>
+            <div class="roi-result-card" style="background: rgba(255,255,255,0.015); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; text-align: left;">
+              <span style="font-size: 0.68rem; color: var(--text-secondary); text-transform: uppercase;">SLA Breach Index</span>
+              <span style="font-size: 1.2rem; font-weight: 800; color: #ec4899; font-family: monospace;" id="resSLA">18.5% → 1.2%</span>
+              <span style="font-size: 0.64rem; color: #ec4899; font-weight: 600;">📉 -93% SLA Breach Risk</span>
+            </div>
+            <div class="roi-result-card" style="grid-column: span 2; background: rgba(16, 185, 129, 0.02); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.03); text-align: left;">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-size: 0.68rem; color: #10b981; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Annualized Team Cost Savings</span>
+                <span style="font-size: 1.4rem; font-weight: 900; color: #10b981; font-family: monospace; line-height: 1;" id="resSavings">$86,940 / yr</span>
+              </div>
+              <div class="roi-badge" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.2); color: #10b981; font-size: 0.7rem; font-weight: 700; padding: 6px 12px; border-radius: var(--radius-full);">5.4x ROI</div>
+            </div>
+          </div>
+          
+          <!-- Efficiency Bar Comparison -->
+          <div class="roi-efficiency-compare" style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 16px; margin-top: 8px; display: flex; flex-direction: column; gap: 8px; text-align: left;">
+            <span style="font-size: 0.74rem; font-weight: 600; color: var(--text-primary);">Triaging Time Allocation Comparison</span>
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.68rem; color: var(--text-secondary);">
+              <div style="display: flex; justify-content: space-between;">
+                <span>Traditional Manual Triage</span>
+                <span style="font-weight: 600; color: var(--text-primary);">45 mins / ticket</span>
+              </div>
+              <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: var(--radius-full); overflow: hidden;">
+                <div style="width: 100%; height: 100%; background: var(--text-tertiary); border-radius: var(--radius-full);"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-top: 2px;">
+                <span style="color: var(--accent-light); font-weight: 600;">Utkarsh AI Automation Engine</span>
+                <span style="font-weight: 700; color: #10b981;">&lt; 10 secs / ticket</span>
+              </div>
+              <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: var(--radius-full); overflow: hidden;">
+                <div style="width: 10%; height: 100%; background: #10b981; border-radius: var(--radius-full); box-shadow: 0 0 10px #10b981;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Wire up input sliders logic
+      const sliderTickets = document.getElementById('sliderTickets');
+      const sliderTeam = document.getElementById('sliderTeam');
+      const sliderRate = document.getElementById('sliderRate');
+      
+      const valTickets = document.getElementById('valTickets');
+      const valTeam = document.getElementById('valTeam');
+      const valRate = document.getElementById('valRate');
+      
+      const resHours = document.getElementById('resHours');
+      const resSLA = document.getElementById('resSLA');
+      const resSavings = document.getElementById('resSavings');
+      
+      function calculate() {
+        const tickets = parseInt(sliderTickets.value);
+        const team = parseInt(sliderTeam.value);
+        const rate = parseInt(sliderRate.value);
+        
+        valTickets.innerText = `${tickets} tickets`;
+        valTeam.innerText = `${team} ${team === 1 ? 'member' : 'members'}`;
+        valRate.innerText = `$${rate} / hr`;
+        
+        // Manual hours: 45 mins (0.75 hrs) per ticket
+        // With automation, 75% of tickets are auto-routed in <10 seconds.
+        // Time savings factor: 0.75 * 0.75 = 0.5625 hrs saved per ticket.
+        const hoursSavedPerMonth = Math.round(tickets * 4.3 * 0.5625);
+        const moneySavedPerMonth = hoursSavedPerMonth * rate;
+        const moneySavedPerYear = moneySavedPerMonth * 12;
+        
+        // SLA breach reduction
+        const initialSLA = (12 + (tickets / 20)).toFixed(1);
+        const postSLA = (initialSLA * 0.08).toFixed(1); // 92% reduction
+        
+        resHours.innerText = `${hoursSavedPerMonth} hrs`;
+        resSLA.innerText = `${initialSLA}% → ${postSLA}%`;
+        resSavings.innerText = `$${moneySavedPerYear.toLocaleString()} / yr`;
+      }
+      
+      [sliderTickets, sliderTeam, sliderRate].forEach(slider => {
+        slider.addEventListener('input', calculate);
+      });
+      
+      calculate(); // Initial run
     }
 
     function alertSuccessToast(title, desc) {
@@ -517,6 +782,36 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
         }, 600);
       }, 4000);
     }
+
+    // Bulletproof scroll containment stop propagation fallback
+    const scrollContainers = [
+      specTextContainer ? specTextContainer.closest('.playground-doc-view') : null,
+      document.getElementById('playgroundTerminalLogger'),
+      document.getElementById('panelBodyEggs'),
+      document.getElementById('panelBodySiri'),
+      document.getElementById('siriChatLog')
+    ];
+
+    scrollContainers.forEach(container => {
+      if (!container) return;
+      
+      // Prevent Lenis smooth scroll from hijacking the scroll inside containers
+      container.addEventListener('wheel', (e) => {
+        const scrollTop = container.scrollTop;
+        const scrollHeight = container.scrollHeight;
+        const height = container.clientHeight;
+        const delta = e.deltaY;
+
+        // Contain scrolling inside boundaries
+        if ((delta < 0 && scrollTop > 0) || (delta > 0 && scrollTop + height < scrollHeight)) {
+          e.stopPropagation();
+        }
+      }, { passive: true });
+
+      container.addEventListener('touchmove', (e) => {
+        e.stopPropagation();
+      }, { passive: true });
+    });
   }
 
   // Initialize when DOM is ready

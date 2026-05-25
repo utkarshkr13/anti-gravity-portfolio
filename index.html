@@ -345,124 +345,153 @@
     <h2 class="section-title reveal">AI-First <span class="accent-text">Product Lab.</span></h2>
     <p class="section-subtitle reveal">Recruiter Sandbox · Test my operational PM &amp; BA skills by generating live, industry-standard Product Requirements in real-time.</p>
 
-    <div class="playground-wrapper reveal">
+    <!-- Redesigned unified IDE Workspace wrapper -->
+    <div class="playground-wrapper reveal" id="playgroundWrapper">
       
-      <!-- Left column: Control Panel -->
+      <!-- Left column: Control Panel (IDE parameters_config.sh) -->
       <div class="playground-control-card">
-        <div class="playground-card-header">
-          <i data-lucide="sliders" style="width:20px;height:20px;color:var(--accent)"></i>
-          <h3>Control Panel</h3>
+        <!-- macOS-style Window Header -->
+        <div class="mac-window-header">
+          <div class="mac-dots">
+            <span class="mac-dot red"></span>
+            <span class="mac-dot yellow"></span>
+            <span class="mac-dot green"></span>
+          </div>
+          <span class="mac-window-title">parameters_config.sh</span>
+          <div class="mac-window-action-icon"><i data-lucide="terminal" style="width:12px;height:12px;opacity:0.4;"></i></div>
         </div>
-        <p class="playground-panel-desc">Select an operational business challenge and choose target parameters to generate detailed specifications.</p>
         
-        <div class="playground-domain-selector">
-          <label class="playground-label">1. Choose Business Challenge</label>
+        <div class="playground-card-body-wrapper" style="display: flex; flex-direction: column; gap: var(--space-md); flex: 1;">
+          <p class="playground-panel-desc">Select an operational business challenge and choose target parameters to compile structured requirements.</p>
           
-          <button class="playground-domain-btn active" data-domain="fmcg" data-cursor="hover">
-            <div class="domain-btn-header">
-              <i data-lucide="truck" style="width:16px;height:16px;"></i>
-              <span>FMCG offline inventory sync</span>
-            </div>
-            <p>Field agents experiencing sync failure, causing inventory double-submissions &amp; invoicing lag.</p>
-          </button>
-          
-          <button class="playground-domain-btn" data-domain="escalation" data-cursor="hover">
-            <div class="domain-btn-header">
-              <i data-lucide="life-buoy" style="width:16px;height:16px;"></i>
-              <span>Enterprise SLA Escalations</span>
-            </div>
-            <p>High-volume ticket classification errors causing critical 2-hour support breaches.</p>
-          </button>
-          
-          <button class="playground-domain-btn" data-domain="geospatial" data-cursor="hover">
-            <div class="domain-btn-header">
-              <i data-lucide="map-pin" style="width:16px;height:16px;"></i>
-              <span>Geospatial Transit Pricing</span>
-            </div>
-            <p>Static bus route schedules ignoring real-time traffic demand, bleeding margins.</p>
-          </button>
-        </div>
+          <div class="playground-domain-selector">
+            <label class="playground-label">1. Choose Business Challenge</label>
+            
+            <button class="playground-domain-btn active" data-domain="fmcg" data-cursor="hover">
+              <div class="domain-btn-header">
+                <i data-lucide="truck" style="width:16px;height:16px;"></i>
+                <span>FMCG offline inventory sync</span>
+              </div>
+              <p>Field agents experiencing sync failure, causing inventory double-submissions &amp; invoicing lag.</p>
+            </button>
+            
+            <button class="playground-domain-btn" data-domain="escalation" data-cursor="hover">
+              <div class="domain-btn-header">
+                <i data-lucide="life-buoy" style="width:16px;height:16px;"></i>
+                <span>Enterprise SLA Escalations</span>
+              </div>
+              <p>High-volume ticket classification errors causing critical 2-hour support breaches.</p>
+            </button>
+            
+            <button class="playground-domain-btn" data-domain="geospatial" data-cursor="hover">
+              <div class="domain-btn-header">
+                <i data-lucide="map-pin" style="width:16px;height:16px;"></i>
+                <span>Geospatial Transit Pricing</span>
+              </div>
+              <p>Static bus route schedules ignoring real-time traffic demand, bleeding margins.</p>
+            </button>
+          </div>
 
-        <div class="playground-parameters">
-          <label class="playground-label">2. Target Architecture Parameters</label>
-          <div class="playground-params-grid">
-            <div class="playground-param-group">
-              <label for="playgroundParamChannel">Target Channel</label>
-              <select id="playgroundParamChannel" data-cursor="hover">
-                <option value="Web SaaS Platform">Web SaaS Platform</option>
-                <option value="Mobile PWA Native">Mobile PWA Native</option>
-                <option value="Microservice Rest API">Microservice Rest API</option>
-              </select>
-            </div>
-            <div class="playground-param-group">
-              <label for="playgroundParamMode">Delivery Framework</label>
-              <select id="playgroundParamMode" data-cursor="hover">
-                <option value="Agile Scrum">Agile Scrum</option>
-                <option value="Lean Kanban">Lean Kanban</option>
-                <option value="XP (Extreme Programming)">XP Programming</option>
-              </select>
+          <div class="playground-parameters">
+            <label class="playground-label">2. Target Architecture Parameters</label>
+            <div class="playground-params-grid">
+              <div class="playground-param-group">
+                <label for="playgroundParamChannel">Target Channel</label>
+                <select id="playgroundParamChannel" data-cursor="hover">
+                  <option value="Web SaaS Platform">Web SaaS Platform</option>
+                  <option value="Mobile PWA Native">Mobile PWA Native</option>
+                  <option value="Microservice Rest API">Microservice Rest API</option>
+                </select>
+              </div>
+              <div class="playground-param-group">
+                <label for="playgroundParamMode">Delivery Framework</label>
+                <select id="playgroundParamMode" data-cursor="hover">
+                  <option value="Agile Scrum">Agile Scrum</option>
+                  <option value="Lean Kanban">Lean Kanban</option>
+                  <option value="XP (Extreme Programming)">XP Programming</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
 
-        <button class="btn btn-primary playground-generate-btn" id="playgroundGenerateBtn" data-cursor="hover" style="width: 100%; display: inline-flex; align-items: center; justify-content: center;">
-          Generate PM Artifacts <i data-lucide="cpu" style="width:16px;height:16px;margin-left:6px;"></i>
-        </button>
+          <button class="btn btn-primary playground-generate-btn" id="playgroundGenerateBtn" data-cursor="hover" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; margin-top: auto;">
+            Compile Specifications <i data-lucide="cpu" style="width:16px;height:16px;margin-left:6px;"></i>
+          </button>
+        </div>
       </div>
 
-      <!-- Right column: Simulated Workspace Doc Viewer -->
+      <!-- Right column: Simulated Workspace Doc Viewer (IDE specs_compiler.log) -->
       <div class="playground-workspace-card">
-        
-        <!-- State 1: Waiting / Empty -->
-        <div class="playground-workspace-empty active" id="playgroundWorkspaceEmpty">
-          <div class="empty-state-content">
-            <div class="empty-state-icon">
-              <i data-lucide="terminal" style="width:48px;height:48px;color:rgba(255,255,255,0.15)"></i>
-            </div>
-            <h3>Workspace Idle</h3>
-            <p>Select a business challenge and click "Generate PM Artifacts" to compile specifications, Gherkin user stories, and test scenarios.</p>
+        <!-- macOS-style Window Header -->
+        <div class="mac-window-header">
+          <div class="mac-dots">
+            <span class="mac-dot red"></span>
+            <span class="mac-dot yellow"></span>
+            <span class="mac-dot green"></span>
           </div>
+          <span class="mac-window-title" id="playgroundWorkspaceTitle">specs_compiler.log</span>
+          <div class="mac-window-action-icon"><i data-lucide="code" style="width:12px;height:12px;opacity:0.4;"></i></div>
         </div>
 
-        <!-- State 2: Simulated high-tech loading -->
-        <div class="playground-workspace-loader" id="playgroundWorkspaceLoader">
-          <div class="loader-state-content">
-            <div class="loader-spinner"></div>
-            <h3 id="playgroundLoaderStepText">Analyzing operational workflows and process gaps...</h3>
-            <div class="playground-loader-bar">
-              <div class="playground-loader-bar-inner" id="playgroundLoaderBarInner"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- State 3: Active Document Viewer -->
-        <div class="playground-workspace-content" id="playgroundWorkspaceContent">
-          <div class="playground-tabs">
-            <button class="playground-tab-btn active" id="tabBtnBrief" data-cursor="hover">📋 Product Brief</button>
-            <button class="playground-tab-btn" id="tabBtnBacklog" data-cursor="hover">🎫 Jira Stories</button>
-            <button class="playground-tab-btn" id="tabBtnQA" data-cursor="hover">🧪 Edge Cases &amp; QA</button>
-            <button class="playground-tab-btn" id="tabBtnFlow" data-cursor="hover">🗺️ Architecture Map</button>
-          </div>
+        <div class="playground-card-body-wrapper" style="display: flex; flex-direction: column; flex: 1; position: relative;">
           
-          <div class="playground-doc-header">
-            <h4 id="playgroundSpecTitle">Spec Title</h4>
-            <div class="playground-spec-meta" id="playgroundSpecMeta">Environment: <strong>Web SaaS</strong> · Workflow: <strong>Agile Scrum</strong></div>
-            
-            <div class="playground-doc-actions">
-              <button class="playground-action-btn" id="playgroundCopyBtn" title="Copy Markdown to Clipboard" data-cursor="hover">
-                <i data-lucide="copy" style="width:16px;height:16px;"></i> Copy Spec
-              </button>
-              <button class="playground-action-btn" id="playgroundExportBtn" title="Download Markdown File" data-cursor="hover">
-                <i data-lucide="download" style="width:16px;height:16px;"></i> Export .MD
-              </button>
+          <!-- State 1: Waiting / Empty -->
+          <div class="playground-workspace-empty active" id="playgroundWorkspaceEmpty">
+            <div class="empty-state-content">
+              <div class="empty-state-icon">
+                <i data-lucide="terminal" style="width:40px;height:40px;"></i>
+              </div>
+              <h3>Workspace Idle</h3>
+              <p>Configure parameters on the left and click "Compile Specifications" to run the high-fidelity PM compiler engine.</p>
             </div>
           </div>
 
-          <div class="playground-doc-view">
-            <pre><code id="playgroundSpecText">Generating...</code></pre>
+          <!-- State 2: Simulated high-tech loading terminal -->
+          <div class="playground-workspace-loader" id="playgroundWorkspaceLoader">
+            <div class="loader-state-content" style="width: 100%; max-width: 100%; padding: 0 10px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+              <div class="loader-spinner"></div>
+              <h3 id="playgroundLoaderStepText" style="font-size: 0.85rem; font-weight: 700; margin: 0; color: var(--accent); text-align: center;">Analyzing operational workflows...</h3>
+              <div class="playground-loader-bar" style="width: 100%;">
+                <div class="playground-loader-bar-inner" id="playgroundLoaderBarInner"></div>
+              </div>
+              <!-- High-tech scrolling terminal logger -->
+              <div class="terminal-logger" id="playgroundTerminalLogger" data-lenis-prevent style="width: 100%; text-align: left; background: rgba(8, 9, 12, 0.9); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 16px; font-family: 'Courier New', Courier, monospace; font-size: 0.72rem; color: #10b981; height: 160px; overflow-y: auto; box-shadow: inset 0 2px 8px rgba(0,0,0,0.8); scrollbar-width: none; flex-shrink: 0;">
+                <!-- Active logging lines injected by playground.js -->
+              </div>
+            </div>
           </div>
-        </div>
 
+          <!-- State 3: Active Document Viewer -->
+          <div class="playground-workspace-content" id="playgroundWorkspaceContent">
+            <div class="playground-tabs">
+              <button class="playground-tab-btn active" id="tabBtnBrief" data-cursor="hover">📋 Product Brief</button>
+              <button class="playground-tab-btn" id="tabBtnBacklog" data-cursor="hover">🎫 Jira Stories</button>
+              <button class="playground-tab-btn" id="tabBtnQA" data-cursor="hover">🧪 Edge Cases &amp; QA</button>
+              <button class="playground-tab-btn" id="tabBtnFlow" data-cursor="hover">🗺️ Architecture Map</button>
+              <button class="playground-tab-btn" id="tabBtnROI" data-cursor="hover">📊 Business Case ROI</button>
+            </div>
+            
+            <div class="playground-doc-header">
+              <h4 id="playgroundSpecTitle">Spec Title</h4>
+              <div class="playground-spec-meta" id="playgroundSpecMeta">Environment: <strong>Web SaaS</strong> · Workflow: <strong>Agile Scrum</strong></div>
+              
+              <div class="playground-doc-actions">
+                <button class="playground-action-btn" id="playgroundCopyBtn" title="Copy Markdown to Clipboard" data-cursor="hover">
+                  <i data-lucide="copy" style="width:14px;height:14px;"></i> Copy Spec
+                </button>
+                <button class="playground-action-btn" id="playgroundExportBtn" title="Download Markdown File" data-cursor="hover">
+                  <i data-lucide="download" style="width:14px;height:14px;"></i> Export .MD
+                </button>
+              </div>
+            </div>
+
+            <!-- Added data-lenis-prevent to contain scroll events and avoid page scrolling hijacking -->
+            <div class="playground-doc-view" data-lenis-prevent>
+              <div id="playgroundSpecText" class="markdown-body">Generating...</div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </div>
@@ -636,7 +665,7 @@
     </div>
 
     <!-- Container 1: Easter Eggs Diagnostic List -->
-    <div class="panel-body active" id="panelBodyEggs" style="padding: 12px 20px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; max-height: 400px;">
+    <div class="panel-body active" id="panelBodyEggs" data-lenis-prevent style="padding: 12px 20px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; max-height: 400px;">
       <!-- System HUD status panel -->
       <div class="system-status-hud" style="margin-bottom: 6px; padding: 12px 16px; background: rgba(59, 130, 246, 0.04); border: 1px solid var(--border-color); border-radius: var(--radius-md); flex-shrink: 0;">
         <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">
@@ -795,10 +824,10 @@
     </div>
 
     <!-- Container 2: Siri Co-Pilot View (hidden by default) -->
-    <div class="panel-body" id="panelBodySiri" style="padding: 16px 20px 20px; overflow-y: auto; display: none; flex-direction: column; gap: 14px; max-height: 400px; height: 400px; justify-content: space-between;">
+    <div class="panel-body" id="panelBodySiri" data-lenis-prevent style="padding: 16px 20px 20px; overflow-y: auto; display: none; flex-direction: column; gap: 14px; max-height: 400px; height: 400px; justify-content: space-between;">
       
       <!-- Top conversation view -->
-      <div id="siriChatLog" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; padding-right: 2px;">
+      <div id="siriChatLog" data-lenis-prevent style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; padding-right: 2px;">
         
         <!-- Welcome Message from Siri -->
         <div class="siri-bubble siri-incoming" style="align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary);">
