@@ -65,6 +65,11 @@
       Product Manager and Business Analyst focused on AI-enabled product delivery, enterprise workflows, and practical automation.
     </p>
 
+    <div class="availability-badge reveal">
+      <span class="availability-dot"></span>
+      Available for Opportunities · Mumbai, India
+    </div>
+
     <div class="hero-cta-group reveal">
       <div class="magnetic-wrap">
         <a href="#projects" class="btn btn-primary" data-cursor="hover" id="ctaWork">
@@ -127,8 +132,6 @@
         <p class="reveal-right">
           I hold a <strong>B.Tech in Electronics and Communication Engineering from VIT</strong> and am a certified <strong>Microsoft Azure Administrator Associate (AZ-104)</strong>. That background helps me stay grounded in both business context and technical execution.
         </p>
-      </div>
-    </div>
   </section>
 
   <!-- ===== Experience Section ===== -->
@@ -497,6 +500,116 @@
     </div>
   </section>
 
+  <!-- ===== Recruiter Interactive Suite Section ===== -->
+  <section class="section" id="recruiter-suite">
+    <div class="section-label reveal">Recruiter Sandbox</div>
+    <h2 class="section-title reveal">Recruiter <span class="accent-text">Interactive Suite.</span></h2>
+    <p class="section-subtitle reveal">Test my cross-border Agile delivery, quick-thinking problem solving, and financial product strategy in real-time.</p>
+
+    <div class="recruiter-suite-tabs reveal">
+      <button class="recruiter-suite-tab active" onclick="switchRecruiterTab('kanban')" id="btnTabKanban" data-cursor="hover">📋 PM Kanban Board</button>
+      <button class="recruiter-suite-tab" onclick="switchRecruiterTab('challenge')" id="btnTabChallenge" data-cursor="hover">🎯 2-Min PM Challenge</button>
+    </div>
+
+    <div class="recruiter-suite-content reveal">
+      <!-- Kanban Board View -->
+      <div class="recruiter-suite-panel active" id="recruiterPanelKanban">
+        <p class="recruiter-panel-desc">Drag real achievements between Agile lifecycle stages. Drop a card in <strong>"LIVE"</strong> to trigger production launch & see business metrics.</p>
+        
+        <div class="kanban-board-container" data-lenis-prevent>
+          <div class="kanban-column" id="kanbanBacklog" ondragover="allowDrop(event)" ondrop="dropCard(event, 'Backlog')">
+            <div class="kanban-column-header">
+              <span class="column-dot backlog"></span>
+              <span>Backlog</span>
+            </div>
+            <div class="kanban-cards-list" id="listBacklog">
+              <!-- Cards will be populated dynamically -->
+            </div>
+          </div>
+          
+          <div class="kanban-column" id="kanbanInDev" ondragover="allowDrop(event)" ondrop="dropCard(event, 'InDev')">
+            <div class="kanban-column-header">
+              <span class="column-dot in-dev"></span>
+              <span>In Dev</span>
+            </div>
+            <div class="kanban-cards-list" id="listInDev">
+              <!-- Cards -->
+            </div>
+          </div>
+          
+          <div class="kanban-column" id="kanbanUAT" ondragover="allowDrop(event)" ondrop="dropCard(event, 'UAT')">
+            <div class="kanban-column-header">
+              <span class="column-dot uat"></span>
+              <span>UAT / Sign-off</span>
+            </div>
+            <div class="kanban-cards-list" id="listUAT">
+              <!-- Cards -->
+            </div>
+          </div>
+          
+          <div class="kanban-column" id="kanbanLive" ondragover="allowDrop(event)" ondrop="dropCard(event, 'Live')">
+            <div class="kanban-column-header">
+              <span class="column-dot live"></span>
+              <span>Live (Prod)</span>
+            </div>
+            <div class="kanban-cards-list" id="listLive">
+              <!-- Cards dropped here will trigger success and show details -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PM Challenge View -->
+      <div class="recruiter-suite-panel" id="recruiterPanelChallenge" style="display: none;">
+        <div class="challenge-game-container">
+          <div class="challenge-scenario-card">
+            <div class="challenge-scenario-header">
+              <div class="challenge-badge">VP Sales Escalation</div>
+              <div class="challenge-timer-label">Time Critical: Urgent</div>
+            </div>
+            <h3 class="challenge-title">The Rural Distribution Double-Invoice Bug</h3>
+            <p class="challenge-problem"><strong>The Situation:</strong> During the rural Coca-Cola FMCG deployment in low-connectivity zones, field agents submitting orders experience network timeouts. Frustrated, they repeatedly double-tap "Submit order". This causes duplicated order invoicing in SAP, leading to shipping discrepancies and financial reconciliations.</p>
+            
+            <div class="challenge-question">As the Lead PM/BA, how do you resolve this with high technical precision?</div>
+            
+            <div class="challenge-options">
+              <button class="challenge-option" onclick="selectChallengeOption('A', this)" data-cursor="hover">
+                <div class="option-letter">A</div>
+                <div class="option-text">
+                  <strong>Basic Client Validation</strong>
+                  <p>Display a static toast warning the agent "In progress, please wait" and disable the submit button in CSS after click.</p>
+                </div>
+                <span class="option-status"></span>
+              </button>
+              
+              <button class="challenge-option" onclick="selectChallengeOption('B', this)" data-cursor="hover">
+                <div class="option-letter">B</div>
+                <div class="option-text">
+                  <strong>Backend Database Triggers</strong>
+                  <p>Write an automated SQL unique index constraint on the Orders table to raise a database exception and trigger rollback.</p>
+                </div>
+                <span class="option-status"></span>
+              </button>
+              
+              <button class="challenge-option" onclick="selectChallengeOption('C', this)" data-cursor="hover">
+                <div class="option-letter">C</div>
+                <div class="option-text">
+                  <strong>Client Offline Cache + Idempotency Keys (Recommended)</strong>
+                  <p>Store orders in client IndexedDB first with unique UUIDs. Sync via fetch headers containing an Idempotency-Key. If double-sent, the server returns the cached response of the first transaction.</p>
+                </div>
+                <span class="option-status"></span>
+              </button>
+            </div>
+
+            <div class="challenge-result" id="challengeResultBox" style="display: none;">
+              <!-- Result content injected dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Skills Section ===== -->
   <section class="section" id="skills">
     <div class="section-label reveal">Skills & Tools</div>
@@ -624,6 +737,10 @@
       <div class="visitor-count" title="Total Profile Views" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid var(--border-color); background: var(--bg-card); transition: border-color 0.3s, background 0.3s;">
         <i data-lucide="eye" style="width:14px;height:14px;opacity:0.5;color:var(--text-tertiary)"></i>
         <img src="https://visitor-badge.laobi.icu/badge?page_id=utkarshkr13.anti-gravity-portfolio&left_color=transparent&right_color=transparent&left_text=&right_text=&text_color=888888" alt="views" style="height:18px;border-radius:3px;opacity:0.8;">
+      </div>
+      <div class="session-timer" id="sessionTimer" title="Time spent exploring this portfolio">
+        <i data-lucide="clock" style="width:12px;height:12px"></i>
+        <span id="sessionTimerValue">00:00</span>
       </div>
       <p style="margin: 0; flex: 1; text-align: center;">Designed & Built by <a href="#hero" data-cursor="hover">Utkarsh Rajput</a> · 2026</p>
       <div style="min-width: 80px;"></div>
@@ -830,10 +947,14 @@
       <!-- Top conversation view -->
       <div id="siriChatLog" data-lenis-prevent style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; padding-right: 2px;">
         
-        <!-- Welcome Message from Siri -->
         <div class="siri-bubble siri-incoming" style="align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary);">
-          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
-            <i data-lucide="sparkles" style="width:12px;height:12px"></i> Siri Co-Pilot
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
+              <i data-lucide="sparkles" style="width:12px;height:12px"></i> Siri Co-Pilot
+            </div>
+            <button class="siri-speech-btn" style="background: transparent; border: none; padding: 2px; color: var(--text-tertiary); cursor: none; transition: color 0.2s;" data-cursor="hover" title="Listen to response" onclick="speakText(this)">
+              <i data-lucide="volume-2" style="width:14px;height:14px"></i>
+            </button>
           </div>
           Hello! I'm Siri, Utkarsh's digital co-pilot. I can walk you through his product experience, dynamic toolsets, or run system surprises! How can I help you, recruiter?
         </div>
@@ -842,10 +963,13 @@
 
       <!-- Pulsating waves visualizer -->
       <div class="siri-wave-wrapper" style="display: flex; align-items: center; justify-content: center; gap: 4px; height: 24px; margin: 4px 0; flex-shrink: 0;">
-        <div class="siri-wave-bar" style="width: 3px; height: 8px; background: #3b82f6; border-radius: var(--radius-full); animation: siriBarPulse 1.2s ease-in-out infinite alternate;"></div>
-        <div class="siri-wave-bar" style="width: 3px; height: 16px; background: #ec4899; border-radius: var(--radius-full); animation: siriBarPulse 0.8s ease-in-out infinite alternate 0.2s;"></div>
-        <div class="siri-wave-bar" style="width: 3px; height: 10px; background: #a855f7; border-radius: var(--radius-full); animation: siriBarPulse 1.4s ease-in-out infinite alternate 0.1s;"></div>
-        <div class="siri-wave-bar" style="width: 3px; height: 6px; background: #10b981; border-radius: var(--radius-full); animation: siriBarPulse 0.9s ease-in-out infinite alternate 0.3s;"></div>
+        <div id="siriStaticBars" style="display: flex; align-items: center; justify-content: center; gap: 4px; height: 100%;">
+          <div class="siri-wave-bar" style="width: 3px; height: 8px; background: #3b82f6; border-radius: var(--radius-full); animation: siriBarPulse 1.2s ease-in-out infinite alternate;"></div>
+          <div class="siri-wave-bar" style="width: 3px; height: 16px; background: #ec4899; border-radius: var(--radius-full); animation: siriBarPulse 0.8s ease-in-out infinite alternate 0.2s;"></div>
+          <div class="siri-wave-bar" style="width: 3px; height: 10px; background: #a855f7; border-radius: var(--radius-full); animation: siriBarPulse 1.4s ease-in-out infinite alternate 0.1s;"></div>
+          <div class="siri-wave-bar" style="width: 3px; height: 6px; background: #10b981; border-radius: var(--radius-full); animation: siriBarPulse 0.9s ease-in-out infinite alternate 0.3s;"></div>
+        </div>
+        <canvas id="siriCanvasWave" width="180" height="24" style="display: none; width: 180px; height: 24px;"></canvas>
       </div>
 
       <!-- Quick Commands deck -->
@@ -1126,8 +1250,13 @@
         siriBubble.className = 'siri-bubble siri-incoming';
         siriBubble.style.cssText = "align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary); margin-top: 8px; animation: fadeIn 0.3s ease;";
         siriBubble.innerHTML = `
-          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
-            <i data-lucide="sparkles" style="width:12px;height:12px"></i> Siri Co-Pilot
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
+              <i data-lucide="sparkles" style="width:12px;height:12px"></i> Siri Co-Pilot
+            </div>
+            <button class="siri-speech-btn" style="background: transparent; border: none; padding: 2px; color: var(--text-tertiary); cursor: none; transition: color 0.2s;" data-cursor="hover" title="Listen to response" onclick="speakText(this)">
+              <i data-lucide="volume-2" style="width:14px;height:14px"></i>
+            </button>
           </div>
           ${data.a}
         `;
@@ -1369,6 +1498,7 @@
   <script src="js/glow.js"></script>
   <script src="js/magnetic.js"></script>
   <script src="js/animations.js"></script>
+  <script src="js/recruiter.js"></script>
   <script src="js/main.js"></script>
   <script src="js/playground.js"></script>
   <script>lucide.createIcons();</script>

@@ -50,84 +50,105 @@ Field distribution agents selling products directly from vans face frequent conn
 * **Idempotency Verification**: Trigger parallel submissions (rapid double-clicking) of the same Invoice UUID under high latency. Confirm the backend returns a cached response for the second request, preserving resource integrity.
 * **Dual-Database Discrepancy Audit**: Simulate a client-side database wipe during active transaction sync. Validate that system rolls back transaction, restores local inventory counts, and prompts agent safely.`,
       flow: `
-<div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
-  <svg viewBox="0 0 540 180" width="100%" height="100%" style="font-family: var(--font-heading);">
+<div class="flow-chart-wrapper" style="width:100%; display:flex; flex-direction:column; align-items:center; gap:12px; padding:8px 0;">
+  <svg viewBox="0 0 680 370" width="100%" height="auto" style="font-family: var(--font-heading); max-width:100%; display: block; margin: 0 auto;">
     <defs>
-      <!-- Gradients for Cards -->
-      <linearGradient id="grad-card" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="rgba(19, 22, 28, 0.9)" />
-        <stop offset="100%" stop-color="rgba(8, 9, 12, 0.95)" />
+      <linearGradient id="gc-fmcg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="rgba(19,22,28,0.92)" /><stop offset="100%" stop-color="rgba(8,9,12,0.96)" />
       </linearGradient>
-      
-      <!-- Linear Gradients for Flowing Lines -->
-      <linearGradient id="flow-fmcg" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#10b981" stop-opacity="0.2" />
-        <stop offset="50%" stop-color="#10b981" stop-opacity="1" />
-        <stop offset="100%" stop-color="#10b981" stop-opacity="0.2" />
+      <linearGradient id="fl-fmcg" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0" /><stop offset="40%" stop-color="#10b981" stop-opacity="1" /><stop offset="60%" stop-color="#10b981" stop-opacity="1" /><stop offset="100%" stop-color="#10b981" stop-opacity="0" />
       </linearGradient>
-      
-      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3" />
-      </filter>
+      <linearGradient id="fl-fmcg-v" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0" /><stop offset="40%" stop-color="#10b981" stop-opacity="1" /><stop offset="60%" stop-color="#10b981" stop-opacity="1" /><stop offset="100%" stop-color="#10b981" stop-opacity="0" />
+      </linearGradient>
+      <filter id="ns-f" x="-8%" y="-8%" width="116%" height="116%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.35"/></filter>
+      <filter id="glow-f"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     </defs>
 
-    <!-- Glowing Background Connectors -->
-    <path d="M 150 90 H 205 M 335 90 H 390" stroke="rgba(255, 255, 255, 0.05)" stroke-width="3" stroke-linecap="round" />
-    
-    <!-- Animated Pulse Line -->
-    <path d="M 150 90 H 205" stroke="url(#flow-fmcg)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
-    </path>
-    <path d="M 335 90 H 390" stroke="url(#flow-fmcg)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
-    </path>
+    <!-- Row 1: 3 nodes -->
+    <!-- Connectors Row 1 -->
+    <line x1="155" y1="62" x2="210" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="155" y1="62" x2="210" y2="62" stroke="url(#fl-fmcg)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="url(#fl-fmcg)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+
+    <!-- Vertical connector: API Gateway → Reconciliation -->
+    <line x1="340" y1="110" x2="340" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="110" x2="340" y2="150" stroke="url(#fl-fmcg-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+
+    <!-- Vertical connector: Reconciliation → Dashboard -->
+    <line x1="340" y1="245" x2="340" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="245" x2="340" y2="280" stroke="url(#fl-fmcg-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Node 1: PWA Client -->
-    <g transform="translate(20, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(16, 185, 129, 0.02)" />
-      <!-- Top header line -->
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <!-- Status dot -->
-      <circle cx="20" cy="18" r="4" fill="#f59e0b" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">CLIENT APP</text>
-      <!-- Title -->
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📱 PWA Client</text>
-      <!-- Subtitle -->
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">IndexedDB Caching</text>
-      <text x="65" y="94" font-size="7" fill="#f59e0b" font-weight="600" text-anchor="middle">Offline Sync Queue</text>
+    <g transform="translate(5,15)" filter="url(#ns-f)">
+      <rect width="150" height="95" rx="14" fill="url(#gc-fmcg)" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#f59e0b"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">CLIENT</text>
+      <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📱 PWA App</text>
+      <text x="75" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">IndexedDB · Service Worker</text>
+      <text x="75" y="85" font-size="6.5" fill="#f59e0b" font-weight="700" text-anchor="middle">Offline-First Caching</text>
     </g>
 
-    <!-- Node 2: API Gateway -->
-    <g transform="translate(205, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(16, 185, 129, 0.02)" />
-      <!-- Top header line -->
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <!-- Status dot -->
-      <circle cx="20" cy="18" r="4" fill="#10b981" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">GATEWAY</text>
-      <!-- Title -->
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">⚡ API Gateway</text>
-      <!-- Subtitle -->
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Idempotence Filter</text>
-      <text x="65" y="94" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">UUID Checked</text>
+    <!-- Node 2: Sync Queue -->
+    <g transform="translate(210,15)" filter="url(#ns-f)">
+      <rect width="260" height="95" rx="14" fill="url(#gc-fmcg)" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="260" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#10b981"><animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">MIDDLEWARE</text>
+      <text x="130" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">⚡ API Gateway + Idempotence Filter</text>
+      <text x="130" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">UUID Dedup · Rate Limiter · JWT Auth</text>
+      <text x="130" y="85" font-size="6.5" fill="#10b981" font-weight="700" text-anchor="middle">Zero Duplicate Submissions</text>
     </g>
 
-    <!-- Node 3: SAP ERP Backend -->
-    <g transform="translate(390, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(16, 185, 129, 0.02)" />
-      <!-- Top header line -->
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <!-- Status dot -->
-      <circle cx="20" cy="18" r="4" fill="#3b82f6" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">BACKEND</text>
-      <!-- Title -->
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">🗄️ SAP ERP</text>
-      <!-- Subtitle -->
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Dual-Database Sync</text>
-      <text x="65" y="94" font-size="7" fill="#3b82f6" font-weight="600" text-anchor="middle">SAP Reconciled</text>
+    <!-- Node 3: SAP ERP -->
+    <g transform="translate(525,15)" filter="url(#ns-f)">
+      <rect width="150" height="95" rx="14" fill="url(#gc-fmcg)" stroke="#3b82f6" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#3b82f6"><animate attributeName="opacity" values="1;0.4;1" dur="1.9s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">BACKEND</text>
+      <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🗄️ SAP ERP</text>
+      <text x="75" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">Master Inventory DB</text>
+      <text x="75" y="85" font-size="6.5" fill="#3b82f6" font-weight="700" text-anchor="middle">Source of Truth</text>
+    </g>
+
+    <!-- Row 2: Reconciliation Engine (centered) -->
+    <g transform="translate(165,150)" filter="url(#ns-f)">
+      <rect width="350" height="95" rx="14" fill="url(#gc-fmcg)" stroke="#a855f7" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="350" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#a855f7"><animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">PROCESSING ENGINE</text>
+      <text x="175" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🔄 Reconciliation Engine</text>
+      <text x="175" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">Background Sync · Conflict Resolution · Rollback Protection</text>
+      <text x="175" y="85" font-size="6.5" fill="#a855f7" font-weight="700" text-anchor="middle">100% Inventory Accuracy Guarantee</text>
+    </g>
+
+    <!-- Row 3: Dashboard -->
+    <g transform="translate(165,280)" filter="url(#ns-f)">
+      <rect width="350" height="70" rx="14" fill="url(#gc-fmcg)" stroke="#ec4899" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="28" x2="350" y2="28" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="14" r="3.5" fill="#ec4899"><animate attributeName="opacity" values="1;0.4;1" dur="2.1s" repeatCount="indefinite"/></circle>
+      <text x="28" y="17" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">REPORTING</text>
+      <text x="175" y="48" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📊 Stakeholder Dashboard & Alerts</text>
+      <text x="175" y="62" font-size="6.5" fill="#ec4899" font-weight="700" text-anchor="middle">Real-time Sync Status · Excel Exports · Slack Notifications</text>
+    </g>
+
+    <!-- Bottom Tech Legend -->
+    <g transform="translate(10,355)">
+      <text x="0" y="0" font-size="6" fill="#9aa0a6" font-weight="600" letter-spacing="0.08em">STACK:</text>
+      <text x="45" y="0" font-size="6" fill="#10b981">Next.js</text>
+      <text x="85" y="0" font-size="6" fill="#10b981">·</text>
+      <text x="95" y="0" font-size="6" fill="#f59e0b">IndexedDB</text>
+      <text x="148" y="0" font-size="6" fill="#f59e0b">·</text>
+      <text x="158" y="0" font-size="6" fill="#3b82f6">Firebase RTDB</text>
+      <text x="225" y="0" font-size="6" fill="#3b82f6">·</text>
+      <text x="235" y="0" font-size="6" fill="#a855f7">SAP RFC</text>
+      <text x="275" y="0" font-size="6" fill="#a855f7">·</text>
+      <text x="285" y="0" font-size="6" fill="#ec4899">Chart.js</text>
+      <text x="325" y="0" font-size="6" fill="#ec4899">·</text>
+      <text x="335" y="0" font-size="6" fill="#9aa0a6">Vercel Edge</text>
     </g>
   </svg>
 </div>`
@@ -174,72 +195,101 @@ High-volume enterprise SaaS support teams struggle with email-based triage. The 
 * **Dual-Layer Notes Leak Test**: Attempt to fetch a ticket payload using an unauthenticated public API call. Verify that private internal BA comments are completely stripped, leaking zero operational details.
 * **API Timeout Resilience**: Simulate an L2 Portal outage during a high-volume sync cycle. Confirm that standard client inquiries are safely queue-buffered in Firebase and re-processed sequentially on recovery.`,
       flow: `
-<div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
-  <svg viewBox="0 0 540 180" width="100%" height="100%" style="font-family: var(--font-heading);">
+<div class="flow-chart-wrapper" style="width:100%; display:flex; flex-direction:column; align-items:center; gap:12px; padding:8px 0;">
+  <svg viewBox="0 0 680 370" width="100%" height="auto" style="font-family: var(--font-heading); max-width:100%; display: block; margin: 0 auto;">
     <defs>
-      <!-- Gradients for Cards -->
-      <linearGradient id="grad-card" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="rgba(19, 22, 28, 0.9)" />
-        <stop offset="100%" stop-color="rgba(8, 9, 12, 0.95)" />
+      <linearGradient id="gc-esc" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="rgba(19,22,28,0.92)" /><stop offset="100%" stop-color="rgba(8,9,12,0.96)" />
       </linearGradient>
-      
-      <!-- Linear Gradients for Flowing Lines -->
-      <linearGradient id="flow-escalation" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2" />
-        <stop offset="50%" stop-color="#3b82f6" stop-opacity="1" />
-        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2" />
+      <linearGradient id="fl-esc" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0" /><stop offset="40%" stop-color="#3b82f6" stop-opacity="1" /><stop offset="60%" stop-color="#3b82f6" stop-opacity="1" /><stop offset="100%" stop-color="#3b82f6" stop-opacity="0" />
       </linearGradient>
-      
-      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3" />
-      </filter>
+      <linearGradient id="fl-esc-v" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0" /><stop offset="40%" stop-color="#3b82f6" stop-opacity="1" /><stop offset="60%" stop-color="#3b82f6" stop-opacity="1" /><stop offset="100%" stop-color="#3b82f6" stop-opacity="0" />
+      </linearGradient>
+      <filter id="ns-e" x="-8%" y="-8%" width="116%" height="116%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.35"/></filter>
     </defs>
 
-    <!-- Connection Lines -->
-    <path d="M 150 90 H 205 M 335 90 H 390" stroke="rgba(255, 255, 255, 0.05)" stroke-width="3" stroke-linecap="round" />
-    
-    <!-- Animated Pulse Line -->
-    <path d="M 150 90 H 205" stroke="url(#flow-escalation)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
-    </path>
-    <path d="M 335 90 H 390" stroke="url(#flow-escalation)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
-    </path>
+    <!-- Row 1 Connectors -->
+    <line x1="155" y1="62" x2="210" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="155" y1="62" x2="210" y2="62" stroke="url(#fl-esc)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="url(#fl-esc)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
-    <!-- Node 1: Mail Webhook -->
-    <g transform="translate(20, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(59, 130, 246, 0.02)" />
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <circle cx="20" cy="18" r="4" fill="#ec4899" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">INGESTION</text>
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📨 Mail Webhook</text>
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Gmail Sync API</text>
-      <text x="65" y="94" font-size="7" fill="#ec4899" font-weight="600" text-anchor="middle">Secure Ingest</text>
+    <!-- Vertical connector -->
+    <line x1="340" y1="110" x2="340" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="110" x2="340" y2="150" stroke="url(#fl-esc-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+    <line x1="340" y1="245" x2="340" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="245" x2="340" y2="280" stroke="url(#fl-esc-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+
+    <!-- Node 1: Mail Webhook Ingestion -->
+    <g transform="translate(5,15)" filter="url(#ns-e)">
+      <rect width="150" height="95" rx="14" fill="url(#gc-esc)" stroke="#ec4899" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#ec4899"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">INGESTION</text>
+      <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📨 Mail Webhook</text>
+      <text x="75" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">Gmail Sync API · OAuth2</text>
+      <text x="75" y="85" font-size="6.5" fill="#ec4899" font-weight="700" text-anchor="middle">Secure Email Ingest</text>
     </g>
 
-    <!-- Node 2: AI Classifier -->
-    <g transform="translate(205, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(59, 130, 246, 0.02)" />
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <circle cx="20" cy="18" r="4" fill="#3b82f6" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">PROCESSING</text>
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">🤖 AI Classifier</text>
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">NLP Tagging Engine</text>
-      <text x="65" y="94" font-size="7" fill="#a855f7" font-weight="600" text-anchor="middle">Priority Weighted</text>
+    <!-- Node 2: NLP Classifier -->
+    <g transform="translate(210,15)" filter="url(#ns-e)">
+      <rect width="260" height="95" rx="14" fill="url(#gc-esc)" stroke="#3b82f6" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="260" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#3b82f6"><animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">PROCESSING</text>
+      <text x="130" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🤖 AI Classifier + Priority Engine</text>
+      <text x="130" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">NLP Tagging · Keyword Weighting · Auto-Assign</text>
+      <text x="130" y="85" font-size="6.5" fill="#a855f7" font-weight="700" text-anchor="middle">Intelligent Ticket Routing</text>
     </g>
 
     <!-- Node 3: SLA Router -->
-    <g transform="translate(390, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(59, 130, 246, 0.02)" />
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <circle cx="20" cy="18" r="4" fill="#10b981" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">ROUTING</text>
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">🎫 SLA Router</text>
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Jira Automation</text>
-      <text x="65" y="94" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">Slack Alert Triaged</text>
+    <g transform="translate(525,15)" filter="url(#ns-e)">
+      <rect width="150" height="95" rx="14" fill="url(#gc-esc)" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#10b981"><animate attributeName="opacity" values="1;0.4;1" dur="1.9s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">ROUTING</text>
+      <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🎫 SLA Router</text>
+      <text x="75" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">Jira Automation API</text>
+      <text x="75" y="85" font-size="6.5" fill="#10b981" font-weight="700" text-anchor="middle">2hr SLA Enforcement</text>
+    </g>
+
+    <!-- Row 2: Notification Engine -->
+    <g transform="translate(165,150)" filter="url(#ns-e)">
+      <rect width="350" height="95" rx="14" fill="url(#gc-esc)" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="350" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#f59e0b"><animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">NOTIFICATION ENGINE</text>
+      <text x="175" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🔔 Multi-Channel Alert System</text>
+      <text x="175" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">Slack Alerts · Email Digest · In-App Banners · Escalation Chains</text>
+      <text x="175" y="85" font-size="6.5" fill="#f59e0b" font-weight="700" text-anchor="middle">Priority-Weighted Instant Notifications</text>
+    </g>
+
+    <!-- Row 3: Analytics Dashboard -->
+    <g transform="translate(165,280)" filter="url(#ns-e)">
+      <rect width="350" height="70" rx="14" fill="url(#gc-esc)" stroke="#a855f7" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="28" x2="350" y2="28" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="14" r="3.5" fill="#a855f7"><animate attributeName="opacity" values="1;0.4;1" dur="2.1s" repeatCount="indefinite"/></circle>
+      <text x="28" y="17" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">ANALYTICS</text>
+      <text x="175" y="48" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📊 SLA Compliance Dashboard</text>
+      <text x="175" y="62" font-size="6.5" fill="#a855f7" font-weight="700" text-anchor="middle">Breach Tracking · Weekly Digests · Team Performance KPIs</text>
+    </g>
+
+    <!-- Bottom Tech Legend -->
+    <g transform="translate(10,355)">
+      <text x="0" y="0" font-size="6" fill="#9aa0a6" font-weight="600" letter-spacing="0.08em">STACK:</text>
+      <text x="45" y="0" font-size="6" fill="#3b82f6">Next.js 14</text>
+      <text x="95" y="0" font-size="6" fill="#3b82f6">·</text>
+      <text x="105" y="0" font-size="6" fill="#ec4899">Gmail API</text>
+      <text x="150" y="0" font-size="6" fill="#ec4899">·</text>
+      <text x="160" y="0" font-size="6" fill="#10b981">Neon Postgres</text>
+      <text x="228" y="0" font-size="6" fill="#10b981">·</text>
+      <text x="238" y="0" font-size="6" fill="#a855f7">Prisma ORM</text>
+      <text x="293" y="0" font-size="6" fill="#a855f7">·</text>
+      <text x="303" y="0" font-size="6" fill="#f59e0b">NextAuth</text>
+      <text x="348" y="0" font-size="6" fill="#f59e0b">·</text>
+      <text x="358" y="0" font-size="6" fill="#9aa0a6">Vercel</text>
     </g>
   </svg>
 </div>`
@@ -285,72 +335,101 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
 * **Dynamic pricing stress test**: Simulate 5,000 parallel pricing requests within a single transit corridor during a weather anomaly. Verify that pricing calculations finish in <150ms without gridlock.
 * **Fallback Routing Audit**: Simulate GPS telemetry signal loss for a bus. Verify that the scheduling app falls back seamlessly to dead-reckoning estimations and maintains safety alarms.`,
       flow: `
-<div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
-  <svg viewBox="0 0 540 180" width="100%" height="100%" style="font-family: var(--font-heading);">
+<div class="flow-chart-wrapper" style="width:100%; display:flex; flex-direction:column; align-items:center; gap:12px; padding:8px 0;">
+  <svg viewBox="0 0 680 370" width="100%" height="auto" style="font-family: var(--font-heading); max-width:100%; display: block; margin: 0 auto;">
     <defs>
-      <!-- Gradients for Cards -->
-      <linearGradient id="grad-card" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="rgba(19, 22, 28, 0.9)" />
-        <stop offset="100%" stop-color="rgba(8, 9, 12, 0.95)" />
+      <linearGradient id="gc-geo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="rgba(19,22,28,0.92)" /><stop offset="100%" stop-color="rgba(8,9,12,0.96)" />
       </linearGradient>
-      
-      <!-- Linear Gradients for Flowing Lines -->
-      <linearGradient id="flow-geospatial" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.2" />
-        <stop offset="50%" stop-color="#a855f7" stop-opacity="1" />
-        <stop offset="100%" stop-color="#a855f7" stop-opacity="0.2" />
+      <linearGradient id="fl-geo" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#a855f7" stop-opacity="0" /><stop offset="40%" stop-color="#a855f7" stop-opacity="1" /><stop offset="60%" stop-color="#a855f7" stop-opacity="1" /><stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
       </linearGradient>
-      
-      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3" />
-      </filter>
+      <linearGradient id="fl-geo-v" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#a855f7" stop-opacity="0" /><stop offset="40%" stop-color="#a855f7" stop-opacity="1" /><stop offset="60%" stop-color="#a855f7" stop-opacity="1" /><stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+      </linearGradient>
+      <filter id="ns-g" x="-8%" y="-8%" width="116%" height="116%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.35"/></filter>
     </defs>
 
-    <!-- Connection Lines -->
-    <path d="M 150 90 H 205 M 335 90 H 390" stroke="rgba(255, 255, 255, 0.05)" stroke-width="3" stroke-linecap="round" />
-    
-    <!-- Animated Pulse Line -->
-    <path d="M 150 90 H 205" stroke="url(#flow-geospatial)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
-    </path>
-    <path d="M 335 90 H 390" stroke="url(#flow-geospatial)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
-      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
-    </path>
+    <!-- Row 1 Connectors -->
+    <line x1="155" y1="62" x2="210" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="155" y1="62" x2="210" y2="62" stroke="url(#fl-geo)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="url(#fl-geo)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+
+    <!-- Vertical connectors -->
+    <line x1="340" y1="110" x2="340" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="110" x2="340" y2="150" stroke="url(#fl-geo-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
+    <line x1="340" y1="245" x2="340" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="245" x2="340" y2="280" stroke="url(#fl-geo-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Node 1: Grid Scraper -->
-    <g transform="translate(20, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(168, 85, 247, 0.02)" />
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <circle cx="20" cy="18" r="4" fill="#10b981" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">SCRAPING</text>
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📡 Grid Scraper</text>
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Competitor API</text>
-      <text x="65" y="94" font-size="7" fill="#3b82f6" font-weight="600" text-anchor="middle">Live Heatmap Ingest</text>
+    <g transform="translate(5,15)" filter="url(#ns-g)">
+      <rect width="150" height="95" rx="14" fill="url(#gc-geo)" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#10b981"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">SCRAPING</text>
+      <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📡 Grid Scraper</text>
+      <text x="75" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">Competitor API · Weather</text>
+      <text x="75" y="85" font-size="6.5" fill="#10b981" font-weight="700" text-anchor="middle">Live Heatmap Ingest</text>
     </g>
 
     <!-- Node 2: Yield Engine -->
-    <g transform="translate(205, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(168, 85, 247, 0.02)" />
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <circle cx="20" cy="18" r="4" fill="#a855f7" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">ALGORITHM</text>
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📈 Yield Engine</text>
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Corridor Pricing</text>
-      <text x="65" y="94" font-size="7" fill="#ec4899" font-weight="600" text-anchor="middle">Yield Calculated</text>
+    <g transform="translate(210,15)" filter="url(#ns-g)">
+      <rect width="260" height="95" rx="14" fill="url(#gc-geo)" stroke="#a855f7" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="260" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#a855f7"><animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">ALGORITHM</text>
+      <text x="130" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📈 Dynamic Yield Pricing Engine</text>
+      <text x="130" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">Corridor Pricing · Surge Model · Demand ML</text>
+      <text x="130" y="85" font-size="6.5" fill="#ec4899" font-weight="700" text-anchor="middle">Real-Time Yield Optimization</text>
     </g>
 
     <!-- Node 3: Commuter UI -->
-    <g transform="translate(390, 35)" filter="url(#shadow)">
-      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.4" />
-      <rect width="130" height="110" rx="16" fill="rgba(168, 85, 247, 0.02)" />
-      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-      <circle cx="20" cy="18" r="4" fill="#3b82f6" />
-      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">INTERFACE</text>
-      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📱 Commuter UI</text>
-      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Booking PWA App</text>
-      <text x="65" y="94" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">Price Synced</text>
+    <g transform="translate(525,15)" filter="url(#ns-g)">
+      <rect width="150" height="95" rx="14" fill="url(#gc-geo)" stroke="#3b82f6" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#3b82f6"><animate attributeName="opacity" values="1;0.4;1" dur="1.9s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">INTERFACE</text>
+      <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📱 Commuter PWA</text>
+      <text x="75" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">Booking App · Maps</text>
+      <text x="75" y="85" font-size="6.5" fill="#3b82f6" font-weight="700" text-anchor="middle">Price Synced Live</text>
+    </g>
+
+    <!-- Row 2: Route Optimizer -->
+    <g transform="translate(165,150)" filter="url(#ns-g)">
+      <rect width="350" height="95" rx="14" fill="url(#gc-geo)" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="30" x2="350" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="15" r="3.5" fill="#f59e0b"><animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/></circle>
+      <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">OPTIMIZATION</text>
+      <text x="175" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🗺️ Route Optimization Engine</text>
+      <text x="175" y="72" font-size="7" fill="#9aa0a6" text-anchor="middle">GPS Telemetry · Traffic Integration · Dead-Reckoning Fallback</text>
+      <text x="175" y="85" font-size="6.5" fill="#f59e0b" font-weight="700" text-anchor="middle">-18% Fuel Waste · +85% Seat Occupancy</text>
+    </g>
+
+    <!-- Row 3: Heatmap Dashboard -->
+    <g transform="translate(165,280)" filter="url(#ns-g)">
+      <rect width="350" height="70" rx="14" fill="url(#gc-geo)" stroke="#ec4899" stroke-width="1.2" stroke-opacity="0.5"/>
+      <line x1="0" y1="28" x2="350" y2="28" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="16" cy="14" r="3.5" fill="#ec4899"><animate attributeName="opacity" values="1;0.4;1" dur="2.1s" repeatCount="indefinite"/></circle>
+      <text x="28" y="17" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">VISUALIZATION</text>
+      <text x="175" y="48" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📊 Geospatial Heatmap Dashboard</text>
+      <text x="175" y="62" font-size="6.5" fill="#ec4899" font-weight="700" text-anchor="middle">Demand Heatmaps · Revenue Analytics · Competitor Overlay</text>
+    </g>
+
+    <!-- Bottom Tech Legend -->
+    <g transform="translate(10,355)">
+      <text x="0" y="0" font-size="6" fill="#9aa0a6" font-weight="600" letter-spacing="0.08em">STACK:</text>
+      <text x="45" y="0" font-size="6" fill="#a855f7">Python</text>
+      <text x="80" y="0" font-size="6" fill="#a855f7">·</text>
+      <text x="90" y="0" font-size="6" fill="#10b981">PostgreSQL</text>
+      <text x="148" y="0" font-size="6" fill="#10b981">·</text>
+      <text x="158" y="0" font-size="6" fill="#3b82f6">Selenium</text>
+      <text x="205" y="0" font-size="6" fill="#3b82f6">·</text>
+      <text x="215" y="0" font-size="6" fill="#f59e0b">BeautifulSoup</text>
+      <text x="285" y="0" font-size="6" fill="#f59e0b">·</text>
+      <text x="295" y="0" font-size="6" fill="#ec4899">Tableau</text>
+      <text x="335" y="0" font-size="6" fill="#ec4899">·</text>
+      <text x="345" y="0" font-size="6" fill="#9aa0a6">Mapbox GL</text>
     </g>
   </svg>
 </div>`

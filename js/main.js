@@ -396,4 +396,16 @@
     runLoader();
   }
 
+  /* ---------- Session Timer (Recruiter Engagement) ---------- */
+  const sessionStart = Date.now();
+  function updateSessionTimer() {
+    const el = document.getElementById('sessionTimerValue');
+    if (!el) return;
+    const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
+    const mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
+    const secs = String(elapsed % 60).padStart(2, '0');
+    el.textContent = `${mins}:${secs}`;
+  }
+  setInterval(updateSessionTimer, 1000);
+
 })();
