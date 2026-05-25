@@ -2040,3 +2040,83 @@ body.egg-cyberpunk {
   }
 }
 
+/* ---------- Tactile Emerald Active Diagnostic triggers ---------- */
+.egg-trigger-btn {
+  transition: all 0.3s var(--ease-out) !important;
+}
+
+.egg-trigger-btn.triggered {
+  background: #10b981 !important; /* Emerald green */
+  transform: scale(1.1) !important;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4) !important;
+  color: #fff !important;
+}
+
+/* ---------- Apple TV-style spring cascade staggers ---------- */
+.easter-eggs-panel .egg-item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: transform 0.4s var(--ease-out), opacity 0.4s var(--ease-out), background 0.3s;
+}
+
+.easter-eggs-panel.active .egg-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fluid spring stagger cascaded delays */
+.easter-eggs-panel.active .egg-item:nth-child(1) { transition-delay: 0.04s; }
+.easter-eggs-panel.active .egg-item:nth-child(2) { transition-delay: 0.07s; }
+.easter-eggs-panel.active .egg-item:nth-child(3) { transition-delay: 0.10s; }
+.easter-eggs-panel.active .egg-item:nth-child(4) { transition-delay: 0.13s; }
+.easter-eggs-panel.active .egg-item:nth-child(5) { transition-delay: 0.16s; }
+.easter-eggs-panel.active .egg-item:nth-child(6) { transition-delay: 0.19s; }
+.easter-eggs-panel.active .egg-item:nth-child(7) { transition-delay: 0.22s; }
+.easter-eggs-panel.active .egg-item:nth-child(8) { transition-delay: 0.25s; }
+.easter-eggs-panel.active .egg-item:nth-child(9) { transition-delay: 0.28s; }
+.easter-eggs-panel.active .egg-item:nth-child(10) { transition-delay: 0.31s; }
+.easter-eggs-panel.active .egg-item:nth-child(11) { transition-delay: 0.34s; }
+.easter-eggs-panel.active .egg-item:nth-child(12) { transition-delay: 0.37s; }
+.easter-eggs-panel.active .egg-item:nth-child(13) { transition-delay: 0.40s; }
+.easter-eggs-panel.active .egg-item:nth-child(14) { transition-delay: 0.43s; }
+
+/* ---------- Siri pulsating listening aura wave ---------- */
+.ai-orb-container::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.5s var(--ease-elastic);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.ai-orb-container.listening::after {
+  animation: siri-ripple 2s infinite ease-out;
+  opacity: 1;
+}
+
+@keyframes siri-ripple {
+  0% { transform: scale(0.95); opacity: 0.8; border-color: #3b82f6; }
+  50% { border-color: #ec4899; }
+  100% { transform: scale(1.35); opacity: 0; border-color: #a855f7; }
+}
+
+/* ---------- 3D Glide-Up Scale transitions on Card elements ---------- */
+.project-card, .timeline-card, .skill-category, .cert-card {
+  transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out), border-color 0.6s var(--ease-out), background 0.6s var(--ease-out) !important;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.012) !important;
+  box-shadow: 0 20px 40px rgba(30, 27, 75, 0.15), var(--shadow-card-hover) !important;
+}
+
+.timeline-card:hover, .skill-category:hover, .cert-card:hover {
+  transform: translateY(-6px) scale(1.008) !important;
+  box-shadow: 0 15px 30px rgba(30, 27, 75, 0.12), var(--shadow-card-hover) !important;
+}
+

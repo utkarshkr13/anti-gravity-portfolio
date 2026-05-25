@@ -505,7 +505,7 @@
           </div>
           <div class="egg-desc">Burst of celebratory colorful confetti.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('hire')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('hire', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -515,7 +515,7 @@
           </div>
           <div class="egg-desc">Lightning storm and rain weather system.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('salescode')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('salescode', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -525,7 +525,7 @@
           </div>
           <div class="egg-desc">Floating sections anti-gravity space physics.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('antigravity')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('antigravity', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -535,7 +535,7 @@
           </div>
           <div class="egg-desc">Half of page elements dissolve to dust.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('thanos')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('thanos', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -545,7 +545,7 @@
           </div>
           <div class="egg-desc">GTA Wasted death sequence in slow-mo.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('wasted')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('wasted', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -555,7 +555,7 @@
           </div>
           <div class="egg-desc">GTA 5-star wanted level chase mode.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('wanted')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('wanted', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -565,7 +565,7 @@
           </div>
           <div class="egg-desc">GTA cheat code to clear all wanted stars.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('leavemealone')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('leavemealone', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -575,7 +575,7 @@
           </div>
           <div class="egg-desc">Critical PC crash Blue Screen of Death.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('bsod')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('bsod', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -585,7 +585,7 @@
           </div>
           <div class="egg-desc">Tony Stark holographic HUD visual scanner.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('jarvis')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('jarvis', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -595,7 +595,7 @@
           </div>
           <div class="egg-desc">Apple Spotlight slide transition.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('onemorething')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('onemorething', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -605,7 +605,7 @@
           </div>
           <div class="egg-desc">Spatial glassy overlay Vision Pro theme toggle.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('visionpro')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('visionpro', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -615,7 +615,7 @@
           </div>
           <div class="egg-desc">Neon glitch grid Cyberpunk theme toggle.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('cyberpunk')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('cyberpunk', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -625,7 +625,7 @@
           </div>
           <div class="egg-desc">Google Search slanted page angle toggle.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('askew')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('askew', this)" data-cursor="hover">Trigger</button>
       </div>
 
       <div class="egg-item">
@@ -635,7 +635,7 @@
           </div>
           <div class="egg-desc">Swarms of rings attacking page elements.</div>
         </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('zergrush')" data-cursor="hover">Trigger</button>
+        <button class="egg-trigger-btn" onclick="triggerEgg('zergrush', this)" data-cursor="hover">Trigger</button>
       </div>
     </div>
   </div>
@@ -651,6 +651,7 @@
         aiOrb.addEventListener('click', (e) => {
           e.preventDefault();
           easterEggsPanel.classList.toggle('active');
+          aiOrb.classList.toggle('listening');
         });
       }
 
@@ -658,11 +659,22 @@
         panelClose.addEventListener('click', (e) => {
           e.preventDefault();
           easterEggsPanel.classList.remove('active');
+          if (aiOrb) aiOrb.classList.remove('listening');
         });
       }
     });
 
-    function triggerEgg(name) {
+    function triggerEgg(name, btn) {
+      if (btn) {
+        btn.classList.add('triggered');
+        const oldText = btn.innerText;
+        btn.innerText = 'Active';
+        setTimeout(() => {
+          btn.classList.remove('triggered');
+          btn.innerText = oldText;
+        }, 1500);
+      }
+
       if (window.easterEggs && typeof window.easterEggs.trigger === 'function') {
         window.easterEggs.trigger(name);
       } else {
