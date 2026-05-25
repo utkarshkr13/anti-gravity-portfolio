@@ -2202,6 +2202,19 @@ body.egg-cyberpunk {
 }
 
 /* ============================================================
+   SIRI VOICE CO-PILOT KEYFRAMES & CHAT STYLES
+   ============================================================ */
+@keyframes siriBarPulse {
+  0% { transform: scaleY(0.6); }
+  100% { transform: scaleY(1.5); }
+}
+
+@keyframes siriDotBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ============================================================
    AI-FIRST PRODUCT LAB PLAYGROUND
    ============================================================ */
 .playground-wrapper {

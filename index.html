@@ -441,6 +441,7 @@
             <button class="playground-tab-btn active" id="tabBtnBrief" data-cursor="hover">📋 Product Brief</button>
             <button class="playground-tab-btn" id="tabBtnBacklog" data-cursor="hover">🎫 Jira Stories</button>
             <button class="playground-tab-btn" id="tabBtnQA" data-cursor="hover">🧪 Edge Cases &amp; QA</button>
+            <button class="playground-tab-btn" id="tabBtnFlow" data-cursor="hover">🗺️ Architecture Map</button>
           </div>
           
           <div class="playground-doc-header">
@@ -616,16 +617,26 @@
 
   <!-- ===== Easter Eggs Console Panel ===== -->
   <div class="easter-eggs-panel" id="easterEggsPanel">
-    <div class="panel-header">
-      <div class="panel-title">
-        <i data-lucide="terminal" style="width:18px;height:18px;color:var(--accent);"></i>
-        <span>AI Diagnostics: Easter Eggs</span>
+    <div class="panel-header" style="flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 20px 0;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="panel-title">
+          <i data-lucide="cpu" style="width:18px;height:18px;color:var(--accent);"></i>
+          <span>Siri Diagnostic Terminal</span>
+        </div>
+        <button class="panel-close" id="panelClose" data-cursor="hover">
+          <i data-lucide="x" style="width:14px;height:14px"></i>
+        </button>
       </div>
-      <button class="panel-close" id="panelClose" data-cursor="hover">
-        <i data-lucide="x" style="width:14px;height:14px"></i>
-      </button>
+      
+      <!-- Panel Tabs Selector -->
+      <div class="panel-tab-bar" style="display: flex; gap: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+        <button class="panel-tab-btn active" id="diagTabEggs" style="background: transparent; border: none; padding: 6px 12px; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); border-radius: var(--radius-full); cursor: none; transition: all 0.3s;" data-cursor="hover">🥚 Diagnostics</button>
+        <button class="panel-tab-btn" id="diagTabSiri" style="background: transparent; border: none; padding: 6px 12px; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); border-radius: var(--radius-full); cursor: none; transition: all 0.3s;" data-cursor="hover">💬 Siri Co-Pilot</button>
+      </div>
     </div>
-    <div class="panel-body">
+
+    <!-- Container 1: Easter Eggs Diagnostic List -->
+    <div class="panel-body active" id="panelBodyEggs" style="padding: 12px 20px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; max-height: 400px;">
       <!-- System HUD status panel -->
       <div class="system-status-hud" style="margin-bottom: 6px; padding: 12px 16px; background: rgba(59, 130, 246, 0.04); border: 1px solid var(--border-color); border-radius: var(--radius-md); flex-shrink: 0;">
         <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">
@@ -782,6 +793,52 @@
         <button class="egg-trigger-btn" onclick="triggerEgg('zergrush', this)" data-cursor="hover">Trigger</button>
       </div>
     </div>
+
+    <!-- Container 2: Siri Co-Pilot View (hidden by default) -->
+    <div class="panel-body" id="panelBodySiri" style="padding: 16px 20px 20px; overflow-y: auto; display: none; flex-direction: column; gap: 14px; max-height: 400px; height: 400px; justify-content: space-between;">
+      
+      <!-- Top conversation view -->
+      <div id="siriChatLog" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; padding-right: 2px;">
+        
+        <!-- Welcome Message from Siri -->
+        <div class="siri-bubble siri-incoming" style="align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary);">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
+            <i data-lucide="sparkles" style="width:12px;height:12px"></i> Siri Co-Pilot
+          </div>
+          Hello! I'm Siri, Utkarsh's digital co-pilot. I can walk you through his product experience, dynamic toolsets, or run system surprises! How can I help you, recruiter?
+        </div>
+
+      </div>
+
+      <!-- Pulsating waves visualizer -->
+      <div class="siri-wave-wrapper" style="display: flex; align-items: center; justify-content: center; gap: 4px; height: 24px; margin: 4px 0; flex-shrink: 0;">
+        <div class="siri-wave-bar" style="width: 3px; height: 8px; background: #3b82f6; border-radius: var(--radius-full); animation: siriBarPulse 1.2s ease-in-out infinite alternate;"></div>
+        <div class="siri-wave-bar" style="width: 3px; height: 16px; background: #ec4899; border-radius: var(--radius-full); animation: siriBarPulse 0.8s ease-in-out infinite alternate 0.2s;"></div>
+        <div class="siri-wave-bar" style="width: 3px; height: 10px; background: #a855f7; border-radius: var(--radius-full); animation: siriBarPulse 1.4s ease-in-out infinite alternate 0.1s;"></div>
+        <div class="siri-wave-bar" style="width: 3px; height: 6px; background: #10b981; border-radius: var(--radius-full); animation: siriBarPulse 0.9s ease-in-out infinite alternate 0.3s;"></div>
+      </div>
+
+      <!-- Quick Commands deck -->
+      <div class="siri-quick-triggers" style="display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;">
+        <button class="siri-query-btn" onclick="askSiri('skills')" style="width: 100%; text-align: left; padding: 10px 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 0.75rem; font-weight: 600; cursor: none; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s;" data-cursor="hover">
+          <span>🎙️ "What are Utkarsh's top skills?"</span>
+          <i data-lucide="chevron-right" style="width:14px;height:14px;opacity:0.4;"></i>
+        </button>
+        <button class="siri-query-btn" onclick="askSiri('salescode')" style="width: 100%; text-align: left; padding: 10px 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 0.75rem; font-weight: 600; cursor: none; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s;" data-cursor="hover">
+          <span>🎙️ "What integration work did he do at SalesCode.ai?"</span>
+          <i data-lucide="chevron-right" style="width:14px;height:14px;opacity:0.4;"></i>
+        </button>
+        <button class="siri-query-btn" onclick="askSiri('ai')" style="width: 100%; text-align: left; padding: 10px 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 0.75rem; font-weight: 600; cursor: none; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s;" data-cursor="hover">
+          <span>🎙️ "How does he leverage AI in product flows?"</span>
+          <i data-lucide="chevron-right" style="width:14px;height:14px;opacity:0.4;"></i>
+        </button>
+        <button class="siri-query-btn" onclick="askSiri('surprise')" style="width: 100%; text-align: left; padding: 10px 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 0.75rem; font-weight: 600; cursor: none; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s;" data-cursor="hover">
+          <span>🎙️ "Show me a dynamic visual surprise!"</span>
+          <i data-lucide="zap" style="width:14px;height:14px;color:var(--accent);"></i>
+        </button>
+      </div>
+
+    </div>
   </div>
 
   <!-- ===== Apple-Style System Toasts Container ===== -->
@@ -812,7 +869,118 @@
           if (aiOrb) aiOrb.classList.remove('listening');
         });
       }
+
+      // Siri Console Tab Switching logic
+      const diagTabEggs = document.getElementById('diagTabEggs');
+      const diagTabSiri = document.getElementById('diagTabSiri');
+      const panelBodyEggs = document.getElementById('panelBodyEggs');
+      const panelBodySiri = document.getElementById('panelBodySiri');
+
+      if (diagTabEggs && diagTabSiri && panelBodyEggs && panelBodySiri) {
+        diagTabEggs.addEventListener('click', (e) => {
+          e.preventDefault();
+          diagTabEggs.classList.add('active');
+          diagTabSiri.classList.remove('active');
+          panelBodyEggs.style.display = 'flex';
+          panelBodySiri.style.display = 'none';
+          
+          diagTabEggs.style.background = 'var(--accent)';
+          diagTabEggs.style.color = '#fff';
+          diagTabSiri.style.background = 'transparent';
+          diagTabSiri.style.color = 'var(--text-secondary)';
+        });
+
+        diagTabSiri.addEventListener('click', (e) => {
+          e.preventDefault();
+          diagTabSiri.classList.add('active');
+          diagTabEggs.classList.remove('active');
+          panelBodySiri.style.display = 'flex';
+          panelBodyEggs.style.display = 'none';
+          
+          diagTabSiri.style.background = 'var(--accent)';
+          diagTabSiri.style.color = '#fff';
+          diagTabEggs.style.background = 'transparent';
+          diagTabEggs.style.color = 'var(--text-secondary)';
+        });
+        
+        diagTabEggs.style.background = 'var(--accent)';
+        diagTabEggs.style.color = '#fff';
+      }
     });
+
+    // Siri Chat Co-Pilot conversational flow logic
+    function askSiri(type) {
+      const chatLog = document.getElementById('siriChatLog');
+      if (!chatLog) return;
+
+      const queries = {
+        'skills': {
+          q: "What are Utkarsh's top skills?",
+          a: "Utkarsh works at the intersection of product management, business analysis, and hands-on software development. His key skills include:<br><br>• <strong>Product Delivery:</strong> Requirements mapping, detailed BRDs/FRDs, and coordinating cross-border UAT.<br>• <strong>Modern Engineering:</strong> Hands-on fullstack apps using Next.js 14, TypeScript, Prisma, Neon Postgres, and Clerk.<br>• <strong>AI-First Workflows:</strong> Designing and automating processes with Claude AI co-piloting."
+        },
+        'salescode': {
+          q: "What integration work did he do at SalesCode.ai?",
+          a: "At SalesCode.ai, Utkarsh managed delivery pipelines for global FMCG enterprise accounts, including <strong>Coca-Cola Saudi Arabia, Nepal, and Hindustan Coca-Cola</strong>. He wrote critical BRDs for mobile van merchandising, audited test cases for edge-case boundaries, tracked 600+ Jira issues, and directly engineered an internal SAP Integration Testing Tracker!"
+        },
+        'ai': {
+          q: "How does he leverage AI in product flows?",
+          a: "Rather than treating AI as a buzzword, Utkarsh integrates it into daily operations. He uses AI for accelerated BRD generation, mock integration payloads, code verification audits, and automating Slack/Email support tickets. He has designed a live <strong>AI-First Product Lab</strong> sandbox on this portfolio! Switch tabs inside the lab to see it."
+        },
+        'surprise': {
+          q: "Show me a dynamic visual surprise!",
+          a: "Engaging diagnostics system celebration... Hold on tight! Confetti burst triggered successfully!"
+        }
+      };
+
+      const data = queries[type];
+      if (!data) return;
+
+      const buttons = document.querySelectorAll('.siri-query-btn');
+      buttons.forEach(btn => btn.style.pointerEvents = 'none');
+
+      const userBubble = document.createElement('div');
+      userBubble.className = 'siri-bubble siri-outgoing';
+      userBubble.style.cssText = "align-self: flex-end; background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 16px 16px 4px 16px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; margin-top: 8px;";
+      userBubble.innerHTML = data.q;
+      chatLog.appendChild(userBubble);
+      chatLog.scrollTop = chatLog.scrollHeight;
+
+      const typingBubble = document.createElement('div');
+      typingBubble.className = 'siri-bubble siri-incoming typing-bubble';
+      typingBubble.style.cssText = "align-self: flex-start; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; margin-top: 8px; display: flex; gap: 4px; align-items: center;";
+      typingBubble.innerHTML = `
+        <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both;"></span>
+        <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both 0.2s;"></span>
+        <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both 0.4s;"></span>
+      `;
+      chatLog.appendChild(typingBubble);
+      chatLog.scrollTop = chatLog.scrollHeight;
+
+      setTimeout(() => {
+        typingBubble.remove();
+
+        const siriBubble = document.createElement('div');
+        siriBubble.className = 'siri-bubble siri-incoming';
+        siriBubble.style.cssText = "align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary); margin-top: 8px; animation: fadeIn 0.3s ease;";
+        siriBubble.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
+            <i data-lucide="sparkles" style="width:12px;height:12px"></i> Siri Co-Pilot
+          </div>
+          ${data.a}
+        `;
+        chatLog.appendChild(siriBubble);
+        lucide.createIcons({ node: siriBubble });
+        chatLog.scrollTop = chatLog.scrollHeight;
+
+        buttons.forEach(btn => btn.style.pointerEvents = 'auto');
+
+        if (type === 'surprise') {
+          setTimeout(() => {
+            triggerEgg('hire');
+          }, 400);
+        }
+      }, 1000 + Math.random() * 500);
+    }
 
     function updateHud(name) {
       const displayNames = {
@@ -901,9 +1069,9 @@
 
     function triggerSuperSecretEvent() {
       if (window.confetti) {
-        let duration = 5 * 1000;
+        let duration = 6 * 1000;
         let animationEnd = Date.now() + duration;
-        let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999999 };
+        let defaults = { startVelocity: 35, spread: 360, ticks: 60, zIndex: 9999999 };
 
         function randomInRange(min, max) {
           return Math.random() * (max - min) + min;
@@ -916,10 +1084,10 @@
             return clearInterval(interval);
           }
 
-          let particleCount = 50 * (timeLeft / duration);
+          let particleCount = 75 * (timeLeft / duration);
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-        }, 250);
+        }, 200);
       }
       
       showSystemToast('hire');
@@ -927,27 +1095,40 @@
       const congrats = document.createElement('div');
       congrats.style.position = 'fixed';
       congrats.style.inset = '0';
-      congrats.style.background = 'rgba(8, 9, 12, 0.95)';
+      congrats.style.background = 'rgba(8, 9, 12, 0.96)';
       congrats.style.zIndex = '99999999';
       congrats.style.display = 'flex';
       congrats.style.flexDirection = 'column';
       congrats.style.alignItems = 'center';
       congrats.style.justifyContent = 'center';
-      congrats.style.gap = '20px';
+      congrats.style.gap = '24px';
       congrats.style.textAlign = 'center';
       congrats.style.padding = '40px';
-      congrats.style.backdropFilter = 'blur(20px)';
-      congrats.style.webkitBackdropFilter = 'blur(20px)';
+      congrats.style.backdropFilter = 'blur(25px)';
+      congrats.style.webkitBackdropFilter = 'blur(25px)';
       congrats.style.opacity = '0';
       congrats.style.transition = 'opacity 0.6s var(--ease-out)';
 
       congrats.innerHTML = `
-        <i data-lucide="shield-check" style="width: 80px; height: 80px; color: #10b981;"></i>
-        <h1 style="font-size: 2.2rem; font-weight: 700; color: #fff; letter-spacing: -1px; margin-bottom: -10px;">DIAGNOSTICS COMPLETE</h1>
-        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; line-height: 1.6;">
-          System fully unlocked! You discovered all 14 portfolio Easter eggs. Utkarsh Rajput is 100% prepared to engineer, optimize, and scale your product operations.
+        <div style="width: 90px; height: 90px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); border: 2px solid #10b981; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(16, 185, 129, 0.3); animation: siri-ripple 2s infinite ease-out;">
+          <i data-lucide="shield-check" style="width: 50px; height: 50px; color: #10b981;"></i>
+        </div>
+        <h1 style="font-size: 2.5rem; font-weight: 800; color: #fff; letter-spacing: -1.5px; margin-bottom: -10px; font-family: var(--font-heading);">UTKARSH UNLOCKED</h1>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 520px; line-height: 1.6; font-weight: 400;">
+          Outstanding! You successfully discovered all 14 portfolio Easter eggs and completed system diagnostics. Utkarsh Rajput is 100% prepared to lead, refine, and deploy your product integration systems.
         </p>
-        <button id="closeCongrats" class="btn btn-primary" style="padding: 12px 36px; font-size: 0.9rem; margin-top: 10px;" data-cursor="hover">Return to System</button>
+        
+        <!-- Interactive Interview CTA Buttons -->
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+          <a href="https://linkedin.com/in/utkarsh-kumar-rajput" target="_blank" class="btn btn-primary" style="padding: 14px 28px; font-size: 0.85rem;" data-cursor="hover">
+            Connect on LinkedIn <i data-lucide="award" style="width:16px;height:16px;margin-left:6px;"></i>
+          </a>
+          <a href="mailto:utkarshkr.13@outlook.com?subject=Interview%20Invitation%20-%20Product%20Manager%20%26%20Business%20Analyst&body=Hello%20Utkarsh,%20I%20found%20all%20your%20portfolio%20Easter%20eggs%20and%20was%20impressed%20by%20your%20interactive%20AI%20Product%20Lab%20sandbox.%20Let's%20connect%20for%20an%20interview!" class="btn btn-secondary" style="padding: 14px 28px; font-size: 0.85rem; border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff;" data-cursor="hover">
+            Send Interview Invitation <i data-lucide="mail" style="width:16px;height:16px;margin-left:6px;"></i>
+          </a>
+        </div>
+        
+        <button id="closeCongrats" style="margin-top: 15px; font-size: 0.8rem; color: var(--text-tertiary); text-decoration: underline; background: none; border: none; cursor: none;" data-cursor="hover">Return to System</button>
       `;
 
       document.body.appendChild(congrats);

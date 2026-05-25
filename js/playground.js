@@ -48,7 +48,54 @@ Field distribution agents selling products directly from vans face frequent conn
 
 ## 2. Integration Contract & QA Scenarios
 * **Idempotency Verification**: Trigger parallel submissions (rapid double-clicking) of the same Invoice UUID under high latency. Confirm the backend returns a cached response for the second request, preserving resource integrity.
-* **Dual-Database Discrepancy Audit**: Simulate a client-side database wipe during active transaction sync. Validate that system rolls back transaction, restores local inventory counts, and prompts agent safely.`
+* **Dual-Database Discrepancy Audit**: Simulate a client-side database wipe during active transaction sync. Validate that system rolls back transaction, restores local inventory counts, and prompts agent safely.`,
+      flow: `
+<div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
+  <svg viewBox="0 0 500 240" width="100%" height="100%" style="font-family: var(--font-heading);">
+    <defs>
+      <filter id="glow-fmcg" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="4" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <!-- Connection Lines -->
+    <path d="M100 120 H250 M250 120 H400" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="6,6" />
+    <!-- Request dot path -->
+    <circle r="6" fill="#3b82f6" filter="url(#glow-fmcg)">
+      <animateMotion dur="2.5s" repeatCount="indefinite" path="M100 120 H250 H400" />
+    </circle>
+    <!-- Actor 1: Field Client App -->
+    <g transform="translate(30, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(59, 130, 246, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(59, 130, 246, 0.08)" stroke="#3b82f6" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📱 PWA Client</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">IndexedDB Cache</text>
+      <text x="55" y="76" font-size="7" fill="#f59e0b" font-weight="600" text-anchor="middle">Offline Mode</text>
+    </g>
+    <!-- Actor 2: Idempotent Gateway -->
+    <g transform="translate(195, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(168, 85, 247, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(168, 85, 247, 0.08)" stroke="#a855f7" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">⚡ API Gateway</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Idempotence filter</text>
+      <text x="55" y="76" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">UUID Checked</text>
+    </g>
+    <!-- Actor 3: SAP ERP Backend -->
+    <g transform="translate(360, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(16, 185, 129, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">🗄️ SAP Database</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">ERP Reconciliation</text>
+      <text x="55" y="76" font-size="7" fill="#3b82f6" font-weight="600" text-anchor="middle">Invoices Sync</text>
+    </g>
+  </svg>
+</div>`
     },
     escalation: {
       title: "Enterprise L2 Support Escalation SaaS",
@@ -90,7 +137,54 @@ High-volume enterprise SaaS support teams struggle with email-based triage. The 
 
 ## 2. Integration Contract & QA Scenarios
 * **Dual-Layer Notes Leak Test**: Attempt to fetch a ticket payload using an unauthenticated public API call. Verify that private internal BA comments are completely stripped, leaking zero operational details.
-* **API Timeout Resilience**: Simulate an L2 Portal outage during a high-volume sync cycle. Confirm that standard client inquiries are safely queue-buffered in Firebase and re-processed sequentially on recovery.`
+* **API Timeout Resilience**: Simulate an L2 Portal outage during a high-volume sync cycle. Confirm that standard client inquiries are safely queue-buffered in Firebase and re-processed sequentially on recovery.`,
+      flow: `
+<div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
+  <svg viewBox="0 0 500 240" width="100%" height="100%" style="font-family: var(--font-heading);">
+    <defs>
+      <filter id="glow-esc" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="4" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <!-- Connection Lines -->
+    <path d="M100 120 H250 M250 120 H400" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="6,6" />
+    <!-- Request dot path -->
+    <circle r="6" fill="#a855f7" filter="url(#glow-esc)">
+      <animateMotion dur="2.5s" repeatCount="indefinite" path="M100 120 H250 H400" />
+    </circle>
+    <!-- Actor 1: Gmail Webhook -->
+    <g transform="translate(30, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(236, 72, 153, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(236, 72, 153, 0.08)" stroke="#ec4899" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📨 Mail Webhook</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Gmail Sync API</text>
+      <text x="55" y="76" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">Secure Ingest</text>
+    </g>
+    <!-- Actor 2: AI Classifier Pipeline -->
+    <g transform="translate(195, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(59, 130, 246, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(59, 130, 246, 0.08)" stroke="#3b82f6" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">🤖 AI Classifier</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">NLP Tagging Engine</text>
+      <text x="55" y="76" font-size="7" fill="#a855f7" font-weight="600" text-anchor="middle">Weight Assigned</text>
+    </g>
+    <!-- Actor 3: SLA Router (Jira) -->
+    <g transform="translate(360, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(16, 185, 129, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">🎫 SLA Router</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Automated Queue</text>
+      <text x="55" y="76" font-size="7" fill="#ec4899" font-weight="600" text-anchor="middle">Slack Alert Trigger</text>
+    </g>
+  </svg>
+</div>`
     },
     geospatial: {
       title: "Geospatial Route & Pricing Optimizer",
@@ -131,7 +225,54 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
 
 ## 2. Integration Contract & QA Scenarios
 * **Dynamic pricing stress test**: Simulate 5,000 parallel pricing requests within a single transit corridor during a weather anomaly. Verify that pricing calculations finish in <150ms without gridlock.
-* **Fallback Routing Audit**: Simulate GPS telemetry signal loss for a bus. Verify that the scheduling app falls back seamlessly to dead-reckoning estimations and maintains safety alarms.`
+* **Fallback Routing Audit**: Simulate GPS telemetry signal loss for a bus. Verify that the scheduling app falls back seamlessly to dead-reckoning estimations and maintains safety alarms.`,
+      flow: `
+<div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
+  <svg viewBox="0 0 500 240" width="100%" height="100%" style="font-family: var(--font-heading);">
+    <defs>
+      <filter id="glow-geo" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="4" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <!-- Connection Lines -->
+    <path d="M100 120 H250 M250 120 H400" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="6,6" />
+    <!-- Request dot path -->
+    <circle r="6" fill="#10b981" filter="url(#glow-geo)">
+      <animateMotion dur="2.5s" repeatCount="indefinite" path="M100 120 H250 H400" />
+    </circle>
+    <!-- Actor 1: Geohash Scraper -->
+    <g transform="translate(30, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(16, 185, 129, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📡 Grid Scraper</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Competitor API</text>
+      <text x="55" y="76" font-size="7" fill="#3b82f6" font-weight="600" text-anchor="middle">Live Heatmap</text>
+    </g>
+    <!-- Actor 2: Price Yield Engine -->
+    <g transform="translate(195, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(168, 85, 247, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(168, 85, 247, 0.08)" stroke="#a855f7" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📈 Yield Engine</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Corridor Pricing</text>
+      <text x="55" y="76" font-size="7" fill="#ec4899" font-weight="600" text-anchor="middle">Yield Calculation</text>
+    </g>
+    <!-- Actor 3: Passenger App -->
+    <g transform="translate(360, 70)">
+      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
+      <rect width="110" height="90" rx="12" fill="rgba(59, 130, 246, 0.02)" />
+      <circle cx="55" cy="30" r="14" fill="rgba(59, 130, 246, 0.08)" stroke="#3b82f6" stroke-width="1.5" />
+      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📱 Commuter UI</text>
+      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Booking PWA</text>
+      <text x="55" y="76" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">Price Sync Complete</text>
+    </g>
+  </svg>
+</div>`
     }
   };
 
@@ -153,6 +294,7 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     const tabBrief = document.getElementById('tabBtnBrief');
     const tabBacklog = document.getElementById('tabBtnBacklog');
     const tabQA = document.getElementById('tabBtnQA');
+    const tabFlow = document.getElementById('tabBtnFlow');
 
     const specTextContainer = document.getElementById('playgroundSpecText');
     const specTitle = document.getElementById('playgroundSpecTitle');
@@ -183,7 +325,8 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     const tabs = [
       { element: tabBrief, name: 'brief' },
       { element: tabBacklog, name: 'backlog' },
-      { element: tabQA, name: 'qa' }
+      { element: tabQA, name: 'qa' },
+      { element: tabFlow, name: 'flow' }
     ];
 
     tabs.forEach(t => {
@@ -203,6 +346,10 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     if (copyBtn) {
       copyBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        if (activeTab === 'flow') {
+          alertSuccessToast("Info", "Flow chart diagram is rendered visually, switch to another tab to copy markdown specs.");
+          return;
+        }
         const text = specTextContainer.innerText;
         navigator.clipboard.writeText(text).then(() => {
           if (window.showSystemToast) {
@@ -219,6 +366,10 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     if (exportBtn) {
       exportBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        if (activeTab === 'flow') {
+          alertSuccessToast("Info", "Flow chart diagram is rendered visually, switch to another tab to export markdown specs.");
+          return;
+        }
         const text = specTextContainer.innerText;
         const blob = new Blob([text], { type: 'text/markdown;charset=utf-8;' });
         const link = document.createElement('a');
@@ -280,13 +431,19 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     }
 
     function streamActiveTab(channel, mode) {
-      isTyping = true;
       const data = specsData[activeDomain];
       
       specTitle.innerText = data.title;
       specMeta.innerHTML = `<i data-lucide="cog" style="width:14px;height:14px;opacity:0.6;"></i> Environment: <strong>${channel}</strong> · Workflow: <strong>${mode}</strong> · ${data.metrics}`;
       lucide.createIcons({ node: specMeta });
 
+      if (activeTab === 'flow') {
+        isTyping = false;
+        specTextContainer.innerHTML = data.flow;
+        return;
+      }
+
+      isTyping = true;
       const rawText = data[activeTab];
       specTextContainer.innerHTML = '';
       
@@ -309,7 +466,6 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
           requestAnimationFrame(type);
         } else {
           isTyping = false;
-          // Clean format highlight markup if needed (we keep clean plain text for copy-paste reliability)
           specTextContainer.innerText = rawText; // set exact text to avoid truncation
         }
       }
@@ -318,8 +474,12 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
 
     function renderActiveTab() {
       const data = specsData[activeDomain];
-      const rawText = data[activeTab];
-      specTextContainer.innerText = rawText;
+      if (activeTab === 'flow') {
+        specTextContainer.innerHTML = data.flow;
+      } else {
+        const rawText = data[activeTab];
+        specTextContainer.innerText = rawText;
+      }
       
       const docView = specTextContainer.closest('.playground-doc-view');
       if (docView) {
