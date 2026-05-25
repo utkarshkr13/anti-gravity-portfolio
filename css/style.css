@@ -2255,7 +2255,10 @@ body.egg-cyberpunk {
 }
 
 .playground-control-card, .playground-workspace-card {
-  background: var(--bg-card);
+  min-height: 640px;
+  background: rgba(19, 22, 28, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 0 !important; /* Zero padding to let window headers align to edges */
@@ -2266,10 +2269,14 @@ body.egg-cyberpunk {
   transition: all 0.6s var(--ease-out), border-color var(--theme-transition), background var(--theme-transition), box-shadow 0.6s;
 }
 
+[data-theme="light"] .playground-control-card, [data-theme="light"] .playground-workspace-card {
+  background: rgba(255, 255, 255, 0.75);
+}
+
 .playground-control-card:hover, .playground-workspace-card:hover {
-  transform: translateY(-4px) scale(1.004);
+  transform: translateY(-4px);
   border-color: var(--lab-active-border, var(--border-color-hover));
-  box-shadow: 0 20px 40px rgba(8, 9, 12, 0.5), var(--shadow-card-hover) !important;
+  box-shadow: 0 20px 40px rgba(8, 9, 12, 0.3), 0 0 25px var(--lab-glow-color, rgba(59, 130, 246, 0.05)) !important;
 }
 
 /* macOS-style Window Frame Header */
@@ -2438,19 +2445,34 @@ body.egg-cyberpunk {
 }
 
 .playground-param-group select {
-  background: var(--bg-primary);
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 10px 12px;
-  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.76rem;
   color: var(--text-primary);
   cursor: none;
   outline: none;
-  transition: all 0.3s;
+  transition: all 0.3s var(--ease-out);
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239aa0a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px;
+  padding-right: 40px;
 }
 
-.playground-param-group select:focus {
+.playground-param-group select:hover, .playground-param-group select:focus {
   border-color: var(--accent);
+  background-color: var(--bg-card-hover);
+}
+
+.playground-param-group select option {
+  background: #13161c;
+  color: #e8eaed;
+  padding: 10px;
 }
 
 .playground-generate-btn {
@@ -2460,8 +2482,7 @@ body.egg-cyberpunk {
 }
 
 .playground-workspace-card {
-  min-height: 520px;
-  background: var(--bg-card);
+  min-height: 640px;
 }
 
 .playground-workspace-empty, .playground-workspace-loader, .playground-workspace-content {

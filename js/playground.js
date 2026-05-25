@@ -51,48 +51,83 @@ Field distribution agents selling products directly from vans face frequent conn
 * **Dual-Database Discrepancy Audit**: Simulate a client-side database wipe during active transaction sync. Validate that system rolls back transaction, restores local inventory counts, and prompts agent safely.`,
       flow: `
 <div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
-  <svg viewBox="0 0 500 240" width="100%" height="100%" style="font-family: var(--font-heading);">
+  <svg viewBox="0 0 540 180" width="100%" height="100%" style="font-family: var(--font-heading);">
     <defs>
-      <filter id="glow-fmcg" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="4" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
+      <!-- Gradients for Cards -->
+      <linearGradient id="grad-card" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="rgba(19, 22, 28, 0.9)" />
+        <stop offset="100%" stop-color="rgba(8, 9, 12, 0.95)" />
+      </linearGradient>
+      
+      <!-- Linear Gradients for Flowing Lines -->
+      <linearGradient id="flow-fmcg" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#10b981" stop-opacity="0.2" />
+        <stop offset="50%" stop-color="#10b981" stop-opacity="1" />
+        <stop offset="100%" stop-color="#10b981" stop-opacity="0.2" />
+      </linearGradient>
+      
+      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3" />
       </filter>
     </defs>
-    <!-- Connection Lines -->
-    <path d="M100 120 H250 M250 120 H400" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="6,6" />
-    <!-- Request dot path -->
-    <circle r="6" fill="#3b82f6" filter="url(#glow-fmcg)">
-      <animateMotion dur="2.5s" repeatCount="indefinite" path="M100 120 H250 H400" />
-    </circle>
-    <!-- Actor 1: Field Client App -->
-    <g transform="translate(30, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(59, 130, 246, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(59, 130, 246, 0.08)" stroke="#3b82f6" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📱 PWA Client</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">IndexedDB Cache</text>
-      <text x="55" y="76" font-size="7" fill="#f59e0b" font-weight="600" text-anchor="middle">Offline Mode</text>
+
+    <!-- Glowing Background Connectors -->
+    <path d="M 150 90 H 205 M 335 90 H 390" stroke="rgba(255, 255, 255, 0.05)" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Animated Pulse Line -->
+    <path d="M 150 90 H 205" stroke="url(#flow-fmcg)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
+      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
+    </path>
+    <path d="M 335 90 H 390" stroke="url(#flow-fmcg)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
+      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
+    </path>
+
+    <!-- Node 1: PWA Client -->
+    <g transform="translate(20, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(16, 185, 129, 0.02)" />
+      <!-- Top header line -->
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <!-- Status dot -->
+      <circle cx="20" cy="18" r="4" fill="#f59e0b" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">CLIENT APP</text>
+      <!-- Title -->
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📱 PWA Client</text>
+      <!-- Subtitle -->
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">IndexedDB Caching</text>
+      <text x="65" y="94" font-size="7" fill="#f59e0b" font-weight="600" text-anchor="middle">Offline Sync Queue</text>
     </g>
-    <!-- Actor 2: Idempotent Gateway -->
-    <g transform="translate(195, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(168, 85, 247, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(168, 85, 247, 0.08)" stroke="#a855f7" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">⚡ API Gateway</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Idempotence filter</text>
-      <text x="55" y="76" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">UUID Checked</text>
+
+    <!-- Node 2: API Gateway -->
+    <g transform="translate(205, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(16, 185, 129, 0.02)" />
+      <!-- Top header line -->
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <!-- Status dot -->
+      <circle cx="20" cy="18" r="4" fill="#10b981" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">GATEWAY</text>
+      <!-- Title -->
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">⚡ API Gateway</text>
+      <!-- Subtitle -->
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Idempotence Filter</text>
+      <text x="65" y="94" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">UUID Checked</text>
     </g>
-    <!-- Actor 3: SAP ERP Backend -->
-    <g transform="translate(360, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(16, 185, 129, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">🗄️ SAP Database</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">ERP Reconciliation</text>
-      <text x="55" y="76" font-size="7" fill="#3b82f6" font-weight="600" text-anchor="middle">Invoices Sync</text>
+
+    <!-- Node 3: SAP ERP Backend -->
+    <g transform="translate(390, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(16, 185, 129, 0.02)" />
+      <!-- Top header line -->
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <!-- Status dot -->
+      <circle cx="20" cy="18" r="4" fill="#3b82f6" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">BACKEND</text>
+      <!-- Title -->
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">🗄️ SAP ERP</text>
+      <!-- Subtitle -->
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Dual-Database Sync</text>
+      <text x="65" y="94" font-size="7" fill="#3b82f6" font-weight="600" text-anchor="middle">SAP Reconciled</text>
     </g>
   </svg>
 </div>`
@@ -140,48 +175,71 @@ High-volume enterprise SaaS support teams struggle with email-based triage. The 
 * **API Timeout Resilience**: Simulate an L2 Portal outage during a high-volume sync cycle. Confirm that standard client inquiries are safely queue-buffered in Firebase and re-processed sequentially on recovery.`,
       flow: `
 <div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
-  <svg viewBox="0 0 500 240" width="100%" height="100%" style="font-family: var(--font-heading);">
+  <svg viewBox="0 0 540 180" width="100%" height="100%" style="font-family: var(--font-heading);">
     <defs>
-      <filter id="glow-esc" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="4" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
+      <!-- Gradients for Cards -->
+      <linearGradient id="grad-card" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="rgba(19, 22, 28, 0.9)" />
+        <stop offset="100%" stop-color="rgba(8, 9, 12, 0.95)" />
+      </linearGradient>
+      
+      <!-- Linear Gradients for Flowing Lines -->
+      <linearGradient id="flow-escalation" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2" />
+        <stop offset="50%" stop-color="#3b82f6" stop-opacity="1" />
+        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2" />
+      </linearGradient>
+      
+      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3" />
       </filter>
     </defs>
+
     <!-- Connection Lines -->
-    <path d="M100 120 H250 M250 120 H400" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="6,6" />
-    <!-- Request dot path -->
-    <circle r="6" fill="#a855f7" filter="url(#glow-esc)">
-      <animateMotion dur="2.5s" repeatCount="indefinite" path="M100 120 H250 H400" />
-    </circle>
-    <!-- Actor 1: Gmail Webhook -->
-    <g transform="translate(30, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(236, 72, 153, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(236, 72, 153, 0.08)" stroke="#ec4899" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📨 Mail Webhook</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Gmail Sync API</text>
-      <text x="55" y="76" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">Secure Ingest</text>
+    <path d="M 150 90 H 205 M 335 90 H 390" stroke="rgba(255, 255, 255, 0.05)" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Animated Pulse Line -->
+    <path d="M 150 90 H 205" stroke="url(#flow-escalation)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
+      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
+    </path>
+    <path d="M 335 90 H 390" stroke="url(#flow-escalation)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
+      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
+    </path>
+
+    <!-- Node 1: Mail Webhook -->
+    <g transform="translate(20, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(59, 130, 246, 0.02)" />
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <circle cx="20" cy="18" r="4" fill="#ec4899" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">INGESTION</text>
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📨 Mail Webhook</text>
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Gmail Sync API</text>
+      <text x="65" y="94" font-size="7" fill="#ec4899" font-weight="600" text-anchor="middle">Secure Ingest</text>
     </g>
-    <!-- Actor 2: AI Classifier Pipeline -->
-    <g transform="translate(195, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(59, 130, 246, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(59, 130, 246, 0.08)" stroke="#3b82f6" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">🤖 AI Classifier</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">NLP Tagging Engine</text>
-      <text x="55" y="76" font-size="7" fill="#a855f7" font-weight="600" text-anchor="middle">Weight Assigned</text>
+
+    <!-- Node 2: AI Classifier -->
+    <g transform="translate(205, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(59, 130, 246, 0.02)" />
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <circle cx="20" cy="18" r="4" fill="#3b82f6" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">PROCESSING</text>
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">🤖 AI Classifier</text>
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">NLP Tagging Engine</text>
+      <text x="65" y="94" font-size="7" fill="#a855f7" font-weight="600" text-anchor="middle">Priority Weighted</text>
     </g>
-    <!-- Actor 3: SLA Router (Jira) -->
-    <g transform="translate(360, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(16, 185, 129, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">🎫 SLA Router</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Automated Queue</text>
-      <text x="55" y="76" font-size="7" fill="#ec4899" font-weight="600" text-anchor="middle">Slack Alert Trigger</text>
+
+    <!-- Node 3: SLA Router -->
+    <g transform="translate(390, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(59, 130, 246, 0.02)" />
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <circle cx="20" cy="18" r="4" fill="#10b981" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">ROUTING</text>
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">🎫 SLA Router</text>
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Jira Automation</text>
+      <text x="65" y="94" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">Slack Alert Triaged</text>
     </g>
   </svg>
 </div>`
@@ -228,48 +286,71 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
 * **Fallback Routing Audit**: Simulate GPS telemetry signal loss for a bus. Verify that the scheduling app falls back seamlessly to dead-reckoning estimations and maintains safety alarms.`,
       flow: `
 <div class="flow-chart-wrapper" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; min-height:220px; overflow:hidden;">
-  <svg viewBox="0 0 500 240" width="100%" height="100%" style="font-family: var(--font-heading);">
+  <svg viewBox="0 0 540 180" width="100%" height="100%" style="font-family: var(--font-heading);">
     <defs>
-      <filter id="glow-geo" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="4" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
+      <!-- Gradients for Cards -->
+      <linearGradient id="grad-card" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="rgba(19, 22, 28, 0.9)" />
+        <stop offset="100%" stop-color="rgba(8, 9, 12, 0.95)" />
+      </linearGradient>
+      
+      <!-- Linear Gradients for Flowing Lines -->
+      <linearGradient id="flow-geospatial" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#a855f7" stop-opacity="0.2" />
+        <stop offset="50%" stop-color="#a855f7" stop-opacity="1" />
+        <stop offset="100%" stop-color="#a855f7" stop-opacity="0.2" />
+      </linearGradient>
+      
+      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3" />
       </filter>
     </defs>
+
     <!-- Connection Lines -->
-    <path d="M100 120 H250 M250 120 H400" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="6,6" />
-    <!-- Request dot path -->
-    <circle r="6" fill="#10b981" filter="url(#glow-geo)">
-      <animateMotion dur="2.5s" repeatCount="indefinite" path="M100 120 H250 H400" />
-    </circle>
-    <!-- Actor 1: Geohash Scraper -->
-    <g transform="translate(30, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(16, 185, 129, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📡 Grid Scraper</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Competitor API</text>
-      <text x="55" y="76" font-size="7" fill="#3b82f6" font-weight="600" text-anchor="middle">Live Heatmap</text>
+    <path d="M 150 90 H 205 M 335 90 H 390" stroke="rgba(255, 255, 255, 0.05)" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Animated Pulse Line -->
+    <path d="M 150 90 H 205" stroke="url(#flow-geospatial)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
+      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
+    </path>
+    <path d="M 335 90 H 390" stroke="url(#flow-geospatial)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 15" stroke-dashoffset="0">
+      <animate attributeName="stroke-dashoffset" values="50;0" dur="2s" repeatCount="indefinite" />
+    </path>
+
+    <!-- Node 1: Grid Scraper -->
+    <g transform="translate(20, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(168, 85, 247, 0.02)" />
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <circle cx="20" cy="18" r="4" fill="#10b981" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">SCRAPING</text>
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📡 Grid Scraper</text>
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Competitor API</text>
+      <text x="65" y="94" font-size="7" fill="#3b82f6" font-weight="600" text-anchor="middle">Live Heatmap Ingest</text>
     </g>
-    <!-- Actor 2: Price Yield Engine -->
-    <g transform="translate(195, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(168, 85, 247, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(168, 85, 247, 0.08)" stroke="#a855f7" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📈 Yield Engine</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Corridor Pricing</text>
-      <text x="55" y="76" font-size="7" fill="#ec4899" font-weight="600" text-anchor="middle">Yield Calculation</text>
+
+    <!-- Node 2: Yield Engine -->
+    <g transform="translate(205, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(168, 85, 247, 0.02)" />
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <circle cx="20" cy="18" r="4" fill="#a855f7" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">ALGORITHM</text>
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📈 Yield Engine</text>
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Corridor Pricing</text>
+      <text x="65" y="94" font-size="7" fill="#ec4899" font-weight="600" text-anchor="middle">Yield Calculated</text>
     </g>
-    <!-- Actor 3: Passenger App -->
-    <g transform="translate(360, 70)">
-      <rect width="110" height="90" rx="12" fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="1.5" />
-      <rect width="110" height="90" rx="12" fill="rgba(59, 130, 246, 0.02)" />
-      <circle cx="55" cy="30" r="14" fill="rgba(59, 130, 246, 0.08)" stroke="#3b82f6" stroke-width="1.5" />
-      <text x="55" y="34" font-size="9" font-weight="700" fill="var(--text-primary)" text-anchor="middle">📱 Commuter UI</text>
-      <text x="55" y="66" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Booking PWA</text>
-      <text x="55" y="76" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">Price Sync Complete</text>
+
+    <!-- Node 3: Commuter UI -->
+    <g transform="translate(390, 35)" filter="url(#shadow)">
+      <rect width="130" height="110" rx="16" fill="url(#grad-card)" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.4" />
+      <rect width="130" height="110" rx="16" fill="rgba(168, 85, 247, 0.02)" />
+      <line x1="0" y1="36" x2="130" y2="36" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+      <circle cx="20" cy="18" r="4" fill="#3b82f6" />
+      <text x="32" y="21" font-size="8.5" font-weight="700" fill="var(--text-secondary)" letter-spacing="0.05em">INTERFACE</text>
+      <text x="65" y="65" font-size="11" font-weight="800" fill="var(--text-primary)" text-anchor="middle">📱 Commuter UI</text>
+      <text x="65" y="82" font-size="7.5" fill="var(--text-secondary)" text-anchor="middle">Booking PWA App</text>
+      <text x="65" y="94" font-size="7" fill="#10b981" font-weight="600" text-anchor="middle">Price Synced</text>
     </g>
   </svg>
 </div>`

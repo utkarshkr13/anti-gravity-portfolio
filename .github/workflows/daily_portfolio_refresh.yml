@@ -1,0 +1,45 @@
+name: Daily Portfolio Auto-Refresh
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at 12:00 AM UTC (5:30 AM IST)
+  workflow_dispatch:      # Allows manual trigger from the GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-market-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance pandas
+
+      - name: Fetch Live Market Data
+        run: |
+          python scripts/fetch_market.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'portfolio-updater-bot'
+          git config --global user.email 'portfolio-updater-bot@users.noreply.github.com'
+          git add assets/market.json
+          
+          # Check if there are actual changes before committing to avoid empty commit errors
+          if git diff --staged --quiet; then
+            echo "No market data updates detected. Skipping commit."
+          else
+            git commit -m "chore(auto-update): daily refresh of yfinance stock tickers [skip ci]"
+            git push origin main
+          fi
