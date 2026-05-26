@@ -1312,6 +1312,54 @@ ul, ol {
   margin-bottom: var(--space-md);
 }
 
+/* Contact Form Input & Textarea Theme Adaptability */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color var(--dur-normal) var(--ease-out), background var(--dur-normal) var(--ease-out), box-shadow var(--dur-normal) var(--ease-out);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+[data-theme="light"] .contact-form input,
+[data-theme="light"] .contact-form textarea {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .contact-form input::placeholder,
+[data-theme="light"] .contact-form textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+[data-theme="light"] .contact-form input:focus,
+[data-theme="light"] .contact-form textarea:focus {
+  background: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
 /* ---------- Interactive QR Code Component ---------- */
 .qr-code-wrapper {
   position: relative;
@@ -3512,6 +3560,12 @@ body.egg-cyberpunk {
   border-color: rgba(16, 185, 129, 0.4);
   color: rgba(16, 185, 129, 0.7);
   background: rgba(16, 185, 129, 0.02);
+}
+
+[data-theme="light"] #recruiter-suite {
+  background: transparent;
+  border-top-color: var(--border-color);
+  border-bottom-color: var(--border-color);
 }
 
 
