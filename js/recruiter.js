@@ -5,6 +5,9 @@
  */
 
 (function() {
+  // Global Voice Dictation & Systems Monitor Telemetry Variables
+  let voiceAutoReadActive = false;
+
   // ============================================================
   // KANBAN BOARD SYSTEM
   // ============================================================
@@ -471,11 +474,19 @@
       chatLog.appendChild(siriBubble);
       lucide.createIcons({ node: siriBubble });
       chatLog.scrollTop = chatLog.scrollHeight;
+
+      if (voiceAutoReadActive) {
+        voiceAutoReadActive = false; // Reset trigger
+        const speechBtn = siriBubble.querySelector('.siri-speech-btn');
+        if (speechBtn) {
+          setTimeout(() => speakText(speechBtn), 150);
+        }
+      }
     }, 800 + Math.random() * 600);
   }
 
   function getAgentResponse(input) {
-    const raw = input.toLowerCase    // Slash Commands Router
+    const raw = input.toLowerCase();    // Slash Commands Router
     if (raw.startsWith('/')) {
       const command = raw.split(' ')[0];
       switch (command) {
@@ -994,19 +1005,252 @@
   // WIRE UP CHAT SUBMISSION EVENTS
   // ============================================================
 
+  function initSpeechRecognition() {
+    const micBtn = document.getElementById('siriMicBtn');
+    const inputField = document.getElementById('siriChatInput');
+    
+    if (!micBtn || !inputField) return;
+
+    // Check Speech Recognition support
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      micBtn.style.display = 'none';
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    let isListening = false;
+
+    // Custom CSS injection for siri listening state
+    if (!document.getElementById('siri-mic-styles')) {
+      const style = document.createElement('style');
+      style.id = 'siri-mic-styles';
+      style.innerHTML = `
+        .siri-input-wrapper.listening {
+          border-color: #ef4444 !important;
+          box-shadow: 0 0 15px rgba(239, 68, 68, 0.25) !important;
+          background: rgba(239, 68, 68, 0.03) !important;
+        }
+        @keyframes pulse-mic {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.18); opacity: 0.7; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        .mic-pulse {
+          animation: pulse-mic 1s infinite ease-in-out;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    micBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isListening) {
+        recognition.stop();
+      } else {
+        try {
+          recognition.start();
+        } catch (err) {
+          console.error("Speech recognition failed to start:", err);
+        }
+      }
+    });
+
+    recognition.onstart = () => {
+      isListening = true;
+      voiceAutoReadActive = true; // Auto-read next response
+      const wrapper = inputField.closest('.siri-input-wrapper');
+      if (wrapper) wrapper.classList.add('listening');
+      
+      micBtn.innerHTML = '<i data-lucide="mic-off" class="mic-pulse" style="width:15px;height:15px;color:#ef4444;"></i>';
+      inputField.placeholder = 'Listening... Say something...';
+      if (window.lucide) lucide.createIcons({ node: micBtn });
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      inputField.value = transcript;
+      
+      setTimeout(() => {
+        handleChatSubmit(transcript);
+      }, 500);
+    };
+
+    recognition.onerror = (event) => {
+      console.warn("Speech recognition error:", event.error);
+      resetMicUI();
+    };
+
+    recognition.onend = () => {
+      resetMicUI();
+    };
+
+    function resetMicUI() {
+      isListening = false;
+      const wrapper = inputField.closest('.siri-input-wrapper');
+      if (wrapper) wrapper.classList.remove('listening');
+      
+      micBtn.innerHTML = '<i data-lucide="mic" style="width:15px;height:15px;"></i>';
+      inputField.placeholder = 'Ask UKR Assistant or run /command...';
+      if (window.lucide) lucide.createIcons({ node: micBtn });
+    }
+  }
+
+  function initTelemetryGraph() {
+    const canvas = document.getElementById('sysTelemetryCanvas');
+    const cpuEl = document.getElementById('sysCpuUsage');
+    const fpsEl = document.getElementById('sysFps');
+    
+    if (!canvas || !cpuEl || !fpsEl) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    let width = 0;
+    let height = 0;
+    let sizeInitialized = false;
+    let telemetryData = Array(40).fill(22);
+    let lastTime = performance.now();
+    let frameCount = 0;
+    let fpsVal = 60;
+    
+    let basePhase = 0;
+    let cpuLoadBoost = 0;
+    
+    window.addEventListener('scroll', () => {
+      cpuLoadBoost = Math.min(cpuLoadBoost + 3, 50);
+    }, { passive: true });
+    
+    document.addEventListener('mouseover', (e) => {
+      if (e.target && e.target.closest && (e.target.closest('.project-card') || e.target.closest('.kanban-card') || e.target.closest('.skill-tag') || e.target.closest('.btn'))) {
+        cpuLoadBoost = Math.min(cpuLoadBoost + 8, 48);
+      }
+    }, { passive: true });
+    
+    let gridOffset = 0;
+    
+    function draw() {
+      const monitorTab = document.getElementById('panelBodyMonitor');
+      if (monitorTab && monitorTab.style.display === 'none') {
+        requestAnimationFrame(draw);
+        return;
+      }
+
+      // Dynamically initialize size when the panel tab is clicked and has layout width
+      if (!sizeInitialized && canvas.clientWidth > 0) {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = canvas.clientWidth * dpr;
+        canvas.height = canvas.clientHeight * dpr;
+        ctx.scale(dpr, dpr);
+        width = canvas.width / dpr;
+        height = canvas.height / dpr;
+        sizeInitialized = true;
+      }
+
+      if (!sizeInitialized) {
+        requestAnimationFrame(draw);
+        return;
+      }
+      
+      const now = performance.now();
+      frameCount++;
+      const delta = now - lastTime;
+      if (delta >= 1000) {
+        fpsVal = Math.round((frameCount * 1000) / delta);
+        fpsVal = Math.min(Math.max(fpsVal, 30), 64);
+        fpsEl.innerText = `${fpsVal} FPS`;
+        frameCount = 0;
+        lastTime = now;
+      }
+      
+      basePhase += 0.05;
+      const baseCpu = 15 + Math.sin(basePhase) * 6 + Math.random() * 4;
+      cpuLoadBoost *= 0.95;
+      
+      const finalCpu = Math.round(baseCpu + cpuLoadBoost);
+      cpuEl.innerText = `${Math.min(finalCpu, 99)}%`;
+      
+      if (Math.random() < 0.16) {
+        telemetryData.push(finalCpu);
+        telemetryData.shift();
+      }
+      
+      ctx.clearRect(0, 0, width, height);
+      
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)';
+      ctx.lineWidth = 1;
+      
+      gridOffset = (gridOffset - 0.5) % 15;
+      for (let x = gridOffset; x < width; x += 15) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      
+      for (let y = 12; y < height; y += 12) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+      
+      ctx.beginPath();
+      ctx.lineWidth = 1.6;
+      ctx.shadowColor = 'rgba(16, 185, 129, 0.4)';
+      ctx.shadowBlur = 6;
+      ctx.strokeStyle = '#10b981';
+      
+      const step = width / (telemetryData.length - 1);
+      
+      telemetryData.forEach((val, index) => {
+        const x = index * step;
+        const percentageOfHeight = Math.min(val / 100, 0.95);
+        const y = height - (percentageOfHeight * height) - 2;
+        
+        if (index === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          const prevX = (index - 1) * step;
+          const prevPercentage = Math.min(telemetryData[index - 1] / 100, 0.95);
+          const prevY = height - (prevPercentage * height) - 2;
+          ctx.quadraticCurveTo(prevX + step / 2, prevY, x, y);
+        }
+      });
+      ctx.stroke();
+      
+      ctx.shadowBlur = 0;
+      ctx.lineTo(width, height);
+      ctx.lineTo(0, height);
+      ctx.closePath();
+      
+      const fillGlow = ctx.createLinearGradient(0, 0, 0, height);
+      fillGlow.addColorStop(0, 'rgba(16, 185, 129, 0.16)');
+      fillGlow.addColorStop(1, 'rgba(16, 185, 129, 0.00)');
+      
+      ctx.fillStyle = fillGlow;
+      ctx.fill();
+      
+      requestAnimationFrame(draw);
+    }
+    
+    draw();
+  }
+
   function initChatInputListeners() {
     const inputField = document.getElementById('siriChatInput');
     const sendBtn = document.getElementById('siriSendBtn');
 
     if (!inputField || !sendBtn) return;
 
-    // Send button click
     sendBtn.addEventListener('click', (e) => {
       e.preventDefault();
       handleChatSubmit(inputField.value);
     });
 
-    // Enter keypress
     inputField.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -1014,7 +1258,6 @@
       }
     });
 
-    // Visual focus glow on the input container
     inputField.addEventListener('focus', () => {
       const wrapper = inputField.closest('.siri-input-wrapper');
       if (wrapper) {
@@ -1036,5 +1279,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     renderKanban();
     initChatInputListeners();
+    initSpeechRecognition();
+    initTelemetryGraph();
   });
 })();
