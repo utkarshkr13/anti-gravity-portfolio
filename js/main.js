@@ -51,13 +51,21 @@
 
   // Bulletproof Scroll Containment delegation for data-lenis-prevent
   // Temporarily stops Lenis during interaction inside any element with data-lenis-prevent
+  let isLenisStopped = false;
+
   document.addEventListener('mouseover', (e) => {
     if (e.target && typeof e.target.closest === 'function') {
       const container = e.target.closest('[data-lenis-prevent]');
       if (container) {
-        lenis.stop();
+        if (!isLenisStopped) {
+          lenis.stop();
+          isLenisStopped = true;
+        }
       } else {
-        lenis.start();
+        if (isLenisStopped) {
+          lenis.start();
+          isLenisStopped = false;
+        }
       }
     }
   }, { passive: true });
@@ -66,15 +74,24 @@
     if (e.target && typeof e.target.closest === 'function') {
       const container = e.target.closest('[data-lenis-prevent]');
       if (container) {
-        lenis.stop();
+        if (!isLenisStopped) {
+          lenis.stop();
+          isLenisStopped = true;
+        }
       } else {
-        lenis.start();
+        if (isLenisStopped) {
+          lenis.start();
+          isLenisStopped = false;
+        }
       }
     }
   }, { passive: true });
 
   document.addEventListener('touchend', (e) => {
-    lenis.start();
+    if (isLenisStopped) {
+      lenis.start();
+      isLenisStopped = false;
+    }
   }, { passive: true });
 
   /* ---------- Smooth anchor scrolling ---------- */

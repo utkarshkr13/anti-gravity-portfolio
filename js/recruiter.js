@@ -1,5 +1,5 @@
 /**
- * Portfolio Recruiter Experience Suite & Siri Voice Co-Pilot
+ * Portfolio Recruiter Experience Suite & UKR Assistant
  * Deployed for Utkarsh Rajput's Portfolio
  * Senior Google/Apple Level Architecture & Interactions
  */
@@ -1105,6 +1105,8 @@
     const cpuEl = document.getElementById('sysCpuUsage');
     const fpsEl = document.getElementById('sysFps');
     const memEl = document.getElementById('sysMemory');
+    const dbPingEl = document.getElementById('sysDbPing');
+    const apiPingEl = document.getElementById('sysApiPing');
     
     if (!canvas || !cpuEl || !fpsEl) return;
 
@@ -1121,6 +1123,20 @@
     }
     updateMemory();
     setInterval(updateMemory, 3000);
+
+    // Live latency updates with dynamic random jitter to simulate live traffic
+    function updatePings() {
+      if (dbPingEl) {
+        const dbPing = Math.round(42 + (Math.random() * 8 - 4));
+        dbPingEl.innerHTML = `Healthy (${dbPing}ms) <span style="color:var(--text-tertiary); font-size:0.65rem; font-weight:normal;">(Simulated SLA)</span>`;
+      }
+      if (apiPingEl) {
+        const apiPing = Math.round(31 + (Math.random() * 6 - 3));
+        apiPingEl.innerHTML = `Operational (${apiPing}ms) <span style="color:var(--text-tertiary); font-size:0.65rem; font-weight:normal;">(Simulated SLA)</span>`;
+      }
+    }
+    updatePings();
+    setInterval(updatePings, 2500);
     
     const ctx = canvas.getContext('2d');
     
