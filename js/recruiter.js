@@ -280,8 +280,8 @@
     const bubble = buttonElement.closest('.siri-bubble');
     if (!bubble) return;
     
-    // Extract actual text to speak (strip HTML and Siri title)
-    let text = bubble.innerText.replace('Siri Co-Pilot', '').replace(/[\r\n]+/g, ' ').trim();
+    // Extract actual text to speak (strip HTML and assistant headers)
+    let text = bubble.innerText.replace(/UKR Assistant/i, '').replace(/Siri Co-Pilot/i, '').replace(/[\r\n]+/g, ' ').trim();
     
     if ('speechSynthesis' in window) {
       if (window.speechSynthesis.speaking) {
@@ -403,8 +403,638 @@
     }
   }
 
-  // Auto-init Kanban on page load
+  // ============================================================
+  // CONVERSATIONAL CHAT ENGINE (UKR ASSISTANT BOT SHELL)
+  // ============================================================
+
+  window.askSiri = function(type) {
+    const queries = {
+      'skills': "What are Utkarsh's top skills?",
+      'salescode': "What integration work did he do at SalesCode.ai?",
+      'ai': "How does he leverage AI in product flows?",
+      'surprise': "Show me a dynamic visual surprise!"
+    };
+    
+    const message = queries[type];
+    if (message) {
+      handleChatSubmit(message);
+    }
+  };
+
+  function handleChatSubmit(messageText) {
+    const chatLog = document.getElementById('siriChatLog');
+    if (!chatLog || !messageText.trim()) return;
+
+    // Remove text highlight focus indicators
+    const inputField = document.getElementById('siriChatInput');
+    if (inputField) inputField.value = '';
+
+    // 1. Render User message bubble
+    const userBubble = document.createElement('div');
+    userBubble.className = 'siri-bubble siri-outgoing';
+    userBubble.style.cssText = "align-self: flex-end; background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 16px 16px 4px 16px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; margin-top: 8px; animation: fadeIn 0.25s ease;";
+    userBubble.innerText = messageText;
+    chatLog.appendChild(userBubble);
+    chatLog.scrollTop = chatLog.scrollHeight;
+
+    // 2. Render typing indicator bubble
+    const typingBubble = document.createElement('div');
+    typingBubble.className = 'siri-bubble siri-incoming typing-bubble';
+    typingBubble.style.cssText = "align-self: flex-start; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; margin-top: 8px; display: flex; gap: 4px; align-items: center;";
+    typingBubble.innerHTML = `
+      <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both;"></span>
+      <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both 0.2s;"></span>
+      <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both 0.4s;"></span>
+    `;
+    chatLog.appendChild(typingBubble);
+    chatLog.scrollTop = chatLog.scrollHeight;
+
+    // 3. Delegate to natural language command responder
+    setTimeout(() => {
+      typingBubble.remove();
+      const responseHtml = getAgentResponse(messageText);
+      
+      const siriBubble = document.createElement('div');
+      siriBubble.className = 'siri-bubble siri-incoming';
+      siriBubble.style.cssText = "align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary); margin-top: 8px; animation: fadeIn 0.3s ease;";
+      siriBubble.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+          <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
+            <i data-lucide="sparkles" style="width:12px;height:12px"></i> UKR Assistant
+          </div>
+          <button class="siri-speech-btn" style="background: transparent; border: none; padding: 2px; color: var(--text-tertiary); cursor: none; transition: color 0.2s;" data-cursor="hover" title="Listen to response" onclick="speakText(this)">
+            <i data-lucide="volume-2" style="width:14px;height:14px"></i>
+          </button>
+        </div>
+        ${responseHtml}
+      `;
+      chatLog.appendChild(siriBubble);
+      lucide.createIcons({ node: siriBubble });
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }, 800 + Math.random() * 600);
+  }
+
+  function getAgentResponse(input) {
+    const raw = input.toLowerCase    // Slash Commands Router
+    if (raw.startsWith('/')) {
+      const command = raw.split(' ')[0];
+      switch (command) {
+        case '/help':
+          return "Here are the supported commands for the **UKR Agent Shell**:<br><br>" +
+                 "• `/skills` - View PM, BA and development expert skills.<br>" +
+                 "• `/experience` - Browse enterprise role history.<br>" +
+                 "• `/projects` - Highlighted web apps & solutions.<br>" +
+                 "• `/evolution` - View the portfolio release roadmap & self-evolving status.<br>" +
+                 "• `/matrix` - Toggle ticker warp velocity celebration.<br>" +
+                 "• `/antigravity` - Defy gravity and float portfolio elements.<br>" +
+                 "• `/rain` - Start lightning & rain weather system.<br>" +
+                 "• `/wasted` - Play slow-mo desaturation cinematic wasted screen.<br>" +
+                 "• `/wanted` - Trigger police strobe alarm & WANTED stars.<br>" +
+                 "• `/leavemealone` - Dissolve active police search wanted level.<br>" +
+                 "• `/jarvis` - Toggle Iron Man holographic HUD grids.<br>" +
+                 "• `/bsod` - Trigger simulated critical Windows reboot screen.<br>" +
+                 "• `/askew` - Tilt the coordinate grid 3 degrees.<br>" +
+                 "• `/cyberpunk` - Toggle RGB text chromatic aberration glitch.<br>" +
+                 "• `/spotlight` - Trigger dramatic Steve Jobs 'One More Thing' visual.<br>" +
+                 "• `/thanos` - Snaps fingers and dissolves 50% of card items.<br>" +
+                 "• `/zergrush` - Spawn zerg invaders to eat section cards.<br>" +
+                 "• `/clear` - Clean up chat terminal history buffer.";
+        case '/evolution':
+          return "🧬 **Anti-Gravity Autonomous Evolution System (Pipeline Live)**<br><br>" +
+                 "Here is the active release path and self-evolving timeline of this platform:<br><br>" +
+                 "• **v1.0 (Core Architecture):** Core HTML5 grid layout, CSS Glassmorphism tokens, and responsive sections.<br>" +
+                 "• **v2.0 (Aesthetics & Interaction):** Deployed Lenis smooth scrolling, GSAP animation staggers, Siri interactive aura blobs, and active click-scale feedback loops.<br>" +
+                 "• **v2.2 (AI Product Lab & Recruiter Suite):** Launched the interactive PM/BA playground compiling specs on demand, along with the interactive Recruiter Kanban and SLA test challenges.<br>" +
+                 "• **v2.5 (Autonomous Agent Sync):** Integrated the automated yfinance daily market fetch pipeline via GitHub Actions and deployed the dynamic Systems Monitor tracking dynamic load-time SLAs and Git history live.<br><br>" +
+                 "ℹ️ *This system evolves itself daily via Git pipelines and automated QA audits. Click the **Systems Monitor** tab in the widget to view live telemetry!*";
+        case '/clear':
+          setTimeout(() => {
+            const chatLog = document.getElementById('siriChatLog');
+            if (chatLog) {
+              chatLog.innerHTML = `
+                <div class="siri-bubble siri-incoming" style="align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary);">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                    <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
+                      <i data-lucide="sparkles" style="width:12px;height:12px"></i> UKR Assistant
+                    </div>
+                    <button class="siri-speech-btn" style="background: transparent; border: none; padding: 2px; color: var(--text-tertiary); cursor: none; transition: color 0.2s;" data-cursor="hover" title="Listen to response" onclick="speakText(this)">
+                      <i data-lucide="volume-2" style="width:14px;height:14px"></i>
+                    </button>
+                  </div>
+                  Chat history cleared. I'm ready to walk you through Utkarsh's details! Try asking about his **skills** or run \`/help\` for special commands.
+                </div>
+              `;
+              lucide.createIcons({ node: chatLog });
+            }
+          }, 100);
+          return "Clearing console buffers...";
+        
+        case '/skills':
+          return getSkillsAnswer();
+        case '/experience':
+          return getExperienceAnswer();
+        case '/projects':
+          return getProjectsAnswer();
+        case '/matrix':
+          setTimeout(() => window.dispatchEvent(new Event('matrix-hyperdrive')), 200);
+          return "Engaging Matrix warp acceleration! Experience the ticker particles shifting instantly.";
+        case '/antigravity':
+          setTimeout(() => triggerAntiGravityLocal(), 200);
+          return "Defying gravity! Floating coordinate systems active. Scroll or reload page to normalize anchors.";
+        case '/rain':
+          setTimeout(() => triggerThunderRainLocal(), 200);
+          return "Storm warning! Heavy rain & high-voltage lightning flashes triggered on the viewport canvas.";
+        case '/wasted':
+          setTimeout(() => triggerWasted(), 200);
+          return "Cinematic impact! Engaging GTA Wasted slow-motion desaturation overlay...";
+        case '/wanted':
+          setTimeout(() => triggerWanted(), 200);
+          return "🚨 WANTED Rating: 5 Stars active. Blue & red police sirens strobe flashing. Type \`/leavemealone\` to withdraw search warrant.";
+        case '/leavemealone':
+          setTimeout(() => clearWanted(), 200);
+          return "Warrant withdrawn. Police strobe sirens cleared. System state normalized.";
+        case '/bsod':
+          setTimeout(() => triggerBsod(), 200);
+          return "Critical stack error! Compiling Blue Screen of Death. Click anywhere to trigger soft reboot safely.";
+        case '/jarvis':
+          setTimeout(() => toggleJarvis(), 200);
+          return "Iron Man JARVIS Interface HUD toggled. Reticles and tactical scanning frames active.";
+        case '/askew':
+          setTimeout(() => toggleAskew(), 200);
+          return "Google coordinates tilted by 3 degrees. Everything is slightly askew.";
+        case '/cyberpunk':
+          setTimeout(() => toggleCyberpunk(), 200);
+          return "RGB Glitch Active! Chromatic text aberration filters and monospace overlays engaged.";
+        case '/spotlight':
+          setTimeout(() => triggerSpotlight(), 200);
+          return "Spotlight active! Fading scene to pitch black. Introducing Steve Jobs 'One More Thing' tribute...";
+        case '/thanos':
+          setTimeout(() => triggerThanos(), 200);
+          return "Snapping fingers! Dissolving 50% of timeline, skill and project grid elements into micro-dust...";
+        case '/zergrush':
+          setTimeout(() => triggerZerg(), 200);
+          return "Zerg Rush incoming! Red circles are dropping from the sky and devouring sections. Click to defend them!";
+        case '/hire':
+        case '/confetti':
+          setTimeout(() => {
+            if (window.confetti) confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+          }, 200);
+          return "UAT celebration triggered! Deployed premium confetti particle burst check.";
+        default:
+          return `Command '${command}' not recognized. Type \`/help\` to browse the active catalog.`;
+      }
+    }
+
+    // Natural Language Queries
+    if (raw.includes('skill') || raw.includes('tool') || raw.includes('stack') || raw.includes('expert') || raw.includes('languages')) {
+      return getSkillsAnswer();
+    }
+    if (raw.includes('experience') || raw.includes('job') || raw.includes('work') || raw.includes('salescode') || raw.includes('career')) {
+      return getExperienceAnswer();
+    }
+    if (raw.includes('project') || raw.includes('built') || raw.includes('apps') || raw.includes('sap') || raw.includes('escalation')) {
+      return getProjectsAnswer();
+    }
+    if (raw.includes('evolve') || raw.includes('evolution') || raw.includes('pipeline') || raw.includes('self-evolving') || raw.includes('system monitor') || raw.includes('telemetry')) {
+      return getEvolutionAnswer();
+    }
+    if (raw.includes('cert') || raw.includes('education') || raw.includes('vit') || raw.includes('azure') || raw.includes('degree') || raw.includes('btech')) {
+      return "Utkarsh's verified credentials and academic timeline:<br><br>" +
+             "• **Microsoft Certified: Azure Administrator Associate (AZ-104)** - Validating cloud operations, serverless pipelines, security policies, and resource configurations.<br>" +
+             "• **B.Tech in Electronics & Communication Engineering** (VIT Vellore) - Core foundation in digital communication, logic gates, and algorithmic mathematics.<br>" +
+             "• **Product Management Certifications** - Agile Product Ownership, BRD blueprint mapping, and workflow Scrum frameworks.";
+    }
+    if (raw.includes('contact') || raw.includes('email') || raw.includes('linkedin') || raw.includes('hire') || raw.includes('connect') || raw.includes('meet')) {
+      return "You can connect with Utkarsh directly through the following channels:<br><br>" +
+             "• 📨 **Email:** [hello@utkarsh.ind.in](mailto:hello@utkarsh.ind.in)<br>" +
+             "• 💼 **LinkedIn:** [linkedin.com/in/utkarsh-kumar-rajput](https://linkedin.com/in/utkarsh-kumar-rajput)<br>" +
+             "• 📞 **Official Site:** [www.utkarsh.ind.in](https://www.utkarsh.ind.in)<br><br>" +
+             "Feel free to click any link to schedule an interview or discuss product collaborations!";
+    }
+    if (raw.includes('hello') || raw.includes('hi') || raw.includes('hey') || raw.includes('who are you') || raw.includes('copilot')) {
+      return "Hello there! I am the **UKR Assistant**, Utkarsh's digital agent. I can outline his PM deliverables, tech stacks, or trigger system actions.<br><br>Ask me anything about his credentials, or run `/help` to view interactive slash commands!";
+    }
+    if (raw.includes('surprise') || raw.includes('zap') || raw.includes('magic')) {
+      setTimeout(() => {
+        if (window.confetti) confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+      }, 300);
+      return "Executing surprise diagnostic sequence... 🚀 Confetti explosion triggered successfully! Feel free to ask about his **skills** or try the `/wasted` command!";
+    }
+
+    // Contextual Fallback
+    return "That's an interesting question! I am Utkarsh's portfolio co-pilot agent. While I operate within this local sandbox, I can tell you that Utkarsh combines exceptional **Product Management documentation precision** (BRDs, detailed Jira backlogs, UAT flows) with **hands-on fullstack engineering** to build real automation systems.<br><br>" +
+           "Try asking me about his **skills**, **experience**, **projects**, or type `/help` to see a full list of interactive system commands!";
+  }
+
+  function getSkillsAnswer() {
+    return "Utkarsh operates at the unique junction of high-level PM strategy and hands-on system building:<br><br>" +
+           "• 📋 **Product Deliverables:** Comprehensive BRDs/FRDs, mapping high-complexity user stories, 600+ Jira epic tracking, and organizing cross-border UAT tests.<br>" +
+           "• 🛠️ **Technical Stack:** Fullstack web apps with Next.js 14, TypeScript, React, Node.js, Neon PostgreSQL, Prisma ORM, and IndexedDB.<br>" +
+           "• ☁️ **Cloud & Automation:** Certified Azure Administrator Associate (AZ-104), REST JSON-to-RFC gateway testing tools, automation scrapers (Python, Selenium), and GitHub actions pipelines.";
+  }
+
+  function getExperienceAnswer() {
+    return "Utkarsh Rajput's professional impact history:<br><br>" +
+           "• **SalesCode.ai (Associate Product Manager & BA):** Managed cross-border delivery pipelines for giant enterprise accounts like Coca-Cola Saudi Arabia, Nepal, and HC India. Managed 600+ Jira tasks, authored van-sales offline-sync BRDs, and engineered an internal SAP Integration Payload Tracker tool cutting support triage by 8 hrs/week.<br>" +
+           "• **CityFlo (Operations & BI Analyst):** Optimised commuter transit yields, developed scraping pipelines to monitor competitors, built weather risk models, and increased bus grid capacity from 62% to 85% occupancy rate.";
+  }
+
+  function getProjectsAnswer() {
+    return "Some key systems Utkarsh has architected and deployed:<br><br>" +
+           "1. 🔄 **IndexedDB Van-Sales Offline Sync Engine** - Solved low-connectivity retail sync failures, ensuring zero database duplicate billing.<br>" +
+           "2. 🗄️ **SAP Integration Payload REST Tracer** - Diagnostic tracker for parsing, auditing and indexing JSON-to-RFC payloads between Salesforce middleware and SAP ERP databases.<br>" +
+           "3. 🎫 **L2 Enterprise Support SLA Router** - automated serverless pipeline classifying support emails based on exception tags, alerting dev leads in <10 seconds via Slack.<br>" +
+           "4. 🛰️ **Geospatial Dynamic Route Yield Optimizer** - BI scraping engine tracking capacity bounds and pricing elasticities.";
+  }
+
+  function getEvolutionAnswer() {
+    return "🧬 **Anti-Gravity Autonomous Evolution System (Pipeline Live)**<br><br>" +
+           "This portfolio operates as an autonomous, self-evolving system. Every 24 hours, a scheduled **GitHub Actions workflow** fetches live market ticker data from Yahoo Finance via a Python parser (`fetch_market.py`), refreshing the background ticker on production seamlessly.<br><br>" +
+           "Furthermore, the **Systems Monitor** within the UKR Assistant widget runs active web SLAs measuring dynamic load time, memory leak integrity, and retrieves real-time commit logs directly from GitHub.<br><br>" +
+           "Type `/evolution` to see the complete architectural release timeline of this platform!";
+  }
+
+  // ============================================================
+  // ADVANCED VISUAL EASTER EGGS ANIMATION SCRIPTS
+  // ============================================================
+
+  function triggerAntiGravityLocal() {
+    document.querySelectorAll('section, nav, .btn, .timeline-card, .stat-card, .project-card, .cert-card, .skill-category').forEach(el => {
+      gsap.to(el, {
+        y: () => -Math.random() * 800 - 200,
+        x: () => (Math.random() - 0.5) * 400,
+        rotation: () => (Math.random() - 0.5) * 90,
+        opacity: 0,
+        duration: 4 + Math.random() * 6,
+        ease: 'power1.inOut'
+      });
+    });
+    triggerEventUnlock('Konami Code');
+  }
+
+  function triggerThunderRainLocal() {
+    let flashes = 0;
+    let flashInt = setInterval(() => {
+      document.body.style.setProperty('background-color', flashes % 2 === 0 ? 'rgba(255,255,255,0.85)' : '', 'important');
+      flashes++;
+      if (flashes > 5) clearInterval(flashInt);
+    }, 100);
+
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 999999; opacity: 1; transition: opacity 2s;';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let drops = [];
+    for(let i=0; i<300; i++) {
+      drops.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vy: 15 + Math.random()*15, l: 20 + Math.random()*20 });
+    }
+
+    function draw() {
+      if(!canvas.parentElement) return;
+      ctx.clearRect(0,0, canvas.width, canvas.height);
+      ctx.strokeStyle = 'rgba(156,180,210,0.6)';
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      drops.forEach(d => {
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x, d.y + d.l);
+        d.y += d.vy;
+        if (d.y > canvas.height) d.y = -d.l;
+      });
+      ctx.stroke();
+      requestAnimationFrame(draw);
+    }
+    draw();
+    triggerEventUnlock('salescode');
+
+    setTimeout(() => {
+      canvas.style.opacity = '0';
+      setTimeout(() => canvas.remove(), 2000);
+    }, 6000);
+  }
+
+  function triggerWasted() {
+    document.body.classList.add('egg-wasted');
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'wasted-overlay';
+    overlay.innerText = 'WASTED';
+    document.body.appendChild(overlay);
+    
+    triggerEventUnlock('wasted');
+    
+    setTimeout(() => {
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity 1.5s ease';
+      setTimeout(() => {
+        overlay.remove();
+        document.body.classList.remove('egg-wasted');
+      }, 1500);
+    }, 4000);
+  }
+
+  function triggerWanted() {
+    document.body.classList.add('egg-wanted');
+    
+    // Remove existing stars if any
+    const existing = document.querySelector('.wanted-stars');
+    if (existing) existing.remove();
+    
+    const starsContainer = document.createElement('div');
+    starsContainer.className = 'wanted-stars';
+    
+    for (let i = 0; i < 5; i++) {
+      const star = document.createElement('div');
+      star.className = 'wanted-star';
+      star.style.animationDelay = `${i * 0.15}s`;
+      starsContainer.appendChild(star);
+    }
+    
+    document.body.appendChild(starsContainer);
+    triggerEventUnlock('wanted');
+  }
+
+  function clearWanted() {
+    document.body.classList.remove('egg-wanted');
+    const stars = document.querySelector('.wanted-stars');
+    if (stars) {
+      stars.style.opacity = '0';
+      stars.style.transition = 'opacity 0.6s ease';
+      setTimeout(() => stars.remove(), 600);
+    }
+    triggerEventUnlock('leavemealone');
+  }
+
+  function triggerBsod() {
+    const bsod = document.createElement('div');
+    bsod.className = 'bsod-overlay animate-fadeIn';
+    bsod.innerHTML = `
+      <h1 style="font-size: 10vw; font-family: sans-serif; font-weight: 300; margin: 0 0 20px 0; line-height: 1;">:(</h1>
+      <p style="font-size: 2vw; font-family: sans-serif; font-weight: 300; margin-bottom: 24px; max-width: 80%; line-height: 1.4;">
+        Your system ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.
+      </p>
+      <p style="font-size: 1.8vw; font-family: sans-serif; font-weight: 400; margin-bottom: 40px;" id="bsodPercent">0% complete</p>
+      
+      <div style="display: flex; gap: 30px; align-items: center; margin-top: 20px; flex-wrap: wrap;">
+        <div style="background: white; padding: 6px; border-radius: 8px; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; flex-shrink:0;">
+          <div style="width: 100%; height: 100%; border: 3px solid #000; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:900; color:#000;">HIRE ME QR</div>
+        </div>
+        <div style="font-family: sans-serif; font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6;">
+          For more information about this issue and potential PM solutions, visit:<br>
+          <span style="font-weight: 700; color: white;">https://www.utkarsh.ind.in/ (Connect with Utkarsh Rajput!)</span><br><br>
+          If you call a recruiter lead, give them this stop code:<br>
+          Stop code: <span style="font-weight: 700; color: white;">SYSTEM_ARCHITECT_HIRE</span>
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 30px; right: 40px; font-family: sans-serif; font-size: 12px; opacity: 0.6;">
+        Click anywhere to reboot portfolio safely...
+      </div>
+    `;
+    
+    bsod.addEventListener('click', () => {
+      bsod.style.opacity = '0';
+      bsod.style.transition = 'opacity 0.6s ease';
+      setTimeout(() => bsod.remove(), 600);
+    });
+    
+    document.body.appendChild(bsod);
+    triggerEventUnlock('bsod');
+    
+    let pct = 0;
+    const pctInterval = setInterval(() => {
+      pct += Math.floor(Math.random() * 15) + 5;
+      if (pct >= 100) {
+        pct = 100;
+        clearInterval(pctInterval);
+      }
+      const label = document.getElementById('bsodPercent');
+      if (label) label.innerText = `${pct}% complete`;
+    }, 450);
+  }
+
+  function toggleJarvis() {
+    const existing = document.querySelector('.jarvis-hud');
+    if (existing) {
+      existing.style.opacity = '0';
+      existing.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => existing.remove(), 500);
+      triggerEventUnlock('jarvis_off');
+    } else {
+      const hud = document.createElement('div');
+      hud.className = 'jarvis-hud';
+      document.body.appendChild(hud);
+      triggerEventUnlock('jarvis');
+    }
+  }
+
+  function toggleAskew() {
+    document.body.classList.toggle('egg-askew');
+    const isActive = document.body.classList.contains('egg-askew');
+    triggerEventUnlock(isActive ? 'askew' : 'askew_off');
+  }
+
+  function toggleCyberpunk() {
+    document.body.classList.toggle('egg-cyberpunk');
+    const isActive = document.body.classList.contains('egg-cyberpunk');
+    triggerEventUnlock(isActive ? 'cyberpunk' : 'cyberpunk_off');
+  }
+
+  function triggerSpotlight() {
+    const spotlight = document.createElement('div');
+    spotlight.style.cssText = "position: fixed; inset: 0; background: black; z-index: 99999999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; opacity: 0; transition: opacity 1.5s ease; text-align: center; padding: 40px;";
+    spotlight.innerHTML = `
+      <h1 style="font-size: 3rem; font-weight: 300; font-family:-apple-system,BlinkMacSystemFont,sans-serif; letter-spacing: -1.5px; opacity: 0; transform: scale(0.9); transition: all 1.2s ease 0.6s;" id="spotText1">One more thing...</h1>
+      <p style="font-size: 1.15rem; font-family:-apple-system,BlinkMacSystemFont,sans-serif; color: #a1a1a6; font-weight: 400; max-width: 550px; line-height: 1.6; margin-top: 20px; opacity: 0; transform: translateY(20px); transition: all 1.2s ease 1.8s;" id="spotText2">
+        Utkarsh is 100% prepared to drive your enterprise integration testing, compile seamless roadmaps, and engineer clean custom interfaces that make complex go-lives succeed.
+      </p>
+      <button style="margin-top: 40px; opacity: 0; transition: opacity 1s ease 3.2s; background: white; color: black; border: none; padding: 12px 24px; border-radius: 20px; font-weight: 600; cursor: none;" id="spotCloseBtn" data-cursor="hover">Back to Portfolio</button>
+    `;
+    
+    document.body.appendChild(spotlight);
+    
+    setTimeout(() => {
+      spotlight.style.opacity = '1';
+      const t1 = document.getElementById('spotText1');
+      if (t1) { t1.style.opacity = '1'; t1.style.transform = 'scale(1)'; }
+      const t2 = document.getElementById('spotText2');
+      if (t2) { t2.style.opacity = '1'; t2.style.transform = 'translateY(0)'; }
+      const btn = document.getElementById('spotCloseBtn');
+      if (btn) btn.style.opacity = '1';
+    }, 100);
+    
+    triggerEventUnlock('onemorething');
+    
+    const close = () => {
+      spotlight.style.opacity = '0';
+      setTimeout(() => spotlight.remove(), 1500);
+    };
+    
+    setTimeout(() => {
+      const btn = document.getElementById('spotCloseBtn');
+      if (btn) btn.addEventListener('click', close);
+    }, 3200);
+  }
+
+  function triggerThanos() {
+    triggerEventUnlock('thanos');
+    
+    const targets = Array.from(document.querySelectorAll('.timeline-card, .project-card, .cert-card, .skill-category'));
+    const half = Math.floor(targets.length / 2);
+    
+    // Shuffle and pick 50%
+    const snapTargets = targets.sort(() => 0.5 - Math.random()).slice(0, half);
+    
+    snapTargets.forEach((el, index) => {
+      setTimeout(() => {
+        el.classList.add('thanos-dust');
+      }, index * 150);
+    });
+    
+    setTimeout(() => {
+      alertSuccessToast("Thanos Snap Complete", "50% of the grid elements dissolved into dust. Reload page to restore universe.");
+    }, snapTargets.length * 150 + 1000);
+  }
+
+  function triggerZerg() {
+    triggerEventUnlock('zergrush');
+    let killedCount = 0;
+    const countToWin = 15;
+    
+    const interval = setInterval(() => {
+      if (killedCount >= countToWin) {
+        clearInterval(interval);
+        return;
+      }
+      
+      const zerg = document.createElement('div');
+      zerg.className = 'zergling';
+      zerg.style.top = '-20px';
+      zerg.style.left = `${Math.random() * window.innerWidth}px`;
+      
+      zerg.addEventListener('click', () => {
+        killedCount++;
+        zerg.style.transform = 'scale(0)';
+        zerg.style.background = '#ea4335';
+        setTimeout(() => zerg.remove(), 300);
+        
+        if (killedCount === countToWin) {
+          if (window.confetti) confetti({ particleCount: 60, spread: 70 });
+          alertSuccessToast("Victory!", "Zerg Rush successfully defeated!");
+        }
+      });
+      
+      document.body.appendChild(zerg);
+      
+      gsap.to(zerg, {
+        y: window.innerHeight + 50,
+        duration: 5 + Math.random() * 5,
+        ease: 'none',
+        onComplete: () => {
+          zerg.remove();
+          const targets = document.querySelectorAll('.timeline-card, .project-card, .cert-card, .skill-category');
+          if (targets.length > 0) {
+            const randomTarget = targets[Math.floor(Math.random() * targets.length)];
+            gsap.to(randomTarget, {
+              opacity: 0,
+              scale: 0.8,
+              duration: 1,
+              ease: 'power2.out'
+            });
+          }
+        }
+      });
+    }, 800);
+    
+    setTimeout(() => clearInterval(interval), 15000);
+  }
+
+  function triggerEventUnlock(name) {
+    if (window.updateHud) {
+      window.updateHud(name);
+    } else {
+      // Direct diagnostic fallback
+      const counter = document.getElementById('eggUnlockCounter');
+      if (counter) {
+        counter.innerText = `Active: ${name}`;
+      }
+    }
+  }
+
+  function alertSuccessToast(title, desc) {
+    const toastContainer = document.getElementById('toastContainer');
+    if (!toastContainer) return;
+
+    const toast = document.createElement('div');
+    toast.className = 'system-toast';
+    toast.innerHTML = `
+      <div class="toast-icon" style="background: rgba(16, 185, 129, 0.12); color: #10b981; box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);">
+        <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
+      </div>
+      <div class="toast-body">
+        <div class="toast-title" style="color: var(--text-primary); font-weight:700;">${title}</div>
+        <div class="toast-desc" style="font-size:0.7rem; color:var(--text-secondary);">${desc}</div>
+      </div>
+    `;
+
+    toastContainer.appendChild(toast);
+    lucide.createIcons({ node: toast });
+
+    setTimeout(() => toast.classList.add('active'), 50);
+    setTimeout(() => {
+      toast.classList.remove('active');
+      setTimeout(() => toast.remove(), 600);
+    }, 4500);
+  }
+
+  // ============================================================
+  // WIRE UP CHAT SUBMISSION EVENTS
+  // ============================================================
+
+  function initChatInputListeners() {
+    const inputField = document.getElementById('siriChatInput');
+    const sendBtn = document.getElementById('siriSendBtn');
+
+    if (!inputField || !sendBtn) return;
+
+    // Send button click
+    sendBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleChatSubmit(inputField.value);
+    });
+
+    // Enter keypress
+    inputField.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleChatSubmit(inputField.value);
+      }
+    });
+
+    // Visual focus glow on the input container
+    inputField.addEventListener('focus', () => {
+      const wrapper = inputField.closest('.siri-input-wrapper');
+      if (wrapper) {
+        wrapper.style.borderColor = 'var(--accent)';
+        wrapper.style.boxShadow = '0 0 10px rgba(59, 130, 246, 0.15)';
+      }
+    });
+
+    inputField.addEventListener('blur', () => {
+      const wrapper = inputField.closest('.siri-input-wrapper');
+      if (wrapper) {
+        wrapper.style.borderColor = 'var(--border-color)';
+        wrapper.style.boxShadow = 'none';
+      }
+    });
+  }
+
+  // Auto-init on page load
   document.addEventListener('DOMContentLoaded', () => {
     renderKanban();
+    initChatInputListeners();
   });
 })();
