@@ -526,7 +526,7 @@ ul, ol {
   letter-spacing: -0.01em;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary {
   background: linear-gradient(135deg, hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.9) 0%, hsla(var(--accent-h), var(--accent-s), 72%, 0.8) 100%);
   color: #fff;
   box-shadow: 0 4px 20px var(--accent-glow);
@@ -535,12 +535,43 @@ ul, ol {
   -webkit-backdrop-filter: blur(8px);
 }
 
-.btn-primary:hover, .btn-secondary:hover {
+.btn-primary:hover {
   background: linear-gradient(135deg, hsla(var(--accent-h), var(--accent-s), 72%, 0.95) 0%, hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.85) 100%);
   color: #fff;
   box-shadow: 0 8px 40px var(--accent-glow);
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] .btn-secondary {
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--text-primary);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .btn-secondary:hover {
+  background: rgba(59, 130, 246, 0.04);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.08);
 }
 
 .scroll-top-btn {
