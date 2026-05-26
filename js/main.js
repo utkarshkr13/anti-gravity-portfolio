@@ -206,116 +206,7 @@
     });
   }
 
-  /* ---------- 10 Advanced Easter Eggs ---------- */
-  function triggerZergRush() {
-    const zergCount = 30;
-    // Cache collision targets once upfront to avoid O(n²) DOM thrashing
-    const collisionTargets = Array.from(document.querySelectorAll('p, h1, h2, .btn, .skill-tag, .stat-card'));
-    let frameThrottle = 0;
-
-    for(let i=0; i<zergCount; i++) {
-      setTimeout(() => {
-        let z = document.createElement('div');
-        z.className = 'zergling';
-        z.style.top = '-20px';
-        z.style.left = Math.random() * window.innerWidth + 'px';
-        document.body.appendChild(z);
-        gsap.to(z, {
-          y: window.innerHeight + 100,
-          x: '+=' + (Math.random() * 400 - 200),
-          duration: 3 + Math.random() * 5,
-          ease: 'none',
-          onComplete: () => z.remove(),
-          onUpdate: function() {
-            // Throttle collision detection to every 4th frame
-            frameThrottle++;
-            if (frameThrottle % 4 !== 0) return;
-            let rect = z.getBoundingClientRect();
-            collisionTargets.forEach(el => {
-              if(el.style.opacity === '0') return;
-              let ext = el.getBoundingClientRect();
-              if(rect.left < ext.right && rect.right > ext.left && rect.top < ext.bottom && rect.bottom > ext.top) {
-                gsap.to(el, {opacity: 0, duration: 0.2});
-              }
-            });
-          }
-        });
-        z.addEventListener('click', () => { gsap.killTweensOf(z); z.style.background='red'; setTimeout(()=>z.remove(),200); });
-      }, i * 200);
-    }
-  }
-
-  function triggerThanos() {
-    let targets = Array.from(document.querySelectorAll('p, h2, h3, .stat-card, .project-card, .timeline-item, .skill-tag, .btn'));
-    const dusted = [];
-    targets = targets.sort(() => Math.random() - 0.5).slice(0, Math.floor(targets.length / 2));
-    targets.forEach((el, i) => {
-      setTimeout(() => {
-        el.classList.add('thanos-dust');
-        dusted.push(el);
-      }, i * 50);
-    });
-    // Auto-recover after 8 seconds so the site isn't permanently broken
-    setTimeout(() => {
-      dusted.forEach(el => el.classList.remove('thanos-dust'));
-    }, 8000);
-  }
-
-  function triggerWasted() {
-    document.body.classList.add('egg-wasted');
-    gsap.globalTimeline.timeScale(0.1);
-    let div = document.createElement('div');
-    div.className = 'wasted-overlay';
-    div.innerText = 'WASTED';
-    document.body.appendChild(div);
-    // Recover after 6 seconds (not 10) to minimize disruption
-    setTimeout(() => {
-      document.body.classList.remove('egg-wasted');
-      gsap.globalTimeline.timeScale(1);
-      div.remove();
-    }, 6000);
-  }
-
-  function triggerWanted() {
-    document.body.classList.add('egg-wanted');
-    if(!document.querySelector('.wanted-stars')) {
-      let div = document.createElement('div');
-      div.className = 'wanted-stars';
-      div.innerHTML = '<div class="wanted-star"></div><div class="wanted-star"></div><div class="wanted-star"></div><div class="wanted-star"></div><div class="wanted-star"></div>';
-      document.body.appendChild(div);
-    }
-  }
-
-  function triggerLeaveMeAlone() {
-    document.body.classList.remove('egg-wanted');
-    let stars = document.querySelector('.wanted-stars');
-    if(stars) stars.remove();
-  }
-
-  function triggerBsod() {
-    let div = document.createElement('div');
-    div.className = 'bsod-overlay';
-    div.innerHTML = `<h1>:(</h1><p>Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p><div class="qr"><img src="assets/linkedin_qr.png" width="100"/><div>For more information about this issue and possible fixes, visit<br/>https://www.windows.com/stopcode<br/><br/>If you call a support person, give them this info:<br/>Stop code: CRITICAL_PROCESS_DIED</div></div>`;
-    div.onclick = () => div.remove();
-    document.body.appendChild(div);
-  }
-
-  function triggerJarvis() {
-    let existing = document.querySelector('.jarvis-hud');
-    if(existing) { existing.remove(); return; }
-    let div = document.createElement('div');
-    div.className = 'jarvis-hud';
-    document.body.appendChild(div);
-  }
-
-  function triggerOneMoreThing() {
-    let div = document.createElement('div');
-    div.className = 'apple-spotlight';
-    div.innerText = 'One more thing...';
-    document.body.appendChild(div);
-    setTimeout(() => div.style.opacity = 1, 10);
-    setTimeout(() => { div.style.opacity = 0; setTimeout(() => div.remove(), 2000); }, 4000);
-  }
+  // Advanced Easter eggs removed as per P1 feedback.
 
   // Hacker Console Art
   console.log(`%c
@@ -338,19 +229,7 @@
     const eggs = {
       'hire': () => { if(window.confetti) confetti({ particleCount: 200, spread: 120, origin: { y: 0.6 }, zIndex: 999999 }); },
       'salescode': triggerThunderRain,
-      [konami]: triggerAntiGravity,
-      'thanos': triggerThanos,
-      'wasted': triggerWasted,
-      'wanted': triggerWanted,
-      'leavemealone': triggerLeaveMeAlone,
-      'bsod': triggerBsod,
-      'windows': triggerBsod,
-      'jarvis': triggerJarvis,
-      'onemorething': triggerOneMoreThing,
-      'visionpro': () => document.body.classList.toggle('egg-visionpro'),
-      'cyberpunk': () => document.body.classList.toggle('egg-cyberpunk'),
-      'askew': () => document.body.classList.toggle('egg-askew'),
-      'zergrush': triggerZergRush
+      [konami]: triggerAntiGravity
     };
 
     for (let key in eggs) {
@@ -369,18 +248,7 @@
       const actions = {
         'hire': () => { if(window.confetti) confetti({ particleCount: 200, spread: 120, origin: { y: 0.6 }, zIndex: 999999 }); },
         'salescode': triggerThunderRain,
-        'antigravity': triggerAntiGravity,
-        'thanos': triggerThanos,
-        'wasted': triggerWasted,
-        'wanted': triggerWanted,
-        'leavemealone': triggerLeaveMeAlone,
-        'bsod': triggerBsod,
-        'jarvis': triggerJarvis,
-        'onemorething': triggerOneMoreThing,
-        'visionpro': () => document.body.classList.toggle('egg-visionpro'),
-        'cyberpunk': () => document.body.classList.toggle('egg-cyberpunk'),
-        'askew': () => document.body.classList.toggle('egg-askew'),
-        'zergrush': triggerZergRush
+        'antigravity': triggerAntiGravity
       };
       if (actions[name]) {
         actions[name]();
