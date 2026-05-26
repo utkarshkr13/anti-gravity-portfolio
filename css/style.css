@@ -2262,6 +2262,13 @@ body.egg-cyberpunk {
   transition: all 0.6s var(--ease-out), border-color var(--theme-transition), background var(--theme-transition), box-shadow 0.6s;
 }
 
+@media (min-width: 1025px) {
+  .playground-control-card, .playground-workspace-card {
+    height: 680px;
+    min-height: 680px;
+  }
+}
+
 [data-theme="light"] .playground-control-card, [data-theme="light"] .playground-workspace-card {
   background: rgba(255, 255, 255, 0.75);
 }
@@ -2278,14 +2285,18 @@ body.egg-cyberpunk {
   align-items: center;
   justify-content: space-between;
   padding: 12px 20px;
-  background: rgba(14, 16, 21, 0.4);
+  background: rgba(19, 22, 28, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   width: 100%;
   flex-shrink: 0;
+  position: relative;
+  z-index: 10;
 }
 
 [data-theme="light"] .mac-window-header {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(240, 241, 243, 0.95);
 }
 
 .mac-dots {
@@ -2323,6 +2334,7 @@ body.egg-cyberpunk {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
 }
 
 @media (max-width: 480px) {
@@ -2697,6 +2709,14 @@ body.egg-cyberpunk {
   transition: all 0.4s var(--ease-out);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+}
+
+@media (min-width: 1025px) {
+  .playground-doc-view {
+    min-height: 0;
+    max-height: none;
+    height: 100%;
+  }
 }
 
 [data-theme="light"] .playground-doc-view {
@@ -3366,6 +3386,102 @@ body.egg-cyberpunk {
     bottom: 90px;
     max-height: 70vh;
   }
+}
+
+.playground-workspace-loader {
+  padding: 24px 0 12px;
+  box-sizing: border-box;
+}
+
+/* ---------- Light Mode Overrides for Recruiter Suite ---------- */
+[data-theme="light"] .kanban-column {
+  background: rgba(240, 241, 243, 0.6);
+  border-color: var(--border-color);
+}
+
+[data-theme="light"] .kanban-card {
+  background: #ffffff;
+  border-color: var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .kanban-card:hover {
+  background: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .kanban-card-title {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .kanban-card-desc {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .kanban-card-footer {
+  border-top-color: var(--border-color);
+}
+
+[data-theme="light"] .kanban-card.live-prod {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.03);
+}
+
+[data-theme="light"] .challenge-scenario-card {
+  background: #ffffff;
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-card);
+}
+
+[data-theme="light"] .challenge-option {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+}
+
+[data-theme="light"] .challenge-option:hover {
+  border-color: var(--accent);
+  background: rgba(59, 130, 246, 0.04);
+}
+
+[data-theme="light"] .challenge-option.selected {
+  border-color: var(--accent);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+[data-theme="light"] .challenge-option.success {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.06);
+}
+
+[data-theme="light"] .challenge-option.error {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.06);
+}
+
+[data-theme="light"] .option-letter {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .challenge-result {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="light"] .challenge-result-header.success {
+  color: #059669;
+}
+
+[data-theme="light"] .challenge-result-header.error {
+  color: #dc2626;
+}
+
+[data-theme="light"] .uat-stamp {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: rgba(16, 185, 129, 0.7);
+  background: rgba(16, 185, 129, 0.02);
 }
 
 

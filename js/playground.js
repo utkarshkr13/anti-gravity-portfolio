@@ -68,23 +68,23 @@ Field distribution agents selling products directly from vans face frequent conn
 
     <!-- Row 1: 3 nodes -->
     <!-- Connectors Row 1 -->
-    <line x1="155" y1="62" x2="210" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="155" y1="62" x2="210" y2="62" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="155" y1="62" x2="210" y2="62" stroke="url(#fl-fmcg)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
-    <line x1="470" y1="62" x2="525" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="470" y1="62" x2="525" y2="62" stroke="url(#fl-fmcg)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Vertical connector: API Gateway → Reconciliation -->
-    <line x1="340" y1="110" x2="340" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="110" x2="340" y2="150" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="340" y1="110" x2="340" y2="150" stroke="url(#fl-fmcg-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Vertical connector: Reconciliation → Dashboard -->
-    <line x1="340" y1="245" x2="340" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="245" x2="340" y2="280" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="340" y1="245" x2="340" y2="280" stroke="url(#fl-fmcg-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Node 1: PWA Client -->
     <g transform="translate(5,15)" filter="url(#ns-f)">
       <rect width="150" height="95" rx="14" fill="url(#gc-fmcg)" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#f59e0b"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">CLIENT</text>
       <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📱 PWA App</text>
@@ -95,7 +95,7 @@ Field distribution agents selling products directly from vans face frequent conn
     <!-- Node 2: Sync Queue -->
     <g transform="translate(210,15)" filter="url(#ns-f)">
       <rect width="260" height="95" rx="14" fill="url(#gc-fmcg)" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="260" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="260" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#10b981"><animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">MIDDLEWARE</text>
       <text x="130" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">⚡ API Gateway + Idempotence Filter</text>
@@ -106,7 +106,7 @@ Field distribution agents selling products directly from vans face frequent conn
     <!-- Node 3: SAP ERP -->
     <g transform="translate(525,15)" filter="url(#ns-f)">
       <rect width="150" height="95" rx="14" fill="url(#gc-fmcg)" stroke="#3b82f6" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#3b82f6"><animate attributeName="opacity" values="1;0.4;1" dur="1.9s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">BACKEND</text>
       <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🗄️ SAP ERP</text>
@@ -117,7 +117,7 @@ Field distribution agents selling products directly from vans face frequent conn
     <!-- Row 2: Reconciliation Engine (centered) -->
     <g transform="translate(165,150)" filter="url(#ns-f)">
       <rect width="350" height="95" rx="14" fill="url(#gc-fmcg)" stroke="#a855f7" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="350" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="350" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#a855f7"><animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">PROCESSING ENGINE</text>
       <text x="175" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🔄 Reconciliation Engine</text>
@@ -128,7 +128,7 @@ Field distribution agents selling products directly from vans face frequent conn
     <!-- Row 3: Dashboard -->
     <g transform="translate(165,280)" filter="url(#ns-f)">
       <rect width="350" height="70" rx="14" fill="url(#gc-fmcg)" stroke="#ec4899" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="28" x2="350" y2="28" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="28" x2="350" y2="28" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="14" r="3.5" fill="#ec4899"><animate attributeName="opacity" values="1;0.4;1" dur="2.1s" repeatCount="indefinite"/></circle>
       <text x="28" y="17" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">REPORTING</text>
       <text x="175" y="48" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📊 Stakeholder Dashboard & Alerts</text>
@@ -211,21 +211,21 @@ High-volume enterprise SaaS support teams struggle with email-based triage. The 
     </defs>
 
     <!-- Row 1 Connectors -->
-    <line x1="155" y1="62" x2="210" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="155" y1="62" x2="210" y2="62" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="155" y1="62" x2="210" y2="62" stroke="url(#fl-esc)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
-    <line x1="470" y1="62" x2="525" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="470" y1="62" x2="525" y2="62" stroke="url(#fl-esc)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Vertical connector -->
-    <line x1="340" y1="110" x2="340" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="110" x2="340" y2="150" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="340" y1="110" x2="340" y2="150" stroke="url(#fl-esc-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
-    <line x1="340" y1="245" x2="340" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="245" x2="340" y2="280" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="340" y1="245" x2="340" y2="280" stroke="url(#fl-esc-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Node 1: Mail Webhook Ingestion -->
     <g transform="translate(5,15)" filter="url(#ns-e)">
       <rect width="150" height="95" rx="14" fill="url(#gc-esc)" stroke="#ec4899" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#ec4899"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">INGESTION</text>
       <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📨 Mail Webhook</text>
@@ -236,7 +236,7 @@ High-volume enterprise SaaS support teams struggle with email-based triage. The 
     <!-- Node 2: NLP Classifier -->
     <g transform="translate(210,15)" filter="url(#ns-e)">
       <rect width="260" height="95" rx="14" fill="url(#gc-esc)" stroke="#3b82f6" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="260" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="260" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#3b82f6"><animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">PROCESSING</text>
       <text x="130" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🤖 AI Classifier + Priority Engine</text>
@@ -247,7 +247,7 @@ High-volume enterprise SaaS support teams struggle with email-based triage. The 
     <!-- Node 3: SLA Router -->
     <g transform="translate(525,15)" filter="url(#ns-e)">
       <rect width="150" height="95" rx="14" fill="url(#gc-esc)" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#10b981"><animate attributeName="opacity" values="1;0.4;1" dur="1.9s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">ROUTING</text>
       <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🎫 SLA Router</text>
@@ -258,7 +258,7 @@ High-volume enterprise SaaS support teams struggle with email-based triage. The 
     <!-- Row 2: Notification Engine -->
     <g transform="translate(165,150)" filter="url(#ns-e)">
       <rect width="350" height="95" rx="14" fill="url(#gc-esc)" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="350" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="350" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#f59e0b"><animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">NOTIFICATION ENGINE</text>
       <text x="175" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🔔 Multi-Channel Alert System</text>
@@ -269,7 +269,7 @@ High-volume enterprise SaaS support teams struggle with email-based triage. The 
     <!-- Row 3: Analytics Dashboard -->
     <g transform="translate(165,280)" filter="url(#ns-e)">
       <rect width="350" height="70" rx="14" fill="url(#gc-esc)" stroke="#a855f7" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="28" x2="350" y2="28" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="28" x2="350" y2="28" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="14" r="3.5" fill="#a855f7"><animate attributeName="opacity" values="1;0.4;1" dur="2.1s" repeatCount="indefinite"/></circle>
       <text x="28" y="17" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">ANALYTICS</text>
       <text x="175" y="48" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📊 SLA Compliance Dashboard</text>
@@ -351,21 +351,21 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     </defs>
 
     <!-- Row 1 Connectors -->
-    <line x1="155" y1="62" x2="210" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="155" y1="62" x2="210" y2="62" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="155" y1="62" x2="210" y2="62" stroke="url(#fl-geo)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
-    <line x1="470" y1="62" x2="525" y2="62" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="470" y1="62" x2="525" y2="62" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="470" y1="62" x2="525" y2="62" stroke="url(#fl-geo)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Vertical connectors -->
-    <line x1="340" y1="110" x2="340" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="110" x2="340" y2="150" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="340" y1="110" x2="340" y2="150" stroke="url(#fl-geo-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
-    <line x1="340" y1="245" x2="340" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+    <line x1="340" y1="245" x2="340" y2="280" stroke="var(--border-color)" stroke-width="2"/>
     <line x1="340" y1="245" x2="340" y2="280" stroke="url(#fl-geo-v)" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="28;0" dur="1.8s" repeatCount="indefinite"/></line>
 
     <!-- Node 1: Grid Scraper -->
     <g transform="translate(5,15)" filter="url(#ns-g)">
       <rect width="150" height="95" rx="14" fill="url(#gc-geo)" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#10b981"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">SCRAPING</text>
       <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📡 Grid Scraper</text>
@@ -376,7 +376,7 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     <!-- Node 2: Yield Engine -->
     <g transform="translate(210,15)" filter="url(#ns-g)">
       <rect width="260" height="95" rx="14" fill="url(#gc-geo)" stroke="#a855f7" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="260" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="260" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#a855f7"><animate attributeName="opacity" values="1;0.4;1" dur="2.2s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">ALGORITHM</text>
       <text x="130" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📈 Dynamic Yield Pricing Engine</text>
@@ -387,7 +387,7 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     <!-- Node 3: Commuter UI -->
     <g transform="translate(525,15)" filter="url(#ns-g)">
       <rect width="150" height="95" rx="14" fill="url(#gc-geo)" stroke="#3b82f6" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="150" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="150" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#3b82f6"><animate attributeName="opacity" values="1;0.4;1" dur="1.9s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">INTERFACE</text>
       <text x="75" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📱 Commuter PWA</text>
@@ -398,7 +398,7 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     <!-- Row 2: Route Optimizer -->
     <g transform="translate(165,150)" filter="url(#ns-g)">
       <rect width="350" height="95" rx="14" fill="url(#gc-geo)" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="30" x2="350" y2="30" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="30" x2="350" y2="30" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="15" r="3.5" fill="#f59e0b"><animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/></circle>
       <text x="28" y="18" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">OPTIMIZATION</text>
       <text x="175" y="55" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">🗺️ Route Optimization Engine</text>
@@ -409,7 +409,7 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
     <!-- Row 3: Heatmap Dashboard -->
     <g transform="translate(165,280)" filter="url(#ns-g)">
       <rect width="350" height="70" rx="14" fill="url(#gc-geo)" stroke="#ec4899" stroke-width="1.2" stroke-opacity="0.5"/>
-      <line x1="0" y1="28" x2="350" y2="28" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="0" y1="28" x2="350" y2="28" stroke="var(--border-color)" stroke-width="1"/>
       <circle cx="16" cy="14" r="3.5" fill="#ec4899"><animate attributeName="opacity" values="1;0.4;1" dur="2.1s" repeatCount="indefinite"/></circle>
       <text x="28" y="17" font-size="7.5" font-weight="700" fill="#9aa0a6" letter-spacing="0.06em">VISUALIZATION</text>
       <text x="175" y="48" font-size="11" font-weight="800" fill="#e8eaed" text-anchor="middle">📊 Geospatial Heatmap Dashboard</text>
@@ -982,3 +982,4 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
   }
 
 })();
+
