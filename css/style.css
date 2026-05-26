@@ -961,6 +961,10 @@ ul, ol {
 }
 
 /* ---------- Projects Section ---------- */
+#projects {
+  padding-top: 80px !important;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -3438,6 +3442,9 @@ body.egg-cyberpunk {
   color: #10b981;
   margin-top: var(--space-md);
   animation: availabilityFloat 3s ease-in-out infinite;
+  white-space: normal;
+  max-width: 95%;
+  text-align: center;
 }
 
 .availability-dot {
@@ -3611,6 +3618,20 @@ body.egg-cyberpunk {
 
 [data-theme="light"] .availability-dot::after {
   border-color: #047857;
+}
+
+[data-theme="light"] .contact-form .btn-primary {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
+}
+
+[data-theme="light"] .contact-form .btn-primary:hover {
+  background: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4) !important;
+  transform: translateY(-2px) !important;
 }
 
 
