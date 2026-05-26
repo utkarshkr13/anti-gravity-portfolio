@@ -131,6 +131,7 @@
         <p class="reveal-right">
           I hold a <strong>B.Tech in Electronics and Communication Engineering from VIT</strong> and am a certified <strong>Microsoft Azure Administrator Associate (AZ-104)</strong>. That background helps me stay grounded in both business context and technical execution.
         </p>
+      </div>
   </section>
 
   <!-- ===== Experience Section ===== -->
@@ -718,7 +719,7 @@
       </div>
       
       <!-- Inline Contact Form -->
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form" style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 16px; background: rgba(255,255,255,0.02); padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
+      <form action="https://formspree.io/f/mnjropbv" method="POST" class="contact-form" style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 16px; background: rgba(255,255,255,0.02); padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
         <h3 style="margin-bottom: 8px; font-size: 1.2rem; font-weight: 600;">Send a message</h3>
         <input type="text" name="name" placeholder="Your Name" required style="padding: 12px 16px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 0.95rem;">
         <input type="email" name="email" placeholder="Your Email" required style="padding: 12px 16px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 0.95rem;">
@@ -822,7 +823,7 @@
       </div>
     </div>
 
-    <!-- Container 2: Siri Co-Pilot View (hidden by default) -->
+    <!-- Container 2: UKR Assistant View (hidden by default) -->
     <div class="panel-body" id="panelBodySiri" data-lenis-prevent style="padding: 16px 20px 20px; overflow-y: auto; display: none; flex-direction: column; gap: 14px; max-height: 400px; height: 400px; justify-content: space-between;">
       
       <!-- Top conversation view -->
@@ -945,7 +946,7 @@
           </div>
           <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
             <span style="color: var(--text-secondary);">Memory Integrity Check:</span>
-            <span style="color: #10b981; font-family: monospace;">0.00MB Leak Risk (Secure)</span>
+            <span style="color: #10b981; font-family: monospace;" id="sysMemory">Calculating...</span>
           </div>
           
           <!-- Live Telemetry Graph Canvas -->
@@ -1078,7 +1079,8 @@
           if (webLoadTimeEl) {
             // Measure actual dynamic load time using Performance Web API
             const loadTime = (performance.now() / 1000).toFixed(2);
-            webLoadTimeEl.innerText = `${loadTime}s (Instant)`;
+            const qualifier = loadTime < 2 ? 'Instant' : loadTime < 4 ? 'Fast' : loadTime < 8 ? 'Moderate' : 'Slow';
+            webLoadTimeEl.innerText = `${loadTime}s (${qualifier})`;
           }
         }, 100);
       });
@@ -1229,7 +1231,7 @@
         siriBubble.innerHTML = `
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
             <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
-              <i data-lucide="sparkles" style="width:12px;height:12px"></i> Siri Co-Pilot
+              <i data-lucide="sparkles" style="width:12px;height:12px"></i> UKR Assistant
             </div>
             <button class="siri-speech-btn" style="background: transparent; border: none; padding: 2px; color: var(--text-tertiary); cursor: none; transition: color 0.2s;" data-cursor="hover" title="Listen to response" onclick="speakText(this)">
               <i data-lucide="volume-2" style="width:14px;height:14px"></i>
@@ -1399,7 +1401,7 @@
           <a href="https://linkedin.com/in/utkarsh-kumar-rajput" target="_blank" class="btn btn-primary" style="padding: 14px 28px; font-size: 0.85rem;" data-cursor="hover">
             Connect on LinkedIn <i data-lucide="award" style="width:16px;height:16px;margin-left:6px;"></i>
           </a>
-          <a href="mailto:utkarshkr.13@outlook.com?subject=Interview%20Invitation%20-%20Product%20Manager%20%26%20Business%20Analyst&body=Hello%20Utkarsh,%20I%20found%20all%20your%20portfolio%20Easter%20eggs%20and%20was%20impressed%20by%20your%20interactive%20AI%20Product%20Lab%20sandbox.%20Let's%20connect%20for%20an%20interview!" class="btn btn-secondary" style="padding: 14px 28px; font-size: 0.85rem; border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff;" data-cursor="hover">
+          <a href="mailto:hello@utkarsh.ind.in?subject=Interview%20Invitation%20-%20Product%20Manager%20%26%20Business%20Analyst&body=Hello%20Utkarsh,%20I%20found%20all%20your%20portfolio%20Easter%20eggs%20and%20was%20impressed%20by%20your%20interactive%20AI%20Product%20Lab%20sandbox.%20Let's%20connect%20for%20an%20interview!" class="btn btn-secondary" style="padding: 14px 28px; font-size: 0.85rem; border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff;" data-cursor="hover">
             Send Interview Invitation <i data-lucide="mail" style="width:16px;height:16px;margin-left:6px;"></i>
           </a>
         </div>

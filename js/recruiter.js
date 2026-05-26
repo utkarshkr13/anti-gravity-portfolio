@@ -1104,8 +1104,23 @@
     const canvas = document.getElementById('sysTelemetryCanvas');
     const cpuEl = document.getElementById('sysCpuUsage');
     const fpsEl = document.getElementById('sysFps');
+    const memEl = document.getElementById('sysMemory');
     
     if (!canvas || !cpuEl || !fpsEl) return;
+
+    // Live memory reading via Chrome Performance API (where available)
+    function updateMemory() {
+      if (!memEl) return;
+      if (window.performance && performance.memory) {
+        const usedMB = (performance.memory.usedJSHeapSize / 1048576).toFixed(2);
+        const limitMB = (performance.memory.jsHeapSizeLimit / 1048576).toFixed(0);
+        memEl.innerText = `${usedMB}MB / ${limitMB}MB (Secure)`;
+      } else {
+        memEl.innerText = '< 2MB Est. (Secure)';
+      }
+    }
+    updateMemory();
+    setInterval(updateMemory, 3000);
     
     const ctx = canvas.getContext('2d');
     
