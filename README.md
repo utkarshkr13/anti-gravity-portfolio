@@ -1,56 +1,44 @@
-# 🚀 Utkarsh Kumar Rajput — Portfolio
+# 🚀 Utkarsh Kumar Rajput — Enterprise Product Portfolio
 
-A high-performance, interactive portfolio featuring a live financial ticker, glassmorphism UI, Lenis smooth-scrolling, GSAP animations, and **15 hidden interactive Easter eggs**. Inspired by Apple and Google design philosophy.
+A high-performance, interactive portfolio designed to showcase enterprise product management, business analysis, and full-stack technical delivery. Engineered with a premium, glassmorphic UI, smooth-scrolling, and autonomous agent integrations.
 
 🔗 **Live Site:** [utkarsh.ind.in](https://www.utkarsh.ind.in/)
 
-**Tech Stack:** Vanilla HTML / CSS / JS · GSAP · Lenis · yfinance (Python)
+**Tech Stack:** Vanilla HTML / CSS / JS · GSAP · Lenis · Formspree · GitHub Actions
 
 ---
 
-## 📈 Live Market Ticker
+## 🧠 UKR Assistant & Conversational Engine
 
-The hero background auto-scrolls **45 real financial tickers** with live price data, powered by a **Python / yfinance GitHub Actions pipeline** that refreshes `market.json` every hour.
+The portfolio features the **UKR Assistant**—an embedded conversational AI shell that allows recruiters and engineering managers to query Utkarsh's experience, skills, and project history using natural language or slash commands. 
 
-### Tracked Symbols
+* Features live speech-to-text input dictation.
+* Audio text-to-speech (TTS) responses.
+* Slash command routing (e.g., `/skills`, `/experience`, `/projects`).
 
-| Category | Tickers |
-|---|---|
-| **🇺🇸 US Tech** | `AAPL` · `MSFT` · `NVDA` · `GOOGL` · `TSLA` · `META` · `AMZN` · `NFLX` · `AMD` · `INTC` · `ORCL` · `IBM` · `CRM` · `ADBE` · `QCOM` · `CSCO` |
-| **🇺🇸 US Finance & Consumer** | `JPM` · `V` · `MA` · `WMT` · `DIS` · `UBER` |
-| **₿ Crypto** | `BTC-USD` · `ETH-USD` · `SOL-USD` · `BNB-USD` |
-| **🇮🇳 Nifty 50 (India `.NS`)** | `RELIANCE` · `TCS` · `INFY` · `HDFCBANK` · `SBIN` · `WIPRO` · `HCLTECH` · `TECHM` · `LT` · `ICICIBANK` · `AXISBANK` · `KOTAKBANK` · `BAJFINANCE` · `MARUTI` · `SUNPHARMA` · `ITC` · `ASIANPAINT` · `HINDUNILVR` · `BHARTIARTL` |
+## 📈 Autonomous Evolution & Systems Monitor
 
----
+An integrated **Systems Monitor Dashboard** provides live diagnostics and telemetry:
+* **Live Telemetry:** Renders real-time CPU triage load, FPS render rates, and memory integrity checks dynamically on an HTML5 Canvas line chart.
+* **Evolution Feed:** Automatically fetches the latest Git commits directly from the repository to showcase the CI/CD deployment pipeline and continuous feature updates.
 
-## 🥚 Hidden Easter Eggs (15 Total)
+## 💼 AI Product Lab & Recruiter Suite
 
-Fifteen interactive surprises are engineered into the frontend for developers and recruiters to discover.
+A dedicated section for hiring managers to test product intuition and operational delivery:
+* **Interactive Kanban Board:** Simulates an active sprint board. Drag, drop, and advance tickets from Backlog to UAT to trigger SLA success workflows.
+* **Challenge Scenarios:** Multiple-choice PM/BA scenario simulations testing business logic, edge-case coverage, and requirement structuring.
 
-### ✨ Original Five
+## 🥚 Interactive Easter Eggs (The Focused 3)
+
+The portfolio retains a curated set of interactive easter eggs to demonstrate advanced DOM manipulation and frontend physics without compromising enterprise credibility:
 
 | # | Name | Activation | Effect |
 |---|---|---|---|
-| 1 | **🚀 Matrix Hyperdrive** | Click the hero name **"Utkarsh"** 5× rapidly | All tickers turn neon green, scroll velocity × 35 |
-| 2 | **🎮 Konami Code (Anti-Gravity)** | Type `↑ ↑ ↓ ↓ ← → ← → B A` | All UI elements float away off-screen |
-| 3 | **🎉 "hire" Command** | Type `hire` anywhere on the page | Massive confetti explosion |
-| 4 | **⛈️ "salescode" Thunderstorm** | Type `salescode` | Lightning flashes + HTML5 Canvas rain |
-| 5 | **👨‍💻 Hacker Console Signature** | Open `F12` → Console | ASCII art "UTKARSH" in blue with welcome message |
+| 1 | **🎮 Konami Code (Anti-Gravity)** | Type `↑ ↑ ↓ ↓ ← → ← → B A` or `/antigravity` | Defies gravity—all UI elements float away off-screen using CSS 3D translation. |
+| 2 | **🎉 UAT Celebration** | Type `hire` or `/hire` | Massive confetti particle explosion to celebrate successful deployments. |
+| 3 | **⛈️ Dynamic Weather** | Type `salescode` or `/rain` | Triggers a custom HTML5 canvas heavy rain and high-voltage lightning simulation. |
 
-### 🔥 Ten Advanced Easter Eggs
-
-| # | Name | Trigger | Effect |
-|---|---|---|---|
-| 6 | **💀 Thanos Snap** | Type `thanos` | 50 % of DOM elements dissolve into particle dust |
-| 7 | **🔫 GTA Wasted** | Type `wasted` | Screen desaturates, bullet-time slow-mo, red **WASTED** text |
-| 8 | **🚔 GTA Wanted** | Type `wanted` | 5-star wanted level + police siren strobes. Type `leavemealone` to clear |
-| 9 | **🟦 Windows BSOD** | Type `bsod` or `windows` | Full Blue Screen of Death overlay. Click to dismiss |
-| 10 | **🤖 Iron Man Jarvis HUD** | Type `jarvis` | Holographic targeting HUD overlay *(toggle on/off)* |
-| 11 | **🍎 Apple "One More Thing"** | Type `onemorething` | Dramatic Steve Jobs spotlight moment |
-| 12 | **🥽 Apple Vision Pro** | Type `visionpro` | 3D isometric spatial UI tilt *(toggle on/off)* |
-| 13 | **🌆 Cyberpunk Glitch** | Type `cyberpunk` | RGB chromatic aberration + screen tearing *(toggle on/off)* |
-| 14 | **📐 Google Askew** | Type `askew` | Entire page tilts 3° *(toggle on/off)* |
-| 15 | **👾 Google Zerg Rush** | Type `zergrush` | Red **O** circles fall and eat page content. Click to kill |
+*(Note: Legacy easter eggs like Thanos Snap, GTA Wasted, and Zerg Rush have been deprecated to maintain professional formatting, but their architectural logic remains in the git history).*
 
 ---
 
@@ -71,15 +59,10 @@ start index.html       # Windows
 python -m http.server 8000
 ```
 
-### Market Data Pipeline
+### Contact & Deployment
 
-```bash
-pip install yfinance pandas
-python scripts/fetch_market.py
-```
-
-> A **GitHub Action** runs every hour to automatically refresh `market.json` with the latest prices.
+The site utilizes **Formspree** for serverless contact form payload delivery, routing recruiter inquiries directly with SLA-level reliability.
 
 ---
 
-<p align="center"><b>⭐ Star this repo if you find the Easter eggs!</b></p>
+<p align="center"><b>If you are exploring enterprise product delivery, RTM workflows, or AI-enabled operational tools, feel free to connect via the live site!</b></p>
