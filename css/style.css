@@ -3568,4 +3568,18 @@ body.egg-cyberpunk {
   border-bottom-color: var(--border-color);
 }
 
+[data-theme="light"] .availability-badge {
+  background: rgba(4, 120, 87, 0.08);
+  border-color: rgba(4, 120, 87, 0.22);
+  color: #047857;
+}
+
+[data-theme="light"] .availability-dot {
+  background: #047857;
+}
+
+[data-theme="light"] .availability-dot::after {
+  border-color: #047857;
+}
+
 
