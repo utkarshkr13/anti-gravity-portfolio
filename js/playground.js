@@ -523,6 +523,16 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
       { element: tabROI, name: 'roi' }
     ];
 
+    function updateActionButtonsState() {
+      if (activeTab === 'flow' || activeTab === 'roi') {
+        if (copyBtn) copyBtn.classList.add('disabled');
+        if (exportBtn) exportBtn.classList.add('disabled');
+      } else {
+        if (copyBtn) copyBtn.classList.remove('disabled');
+        if (exportBtn) exportBtn.classList.remove('disabled');
+      }
+    }
+
     tabs.forEach(t => {
       if (t.element) {
         t.element.addEventListener('click', (e) => {
@@ -532,6 +542,7 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
           t.element.classList.add('active');
           activeTab = t.name;
           renderActiveTab();
+          updateActionButtonsState();
         });
       }
     });
@@ -546,9 +557,6 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
         }
         const text = specsData[activeDomain][activeTab];
         navigator.clipboard.writeText(text).then(() => {
-          if (window.showSystemToast) {
-            window.showSystemToast('hire'); // Celebration ripple toast
-          }
           alertSuccessToast("Copied to Clipboard!", "The specification markdown has been saved to your clipboard.");
         }).catch(err => {
           console.error('Failed to copy text: ', err);
@@ -726,6 +734,8 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
       specMeta.innerHTML = `<i data-lucide="cog" style="width:14px;height:14px;opacity:0.6;"></i> Environment: <strong>${channel}</strong> · Workflow: <strong>${mode}</strong> · ${data.metrics}`;
       lucide.createIcons({ node: specMeta });
 
+      updateActionButtonsState();
+
       if (activeTab === 'flow') {
         isTyping = false;
         specTextContainer.innerHTML = data.flow;
@@ -738,37 +748,22 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
         return;
       }
 
-      isTyping = true;
+      isTyping = false;
       const rawText = data[activeTab];
-      specTextContainer.innerHTML = '';
       
-      // Fast typewriter speed
-      let index = 0;
-      const charsPerTick = 20; // Highly responsive chunk typing
+      // Bypasses the raw text typewriter phase to prevent any raw markdown flash or visual spacing glitches
+      specTextContainer.style.opacity = '0';
+      specTextContainer.innerHTML = parseMarkdownToHTML(rawText);
       
-      function type() {
-        if (index < rawText.length) {
-          const chunk = rawText.substring(index, index + charsPerTick);
-          specTextContainer.innerText += chunk;
-          index += charsPerTick;
-          
-          // Auto-scroll inside document view
-          const docView = specTextContainer.closest('.playground-doc-view');
-          if (docView) {
-            docView.scrollTop = docView.scrollHeight;
-          }
-          
-          requestAnimationFrame(type);
-        } else {
-          isTyping = false;
-          specTextContainer.innerHTML = parseMarkdownToHTML(rawText);
-          const docView = specTextContainer.closest('.playground-doc-view');
-          if (docView) {
-            docView.scrollTop = 0;
-          }
-        }
+      // Trigger reflow for smooth transition
+      specTextContainer.offsetHeight;
+      specTextContainer.style.transition = 'opacity 0.4s ease';
+      specTextContainer.style.opacity = '1';
+      
+      const docView = specTextContainer.closest('.playground-doc-view');
+      if (docView) {
+        docView.scrollTop = 0;
       }
-      type();
     }
 
     function renderActiveTab() {
