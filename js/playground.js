@@ -967,6 +967,82 @@ Commuter transportation grids operate under highly fluctuating demand. Static ro
         e.stopPropagation();
       }, { passive: true });
     });
+
+    // Fullscreen interactive modal for Architecture Map
+    if (specTextContainer) {
+      specTextContainer.addEventListener('click', (e) => {
+        if (activeTab !== 'flow') return;
+        const wrapper = e.target.closest('.flow-chart-wrapper');
+        if (!wrapper) return;
+        openFullscreenMap(wrapper.innerHTML);
+      });
+    }
+
+    function openFullscreenMap(svgContent) {
+      const modal = document.createElement('div');
+      modal.className = 'playground-map-modal';
+      modal.style.cssText = `
+        position: fixed;
+        inset: 0;
+        background: rgba(8, 9, 12, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 999999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      `;
+      
+      modal.innerHTML = `
+        <div class="modal-close-btn" style="position: absolute; top: 30px; right: 40px; font-family: monospace; font-size: 0.85rem; color: var(--text-secondary); cursor: pointer; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: var(--radius-full); background: rgba(255,255,255,0.02); transition: all 0.3s; z-index: 10;" data-cursor="hover">
+          ✕ Close View
+        </div>
+        <div class="modal-map-container" style="width: 100%; max-width: 1100px; height: 100%; max-height: 80vh; display: flex; align-items: center; justify-content: center; transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);">
+          ${svgContent}
+        </div>
+        <p style="margin-top: 20px; font-size: 0.76rem; color: var(--text-secondary); opacity: 0.8; font-family: monospace;">Press ESC or click anywhere outside to close</p>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Trigger reflow & fade in
+      modal.offsetHeight;
+      modal.style.opacity = '1';
+      modal.querySelector('.modal-map-container').style.transform = 'scale(1)';
+      
+      if (window.lenis) window.lenis.stop();
+      
+      function closeModal() {
+        modal.style.opacity = '0';
+        modal.querySelector('.modal-map-container').style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          modal.remove();
+          if (window.lenis) window.lenis.start();
+        }, 400);
+        document.removeEventListener('keydown', handleEsc);
+      }
+      
+      function handleEsc(e) {
+        if (e.key === 'Escape') closeModal();
+      }
+      
+      modal.querySelector('.modal-close-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal();
+      });
+      
+      modal.addEventListener('click', (e) => {
+        if (!e.target.closest('.modal-map-container')) {
+          closeModal();
+        }
+      });
+      
+      document.addEventListener('keydown', handleEsc);
+    }
   }
 
   // Initialize when DOM is ready

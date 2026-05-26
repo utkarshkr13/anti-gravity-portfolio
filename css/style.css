@@ -3658,4 +3658,80 @@ body.egg-cyberpunk {
   transform: translateY(-2px) !important;
 }
 
+/* QR Code dynamic text readability and mobile scaling overrides */
+.qr-text {
+  color: #ffffff !important; /* White in dark mode */
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.4), 0 0 20px rgba(19, 22, 28, 0.9) !important; /* Glow shadow to stand out over dark/patterned background */
+}
+
+[data-theme="light"] .qr-text {
+  color: #1e293b !important; /* Slate in light mode */
+  text-shadow: none !important;
+}
+
+@media (max-width: 480px) {
+  .qr-text {
+    font-size: 0.95rem !important; /* Compact font on mobile */
+  }
+  .qr-code-wrapper.hovered .qr-text.left {
+    right: calc(100% + 8px) !important; /* Pull closer to avoid offscreen clipping */
+  }
+  .qr-code-wrapper.hovered .qr-text.right {
+    left: calc(100% + 8px) !important; /* Pull closer to avoid offscreen clipping */
+  }
+}
+
+/* Interactive Fullscreen Architecture Map Styling */
+.flow-chart-wrapper {
+  cursor: zoom-in;
+  position: relative;
+  transition: transform 0.3s var(--ease-out);
+}
+.flow-chart-wrapper:hover {
+  transform: translateY(-2px);
+}
+.flow-chart-wrapper::after {
+  content: '🔍 Click to view Fullscreen';
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  background: rgba(8, 9, 12, 0.85);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 6px 12px;
+  font-size: 0.64rem;
+  font-family: monospace;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.flow-chart-wrapper:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-theme="light"] .flow-chart-wrapper::after {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Modal layout elements styling */
+.playground-map-modal .modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--accent) !important;
+}
+[data-theme="light"] .playground-map-modal {
+  background: rgba(255, 255, 255, 0.96) !important;
+}
+[data-theme="light"] .playground-map-modal .modal-close-btn {
+  background: rgba(0, 0, 0, 0.02) !important;
+  color: var(--text-secondary) !important;
+}
+[data-theme="light"] .playground-map-modal .modal-close-btn:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: var(--text-primary) !important;
+}
+
 
