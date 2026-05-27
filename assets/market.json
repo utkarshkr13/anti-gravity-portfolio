@@ -403,41 +403,41 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 75854.42,
-      "change": 25.02,
-      "change_pct": 0.03,
-      "is_positive": true
+      "price": 75702.04,
+      "change": -127.37,
+      "change_pct": -0.17,
+      "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2075.36,
-      "change": 4.29,
-      "change_pct": 0.21,
+      "price": 2072.61,
+      "change": 1.54,
+      "change_pct": 0.07,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 83.79,
-      "change": 0.2,
-      "change_pct": 0.24,
+      "price": 83.69,
+      "change": 0.1,
+      "change_pct": 0.12,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 656.57,
-      "change": 0.98,
-      "change_pct": 0.15,
-      "is_positive": true
+      "price": 655.0,
+      "change": -0.59,
+      "change_pct": -0.09,
+      "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.24,
       "change": 0.0,
-      "change_pct": 0.38,
+      "change_pct": 0.17,
       "is_positive": true
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.33,
       "change": 0.0,
-      "change_pct": 0.12,
+      "change_pct": 0.13,
       "is_positive": true
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.1,
       "change": 0.0,
-      "change_pct": 0.22,
+      "change_pct": 0.54,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 1.25,
+      "price": 1.26,
       "change": 0.01,
-      "change_pct": 0.46,
+      "change_pct": 0.94,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 9.4,
-      "change": 0.02,
-      "change_pct": 0.25,
+      "price": 9.42,
+      "change": 0.04,
+      "change_pct": 0.46,
       "is_positive": true
     },
     {
@@ -643,8 +643,8 @@
     {
       "symbol": "ITC",
       "currency": "₹",
-      "price": 301.65,
-      "change": -2.7,
+      "price": 293.65,
+      "change": -2.63,
       "change_pct": -0.89,
       "is_positive": false
     },
