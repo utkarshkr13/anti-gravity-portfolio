@@ -403,80 +403,80 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 63715.99,
-      "change": -96.19,
-      "change_pct": -0.15,
+      "price": 62744.69,
+      "change": -1067.48,
+      "change_pct": -1.67,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1764.83,
-      "change": -4.03,
-      "change_pct": -0.23,
+      "price": 1734.65,
+      "change": -34.21,
+      "change_pct": -1.93,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 68.63,
-      "change": -0.1,
-      "change_pct": -0.14,
+      "price": 67.44,
+      "change": -1.29,
+      "change_pct": -1.87,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 604.08,
-      "change": 0.51,
-      "change_pct": 0.08,
-      "is_positive": true
+      "price": 596.16,
+      "change": -7.41,
+      "change_pct": -1.23,
+      "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
-      "price": 0.18,
-      "change": -0.0,
-      "change_pct": -1.02,
+      "price": 0.16,
+      "change": -0.02,
+      "change_pct": -9.82,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.17,
-      "change": 0.0,
-      "change_pct": 0.01,
-      "is_positive": true
+      "price": 1.14,
+      "change": -0.02,
+      "change_pct": -1.92,
+      "is_positive": false
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.09,
       "change": -0.0,
-      "change_pct": -0.17,
+      "change_pct": -2.17,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 1.03,
-      "change": -0.0,
-      "change_pct": -0.09,
+      "price": 1.02,
+      "change": -0.02,
+      "change_pct": -1.73,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.99,
-      "change": -0.01,
-      "change_pct": -0.14,
+      "price": 7.84,
+      "change": -0.16,
+      "change_pct": -1.95,
       "is_positive": false
     },
     {
       "symbol": "RELIANCE",
       "currency": "₹",
-      "price": 1303.7,
-      "change": 2.7,
+      "price": 1297.7,
+      "change": 2.69,
       "change_pct": 0.21,
       "is_positive": true
     },
@@ -723,8 +723,8 @@
     {
       "symbol": "CIPLA",
       "currency": "₹",
-      "price": 1398.7,
-      "change": 33.7,
+      "price": 1385.7,
+      "change": 33.39,
       "change_pct": 2.47,
       "is_positive": true
     },
