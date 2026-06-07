@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 61555.34,
-      "change": 691.1,
-      "change_pct": 1.14,
+      "price": 61815.0,
+      "change": 950.76,
+      "change_pct": 1.56,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1592.51,
-      "change": 23.64,
-      "change_pct": 1.51,
+      "price": 1603.7,
+      "change": 34.83,
+      "change_pct": 2.22,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 63.68,
-      "change": 1.49,
-      "change_pct": 2.4,
+      "price": 64.16,
+      "change": 1.97,
+      "change_pct": 3.17,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 579.79,
-      "change": 5.29,
-      "change_pct": 0.92,
+      "price": 584.62,
+      "change": 10.12,
+      "change_pct": 1.76,
       "is_positive": true
     },
     {
@@ -437,15 +437,15 @@
       "currency": "$",
       "price": 0.16,
       "change": 0.0,
-      "change_pct": 2.12,
+      "change_pct": 2.19,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.12,
-      "change": 0.02,
-      "change_pct": 2.21,
+      "change": 0.03,
+      "change_pct": 2.5,
       "is_positive": true
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.08,
       "change": 0.0,
-      "change_pct": 1.79,
+      "change_pct": 2.35,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.95,
-      "change": 0.01,
-      "change_pct": 1.09,
+      "price": 0.96,
+      "change": 0.02,
+      "change_pct": 2.04,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.55,
-      "change": 0.16,
-      "change_pct": 2.11,
+      "price": 7.61,
+      "change": 0.21,
+      "change_pct": 2.88,
       "is_positive": true
     },
     {
