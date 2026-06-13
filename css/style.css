@@ -2363,7 +2363,8 @@ body.egg-cyberpunk {
 }
 
 .playground-control-card, .playground-workspace-card {
-  min-height: 640px;
+  height: 680px;
+  min-height: 680px;
   background: rgba(19, 22, 28, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -2375,13 +2376,6 @@ body.egg-cyberpunk {
   position: relative;
   overflow: hidden;
   transition: all 0.6s var(--ease-out), border-color var(--theme-transition), background var(--theme-transition), box-shadow 0.6s;
-}
-
-@media (min-width: 1025px) {
-  .playground-control-card, .playground-workspace-card {
-    height: 680px;
-    min-height: 680px;
-  }
 }
 
 [data-theme="light"] .playground-control-card, [data-theme="light"] .playground-workspace-card {
@@ -2619,7 +2613,8 @@ body.egg-cyberpunk {
 }
 
 .playground-workspace-card {
-  min-height: 640px;
+  height: 680px;
+  min-height: 680px;
 }
 
 .playground-workspace-empty, .playground-workspace-loader, .playground-workspace-content {
@@ -2834,21 +2829,13 @@ body.egg-cyberpunk {
   flex: 1;
   margin-top: 16px;
   height: 100%;
-  max-height: calc(100% - 130px);
-  min-height: 400px;
+  min-height: 0;
+  max-height: none;
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) transparent;
   transition: all 0.4s var(--ease-out);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-}
-
-@media (min-width: 1025px) {
-  .playground-doc-view {
-    min-height: 0;
-    max-height: none;
-    height: 100%;
-  }
 }
 
 [data-theme="light"] .playground-doc-view {
@@ -3669,15 +3656,44 @@ body.egg-cyberpunk {
   text-shadow: none !important;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .qr-text {
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, 0) !important;
     font-size: 0.95rem !important; /* Compact font on mobile */
   }
+  .qr-text.left {
+    top: auto !important;
+    bottom: 50% !important;
+  }
+  .qr-text.right {
+    bottom: auto !important;
+    top: 50% !important;
+  }
   .qr-code-wrapper.hovered .qr-text.left {
-    right: calc(100% + 8px) !important; /* Pull closer to avoid offscreen clipping */
+    bottom: calc(100% + 8px) !important;
   }
   .qr-code-wrapper.hovered .qr-text.right {
-    left: calc(100% + 8px) !important; /* Pull closer to avoid offscreen clipping */
+    top: calc(100% + 8px) !important;
+  }
+
+  /* Optimize Workspace Loader for Small Screens */
+  .playground-workspace-loader {
+    padding: var(--space-md) var(--space-sm) !important;
+  }
+  .loader-state-content {
+    gap: 10px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .loader-state-content h3 {
+    min-height: auto !important;
+    margin-bottom: 4px !important;
+    font-size: 0.8rem !important;
+  }
+  .terminal-logger {
+    height: 140px !important; /* Slightly more compact logger on mobile to avoid overflow */
   }
 }
 
