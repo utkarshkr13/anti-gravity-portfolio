@@ -1542,6 +1542,7 @@ ul, ol {
   .nav-wrapper {
     max-width: 95vw;
     margin: 0 auto;
+    right: 0;
   }
   .navbar {
     padding: 6px 8px;
@@ -1615,6 +1616,29 @@ ul, ol {
   }
   a, button {
     cursor: pointer;
+  }
+  .timeline-card {
+    padding: 20px;
+  }
+  .skill-category {
+    padding: 20px;
+  }
+  .project-card-body {
+    padding: 20px;
+  }
+  .project-modal .modal-container {
+    padding: 20px;
+  }
+  .project-card.featured {
+    flex-direction: column;
+  }
+  .project-card.featured .project-card-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+  }
+  .project-card.featured .project-card-body {
+    width: 100%;
+    padding: 20px;
   }
 }
 
