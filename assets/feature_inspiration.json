@@ -1,14 +1,14 @@
 {
-  "repo_name": "abhisheknaiidu/awesome-github-profile-readme",
-  "owner": "abhisheknaiidu",
-  "stars": 30237,
-  "url": "https://github.com/abhisheknaiidu/awesome-github-profile-readme",
-  "homepage": "https://bit.ly/awesome-gh",
-  "featured_trend": "Modern modular layout with responsive grids emphasizing awesome, awesome-list, github workflows.",
-  "effect_class": "generic",
-  "accent_h": 101,
-  "accent_s": "66%",
-  "accent_l": "55%",
-  "theme_name": "Lime Meadow",
-  "last_sync": "2026-06-15 06:30:21 UTC"
+  "repo_name": "adrianhajdin/portfolio_website",
+  "owner": "adrianhajdin",
+  "stars": 3493,
+  "url": "https://github.com/adrianhajdin/portfolio_website",
+  "homepage": "https://www.jsmastery.pro",
+  "featured_trend": "Server-side rendered performance and fast client-side hydration using Next.js framework.",
+  "effect_class": "reactive",
+  "accent_h": 175,
+  "accent_s": "65%",
+  "accent_l": "57%",
+  "theme_name": "Ocean Cyan",
+  "last_sync": "2026-06-15 06:45:16 UTC"
 }
