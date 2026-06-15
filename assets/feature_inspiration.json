@@ -1,14 +1,14 @@
 {
-  "repo_name": "henryjeff/portfolio-website",
-  "owner": "henryjeff",
-  "stars": 2175,
-  "url": "https://github.com/henryjeff/portfolio-website",
-  "homepage": "https://henryheffernan.com",
-  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
-  "effect_class": "typescript",
-  "accent_h": 286,
-  "accent_s": "56%",
-  "accent_l": "56%",
-  "theme_name": "Magenta Pink",
-  "last_sync": "2026-06-15 07:00:16 UTC"
+  "repo_name": "cobiwave/simplefolio",
+  "owner": "cobiwave",
+  "stars": 14161,
+  "url": "https://github.com/cobiwave/simplefolio",
+  "homepage": "https://the-simplefolio.netlify.app/",
+  "featured_trend": "Elegant minimalist aesthetic focused on typography, breathing space, and high readability.",
+  "effect_class": "minimal",
+  "accent_h": 32,
+  "accent_s": "57%",
+  "accent_l": "50%",
+  "theme_name": "Warm Amber",
+  "last_sync": "2026-06-15 07:15:14 UTC"
 }
