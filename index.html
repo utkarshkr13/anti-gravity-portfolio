@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -362,7 +362,7 @@
 
     <div class="github-dashboard reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 32px;">
       <!-- Profile Metrics Card -->
-      <div class="github-metrics-card" style="padding: 24px; background: rgba(19, 22, 28, 0.75); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
+      <div class="github-metrics-card" style="padding: 24px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
         <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
           <i data-lucide="github" style="width: 20px; height: 20px;"></i> Profile Activity
         </h3>
@@ -383,7 +383,7 @@
       </div>
 
       <!-- Languages Breakdown Card -->
-      <div class="github-languages-card" style="padding: 24px; background: rgba(19, 22, 28, 0.75); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
+      <div class="github-languages-card" style="padding: 24px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
         <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
           <i data-lucide="code-2" style="width: 20px; height: 20px;"></i> Language Weight
         </h3>
@@ -393,7 +393,7 @@
       </div>
 
       <!-- Portfolio Feature Spotlight Card -->
-      <div class="github-spotlight-card" style="padding: 24px; background: rgba(19, 22, 28, 0.75); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px); grid-column: span 1; display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="github-spotlight-card" style="padding: 24px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px); grid-column: span 1; display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
             <i data-lucide="sparkles" style="width: 20px; height: 20px; color: #f59e0b;"></i> Portfolio Feature Spotlight
@@ -539,8 +539,8 @@
       <!-- Inline Contact Form -->
       <form action="https://formspree.io/f/mnjropbv" method="POST" class="contact-form" style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 16px; background: rgba(255,255,255,0.02); padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
         <h3 style="margin-bottom: 8px; font-size: 1.2rem; font-weight: 600;">Send a message</h3>
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
+        <input type="email" name="email" placeholder="Your Email" autocomplete="email" required>
         <textarea name="message" placeholder="How can I help you?" rows="4" required style="resize: vertical;"></textarea>
         <button type="submit" class="btn btn-primary" data-cursor="hover" style="align-self: flex-start; padding: 12px 24px;">Send Message <i data-lucide="send" style="width:16px;height:16px;margin-left:6px;"></i></button>
       </form>

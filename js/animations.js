@@ -82,7 +82,7 @@
         this.y = this.baseY;
         this.vx = 0;
         this.vy = 0;
-        this.opacity = 0.45; 
+        this.opacity = 0.05; 
         this.scrollSpeed = rowSpeed || 0.8;
       }
       
