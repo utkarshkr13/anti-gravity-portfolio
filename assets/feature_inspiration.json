@@ -1,14 +1,14 @@
 {
-  "repo_name": "Renovamen/playground-macos",
-  "owner": "Renovamen",
-  "stars": 3476,
-  "url": "https://github.com/Renovamen/playground-macos",
-  "homepage": "https://portfolio.zxh.me",
-  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
-  "effect_class": "tailwind",
-  "accent_h": 210,
-  "accent_s": "55%",
-  "accent_l": "52%",
-  "theme_name": "Steel Blue",
-  "last_sync": "2026-06-15 08:30:15 UTC"
+  "repo_name": "ashutosh1919/masterPortfolio",
+  "owner": "ashutosh1919",
+  "stars": 4188,
+  "url": "https://github.com/ashutosh1919/masterPortfolio",
+  "homepage": "https://ashutoshhathidara.com",
+  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
+  "effect_class": "typescript",
+  "accent_h": 124,
+  "accent_s": "59%",
+  "accent_l": "54%",
+  "theme_name": "Forest Emerald",
+  "last_sync": "2026-06-15 08:45:16 UTC"
 }
