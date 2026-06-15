@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 65518.41,
-      "change": -191.68,
-      "change_pct": -0.29,
+      "price": 65581.02,
+      "change": -129.07,
+      "change_pct": -0.2,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1720.31,
-      "change": -4.13,
-      "change_pct": -0.24,
+      "price": 1719.77,
+      "change": -4.67,
+      "change_pct": -0.27,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 71.01,
-      "change": -0.18,
-      "change_pct": -0.26,
+      "price": 71.09,
+      "change": -0.1,
+      "change_pct": -0.15,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 614.78,
-      "change": -1.35,
-      "change_pct": -0.22,
+      "price": 615.54,
+      "change": -0.59,
+      "change_pct": -0.1,
       "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.18,
-      "change": -0.0,
-      "change_pct": -0.26,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.17,
+      "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.18,
       "change": -0.0,
-      "change_pct": -0.37,
+      "change_pct": -0.11,
       "is_positive": false
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.09,
       "change": -0.0,
-      "change_pct": -0.26,
+      "change_pct": -0.0,
       "is_positive": false
     },
     {
@@ -461,15 +461,15 @@
       "currency": "$",
       "price": 0.99,
       "change": -0.0,
-      "change_pct": -0.39,
+      "change_pct": -0.19,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.14,
-      "change": -0.03,
-      "change_pct": -0.36,
+      "price": 8.15,
+      "change": -0.02,
+      "change_pct": -0.2,
       "is_positive": false
     },
     {
