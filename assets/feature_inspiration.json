@@ -1,14 +1,14 @@
 {
-  "repo_name": "codingmonster-tv/Awesome_Resume_Portfolio",
-  "owner": "codingmonster-tv",
-  "stars": 2482,
-  "url": "https://github.com/codingmonster-tv/Awesome_Resume_Portfolio",
-  "homepage": "",
-  "featured_trend": "Modern modular layout with responsive grids emphasizing coverletter, cv, portfolio workflows.",
-  "effect_class": "generic",
-  "accent_h": 178,
-  "accent_s": "68%",
-  "accent_l": "52%",
-  "theme_name": "Ocean Cyan",
-  "last_sync": "2026-06-15 15:03:00 UTC"
+  "repo_name": "HamishMW/portfolio",
+  "owner": "HamishMW",
+  "stars": 3449,
+  "url": "https://github.com/HamishMW/portfolio",
+  "homepage": "https://hamishw.com",
+  "featured_trend": "Interactive 3D graphics and immersive canvas experience utilizing Three.js and WebGL shaders.",
+  "effect_class": "three3d",
+  "accent_h": 200,
+  "accent_s": "60%",
+  "accent_l": "50%",
+  "theme_name": "Steel Blue",
+  "last_sync": "2026-06-15 22:55:12 UTC"
 }
