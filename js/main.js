@@ -166,113 +166,196 @@
     });
   }
 
-  /* ---------- Interactive Key-Sequence Easter Eggs ---------- */
-  function triggerThunderRain() {
-    let flashes = 0;
-    let flashInt = setInterval(() => {
-      document.body.style.setProperty('background-color', flashes % 2 === 0 ? '#fff' : '', 'important');
-      flashes++;
-      if (flashes > 5) clearInterval(flashInt);
-    }, 100);
+  /* ---------- Project Category Filters ---------- */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
 
-    const canvas = document.createElement('canvas');
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.zIndex = '999999';
-    document.body.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  if (filterBtns.length > 0 && projectCards.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Update active class on buttons
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.background = 'transparent';
+          b.style.color = 'var(--text-secondary)';
+          b.style.borderColor = 'var(--border-color)';
+        });
+        
+        btn.classList.add('active');
+        btn.style.background = 'var(--accent)';
+        btn.style.color = '#fff';
+        btn.style.borderColor = 'var(--accent)';
+        
+        const filterValue = btn.getAttribute('data-filter');
+        
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          
+          if (filterValue === 'all' || category === filterValue) {
+            // Smooth show
+            card.style.display = 'block';
+            gsap.fromTo(card, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
+          } else {
+            // Hide
+            card.style.display = 'none';
+          }
+        });
 
-    let drops = [];
-    for(let i=0; i<300; i++) drops.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vy: 15 + Math.random()*15, l: 20 + Math.random()*20 });
-
-    function draw() {
-      if(!canvas.parentElement) return;
-      ctx.clearRect(0,0, canvas.width, canvas.height);
-      ctx.strokeStyle = 'rgba(174,194,224,0.6)';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      drops.forEach(d => {
-        ctx.moveTo(d.x, d.y);
-        ctx.lineTo(d.x, d.y + d.l);
-        d.y += d.vy;
-        if (d.y > canvas.height) d.y = -d.l;
-      });
-      ctx.stroke();
-      requestAnimationFrame(draw);
-    }
-    draw();
-    setTimeout(() => { canvas.style.opacity = 0; canvas.style.transition = 'opacity 2s'; setTimeout(()=>canvas.remove(),2000)}, 6000);
-  }
-
-  function triggerAntiGravity() {
-    document.querySelectorAll('section, nav, .btn, .timeline-item, .stat-card, .project-card, .cert-card').forEach(el => {
-      gsap.to(el, {
-        y: () => -Math.random() * 800 - 200,
-        x: () => (Math.random() - 0.5) * 400,
-        rotation: () => (Math.random() - 0.5) * 90,
-        opacity: 0,
-        duration: 4 + Math.random() * 6,
-        ease: 'power1.inOut'
+        // Refresh ScrollTrigger to recalculate positions
+        ScrollTrigger.refresh();
       });
     });
   }
 
-  // Advanced Easter eggs removed as per P1 feedback.
-
-  // Hacker Console Art
-  console.log(`%c
-██╗   ██╗████████╗██╗  ██╗ █████╗ ██████╗ ███████╗██╗  ██╗
-██║   ██║╚══██╔══╝██║ ██╔╝██╔══██╗██╔══██╗██╔════╝██║  ██║
-██║   ██║   ██║   █████╔╝ ███████║██████╔╝███████╗███████║
-██║   ██║   ██║   ██╔═██╗ ██╔══██║██╔══██╗╚════██║██╔══██║
-╚██████╔╝   ██║   ██║  ██╗██║  ██║██║  ██║███████║██║  ██║
- ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-  `, "color: #3b82f6; font-weight: bold; font-size: 14px;");
-  console.log("%cHello Recruiter! Welcome to the Matrix. Thanks for checking under the hood.", "color: #22c55e; font-size: 16px;");
-
-  let keySequence = '';
-  const konami = 'arrowuparrowuparrowdownarrowdownarrowleftarrowrightarrowleftarrowrightba';
-  
-  window.addEventListener('keydown', (e) => {
-    if (e.key) keySequence += e.key.toLowerCase();
-    if (keySequence.length > 100) keySequence = keySequence.slice(-100);
-
-    const eggs = {
-      'hire': () => { if(window.confetti) confetti({ particleCount: 200, spread: 120, origin: { y: 0.6 }, zIndex: 999999 }); },
-      'salescode': triggerThunderRain,
-      [konami]: triggerAntiGravity
-    };
-
-    for (let key in eggs) {
-      if (keySequence.includes(key)) {
-        keySequence = '';
-        console.log(`%c[Easter Egg Activated] ${key}`, "color: #b91c1c; font-weight: bold;");
-        eggs[key]();
-        break;
-      }
-    }
-  });
-
-  // Expose triggers globally for AI Copilot Diagnostics Panel
-  window.easterEggs = {
-    trigger: (name) => {
-      const actions = {
-        'hire': () => { if(window.confetti) confetti({ particleCount: 200, spread: 120, origin: { y: 0.6 }, zIndex: 999999 }); },
-        'salescode': triggerThunderRain,
-        'antigravity': triggerAntiGravity
-      };
-      if (actions[name]) {
-        actions[name]();
-        console.log(`%c[Diagnostics Activated] ${name}`, "color: #22c55e; font-weight: bold;");
-      }
+  /* ---------- Project Case Study Modals ---------- */
+  const projectDetailsData = {
+    'sap-tracker': {
+      title: "SAP Integration Testing Tracker",
+      category: "Production Solution for CCBCSA",
+      role: "Product Manager / Lead Developer",
+      stack: "Vanilla JS, Clerk v5, Firebase Realtime DB, Chart.js, SheetJS, Vercel",
+      problem: "During the Coca-Cola Beverages South Africa (CCBCSA) Van Sales integration rollout, API discrepancies and test logs were managed via fragmented, slow-loading Excel spreadsheets. Stakeholders lacked real-time visibility into QA status, leading to go-live delays.",
+      strategy: "Engineered a centralized, secure web-based testing tracker. Drafted technical workflows for SAP and Salescode API mappings. Integrated Clerk v5 for multi-domain tenant authentication. Handled CRUD operations for 40+ daily users and aggregated test results into real-time visual progress charts.",
+      impact: [
+        "Saved 15+ hours/week in manual reporting overhead.",
+        "Supported 40+ daily users during critical UAT cycles.",
+        "Accelerated QA sign-offs, leading to successful zero-downtime go-live."
+      ],
+      live: "https://sap-tracker-mocha.vercel.app",
+      code: "https://github.com/utkarshkr13/sap-tracker"
+    },
+    'client-inbox-tracker': {
+      title: "L2 Client Escalation Portal",
+      category: "Full-stack SaaS Product",
+      role: "Product Manager & Full-stack Engineer",
+      stack: "Next.js 14, TypeScript, Neon Postgres, Prisma ORM, Gmail API, NextAuth, Tailwind CSS, PWA",
+      problem: "Enterprise FMCG support requests got lost in chaotic shared inbox loops. Business analysts and support teams struggled to track SLA breaches, assign ownership, and maintain private resolution logs.",
+      strategy: "Designed a real-time ticketing SaaS that auto-syncs with corporate emails using Gmail API. Implemented automated regex-based ticket routing, SLA countdown indicators, and a dual-pane interface to keep internal BA notes isolated from customer views.",
+      impact: [
+        "Reduced average L2 ticket triage time by 40%.",
+        "Prevented SLA breaches entirely across 3 active client regions.",
+        "Created real-time visibility for SLA indicators and ownership."
+      ],
+      live: "https://client-inbox-tracker.vercel.app",
+      code: "https://github.com/utkarshkr13/client-inbox-tracker"
+    },
+    'satellite-crop': {
+      title: "Satellite Crop Classification",
+      category: "VIT Capstone Project",
+      role: "Research & Data Analytics Head",
+      stack: "Remote Sensing, Machine Learning, Google Earth Engine, Python",
+      problem: "Traditional ground surveys for crop identification are slow, expensive, and fail to track regional agricultural trends under cloudy weather conditions.",
+      strategy: "Built a remote-sensing analytics workflow that combines Sentinel-1 SAR (radar) and Sentinel-2 (optical) imagery on Google Earth Engine. Pre-processed datasets to filter cloud cover and trained Random Forest models to classify crop types.",
+      impact: [
+        "Achieved high classification accuracy for regional crop mapping.",
+        "Enabled automated, low-cost monitoring of agricultural yield indicators.",
+        "Established stable SAR-optical dataset fusion workflow."
+      ],
+      live: "#",
+      code: "#"
+    },
+    'cityflo-bi': {
+      title: "CityFlo BI Dashboards",
+      category: "Business Intelligence Dashboard",
+      role: "Business Intelligence & Marketing Analyst",
+      stack: "Tableau, Python, PostgreSQL, BeautifulSoup, Selenium",
+      problem: "Commuter route optimization and pricing changes were slow because data was scattered across third-party sources and required manual reporting.",
+      strategy: "Created automated selenium-based scraping pipelines to extract location intelligence. Modeled databases in PostgreSQL to support Tableau geospatial heatmaps and pricing analytics.",
+      impact: [
+        "Replaced manual reporting bottlenecks entirely.",
+        "Directly supported operations in planning route updates.",
+        "Supported price-elasticity modeling using competitor scrapers."
+      ],
+      live: "#",
+      code: "#"
     }
   };
+
+  const projectModal = document.getElementById('projectModal');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const caseStudyBtns = document.querySelectorAll('.btn-case-study');
+
+  if (projectModal && modalOverlay && modalCloseBtn && caseStudyBtns.length > 0) {
+    // Open Modal
+    caseStudyBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const projectId = btn.getAttribute('data-project');
+        const data = projectDetailsData[projectId];
+        if (!data) return;
+
+        // Populate Modal Fields
+        document.getElementById('modalTitle').innerText = data.title;
+        document.getElementById('modalCategory').innerText = data.category;
+        document.getElementById('modalRole').innerText = data.role;
+        document.getElementById('modalStack').innerText = data.stack;
+        document.getElementById('modalProblem').innerText = data.problem;
+        document.getElementById('modalStrategy').innerText = data.strategy;
+
+        const impactContainer = document.getElementById('modalImpact');
+        impactContainer.innerHTML = '';
+        data.impact.forEach(item => {
+          const div = document.createElement('div');
+          div.style.cssText = "padding:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border-color); border-radius:8px;";
+          div.innerHTML = `
+            <div style="font-size:0.75rem; color:var(--text-tertiary); margin-bottom:4px; display:flex; align-items:center; gap:4px;"><i data-lucide="check" style="width:12px; height:12px; color:#10b981;"></i> KPI Achieved</div>
+            <div style="font-size:0.82rem; font-weight:600; color:var(--text-primary); line-height:1.4;">${item}</div>
+          `;
+          impactContainer.appendChild(div);
+        });
+
+        // Set Links
+        const liveBtn = document.getElementById('modalLiveLink');
+        const codeBtn = document.getElementById('modalCodeLink');
+
+        if (data.live && data.live !== '#') {
+          liveBtn.href = data.live;
+          liveBtn.style.display = 'inline-flex';
+        } else {
+          liveBtn.style.display = 'none';
+        }
+
+        if (data.code && data.code !== '#') {
+          codeBtn.href = data.code;
+          codeBtn.style.display = 'inline-flex';
+        } else {
+          codeBtn.style.display = 'none';
+        }
+
+        // Initialize Lucide icons
+        if (window.lucide) {
+          window.lucide.createIcons({ node: projectModal });
+        }
+
+        // Show Modal
+        projectModal.style.display = 'flex';
+        projectModal.setAttribute('aria-hidden', 'false');
+        
+        // Stop Lenis background scroll
+        if (window.lenis) window.lenis.stop();
+
+        // Animate elements
+        gsap.fromTo(modalOverlay, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+        gsap.fromTo('.modal-wrapper', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, delay: 0.1, ease: 'power3.out' });
+      });
+    });
+
+    // Close Modal Function
+    const closeModal = () => {
+      gsap.to('.modal-wrapper', { y: 30, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => {
+        projectModal.style.display = 'none';
+        projectModal.setAttribute('aria-hidden', 'true');
+        if (window.lenis) window.lenis.start();
+      }});
+      gsap.to(modalOverlay, { opacity: 0, duration: 0.3 });
+    };
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+  }
 
   /* ---------- Run Everything ---------- */
   if (document.readyState === 'loading') {
@@ -280,17 +363,5 @@
   } else {
     runLoader();
   }
-
-  /* ---------- Session Timer (Recruiter Engagement) ---------- */
-  const sessionStart = Date.now();
-  function updateSessionTimer() {
-    const el = document.getElementById('sessionTimerValue');
-    if (!el) return;
-    const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
-    const mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
-    const secs = String(elapsed % 60).padStart(2, '0');
-    el.textContent = `${mins}:${secs}`;
-  }
-  setInterval(updateSessionTimer, 1000);
 
 })();

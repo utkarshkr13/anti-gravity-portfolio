@@ -77,6 +77,11 @@
         </a>
       </div>
       <div class="magnetic-wrap">
+        <a href="javascript:window.print();" class="btn btn-secondary" data-cursor="hover" id="ctaResume" style="border-color: rgba(255,255,255,0.15);">
+          Download Resume <i data-lucide="download" style="width:14px;height:14px;margin-left:6px;display:inline-block;vertical-align:middle;"></i>
+        </a>
+      </div>
+      <div class="magnetic-wrap">
         <a href="#contact" class="btn btn-secondary" data-cursor="hover" id="ctaContact">
           Get in Touch <span class="btn-arrow">→</span>
         </a>
@@ -213,10 +218,18 @@
     <h2 class="section-title reveal">Things I've <span class="accent-text">built & earned.</span></h2>
     <p class="section-subtitle reveal">From AI-powered RTM platforms to satellite-based crop classification.</p>
 
+    <!-- Projects Category Filters -->
+    <div class="projects-filter-bar reveal" style="display:flex; gap:12px; justify-content:center; margin-bottom:36px; flex-wrap:wrap">
+      <button class="filter-btn active" data-filter="all" data-cursor="hover">All</button>
+      <button class="filter-btn" data-filter="production" data-cursor="hover">Production Solutions</button>
+      <button class="filter-btn" data-filter="fullstack" data-cursor="hover">Full-Stack SaaS</button>
+      <button class="filter-btn" data-filter="analytics" data-cursor="hover">Analytics & BI</button>
+    </div>
+
     <div class="projects-grid">
 
       <!-- Project 1: SAP Integration Testing Tracker -->
-      <div class="project-card featured reveal-scale">
+      <div class="project-card featured reveal-scale" data-category="production">
         <div class="project-card-image">
           <img src="assets/project-tracker.png" alt="SAP Integration Testing Tracker" loading="lazy">
           <div class="project-card-overlay"></div>
@@ -232,9 +245,10 @@
               <li><strong>Impact:</strong> Supported 40+ daily users during UAT and reduced reporting overhead by 15 hours/week.</li>
             </ul>
           </div>
-          <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px;">
+          <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
             <a href="https://sap-tracker-mocha.vercel.app" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">Live Application <span style="font-size:0.75rem;">↗</span></a>
             <a href="https://github.com/utkarshkr13/sap-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto; border-color: rgba(255,255,255,0.15);" data-cursor="hover">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
+            <button class="btn btn-primary btn-case-study" data-project="sap-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags" style="margin-top: 15px;">
             <span>Vanilla JS</span><span>Clerk v5</span><span>Firebase Realtime DB</span><span>Chart.js</span><span>SheetJS</span><span>Vercel</span>
@@ -243,7 +257,7 @@
       </div>
 
       <!-- Project 2: L2 Client Escalation Portal -->
-      <div class="project-card featured reveal-scale">
+      <div class="project-card featured reveal-scale" data-category="fullstack">
         <div class="project-card-image">
           <img src="assets/project-l2-escalation.png" alt="L2 Client Escalation Portal" loading="lazy">
           <div class="project-card-overlay"></div>
@@ -259,9 +273,10 @@
               <li><strong>Impact:</strong> Reduced average L2 triage time by 40% and prevented SLA breaches through automated routing.</li>
             </ul>
           </div>
-          <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px;">
+          <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
             <a href="https://client-inbox-tracker.vercel.app" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">Live Application <span style="font-size:0.75rem;">↗</span></a>
             <a href="https://github.com/utkarshkr13/client-inbox-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto; border-color: rgba(255,255,255,0.15);" data-cursor="hover">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
+            <button class="btn btn-primary btn-case-study" data-project="client-inbox-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags" style="margin-top: 15px;">
             <span>Next.js 14</span><span>TypeScript</span><span>Neon Postgres</span><span>Prisma ORM</span><span>Gmail API</span><span>NextAuth</span><span>Tailwind CSS</span><span>PWA</span>
@@ -270,7 +285,7 @@
       </div>
 
       <!-- Project 3: Satellite Crop Classification -->
-      <div class="project-card reveal-scale">
+      <div class="project-card reveal-scale" data-category="analytics">
         <div class="project-card-image">
           <img src="assets/project-satellite.jpg" alt="Satellite Crop Classification" loading="lazy">
           <div class="project-card-overlay"></div>
@@ -279,6 +294,9 @@
           <div class="project-card-category">VIT Capstone Project</div>
           <h3 class="project-card-title">Satellite Crop Classification</h3>
           <p class="project-card-desc">A research project using Sentinel-1 SAR and Sentinel-2 optical imagery on Google Earth Engine to support crop identification and vegetation analysis with machine learning methods.</p>
+          <div style="margin-top: 12px; margin-bottom: 12px;">
+            <button class="btn btn-secondary btn-case-study" data-project="satellite-crop" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%; border-color: rgba(255,255,255,0.15);" data-cursor="hover">View Case Study</button>
+          </div>
           <div class="project-card-tags">
             <span>Remote Sensing</span><span>ML</span><span>Google Earth Engine</span><span>Python</span>
           </div>
@@ -286,7 +304,7 @@
       </div>
 
       <!-- Project 4: CityFlo BI Dashboards -->
-      <div class="project-card reveal-scale">
+      <div class="project-card reveal-scale" data-category="analytics">
         <div class="project-card-image">
           <img src="assets/project-cityflo.png" alt="CityFlo BI Dashboards" loading="lazy">
           <div class="project-card-overlay"></div>
@@ -295,6 +313,9 @@
           <div class="project-card-category">Business Intelligence Dashboard</div>
           <h3 class="project-card-title">CityFlo BI Dashboards</h3>
           <p class="project-card-desc">Interactive dashboards built for location heat maps, market analysis, and pricing support using Python, scraping workflows, and PostgreSQL-backed data models.</p>
+          <div style="margin-top: 12px; margin-bottom: 12px;">
+            <button class="btn btn-secondary btn-case-study" data-project="cityflo-bi" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%; border-color: rgba(255,255,255,0.15);" data-cursor="hover">View Case Study</button>
+          </div>
           <div class="project-card-tags">
             <span>Tableau</span><span>Python</span><span>PostgreSQL</span><span>BeautifulSoup</span><span>Selenium</span>
           </div>
@@ -543,741 +564,55 @@
     <i data-lucide="arrow-up" style="width:20px;height:20px"></i>
   </button>
 
-  <!-- ===== AI Copilot Siri Widget ===== -->
-  <div class="ai-copilot-widget" id="aiWidget">
-    <div class="ai-orb-label">💬 Ask me anything</div>
-    <div class="ai-orb-container" id="aiOrb" data-cursor="hover" title="Open UKR Assistant">
-      <div class="ai-orb-blob blob-1"></div>
-      <div class="ai-orb-blob blob-2"></div>
-      <div class="ai-orb-blob blob-3"></div>
-      <div class="ai-orb"></div>
+  <!-- ===== Case Study Modal ===== -->
+  <div class="project-modal" id="projectModal" aria-hidden="true" style="display: none;">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-wrapper">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close Case Study" data-cursor="hover">
+        <i data-lucide="x" style="width:20px;height:20px"></i>
+      </button>
+      <div class="modal-container" data-lenis-prevent>
+        <div class="modal-header">
+          <span class="modal-badge" id="modalBadge">Case Study</span>
+          <h3 class="modal-title" id="modalTitle">Project Title</h3>
+          <div class="modal-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Category</span>
+              <span class="meta-val" id="modalCategory">Full-Stack SaaS</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Role</span>
+              <span class="meta-val" id="modalRole">Product Lead / Full-Stack</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Stack</span>
+              <span class="meta-val" id="modalStack">Next.js, Tailwind, Postgres</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-section">
+            <h4><i data-lucide="help-circle" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;display:inline-block;"></i> The Problem</h4>
+            <p id="modalProblem" style="line-height:1.6;font-size:0.9rem;opacity:0.9"></p>
+          </div>
+          <div class="modal-section">
+            <h4><i data-lucide="compass" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;display:inline-block;"></i> Product Strategy & Execution</h4>
+            <p id="modalStrategy" style="line-height:1.6;font-size:0.9rem;opacity:0.9;white-space:pre-line"></p>
+          </div>
+          <div class="modal-section">
+            <h4><i data-lucide="trending-up" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;display:inline-block;"></i> Business Impact & Metrics</h4>
+            <div class="impact-metrics-grid" id="modalImpact" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:12px">
+              <!-- Dynamic impact points -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-color);display:flex;gap:12px;justify-content:flex-end">
+          <a href="#" target="_blank" class="btn btn-primary" id="modalLiveLink" style="padding:10px 20px;font-size:0.85rem;height:auto">Live Application ↗</a>
+          <a href="#" target="_blank" class="btn btn-secondary" id="modalCodeLink" style="padding:10px 20px;font-size:0.85rem;height:auto;border-color:rgba(255,255,255,0.15)">GitHub Repository ↗</a>
+        </div>
+      </div>
     </div>
   </div>
-
-  <!-- ===== Easter Eggs Console Panel ===== -->
-  <div class="easter-eggs-panel" id="easterEggsPanel">
-    <div class="panel-header" style="flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 20px 0;">
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <div class="panel-title">
-          <i data-lucide="cpu" style="width:18px;height:18px;color:var(--accent);"></i>
-          <span>UKR Assistant</span>
-        </div>
-        <button class="panel-close" id="panelClose" data-cursor="hover">
-          <i data-lucide="x" style="width:14px;height:14px"></i>
-        </button>
-      </div>
-      
-      <!-- Panel Tabs Selector -->
-      <div class="panel-tab-bar" style="display: flex; gap: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
-        <button class="panel-tab-btn active" id="diagTabEggs" style="background: transparent; border: none; padding: 6px 12px; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); border-radius: var(--radius-full); cursor: none; transition: all 0.3s;" data-cursor="hover">🥚 Mini Diagnostics</button>
-        <button class="panel-tab-btn" id="diagTabSiri" style="background: transparent; border: none; padding: 6px 12px; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); border-radius: var(--radius-full); cursor: none; transition: all 0.3s;" data-cursor="hover">💬 UKR Assistant</button>
-        <button class="panel-tab-btn" id="diagTabMonitor" style="background: transparent; border: none; padding: 6px 12px; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); border-radius: var(--radius-full); cursor: none; transition: all 0.3s;" data-cursor="hover">📈 Systems Monitor</button>
-      </div>
-    </div>
-
-    <!-- Container 1: Easter Eggs Diagnostic List -->
-    <div class="panel-body active" id="panelBodyEggs" data-lenis-prevent style="padding: 12px 20px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0;">
-      <!-- System HUD status panel -->
-      <div class="system-status-hud" style="margin-bottom: 6px; padding: 12px 16px; background: rgba(59, 130, 246, 0.04); border: 1px solid var(--border-color); border-radius: var(--radius-md); flex-shrink: 0;">
-        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">
-          <span>Diagnostics Status:</span>
-          <span style="color: #10b981; font-weight: 600; font-family: monospace;">● SECURE</span>
-        </div>
-        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary);">
-          <span>Mini-Interactions:</span>
-          <span id="eggUnlockCounter" style="color: #f59e0b; font-weight: 600; font-family: monospace;">0 / 3</span>
-        </div>
-      </div>
-
-      <div class="egg-item">
-        <div class="egg-info">
-          <div class="egg-name-wrapper">
-            <span class="egg-name">hire</span>
-          </div>
-          <div class="egg-desc">Burst of celebratory colorful confetti.</div>
-        </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('hire', this)" data-cursor="hover">Trigger</button>
-      </div>
-
-      <div class="egg-item">
-        <div class="egg-info">
-          <div class="egg-name-wrapper">
-            <span class="egg-name">salescode</span>
-          </div>
-          <div class="egg-desc">Lightning storm and rain weather system.</div>
-        </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('salescode', this)" data-cursor="hover">Trigger</button>
-      </div>
-
-      <div class="egg-item">
-        <div class="egg-info">
-          <div class="egg-name-wrapper">
-            <span class="egg-name">Konami Code</span>
-          </div>
-          <div class="egg-desc">Floating sections anti-gravity space physics.</div>
-        </div>
-        <button class="egg-trigger-btn" onclick="triggerEgg('antigravity', this)" data-cursor="hover">Trigger</button>
-      </div>
-    </div>
-
-    <!-- Container 2: UKR Assistant View (hidden by default) -->
-    <div class="panel-body" id="panelBodySiri" data-lenis-prevent style="padding: 16px 20px 20px; overflow-y: auto; display: none; flex-direction: column; gap: 14px; flex: 1; min-height: 0; justify-content: space-between;">
-      
-      <!-- Top conversation view -->
-      <div id="siriChatLog" data-lenis-prevent style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; padding-right: 2px;">
-        
-        <div class="siri-bubble siri-incoming" style="align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary);">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-            <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
-              <i data-lucide="sparkles" style="width:12px;height:12px"></i> UKR Assistant
-            </div>
-            <button class="siri-speech-btn" style="background: transparent; border: none; padding: 2px; color: var(--text-tertiary); cursor: none; transition: color 0.2s;" data-cursor="hover" title="Listen to response" onclick="speakText(this)">
-              <i data-lucide="volume-2" style="width:14px;height:14px"></i>
-            </button>
-          </div>
-          Hello! I'm the UKR Assistant, Utkarsh's digital co-pilot. I can walk you through his product experience, dynamic toolsets, or run system surprises! How can I help you?
-        </div>
-
-      </div>
-
-      <!-- Pulsating waves visualizer -->
-      <div class="siri-wave-wrapper" style="display: flex; align-items: center; justify-content: center; gap: 4px; height: 24px; margin: 4px 0; flex-shrink: 0;">
-        <div id="siriStaticBars" style="display: flex; align-items: center; justify-content: center; gap: 4px; height: 100%;">
-          <div class="siri-wave-bar" style="width: 3px; height: 8px; background: #3b82f6; border-radius: var(--radius-full); animation: siriBarPulse 1.2s ease-in-out infinite alternate;"></div>
-          <div class="siri-wave-bar" style="width: 3px; height: 16px; background: #ec4899; border-radius: var(--radius-full); animation: siriBarPulse 0.8s ease-in-out infinite alternate 0.2s;"></div>
-          <div class="siri-wave-bar" style="width: 3px; height: 10px; background: #a855f7; border-radius: var(--radius-full); animation: siriBarPulse 1.4s ease-in-out infinite alternate 0.1s;"></div>
-          <div class="siri-wave-bar" style="width: 3px; height: 6px; background: #10b981; border-radius: var(--radius-full); animation: siriBarPulse 0.9s ease-in-out infinite alternate 0.3s;"></div>
-        </div>
-        <canvas id="siriCanvasWave" width="180" height="24" style="display: none; width: 180px; height: 24px;"></canvas>
-      </div>
-
-      <!-- Compact Horizontal Quick Pills -->
-      <div class="siri-quick-triggers-horizontal" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; flex-shrink: 0; scrollbar-width: none; -ms-overflow-style: none;">
-        <button class="siri-pill-btn" onclick="askSiri('skills')" style="flex-shrink: 0; padding: 6px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 20px; font-size: 0.72rem; font-weight: 600; color: var(--text-primary); cursor: none;" data-cursor="hover">🛠️ Skills</button>
-        <button class="siri-pill-btn" onclick="askSiri('salescode')" style="flex-shrink: 0; padding: 6px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 20px; font-size: 0.72rem; font-weight: 600; color: var(--text-primary); cursor: none;" data-cursor="hover">💼 Experience</button>
-        <button class="siri-pill-btn" onclick="askSiri('ai')" style="flex-shrink: 0; padding: 6px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 20px; font-size: 0.72rem; font-weight: 600; color: var(--text-primary); cursor: none;" data-cursor="hover">🤖 AI Product Lab</button>
-        <button class="siri-pill-btn" onclick="askSiri('surprise')" style="flex-shrink: 0; padding: 6px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--accent); border-radius: 20px; font-size: 0.72rem; font-weight: 600; color: var(--accent); cursor: none; display: flex; align-items: center; gap: 4px;" data-cursor="hover"><i data-lucide="zap" style="width:12px;height:12px;"></i> Surprise</button>
-      </div>
-
-      <!-- Conversational Chat Input Bar -->
-      <div class="siri-input-wrapper" style="display: flex; gap: 8px; align-items: center; background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); padding: 4px 6px 4px 12px; border-radius: 24px; flex-shrink: 0; margin-top: 4px; transition: all 0.3s; position: relative;">
-        <button id="siriMicBtn" style="background: transparent; border: none; color: var(--text-tertiary); display: flex; align-items: center; justify-content: center; cursor: none; transition: all 0.2s; padding: 2px;" data-cursor="hover" title="Voice Input (Speech-to-Text)">
-          <i data-lucide="mic" style="width:15px;height:15px;"></i>
-        </button>
-        <input type="text" id="siriChatInput" placeholder="Ask UKR Assistant or run /command..." style="flex: 1; background: transparent; border: none; outline: none; font-size: 0.78rem; color: var(--text-primary); font-family: inherit;" data-cursor="text">
-        <button id="siriSendBtn" style="background: var(--accent); color: #fff; width: 28px; height: 28px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; cursor: none; transition: all 0.2s;" data-cursor="hover">
-          <i data-lucide="arrow-up" style="width:14px;height:14px;"></i>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Container 3: System Monitor & Autonomous Evolution Dashboard -->
-    <div class="panel-body" id="panelBodyMonitor" data-lenis-prevent style="padding: 16px 20px 20px; overflow-y: auto; display: none; flex-direction: column; gap: 12px; flex: 1; min-height: 0; text-align: left;">
-      <div class="system-monitor-hud" style="display: flex; flex-direction: column; gap: 10px;">
-        
-        <!-- Section 1: Autonomous Evolution Sync -->
-        <div style="background: rgba(255,255,255,0.015); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 6px; font-weight: 700; text-transform: uppercase;">
-            <span>🤖 Autonomous Agent Pipeline</span>
-            <span style="color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 4px;">
-              <span style="width: 6px; height: 6px; background: #10b981; border-radius: 50%; display: inline-block; animation: pulse-dot 1.5s infinite;"></span> Active
-            </span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Agent Status:</span>
-            <span style="color: var(--accent); font-weight: 700; font-family: monospace;">Antigravity v2.5 (Online)</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Live Market Ticker:</span>
-            <div style="display: flex; gap: 8px; align-items: center;">
-              <span id="tickerStatusLabel" style="color: #10b981; font-weight: 700; font-family: monospace;">Enabled</span>
-              <button id="toggleTickerBtn" style="background: var(--accent); color: #fff; padding: 2px 8px; font-size: 0.65rem; border-radius: 4px; font-weight: 600; cursor: none;" data-cursor="hover">Toggle</button>
-            </div>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Matrix Warp Speed:</span>
-            <button id="hyperdriveBtn" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; padding: 2px 8px; font-size: 0.65rem; border-radius: 4px; font-weight: 600; cursor: none;" data-cursor="hover">ENGAGE HYPERDRIVE</button>
-          </div>
-        </div>
-
-        <!-- Section 2: GitHub Repository Status -->
-        <div style="background: rgba(255,255,255,0.015); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 6px; font-weight: 700; text-transform: uppercase;">
-            <span>📈 GitHub Evolution History</span>
-            <span style="color: #3b82f6; font-weight: 600;">● Syncing</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Total Commits Till Date:</span>
-            <span style="color: var(--text-primary); font-weight: 700; font-family: monospace;" id="gitTotalCommits">--- commits</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem; flex-direction: column; gap: 3px;">
-            <span style="color: var(--text-secondary);">Latest Commit Message:</span>
-            <span style="color: var(--accent); font-weight: 600; font-family: monospace; font-size: 0.7rem; word-break: break-all;" id="gitLatestMessage">Fetching...</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Last Updated Timestamp:</span>
-            <span style="color: var(--text-primary); font-family: monospace;" id="gitLastDate">Fetching...</span>
-          </div>
-        </div>
-
-        <!-- Section 3: Performance & Uptime -->
-        <div style="background: rgba(255,255,255,0.015); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 6px; font-weight: 700; text-transform: uppercase;">
-            <span>⚡ Live Diagnostics Telemetry</span>
-            <span style="color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 4px;">
-              <span style="width: 5px; height: 5px; background: #10b981; border-radius: 50%; display: inline-block; animation: pulse-dot 1.5s infinite;"></span> Optimal
-            </span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">CPU Triage Load:</span>
-            <span style="color: #10b981; font-weight: 700; font-family: monospace;" id="sysCpuUsage">Calculating...</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">FPS Render Rate:</span>
-            <span style="color: #10b981; font-weight: 700; font-family: monospace;" id="sysFps">Calculating...</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Dynamic Load Time:</span>
-            <span style="color: #10b981; font-weight: 700; font-family: monospace;" id="webLoadTime">Calculating...</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Memory Integrity Check:</span>
-            <span style="color: #10b981; font-family: monospace;" id="sysMemory">Calculating...</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Neon PG DB Connection:</span>
-            <span style="color: #10b981; font-weight: 700; font-family: monospace;" id="sysDbPing">Calculating...</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.76rem;">
-            <span style="color: var(--text-secondary);">Salescode Integration API:</span>
-            <span style="color: #10b981; font-weight: 700; font-family: monospace;" id="sysApiPing">Calculating...</span>
-          </div>
-          
-          <!-- Live Telemetry Graph Canvas -->
-          <div style="position: relative; width: 100%; height: 60px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; margin-top: 4px;">
-            <canvas id="sysTelemetryCanvas" width="380" height="60" style="width: 100%; height: 100%; display: block;"></canvas>
-          </div>
-        </div>
-
-        <!-- Section 4: Live Evolution Feed -->
-        <div style="background: rgba(255,255,255,0.015); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 6px; font-weight: 700; text-transform: uppercase;">
-            <span>🧬 Live Evolution Feed</span>
-            <span style="color: var(--accent); font-weight: 600; display: flex; align-items: center; gap: 4px; font-size: 0.65rem;">
-              <i data-lucide="git-branch" style="width:10px;height:10px;"></i> main
-            </span>
-          </div>
-          <div id="evolutionLogsFeed" style="display: flex; flex-direction: column; gap: 6px; font-family: monospace; font-size: 0.72rem;">
-            <div style="color: var(--text-tertiary); text-align: center; padding: 6px 0;">Loading git events...</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ===== Apple-Style System Toasts Container ===== -->
-  <div class="system-toast-container" id="toastContainer"></div>
-
-  <script>
-    // Easter egg diagnostic trigger script & unlock game controller
-    const unlockedEggs = new Set();
-    const eggCount = 3;
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const aiOrb = document.getElementById('aiOrb');
-      const easterEggsPanel = document.getElementById('easterEggsPanel');
-      const panelClose = document.getElementById('panelClose');
-
-      // Ticker status buttons
-      const toggleTickerBtn = document.getElementById('toggleTickerBtn');
-      const hyperdriveBtn = document.getElementById('hyperdriveBtn');
-
-      if (aiOrb && easterEggsPanel) {
-        aiOrb.addEventListener('click', (e) => {
-          e.preventDefault();
-          easterEggsPanel.classList.toggle('active');
-          aiOrb.classList.toggle('listening');
-        });
-
-        panelClose.addEventListener('click', () => {
-          easterEggsPanel.classList.remove('active');
-          if (aiOrb) aiOrb.classList.remove('listening');
-        });
-      }
-
-      // Tab switcher elements
-      const diagTabEggs = document.getElementById('diagTabEggs');
-      const diagTabSiri = document.getElementById('diagTabSiri');
-      const diagTabMonitor = document.getElementById('diagTabMonitor');
-      
-      const panelBodyEggs = document.getElementById('panelBodyEggs');
-      const panelBodySiri = document.getElementById('panelBodySiri');
-      const panelBodyMonitor = document.getElementById('panelBodyMonitor');
-
-      function switchTab(activeTab, activeBody, inactiveTabs, inactiveBodies) {
-        if (!activeTab || !activeBody) return;
-        activeTab.classList.add('active');
-        activeTab.style.background = 'var(--accent)';
-        activeTab.style.color = '#fff';
-        activeBody.style.display = 'flex';
-
-        inactiveTabs.forEach(t => {
-          if (t) {
-            t.classList.remove('active');
-            t.style.background = 'transparent';
-            t.style.color = 'var(--text-secondary)';
-          }
-        });
-
-        inactiveBodies.forEach(b => {
-          if (b) b.style.display = 'none';
-        });
-      }
-
-      if (diagTabEggs && diagTabSiri && diagTabMonitor && panelBodyEggs && panelBodySiri && panelBodyMonitor) {
-        // Set initial body visibility
-        panelBodyEggs.style.display = 'flex';
-        panelBodySiri.style.display = 'none';
-        panelBodyMonitor.style.display = 'none';
-
-        diagTabEggs.addEventListener('click', (e) => {
-          e.preventDefault();
-          switchTab(diagTabEggs, panelBodyEggs, [diagTabSiri, diagTabMonitor], [panelBodySiri, panelBodyMonitor]);
-        });
-
-        diagTabSiri.addEventListener('click', (e) => {
-          e.preventDefault();
-          switchTab(diagTabSiri, panelBodySiri, [diagTabEggs, diagTabMonitor], [panelBodyEggs, panelBodyMonitor]);
-        });
-
-        diagTabMonitor.addEventListener('click', (e) => {
-          e.preventDefault();
-          switchTab(diagTabMonitor, panelBodyMonitor, [diagTabEggs, diagTabSiri], [panelBodyEggs, panelBodySiri]);
-          fetchGitStats(); // Fetch fresh GitHub metrics when they open the tab!
-        });
-        
-        diagTabEggs.style.background = 'var(--accent)';
-        diagTabEggs.style.color = '#fff';
-      }
-
-      // Wire up toggle ticker button
-      if (toggleTickerBtn) {
-        toggleTickerBtn.addEventListener('click', () => {
-          window.dispatchEvent(new Event('toggle-ticker'));
-        });
-      }
-
-      // Wire up hyperdrive button
-      if (hyperdriveBtn) {
-        hyperdriveBtn.addEventListener('click', () => {
-          window.dispatchEvent(new Event('matrix-hyperdrive'));
-        });
-      }
-
-      // Dynamic Performance timing check
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          const webLoadTimeEl = document.getElementById('webLoadTime');
-          if (webLoadTimeEl) {
-            // Measure actual dynamic load time using Performance Web API
-            const loadTime = (performance.now() / 1000).toFixed(2);
-            const qualifier = loadTime < 2 ? 'Instant' : loadTime < 4 ? 'Fast' : loadTime < 8 ? 'Moderate' : 'Slow';
-            webLoadTimeEl.innerText = `${loadTime}s (${qualifier})`;
-          }
-        }, 100);
-      });
-
-      // Fetch dynamic GitHub Stats using REST API
-      function fetchGitStats() {
-        const repo = 'utkarshkr13/anti-gravity-portfolio';
-        const commitsUrl = `https://api.github.com/repos/${repo}/commits`;
-
-        const totalCommitsEl = document.getElementById('gitTotalCommits');
-        const latestMsgEl = document.getElementById('gitLatestMessage');
-        const lastDateEl = document.getElementById('gitLastDate');
-        const logsFeedEl = document.getElementById('evolutionLogsFeed');
-
-        if (!totalCommitsEl || !latestMsgEl || !lastDateEl) return;
-
-        fetch(commitsUrl)
-          .then(res => {
-            if (!res.ok) throw new Error('API Rate Limit or Network Blocked');
-            return res.json();
-          })
-          .then(commits => {
-            if (commits && commits.length > 0) {
-              const latestCommit = commits[0];
-              const msg = latestCommit.commit.message;
-              const authorDate = new Date(latestCommit.commit.author.date);
-              
-              // Format nice local timestamp
-              const formattedDate = authorDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true });
-
-              latestMsgEl.innerText = msg;
-              lastDateEl.innerText = `${formattedDate} (IST)`;
-              totalCommitsEl.innerText = `${130 + commits.length} commits`;
-
-              if (logsFeedEl) {
-                logsFeedEl.innerHTML = '';
-                commits.slice(0, 4).forEach((c, idx) => {
-                  const sha = c.sha.substring(0, 7);
-                  const date = new Date(c.commit.author.date).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short' });
-                  const commitMsg = c.commit.message.split('\n')[0];
-                  const author = c.commit.author.name.includes('Action') || c.commit.author.name.includes('Bot') ? '🤖 Bot' : '👨‍💻 Utkarsh';
-                  
-                  const row = document.createElement('div');
-                  row.style.cssText = "display: flex; gap: 8px; justify-content: space-between; border-left: 1.5px solid var(--accent); padding-left: 8px; margin-bottom: 2px; line-height: 1.3;";
-                  row.innerHTML = `
-                    <div style="display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0;">
-                      <div style="font-weight: 700; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${commitMsg}">${commitMsg}</div>
-                      <div style="color: var(--text-tertiary); font-size: 0.65rem;">by ${author} · ${date}</div>
-                    </div>
-                    <a href="${c.html_url}" target="_blank" style="color: var(--accent); font-weight: 700; font-family: monospace; font-size: 0.68rem; text-decoration: none; flex-shrink: 0;" data-cursor="hover">[${sha}]</a>
-                  `;
-                  logsFeedEl.appendChild(row);
-                });
-                lucide.createIcons({ node: logsFeedEl });
-              }
-            }
-          })
-          .catch(err => {
-            console.warn('GitHub API fetch failed, using pre-compiled build pipeline stats.', err);
-            // Fallback parameters that look incredibly professional
-            totalCommitsEl.innerText = '154 commits';
-            latestMsgEl.innerText = 'feat(portfolio): streamline UKR Assistant, polish Easter Eggs & Formspree';
-            
-            const now = new Date();
-            const formatted = now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true });
-            lastDateEl.innerText = `${formatted} (IST)`;
-
-            if (logsFeedEl) {
-              logsFeedEl.innerHTML = '';
-              const fallbackCommits = [
-                { sha: 'b8c84e1', msg: 'feat(portfolio): streamline UKR Assistant, polish Easter Eggs & Formspree', date: '26 May', author: '👨‍💻 Utkarsh', url: 'https://github.com/utkarshkr13/anti-gravity-portfolio/commit/b8c84e1b43deefc56e60c80c2292c42dfd5d653d' },
-                { sha: '5e9ce08', msg: 'feat(aesthetics): recruiter suite light-mode overrides & SVG contrast', date: '26 May', author: '👨‍💻 Utkarsh', url: 'https://github.com/utkarshkr13/anti-gravity-portfolio/commit/5e9ce0870940bc2cc271c69999a0937a4c7f551c' },
-                { sha: '3a7733c', msg: 'feat: implement recruiter suite, Siri visualizer & overhaul lab gaps', date: '25 May', author: '👨‍💻 Utkarsh', url: 'https://github.com/utkarshkr13/anti-gravity-portfolio/commit/3a7733cf62bd5833075c3efc1e13e01bc6f3df6f' },
-                { sha: '30d50bb', msg: 'style: dynamic Siri System Monitor & daily auto-refresh loop yml', date: '25 May', author: '👨‍💻 Utkarsh', url: 'https://github.com/utkarshkr13/anti-gravity-portfolio/commit/30d50bbb5b267cc29e46a782b7db5b31bf6998ff' }
-              ];
-              fallbackCommits.forEach(c => {
-                const row = document.createElement('div');
-                row.style.cssText = "display: flex; gap: 8px; justify-content: space-between; border-left: 1.5px solid var(--accent); padding-left: 8px; margin-bottom: 2px; line-height: 1.3;";
-                row.innerHTML = `
-                  <div style="display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0;">
-                    <div style="font-weight: 700; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${c.msg}">${c.msg}</div>
-                    <div style="color: var(--text-tertiary); font-size: 0.65rem;">by ${c.author} · ${c.date}</div>
-                  </div>
-                  <a href="${c.url}" target="_blank" style="color: var(--accent); font-weight: 700; font-family: monospace; font-size: 0.68rem; text-decoration: none; flex-shrink: 0;" data-cursor="hover">[${c.sha}]</a>
-                `;
-                logsFeedEl.appendChild(row);
-              });
-              lucide.createIcons({ node: logsFeedEl });
-            }
-          });
-      }
-    });
-
-    // Expose Siri Chat Co-Pilot conversational flow logic globally
-    window.askSiri = window.askSiri || function(type) {
-      const chatLog = document.getElementById('siriChatLog');
-      if (!chatLog) return;
-
-      const queries = {
-        'skills': {
-          q: "What are Utkarsh's top skills?",
-          a: "Utkarsh works at the intersection of product management, business analysis, and hands-on software development. His key skills include:<br><br>• <strong>Product Delivery:</strong> Requirements mapping, detailed BRDs/FRDs, and coordinating cross-border UAT.<br>• <strong>Modern Engineering:</strong> Hands-on fullstack apps using Next.js 14, TypeScript, Prisma, Neon Postgres, and Clerk.<br>• <strong>AI-First Workflows:</strong> Designing and automating processes with Claude AI co-piloting."
-        },
-        'salescode': {
-          q: "What integration work did he do at SalesCode.ai?",
-          a: "At SalesCode.ai, Utkarsh managed delivery pipelines for global FMCG enterprise accounts, including <strong>Coca-Cola Saudi Arabia, Nepal, and Hindustan Coca-Cola</strong>. He wrote critical BRDs for mobile van merchandising, audited test cases for edge-case boundaries, tracked 600+ Jira issues, and directly engineered an internal SAP Integration Testing Tracker!"
-        },
-        'ai': {
-          q: "How does he leverage AI in product flows?",
-          a: "Rather than treating AI as a buzzword, Utkarsh integrates it into daily operations. He uses AI for accelerated BRD generation, mock integration payloads, code verification audits, and automating Slack/Email support tickets. He has designed a live <strong>AI-First Product Lab</strong> sandbox on this portfolio! Switch tabs inside the lab to see it."
-        },
-        'surprise': {
-          q: "Show me a dynamic visual surprise!",
-          a: "Engaging diagnostics system celebration... Hold on tight! Confetti burst triggered successfully!"
-        }
-      };
-
-      const data = queries[type];
-      if (!data) return;
-
-      const buttons = document.querySelectorAll('.siri-query-btn');
-      buttons.forEach(btn => btn.style.pointerEvents = 'none');
-
-      const userBubble = document.createElement('div');
-      userBubble.className = 'siri-bubble siri-outgoing';
-      userBubble.style.cssText = "align-self: flex-end; background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 16px 16px 4px 16px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; margin-top: 8px;";
-      userBubble.innerHTML = data.q;
-      chatLog.appendChild(userBubble);
-      chatLog.scrollTop = chatLog.scrollHeight;
-
-      const typingBubble = document.createElement('div');
-      typingBubble.className = 'siri-bubble siri-incoming typing-bubble';
-      typingBubble.style.cssText = "align-self: flex-start; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; margin-top: 8px; display: flex; gap: 4px; align-items: center;";
-      typingBubble.innerHTML = `
-        <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both;"></span>
-        <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both 0.2s;"></span>
-        <span style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; animation: siriDotBounce 1.4s infinite both 0.4s;"></span>
-      `;
-      chatLog.appendChild(typingBubble);
-      chatLog.scrollTop = chatLog.scrollHeight;
-
-      setTimeout(() => {
-        typingBubble.remove();
-
-        const siriBubble = document.createElement('div');
-        siriBubble.className = 'siri-bubble siri-incoming';
-        siriBubble.style.cssText = "align-self: flex-start; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; max-width: 85%; font-size: 0.8rem; line-height: 1.5; color: var(--text-primary); margin-top: 8px; animation: fadeIn 0.3s ease;";
-        siriBubble.innerHTML = `
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-            <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--accent); font-size: 0.75rem;">
-              <i data-lucide="sparkles" style="width:12px;height:12px"></i> UKR Assistant
-            </div>
-            <button class="siri-speech-btn" style="background: transparent; border: none; padding: 2px; color: var(--text-tertiary); cursor: none; transition: color 0.2s;" data-cursor="hover" title="Listen to response" onclick="speakText(this)">
-              <i data-lucide="volume-2" style="width:14px;height:14px"></i>
-            </button>
-          </div>
-          ${data.a}
-        `;
-        chatLog.appendChild(siriBubble);
-        lucide.createIcons({ node: siriBubble });
-        chatLog.scrollTop = chatLog.scrollHeight;
-
-        buttons.forEach(btn => btn.style.pointerEvents = 'auto');
-
-        if (type === 'surprise') {
-          setTimeout(() => {
-            triggerEgg('hire');
-          }, 400);
-        }
-      }, 1000 + Math.random() * 500);
-    };
-
-    function updateHud(name) {
-      const displayNames = {
-        'hire': 'hire',
-        'salescode': 'salescode',
-        'antigravity': 'Konami Code',
-        'wasted': 'Wasted Screen',
-        'wanted': '5-Star Wanted Level',
-        'leavemealone': 'Wanted Cleaned',
-        'bsod': 'Blue Screen of Death',
-        'jarvis': 'Jarvis HUD active',
-        'jarvis_off': 'Jarvis HUD cleared',
-        'cyberpunk': 'Cyberpunk aberration active',
-        'cyberpunk_off': 'Cyberpunk aberration cleared',
-        'askew': 'Tilt active',
-        'askew_off': 'Tilt cleared',
-        'onemorething': 'Steve Jobs Spotlight',
-        'thanos': 'Thanos snap active',
-        'zergrush': 'Zerg rush invasion'
-      };
-      
-      const cleanName = displayNames[name] || name;
-      if (!unlockedEggs.has(cleanName)) {
-        unlockedEggs.add(cleanName);
-        const counter = document.getElementById('eggUnlockCounter');
-        if (counter) {
-          counter.innerText = `${unlockedEggs.size} / ${eggCount}`;
-          if (unlockedEggs.size >= eggCount) {
-            counter.style.color = '#10b981';
-            setTimeout(() => {
-              triggerSuperSecretEvent();
-            }, 2000);
-          }
-        }
-      }
-      showSystemToast(name);
-    }
-
-    // Expose HUD update logic for external integrations
-    window.updateHud = updateHud;
-
-    function showSystemToast(name) {
-      const toastContainer = document.getElementById('toastContainer');
-      if (!toastContainer) return;
-
-      const eggDetails = {
-        'hire': { title: 'System Celebration', desc: 'Confetti burst diagnostic check complete.', icon: 'award' },
-        'salescode': { title: 'Weather System Active', desc: 'Lightning and heavy rain simulation running.', icon: 'cloud-lightning' },
-        'antigravity': { title: 'Anti-Gravity Space Physics', desc: 'Float mode engaged. CSS 3D translation running.', icon: 'orbit' },
-        'wasted': { title: 'Cinematic Wasted', desc: 'Slow-motion GTA desaturation active.', icon: 'skull' },
-        'wanted': { title: 'WANTED Level Active', desc: '5-star pursuit mode activated. Sirens on.', icon: 'shield-alert' },
-        'leavemealone': { title: 'Warrant Withdrawn', desc: 'All search targets deactivated.', icon: 'shield' },
-        'bsod': { title: 'Critical Diagnostics BSOD', desc: 'System stack simulation complete.', icon: 'monitor-x' },
-        'jarvis': { title: 'JARVIS HUD Grid', desc: 'Iron Man holographic scanning overlay loaded.', icon: 'cpu' },
-        'jarvis_off': { title: 'JARVIS HUD Offline', desc: 'Holographic scanning frames closed.', icon: 'eye-off' },
-        'cyberpunk': { title: 'RGB Aberration Engaged', desc: 'Glitch monospace filters running.', icon: 'terminal' },
-        'cyberpunk_off': { title: 'RGB Aberration Offline', desc: 'Glitch text layers normalized.', icon: 'clipboard-check' },
-        'askew': { title: 'Viewport Axis Tilted', desc: 'Matrix shifted 3 degrees off-axis.', icon: 'rotate-cw' },
-        'askew_off': { title: 'Viewport Axis Reset', desc: 'Grid alignment restored to standard.', icon: 'minimize' },
-        'onemorething': { title: 'Apple Spotlight Tribute', desc: 'Steve Jobs spotlight tribute loaded.', icon: 'apple' },
-        'thanos': { title: 'Thanos Dust snap', desc: '50% of interface cards dissolved into dust.', icon: 'sparkles' },
-        'zergrush': { title: 'Zerg Rush Ingress', desc: 'Zerg circles invading page elements.', icon: 'zap' }
-      };
-
-      const info = eggDetails[name] || { title: 'Diagnostic Code Run', desc: `Diagnostic code '${name}' was successfully active.`, icon: 'terminal' };
-
-      const toast = document.createElement('div');
-      toast.className = 'system-toast';
-      toast.innerHTML = `
-        <div class="toast-icon">
-          <i data-lucide="${info.icon}" style="width: 18px; height: 18px;"></i>
-        </div>
-        <div class="toast-body">
-          <div class="toast-title">${info.title}</div>
-          <div class="toast-desc">${info.desc}</div>
-        </div>
-      `;
-
-      toastContainer.appendChild(toast);
-      lucide.createIcons({ node: toast });
-
-      setTimeout(() => {
-        toast.classList.add('active');
-      }, 50);
-
-      setTimeout(() => {
-        toast.classList.remove('active');
-        setTimeout(() => {
-          toast.remove();
-        }, 600);
-      }, 4000);
-    }
-
-    function triggerSuperSecretEvent() {
-      if (window.confetti) {
-        let duration = 6 * 1000;
-        let animationEnd = Date.now() + duration;
-        let defaults = { startVelocity: 35, spread: 360, ticks: 60, zIndex: 9999999 };
-
-        function randomInRange(min, max) {
-          return Math.random() * (max - min) + min;
-        }
-
-        let interval = setInterval(function() {
-          let timeLeft = animationEnd - Date.now();
-
-          if (timeLeft <= 0) {
-            return clearInterval(interval);
-          }
-
-          let particleCount = 75 * (timeLeft / duration);
-          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-        }, 200);
-      }
-      
-      showSystemToast('hire');
-      
-      const congrats = document.createElement('div');
-      congrats.style.position = 'fixed';
-      congrats.style.inset = '0';
-      congrats.style.background = 'rgba(8, 9, 12, 0.96)';
-      congrats.style.zIndex = '99999999';
-      congrats.style.display = 'flex';
-      congrats.style.flexDirection = 'column';
-      congrats.style.alignItems = 'center';
-      congrats.style.justifyContent = 'center';
-      congrats.style.gap = '24px';
-      congrats.style.textAlign = 'center';
-      congrats.style.padding = '40px';
-      congrats.style.backdropFilter = 'blur(25px)';
-      congrats.style.webkitBackdropFilter = 'blur(25px)';
-      congrats.style.opacity = '0';
-      congrats.style.transition = 'opacity 0.6s var(--ease-out)';
-
-      congrats.innerHTML = `
-        <div style="width: 90px; height: 90px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); border: 2px solid #10b981; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(16, 185, 129, 0.3); animation: siri-ripple 2s infinite ease-out;">
-          <i data-lucide="shield-check" style="width: 50px; height: 50px; color: #10b981;"></i>
-        </div>
-        <h1 style="font-size: 2.5rem; font-weight: 800; color: #fff; letter-spacing: -1.5px; margin-bottom: -10px; font-family: var(--font-heading);">UTKARSH UNLOCKED</h1>
-        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 520px; line-height: 1.6; font-weight: 400;">
-          Outstanding! You successfully discovered all 3 portfolio Easter eggs and completed system diagnostics. Utkarsh Rajput is 100% prepared to lead, refine, and deploy your product integration systems.
-        </p>
-        
-        <!-- Interactive Interview CTA Buttons -->
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
-          <a href="https://linkedin.com/in/utkarsh-kumar-rajput" target="_blank" class="btn btn-primary" style="padding: 14px 28px; font-size: 0.85rem;" data-cursor="hover">
-            Connect on LinkedIn <i data-lucide="award" style="width:16px;height:16px;margin-left:6px;"></i>
-          </a>
-          <a href="mailto:hello@utkarsh.ind.in?subject=Interview%20Invitation%20-%20Product%20Manager%20%26%20Business%20Analyst&body=Hello%20Utkarsh,%20I%20found%20all%20your%20portfolio%20Easter%20eggs%20and%20was%20impressed%20by%20your%20interactive%20AI%20Product%20Lab%20sandbox.%20Let's%20connect%20for%20an%20interview!" class="btn btn-secondary" style="padding: 14px 28px; font-size: 0.85rem; border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff;" data-cursor="hover">
-            Send Interview Invitation <i data-lucide="mail" style="width:16px;height:16px;margin-left:6px;"></i>
-          </a>
-        </div>
-        
-        <button id="closeCongrats" style="margin-top: 15px; font-size: 0.8rem; color: var(--text-tertiary); text-decoration: underline; background: none; border: none; cursor: none;" data-cursor="hover">Return to System</button>
-      `;
-
-      document.body.appendChild(congrats);
-      lucide.createIcons({ node: congrats });
-
-      setTimeout(() => {
-        congrats.style.opacity = '1';
-      }, 50);
-
-      const closeBtn = document.getElementById('closeCongrats');
-      if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-          congrats.style.opacity = '0';
-          setTimeout(() => {
-            congrats.remove();
-          }, 600);
-        });
-      }
-    }
-
-    function triggerEgg(name, btn) {
-      if (btn) {
-        btn.classList.add('triggered');
-        const oldText = btn.innerText;
-        btn.innerText = 'Active';
-        setTimeout(() => {
-          btn.classList.remove('triggered');
-          btn.innerText = oldText;
-        }, 1500);
-      }
-
-      updateHud(name);
-
-      if (window.easterEggs && typeof window.easterEggs.trigger === 'function') {
-        window.easterEggs.trigger(name);
-      } else {
-        // Fallback programmatic event dispatcher
-        const keyMap = {
-          'hire': 'hire',
-          'salescode': 'salescode',
-          'thanos': 'thanos',
-          'wasted': 'wasted',
-          'wanted': 'wanted',
-          'leavemealone': 'leavemealone',
-          'bsod': 'bsod',
-          'jarvis': 'jarvis',
-          'onemorething': 'onemorething',
-          'visionpro': 'visionpro',
-          'cyberpunk': 'cyberpunk',
-          'askew': 'askew',
-          'zergrush': 'zergrush',
-          'antigravity': 'konami'
-        };
-        const sequence = keyMap[name];
-        if (sequence === 'konami') {
-          ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'].forEach(key => {
-            window.dispatchEvent(new KeyboardEvent('keydown', { key: key }));
-          });
-        } else if (sequence) {
-          sequence.split('').forEach(char => {
-            window.dispatchEvent(new KeyboardEvent('keydown', { key: char }));
-          });
-        }
-      }
-    }
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

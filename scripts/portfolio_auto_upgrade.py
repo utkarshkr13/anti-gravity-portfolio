@@ -151,6 +151,26 @@ def perform_sanity_checks():
         print("Sanity Check Fail: index.html is missing or empty!")
         return False
         
+    # Read HTML content to verify elements presence/absence
+    with open(html_path, "r", encoding="utf-8") as f:
+        html_content = f.read()
+        
+    # Assert new features exist
+    if "projectModal" not in html_content:
+        print("Sanity Check Fail: projectModal is missing from index.html!")
+        return False
+    if "projects-filter-bar" not in html_content:
+        print("Sanity Check Fail: projects-filter-bar is missing from index.html!")
+        return False
+        
+    # Assert old widgets are removed
+    if "aiWidget" in html_content or "ai-copilot-widget" in html_content:
+        print("Sanity Check Fail: aiWidget/ai-copilot-widget was found in index.html but should be removed!")
+        return False
+    if "easterEggsPanel" in html_content or "easter-eggs-panel" in html_content:
+        print("Sanity Check Fail: easterEggsPanel/easter-eggs-panel was found in index.html but should be removed!")
+        return False
+        
     # 2. Verify css/style.css exists
     css_path = os.path.join(PORTFOLIO_DIR, "css", "style.css")
     if not os.path.exists(css_path) or os.path.getsize(css_path) == 0:

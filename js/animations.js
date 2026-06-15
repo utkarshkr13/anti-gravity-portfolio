@@ -28,22 +28,7 @@
       stagger: 0.12
     }, '-=0.6');
 
-    /* ---------- Matrix Hyperdrive Easter Egg ---------- */
-    let clickCount = 0;
-    let clickTimeout;
-    const heroNameExt = document.querySelector('.hero-name');
-    if (heroNameExt) {
-      heroNameExt.addEventListener('click', () => {
-        clickCount++;
-        clearTimeout(clickTimeout);
-        clickTimeout = setTimeout(() => { clickCount = 0; }, 1000);
-        
-        if (clickCount >= 5) {
-          clickCount = 0;
-          window.dispatchEvent(new Event('matrix-hyperdrive'));
-        }
-      });
-    }
+
   }
 
   // Removed hero glow as per tunnel background update.
@@ -79,37 +64,6 @@
 
     let mouse = { x: -1000, y: -1000 };
     let texts = [];
-    let isHyperdrive = false;
-    let tickerActive = true;
-
-    // Toggle Ticker Background clean event
-    window.addEventListener('toggle-ticker', () => {
-      tickerActive = !tickerActive;
-      canvas.style.transition = 'opacity 0.6s var(--ease-out)';
-      canvas.style.opacity = tickerActive ? '0.45' : '0';
-      canvas.style.pointerEvents = tickerActive ? 'auto' : 'none';
-      
-      const label = document.getElementById('tickerStatusLabel');
-      if (label) {
-        label.innerText = tickerActive ? 'Enabled' : 'Disabled';
-        label.style.color = tickerActive ? '#10b981' : '#ef4444';
-      }
-    });
-
-    // Warp speed matrix celebration
-    window.addEventListener('matrix-hyperdrive', () => {
-      isHyperdrive = !isHyperdrive;
-      if (isHyperdrive) {
-        document.body.style.setProperty('background-color', '#020602', 'important');
-        texts.forEach(t => {
-          t.scrollSpeed = 35.0; // Warp scrolling
-          t.isPositive = true;  // Hyperdrive goes green
-          t.opacity = 0.9;
-        });
-      } else {
-        location.reload(); // Exit Matrix
-      }
-    });
 
     class TextNode {
       constructor(stockData, colX, rowY, rowSpeed) {
