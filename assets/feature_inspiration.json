@@ -1,14 +1,14 @@
 {
-  "repo_name": "portfolio-performance/portfolio",
-  "owner": "portfolio-performance",
-  "stars": 3918,
-  "url": "https://github.com/portfolio-performance/portfolio",
-  "homepage": "http://www.portfolio-performance.info",
-  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
-  "effect_class": "typescript",
-  "accent_h": 34,
-  "accent_s": "59%",
-  "accent_l": "52%",
-  "theme_name": "Warm Amber",
-  "last_sync": "2026-06-15 10:00:18 UTC"
+  "repo_name": "arifszn/gitprofile",
+  "owner": "arifszn",
+  "stars": 2261,
+  "url": "https://github.com/arifszn/gitprofile",
+  "homepage": "https://arifszn.github.io/gitprofile",
+  "featured_trend": "Modern modular layout with responsive grids emphasizing academic, academic-porfolio, academic-website workflows.",
+  "effect_class": "generic",
+  "accent_h": 310,
+  "accent_s": "65%",
+  "accent_l": "56%",
+  "theme_name": "Magenta Pink",
+  "last_sync": "2026-06-15 10:15:17 UTC"
 }
