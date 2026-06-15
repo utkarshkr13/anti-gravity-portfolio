@@ -1,14 +1,14 @@
 {
-  "repo_name": "cobiwave/simplefolio",
-  "owner": "cobiwave",
-  "stars": 14161,
-  "url": "https://github.com/cobiwave/simplefolio",
-  "homepage": "https://the-simplefolio.netlify.app/",
-  "featured_trend": "Elegant minimalist aesthetic focused on typography, breathing space, and high readability.",
-  "effect_class": "minimal",
-  "accent_h": 32,
-  "accent_s": "57%",
-  "accent_l": "50%",
-  "theme_name": "Warm Amber",
-  "last_sync": "2026-06-15 12:18:57 UTC"
+  "repo_name": "HugoBlox/kit",
+  "owner": "HugoBlox",
+  "stars": 9518,
+  "url": "https://github.com/HugoBlox/kit",
+  "homepage": "https://hugoblox.com",
+  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
+  "effect_class": "tailwind",
+  "accent_h": 250,
+  "accent_s": "65%",
+  "accent_l": "52%",
+  "theme_name": "Electric Indigo",
+  "last_sync": "2026-06-15 12:30:22 UTC"
 }

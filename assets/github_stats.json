@@ -8,8 +8,8 @@
   },
   "languages": [
     {
-      "name": "HTML",
-      "percentage": 54.3
+      "name": "CSS",
+      "percentage": 55.2
     },
     {
       "name": "Dart",
@@ -20,15 +20,15 @@
       "percentage": 1.8
     },
     {
-      "name": "CSS",
-      "percentage": 0.9
-    },
-    {
       "name": "TypeScript",
       "percentage": 0.2
     },
     {
       "name": "Jupyter Notebook",
+      "percentage": 0.1
+    },
+    {
+      "name": "HTML",
       "percentage": 0.1
     },
     {
@@ -45,7 +45,7 @@
       "name": "anti-gravity-portfolio",
       "description": "Premium portfolio website  - Apple/Google inspired with GSAP animations, custom cursor, dark/light mode",
       "stars": 0,
-      "language": "HTML",
+      "language": "CSS",
       "url": "https://github.com/utkarshkr13/anti-gravity-portfolio"
     },
     {
