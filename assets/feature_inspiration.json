@@ -1,14 +1,14 @@
 {
-  "repo_name": "portfolio-performance/portfolio",
-  "owner": "portfolio-performance",
-  "stars": 3918,
-  "url": "https://github.com/portfolio-performance/portfolio",
-  "homepage": "http://www.portfolio-performance.info",
-  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
-  "effect_class": "typescript",
-  "accent_h": 34,
-  "accent_s": "59%",
-  "accent_l": "52%",
-  "theme_name": "Warm Amber",
-  "last_sync": "2026-06-15 06:18:38 UTC"
+  "repo_name": "soumyajit4419/Portfolio",
+  "owner": "soumyajit4419",
+  "stars": 6379,
+  "url": "https://github.com/soumyajit4419/Portfolio",
+  "homepage": "https://soumyajit.vercel.app/",
+  "featured_trend": "Server-side rendered performance and fast client-side hydration using Next.js framework.",
+  "effect_class": "reactive",
+  "accent_h": 333,
+  "accent_s": "58%",
+  "accent_l": "55%",
+  "theme_name": "Rose Velvet",
+  "last_sync": "2026-06-15 06:26:26 UTC"
 }
