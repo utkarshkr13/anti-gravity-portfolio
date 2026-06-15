@@ -1,14 +1,14 @@
 {
-  "repo_name": "saadpasta/developerFolio",
-  "owner": "saadpasta",
-  "stars": 6568,
-  "url": "https://github.com/saadpasta/developerFolio",
-  "homepage": "https://developerfolio.js.org/",
-  "featured_trend": "Server-side rendered performance and fast client-side hydration using Next.js framework.",
-  "effect_class": "reactive",
-  "accent_h": 236,
-  "accent_s": "66%",
-  "accent_l": "54%",
-  "theme_name": "Electric Indigo",
-  "last_sync": "2026-06-15 10:45:17 UTC"
+  "repo_name": "codingmonster-tv/Awesome_Resume_Portfolio",
+  "owner": "codingmonster-tv",
+  "stars": 2482,
+  "url": "https://github.com/codingmonster-tv/Awesome_Resume_Portfolio",
+  "homepage": "",
+  "featured_trend": "Modern modular layout with responsive grids emphasizing coverletter, cv, portfolio workflows.",
+  "effect_class": "generic",
+  "accent_h": 178,
+  "accent_s": "68%",
+  "accent_l": "52%",
+  "theme_name": "Ocean Cyan",
+  "last_sync": "2026-06-15 11:00:16 UTC"
 }
