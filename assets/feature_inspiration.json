@@ -1,14 +1,14 @@
 {
-  "repo_name": "sourcerer-io/sourcerer-app",
-  "owner": "sourcerer-io",
-  "stars": 6735,
-  "url": "https://github.com/sourcerer-io/sourcerer-app",
-  "homepage": "https://sourcerer.io/start",
-  "featured_trend": "Modern modular layout with responsive grids emphasizing analytics, curriculum-vitae, cv workflows.",
+  "repo_name": "codewithsadee/vcard-personal-portfolio",
+  "owner": "codewithsadee",
+  "stars": 7869,
+  "url": "https://github.com/codewithsadee/vcard-personal-portfolio",
+  "homepage": "https://codewithsadee.github.io/vcard-personal-portfolio/",
+  "featured_trend": "Modern modular layout with responsive grids emphasizing css, css3, html workflows.",
   "effect_class": "generic",
-  "accent_h": 220,
-  "accent_s": "65%",
-  "accent_l": "54%",
-  "theme_name": "Steel Blue",
-  "last_sync": "2026-06-15 13:15:17 UTC"
+  "accent_h": 17,
+  "accent_s": "57%",
+  "accent_l": "51%",
+  "theme_name": "Warm Amber",
+  "last_sync": "2026-06-15 13:17:03 UTC"
 }
