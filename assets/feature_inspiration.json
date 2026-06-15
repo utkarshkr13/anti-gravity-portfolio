@@ -1,14 +1,14 @@
 {
-  "repo_name": "smaranjitghose/awesome-portfolio-websites",
-  "owner": "smaranjitghose",
-  "stars": 2751,
-  "url": "https://github.com/smaranjitghose/awesome-portfolio-websites",
-  "homepage": "https://portfolio.smaranjitghose.com/",
-  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
-  "effect_class": "typescript",
-  "accent_h": 50,
-  "accent_s": "60%",
-  "accent_l": "52%",
-  "theme_name": "Gold Sunset",
-  "last_sync": "2026-06-15 12:00:20 UTC"
+  "repo_name": "cobiwave/simplefolio",
+  "owner": "cobiwave",
+  "stars": 14161,
+  "url": "https://github.com/cobiwave/simplefolio",
+  "homepage": "https://the-simplefolio.netlify.app/",
+  "featured_trend": "Elegant minimalist aesthetic focused on typography, breathing space, and high readability.",
+  "effect_class": "minimal",
+  "accent_h": 32,
+  "accent_s": "57%",
+  "accent_l": "50%",
+  "theme_name": "Warm Amber",
+  "last_sync": "2026-06-15 12:18:57 UTC"
 }
