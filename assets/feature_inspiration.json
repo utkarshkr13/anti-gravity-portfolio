@@ -1,14 +1,14 @@
 {
-  "repo_name": "ashutosh1919/masterPortfolio",
-  "owner": "ashutosh1919",
-  "stars": 4188,
-  "url": "https://github.com/ashutosh1919/masterPortfolio",
-  "homepage": "https://ashutoshhathidara.com",
-  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
-  "effect_class": "typescript",
-  "accent_h": 124,
-  "accent_s": "59%",
-  "accent_l": "54%",
-  "theme_name": "Forest Emerald",
-  "last_sync": "2026-06-15 08:45:16 UTC"
+  "repo_name": "cointop-sh/cointop",
+  "owner": "cointop-sh",
+  "stars": 4395,
+  "url": "https://github.com/cointop-sh/cointop",
+  "homepage": "https://cointop.sh",
+  "featured_trend": "Retro-modern CLI (Command Line Interface) style navigation and interactive terminal layout.",
+  "effect_class": "terminal",
+  "accent_h": 99,
+  "accent_s": "64%",
+  "accent_l": "53%",
+  "theme_name": "Lime Meadow",
+  "last_sync": "2026-06-15 09:00:16 UTC"
 }
