@@ -39,6 +39,7 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
+    let tickerActive = true;
     
     // Top-tier fallbacks matching Utkarsh's global FMCG and SaaS background
     let marketData = [

@@ -364,4 +364,17 @@
     runLoader();
   }
 
+  /* ---------- Safety: Force-dismiss loader after 5s ---------- */
+  setTimeout(() => {
+    const loader = document.getElementById('pageLoader');
+    if (loader && loader.style.display !== 'none') {
+      loader.style.opacity = '0';
+      loader.style.transition = 'opacity 0.4s ease';
+      setTimeout(() => {
+        loader.style.display = 'none';
+        if (window.initAnimations) window.initAnimations();
+      }, 400);
+    }
+  }, 5000);
+
 })();
