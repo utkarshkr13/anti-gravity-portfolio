@@ -1,14 +1,14 @@
 {
-  "repo_name": "ghostfolio/ghostfolio",
-  "owner": "ghostfolio",
-  "stars": 8718,
-  "url": "https://github.com/ghostfolio/ghostfolio",
-  "homepage": "https://Ghostfol.io",
-  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
-  "effect_class": "typescript",
-  "accent_h": 44,
-  "accent_s": "69%",
-  "accent_l": "54%",
-  "theme_name": "Warm Amber",
-  "last_sync": "2026-06-15 11:30:19 UTC"
+  "repo_name": "AI4Finance-Foundation/FinRL-Trading",
+  "owner": "AI4Finance-Foundation",
+  "stars": 3312,
+  "url": "https://github.com/AI4Finance-Foundation/FinRL-Trading",
+  "homepage": "https://ai4finance.org",
+  "featured_trend": "Modern modular layout with responsive grids emphasizing a2c-algorithm, automated-stock-trading, ddpg workflows.",
+  "effect_class": "generic",
+  "accent_h": 2,
+  "accent_s": "57%",
+  "accent_l": "52%",
+  "theme_name": "Crimson Red",
+  "last_sync": "2026-06-15 11:45:15 UTC"
 }
