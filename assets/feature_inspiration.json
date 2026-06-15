@@ -1,14 +1,14 @@
 {
-  "repo_name": "cointop-sh/cointop",
-  "owner": "cointop-sh",
-  "stars": 4395,
-  "url": "https://github.com/cointop-sh/cointop",
-  "homepage": "https://cointop.sh",
-  "featured_trend": "Retro-modern CLI (Command Line Interface) style navigation and interactive terminal layout.",
-  "effect_class": "terminal",
-  "accent_h": 99,
-  "accent_s": "64%",
-  "accent_l": "53%",
-  "theme_name": "Lime Meadow",
-  "last_sync": "2026-06-15 09:00:16 UTC"
+  "repo_name": "transitive-bullshit/nextjs-notion-starter-kit",
+  "owner": "transitive-bullshit",
+  "stars": 7015,
+  "url": "https://github.com/transitive-bullshit/nextjs-notion-starter-kit",
+  "homepage": "https://transitivebullsh.it/nextjs-notion-starter-kit",
+  "featured_trend": "Server-side rendered performance and fast client-side hydration using Next.js framework.",
+  "effect_class": "reactive",
+  "accent_h": 122,
+  "accent_s": "57%",
+  "accent_l": "52%",
+  "theme_name": "Forest Emerald",
+  "last_sync": "2026-06-15 09:15:23 UTC"
 }
