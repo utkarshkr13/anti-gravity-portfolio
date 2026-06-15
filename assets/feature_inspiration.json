@@ -1,14 +1,14 @@
 {
-  "repo_name": "transitive-bullshit/nextjs-notion-starter-kit",
-  "owner": "transitive-bullshit",
-  "stars": 7015,
-  "url": "https://github.com/transitive-bullshit/nextjs-notion-starter-kit",
-  "homepage": "https://transitivebullsh.it/nextjs-notion-starter-kit",
-  "featured_trend": "Server-side rendered performance and fast client-side hydration using Next.js framework.",
-  "effect_class": "reactive",
-  "accent_h": 122,
-  "accent_s": "57%",
+  "repo_name": "Evavic44/portfolio-ideas",
+  "owner": "Evavic44",
+  "stars": 6168,
+  "url": "https://github.com/Evavic44/portfolio-ideas",
+  "homepage": "https://portfolio-ideas.vercel.app/portfolio.html",
+  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
+  "effect_class": "tailwind",
+  "accent_h": 194,
+  "accent_s": "69%",
   "accent_l": "52%",
-  "theme_name": "Forest Emerald",
-  "last_sync": "2026-06-15 09:15:23 UTC"
+  "theme_name": "Ocean Cyan",
+  "last_sync": "2026-06-15 09:30:22 UTC"
 }
