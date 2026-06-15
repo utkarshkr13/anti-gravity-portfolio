@@ -1,14 +1,14 @@
 {
-  "repo_name": "cobiwave/simplefolio",
-  "owner": "cobiwave",
-  "stars": 14161,
-  "url": "https://github.com/cobiwave/simplefolio",
-  "homepage": "https://the-simplefolio.netlify.app/",
-  "featured_trend": "Elegant minimalist aesthetic focused on typography, breathing space, and high readability.",
-  "effect_class": "minimal",
-  "accent_h": 32,
-  "accent_s": "57%",
-  "accent_l": "50%",
-  "theme_name": "Warm Amber",
-  "last_sync": "2026-06-15 07:15:14 UTC"
+  "repo_name": "said7388/developer-portfolio",
+  "owner": "said7388",
+  "stars": 2374,
+  "url": "https://github.com/said7388/developer-portfolio",
+  "homepage": "https://abusaid.netlify.app",
+  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
+  "effect_class": "tailwind",
+  "accent_h": 158,
+  "accent_s": "63%",
+  "accent_l": "56%",
+  "theme_name": "Mint Teal",
+  "last_sync": "2026-06-15 07:30:14 UTC"
 }
