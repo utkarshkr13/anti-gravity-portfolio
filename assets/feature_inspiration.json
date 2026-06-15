@@ -1,14 +1,14 @@
 {
-  "repo_name": "HamishMW/portfolio",
-  "owner": "HamishMW",
-  "stars": 3450,
-  "url": "https://github.com/HamishMW/portfolio",
-  "homepage": "https://hamishw.com",
-  "featured_trend": "Interactive 3D graphics and immersive canvas experience utilizing Three.js and WebGL shaders.",
-  "effect_class": "three3d",
-  "accent_h": 200,
-  "accent_s": "60%",
-  "accent_l": "50%",
+  "repo_name": "sourcerer-io/sourcerer-app",
+  "owner": "sourcerer-io",
+  "stars": 6735,
+  "url": "https://github.com/sourcerer-io/sourcerer-app",
+  "homepage": "https://sourcerer.io/start",
+  "featured_trend": "Modern modular layout with responsive grids emphasizing analytics, curriculum-vitae, cv workflows.",
+  "effect_class": "generic",
+  "accent_h": 220,
+  "accent_s": "65%",
+  "accent_l": "54%",
   "theme_name": "Steel Blue",
-  "last_sync": "2026-06-15 13:00:17 UTC"
+  "last_sync": "2026-06-15 13:15:17 UTC"
 }
