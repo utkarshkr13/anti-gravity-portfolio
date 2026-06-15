@@ -1,0 +1,73 @@
+{
+  "profile": {
+    "username": "utkarshkr13",
+    "public_repos": 17,
+    "followers": 1,
+    "following": 4,
+    "total_stars": 0
+  },
+  "languages": [
+    {
+      "name": "JavaScript",
+      "percentage": 56.0
+    },
+    {
+      "name": "Dart",
+      "percentage": 42.7
+    },
+    {
+      "name": "CSS",
+      "percentage": 0.9
+    },
+    {
+      "name": "TypeScript",
+      "percentage": 0.2
+    },
+    {
+      "name": "Jupyter Notebook",
+      "percentage": 0.1
+    },
+    {
+      "name": "HTML",
+      "percentage": 0.1
+    },
+    {
+      "name": "Java",
+      "percentage": 0.0
+    },
+    {
+      "name": "Python",
+      "percentage": 0.0
+    }
+  ],
+  "pinned_repos": [
+    {
+      "name": "anti-gravity-portfolio",
+      "description": "Premium portfolio website  - Apple/Google inspired with GSAP animations, custom cursor, dark/light mode",
+      "stars": 0,
+      "language": "JavaScript",
+      "url": "https://github.com/utkarshkr13/anti-gravity-portfolio"
+    },
+    {
+      "name": "Crop_Classification",
+      "description": "Developer project repository.",
+      "stars": 0,
+      "language": "JavaScript",
+      "url": "https://github.com/utkarshkr13/Crop_Classification"
+    },
+    {
+      "name": "DSA",
+      "description": "Developer project repository.",
+      "stars": 0,
+      "language": "Java",
+      "url": "https://github.com/utkarshkr13/DSA"
+    },
+    {
+      "name": "f1_data_project",
+      "description": "Developer project repository.",
+      "stars": 0,
+      "language": "Jupyter Notebook",
+      "url": "https://github.com/utkarshkr13/f1_data_project"
+    }
+  ]
+}
