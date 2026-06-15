@@ -1,14 +1,14 @@
 {
-  "repo_name": "RyanFitzgerald/devportfolio",
-  "owner": "RyanFitzgerald",
-  "stars": 4911,
-  "url": "https://github.com/RyanFitzgerald/devportfolio",
-  "homepage": "https://ryanfitzgerald.github.io/devportfolio",
-  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
-  "effect_class": "tailwind",
-  "accent_h": 184,
-  "accent_s": "59%",
-  "accent_l": "50%",
-  "theme_name": "Ocean Cyan",
-  "last_sync": "2026-06-15 11:45:34 UTC"
+  "repo_name": "smaranjitghose/awesome-portfolio-websites",
+  "owner": "smaranjitghose",
+  "stars": 2751,
+  "url": "https://github.com/smaranjitghose/awesome-portfolio-websites",
+  "homepage": "https://portfolio.smaranjitghose.com/",
+  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
+  "effect_class": "typescript",
+  "accent_h": 50,
+  "accent_s": "60%",
+  "accent_l": "52%",
+  "theme_name": "Gold Sunset",
+  "last_sync": "2026-06-15 12:00:20 UTC"
 }
