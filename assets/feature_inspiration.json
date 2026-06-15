@@ -1,14 +1,14 @@
 {
-  "repo_name": "Renovamen/playground-macos",
-  "owner": "Renovamen",
-  "stars": 3476,
-  "url": "https://github.com/Renovamen/playground-macos",
-  "homepage": "https://portfolio.zxh.me",
-  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
-  "effect_class": "tailwind",
-  "accent_h": 210,
-  "accent_s": "55%",
-  "accent_l": "52%",
+  "repo_name": "HamishMW/portfolio",
+  "owner": "HamishMW",
+  "stars": 3450,
+  "url": "https://github.com/HamishMW/portfolio",
+  "homepage": "https://hamishw.com",
+  "featured_trend": "Interactive 3D graphics and immersive canvas experience utilizing Three.js and WebGL shaders.",
+  "effect_class": "three3d",
+  "accent_h": 200,
+  "accent_s": "60%",
+  "accent_l": "50%",
   "theme_name": "Steel Blue",
-  "last_sync": "2026-06-15 12:45:17 UTC"
+  "last_sync": "2026-06-15 13:00:17 UTC"
 }
