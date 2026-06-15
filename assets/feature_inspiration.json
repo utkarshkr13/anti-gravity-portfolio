@@ -1,14 +1,14 @@
 {
-  "repo_name": "arifszn/gitprofile",
-  "owner": "arifszn",
-  "stars": 2261,
-  "url": "https://github.com/arifszn/gitprofile",
-  "homepage": "https://arifszn.github.io/gitprofile",
-  "featured_trend": "Modern modular layout with responsive grids emphasizing academic, academic-porfolio, academic-website workflows.",
+  "repo_name": "sourcerer-io/sourcerer-app",
+  "owner": "sourcerer-io",
+  "stars": 6735,
+  "url": "https://github.com/sourcerer-io/sourcerer-app",
+  "homepage": "https://sourcerer.io/start",
+  "featured_trend": "Modern modular layout with responsive grids emphasizing analytics, curriculum-vitae, cv workflows.",
   "effect_class": "generic",
-  "accent_h": 310,
+  "accent_h": 220,
   "accent_s": "65%",
-  "accent_l": "56%",
-  "theme_name": "Magenta Pink",
-  "last_sync": "2026-06-15 10:15:17 UTC"
+  "accent_l": "54%",
+  "theme_name": "Steel Blue",
+  "last_sync": "2026-06-15 10:30:17 UTC"
 }
