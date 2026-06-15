@@ -1,14 +1,14 @@
 {
-  "repo_name": "said7388/developer-portfolio",
-  "owner": "said7388",
-  "stars": 2375,
-  "url": "https://github.com/said7388/developer-portfolio",
-  "homepage": "https://abusaid.netlify.app",
-  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
-  "effect_class": "tailwind",
-  "accent_h": 158,
-  "accent_s": "63%",
-  "accent_l": "56%",
-  "theme_name": "Mint Teal",
-  "last_sync": "2026-06-15 09:45:24 UTC"
+  "repo_name": "portfolio-performance/portfolio",
+  "owner": "portfolio-performance",
+  "stars": 3918,
+  "url": "https://github.com/portfolio-performance/portfolio",
+  "homepage": "http://www.portfolio-performance.info",
+  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
+  "effect_class": "typescript",
+  "accent_h": 34,
+  "accent_s": "59%",
+  "accent_l": "52%",
+  "theme_name": "Warm Amber",
+  "last_sync": "2026-06-15 10:00:18 UTC"
 }
