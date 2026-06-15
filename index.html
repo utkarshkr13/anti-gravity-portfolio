@@ -333,271 +333,69 @@
     </div>
   </section>
 
-  <!-- ===== AI-First Product Lab Section ===== -->
-  <section class="section" id="product-lab">
-    <div class="section-label reveal">Interactive Lab</div>
-    <h2 class="section-title reveal">AI-First <span class="accent-text">Product Lab.</span></h2>
-    <p class="section-subtitle reveal">Product Sandbox · Test my operational PM &amp; BA skills by generating live, industry-standard Product Requirements in real-time.</p>
+  <!-- ===== GitHub Analytics Section ===== -->
+  <section class="section" id="github-analytics">
+    <div class="section-label reveal">Dynamic Activity</div>
+    <h2 class="section-title reveal">GitHub <span class="accent-text">Activity.</span></h2>
+    <p class="section-subtitle reveal">Live contributions, codebase stats, and featured projects synced in real-time.</p>
 
-    <!-- Redesigned unified IDE Workspace wrapper -->
-    <div class="playground-wrapper reveal" id="playgroundWrapper">
-      
-      <!-- Left column: Control Panel (IDE parameters_config.sh) -->
-      <div class="playground-control-card">
-        <!-- macOS-style Window Header -->
-        <div class="mac-window-header">
-          <div class="mac-dots">
-            <span class="mac-dot red"></span>
-            <span class="mac-dot yellow"></span>
-            <span class="mac-dot green"></span>
+    <div class="github-dashboard reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 32px;">
+      <!-- Profile Metrics Card -->
+      <div class="github-metrics-card" style="padding: 24px; background: rgba(19, 22, 28, 0.75); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
+        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="github" style="width: 20px; height: 20px;"></i> Profile Activity
+        </h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-color);">
+            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Public Repos</div>
+            <div id="githubReposCount" style="font-size: 1.6rem; font-weight: 800; color: var(--accent);">--</div>
           </div>
-          <span class="mac-window-title">Scenario Parameters</span>
-          <div class="mac-window-action-icon"><i data-lucide="terminal" style="width:12px;height:12px;opacity:0.4;"></i></div>
-        </div>
-        
-        <div class="playground-card-body-wrapper" style="display: flex; flex-direction: column; gap: var(--space-md); flex: 1;">
-          <p class="playground-panel-desc">Select a real-world business challenge below to see how I structure a product specification.</p>
-          
-          <div class="playground-domain-selector">
-            <label class="playground-label">1. Choose Business Challenge</label>
-            
-            <button class="playground-domain-btn active" data-domain="fmcg" data-cursor="hover">
-              <div class="domain-btn-header">
-                <i data-lucide="truck" style="width:16px;height:16px;"></i>
-                <span>FMCG offline inventory sync</span>
-              </div>
-              <p>Field agents experiencing sync failure, causing inventory double-submissions &amp; invoicing lag.</p>
-            </button>
-            
-            <button class="playground-domain-btn" data-domain="escalation" data-cursor="hover">
-              <div class="domain-btn-header">
-                <i data-lucide="life-buoy" style="width:16px;height:16px;"></i>
-                <span>Enterprise SLA Escalations</span>
-              </div>
-              <p>High-volume ticket classification errors causing critical 2-hour support breaches.</p>
-            </button>
-            
-            <button class="playground-domain-btn" data-domain="geospatial" data-cursor="hover">
-              <div class="domain-btn-header">
-                <i data-lucide="map-pin" style="width:16px;height:16px;"></i>
-                <span>Geospatial Transit Pricing</span>
-              </div>
-              <p>Static bus route schedules ignoring real-time traffic demand, bleeding margins.</p>
-            </button>
+          <div style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-color);">
+            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Total Stars</div>
+            <div id="githubStarsCount" style="font-size: 1.6rem; font-weight: 800; color: var(--accent);">--</div>
           </div>
-
-          <div class="playground-parameters">
-            <label class="playground-label">2. Target Architecture Parameters</label>
-            <div class="playground-params-grid">
-              <div class="playground-param-group">
-                <label for="playgroundParamChannel">Target Channel</label>
-                <select id="playgroundParamChannel" data-cursor="hover">
-                  <option value="Web SaaS">Web SaaS</option>
-                  <option value="Mobile PWA Native">Mobile PWA Native</option>
-                  <option value="Microservice Rest API">Microservice Rest API</option>
-                </select>
-              </div>
-              <div class="playground-param-group">
-                <label for="playgroundParamMode">Delivery Framework</label>
-                <select id="playgroundParamMode" data-cursor="hover">
-                  <option value="Agile Scrum">Agile Scrum</option>
-                  <option value="Lean Kanban">Lean Kanban</option>
-                  <option value="XP (Extreme Programming)">XP (Extreme Programming)</option>
-                </select>
-              </div>
-            </div>
+          <div style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-color); grid-column: span 2;">
+            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Followers</div>
+            <div id="githubFollowersCount" style="font-size: 1.4rem; font-weight: 800; color: var(--accent);">--</div>
           </div>
-
-          <button class="btn btn-primary playground-generate-btn" id="playgroundGenerateBtn" data-cursor="hover" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; margin-top: auto;">
-            Compile Specifications <i data-lucide="cpu" style="width:16px;height:16px;margin-left:6px;"></i>
-          </button>
         </div>
       </div>
 
-      <!-- Right column: Simulated Workspace Doc Viewer (IDE specs_compiler.log) -->
-      <div class="playground-workspace-card">
-        <!-- macOS-style Window Header -->
-        <div class="mac-window-header">
-          <div class="mac-dots">
-            <span class="mac-dot red"></span>
-            <span class="mac-dot yellow"></span>
-            <span class="mac-dot green"></span>
-          </div>
-          <span class="mac-window-title" id="playgroundWorkspaceTitle">specs_compiler.log</span>
-          <div class="mac-window-action-icon"><i data-lucide="code" style="width:12px;height:12px;opacity:0.4;"></i></div>
-        </div>
-
-        <div class="playground-card-body-wrapper" style="display: flex; flex-direction: column; flex: 1; position: relative;">
-          
-          <!-- State 1: Waiting / Empty -->
-          <div class="playground-workspace-empty active" id="playgroundWorkspaceEmpty">
-            <div class="empty-state-content">
-              <div class="empty-state-icon">
-                <i data-lucide="terminal" style="width:40px;height:40px;"></i>
-              </div>
-              <h3>Workspace Idle</h3>
-              <p>Configure parameters on the left and click "Compile Specifications" to run the high-fidelity PM compiler engine.</p>
-            </div>
-          </div>
-
-          <!-- State 2: Simulated high-tech loading terminal -->
-          <div class="playground-workspace-loader" id="playgroundWorkspaceLoader">
-            <div class="loader-state-content" style="width: 100%; max-width: 100%; padding: 0 10px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
-              <div class="loader-spinner"></div>
-              <h3 id="playgroundLoaderStepText" style="font-size: 0.85rem; font-weight: 700; margin: 0; color: var(--accent); text-align: center;">Analyzing operational workflows...</h3>
-              <div class="playground-loader-bar" style="width: 100%;">
-                <div class="playground-loader-bar-inner" id="playgroundLoaderBarInner"></div>
-              </div>
-              <!-- High-tech scrolling terminal logger -->
-              <div class="terminal-logger" id="playgroundTerminalLogger" data-lenis-prevent style="width: 100%; text-align: left; background: rgba(8, 9, 12, 0.9); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 16px; font-family: 'Courier New', Courier, monospace; font-size: 0.72rem; color: #10b981; height: 160px; overflow-y: auto; box-shadow: inset 0 2px 8px rgba(0,0,0,0.8); scrollbar-width: none; flex-shrink: 0;">
-                <!-- Active logging lines injected by playground.js -->
-              </div>
-            </div>
-          </div>
-
-          <!-- State 3: Active Document Viewer -->
-          <div class="playground-workspace-content" id="playgroundWorkspaceContent">
-            <div class="playground-tabs">
-              <button class="playground-tab-btn active" id="tabBtnBrief" data-cursor="hover">📋 Product Brief</button>
-              <button class="playground-tab-btn" id="tabBtnBacklog" data-cursor="hover">🎫 Jira Stories</button>
-              <button class="playground-tab-btn" id="tabBtnQA" data-cursor="hover">🧪 Edge Cases &amp; QA</button>
-              <button class="playground-tab-btn" id="tabBtnFlow" data-cursor="hover">🗺️ Architecture Map</button>
-              <button class="playground-tab-btn" id="tabBtnROI" data-cursor="hover">📊 Business Case ROI</button>
-            </div>
-            
-            <div class="playground-doc-header">
-              <h4 id="playgroundSpecTitle">Spec Title</h4>
-              <div class="playground-spec-meta" id="playgroundSpecMeta">Environment: <strong>Web SaaS</strong> · Workflow: <strong>Agile Scrum</strong></div>
-              
-              <div class="playground-doc-actions">
-                <button class="playground-action-btn" id="playgroundCopyBtn" title="Copy Markdown to Clipboard" data-cursor="hover">
-                  <i data-lucide="copy" style="width:14px;height:14px;"></i> Copy Spec
-                </button>
-                <button class="playground-action-btn" id="playgroundExportBtn" title="Download Markdown File" data-cursor="hover">
-                  <i data-lucide="download" style="width:14px;height:14px;"></i> Export .MD
-                </button>
-              </div>
-            </div>
-
-            <!-- Added data-lenis-prevent to contain scroll events and avoid page scrolling hijacking -->
-            <div class="playground-doc-view" data-lenis-prevent>
-              <div id="playgroundSpecText" class="markdown-body">Generating...</div>
-            </div>
-          </div>
-
+      <!-- Languages Breakdown Card -->
+      <div class="github-languages-card" style="padding: 24px; background: rgba(19, 22, 28, 0.75); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
+        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="code-2" style="width: 20px; height: 20px;"></i> Language Weight
+        </h3>
+        <div id="githubLanguagesList">
+          <p style="font-size: 0.8rem; color: var(--text-secondary);">Loading language statistics...</p>
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ===== Interactive Strategy Suite Section ===== -->
-  <section class="section" id="recruiter-suite">
-    <div class="section-label reveal">Strategy Sandbox</div>
-    <h2 class="section-title reveal">Interactive <span class="accent-text">Strategy Suite.</span></h2>
-    <p class="section-subtitle reveal">Test my cross-border Agile delivery, quick-thinking problem solving, and product strategy in real-time.</p>
-
-    <div class="recruiter-suite-tabs reveal">
-      <button class="recruiter-suite-tab active" onclick="switchRecruiterTab('kanban')" id="btnTabKanban" data-cursor="hover">📋 PM Kanban Board</button>
-      <button class="recruiter-suite-tab" onclick="switchRecruiterTab('challenge')" id="btnTabChallenge" data-cursor="hover">🎯 2-Min PM Challenge</button>
+      <!-- Portfolio Feature Spotlight Card -->
+      <div class="github-spotlight-card" style="padding: 24px; background: rgba(19, 22, 28, 0.75); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px); grid-column: span 1; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="sparkles" style="width: 20px; height: 20px; color: #f59e0b;"></i> Portfolio Feature Spotlight
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+            Every 15 minutes, my autonomous subagent analyzes portfolio design elements from GitHub Stars / Reddit and spotlights a top developer feature or design paradigm.
+          </p>
+        </div>
+        <div style="padding: 16px; background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 12px;">
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #f59e0b; margin-bottom: 6px;">Spotlight Idea</div>
+          <div id="portfolioSpotlightText" style="font-size: 0.8rem; font-weight: 600; color: var(--text-primary); line-height: 1.4;">
+            Fetching latest portfolio design trend from subagent...
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="recruiter-suite-content reveal">
-      <!-- Kanban Board View -->
-      <div class="recruiter-suite-panel active" id="recruiterPanelKanban">
-        <p class="recruiter-panel-desc">Drag real achievements between Agile lifecycle stages. Drop a card in <strong>"LIVE"</strong> to trigger production launch & see business metrics.</p>
-        
-        <div class="kanban-board-container" data-lenis-prevent>
-          <div class="kanban-column" id="kanbanBacklog" ondragover="allowDrop(event)" ondrop="dropCard(event, 'Backlog')">
-            <div class="kanban-column-header">
-              <span class="column-dot backlog"></span>
-              <span>Backlog</span>
-            </div>
-            <div class="kanban-cards-list" id="listBacklog">
-              <!-- Cards will be populated dynamically -->
-            </div>
-          </div>
-          
-          <div class="kanban-column" id="kanbanInDev" ondragover="allowDrop(event)" ondrop="dropCard(event, 'InDev')">
-            <div class="kanban-column-header">
-              <span class="column-dot in-dev"></span>
-              <span>In Dev</span>
-            </div>
-            <div class="kanban-cards-list" id="listInDev">
-              <!-- Cards -->
-            </div>
-          </div>
-          
-          <div class="kanban-column" id="kanbanUAT" ondragover="allowDrop(event)" ondrop="dropCard(event, 'UAT')">
-            <div class="kanban-column-header">
-              <span class="column-dot uat"></span>
-              <span>UAT / Sign-off</span>
-            </div>
-            <div class="kanban-cards-list" id="listUAT">
-              <!-- Cards -->
-            </div>
-          </div>
-          
-          <div class="kanban-column" id="kanbanLive" ondragover="allowDrop(event)" ondrop="dropCard(event, 'Live')">
-            <div class="kanban-column-header">
-              <span class="column-dot live"></span>
-              <span>Live (Prod)</span>
-            </div>
-            <div class="kanban-cards-list" id="listLive">
-              <!-- Cards dropped here will trigger success and show details -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PM Challenge View -->
-      <div class="recruiter-suite-panel" id="recruiterPanelChallenge" style="display: none;">
-        <div class="challenge-game-container">
-          <div class="challenge-scenario-card">
-            <div class="challenge-scenario-header">
-              <div class="challenge-badge">VP Sales Escalation</div>
-              <div class="challenge-timer-label">Time Critical: Urgent</div>
-            </div>
-            <h3 class="challenge-title">The Rural Distribution Double-Invoice Bug</h3>
-            <p class="challenge-problem"><strong>The Situation:</strong> During the rural Coca-Cola FMCG deployment in low-connectivity zones, field agents submitting orders experience network timeouts. Frustrated, they repeatedly double-tap "Submit order". This causes duplicated order invoicing in SAP, leading to shipping discrepancies and financial reconciliations.</p>
-            
-            <div class="challenge-question">As the Lead PM/BA, how do you resolve this with high technical precision?</div>
-            
-            <div class="challenge-options">
-              <button class="challenge-option" onclick="selectChallengeOption('A', this)" data-cursor="hover">
-                <div class="option-letter">A</div>
-                <div class="option-text">
-                  <strong>Basic Client Validation</strong>
-                  <p>Display a static toast warning the agent "In progress, please wait" and disable the submit button in CSS after click.</p>
-                </div>
-                <span class="option-status"></span>
-              </button>
-              
-              <button class="challenge-option" onclick="selectChallengeOption('B', this)" data-cursor="hover">
-                <div class="option-letter">B</div>
-                <div class="option-text">
-                  <strong>Backend Database Triggers</strong>
-                  <p>Write an automated SQL unique index constraint on the Orders table to raise a database exception and trigger rollback.</p>
-                </div>
-                <span class="option-status"></span>
-              </button>
-              
-              <button class="challenge-option" onclick="selectChallengeOption('C', this)" data-cursor="hover">
-                <div class="option-letter">C</div>
-                <div class="option-text">
-                  <strong>Client Offline Cache + Idempotency Keys (Recommended)</strong>
-                  <p>Store orders in client IndexedDB first with unique UUIDs. Sync via fetch headers containing an Idempotency-Key. If double-sent, the server returns the cached response of the first transaction.</p>
-                </div>
-                <span class="option-status"></span>
-              </button>
-            </div>
-
-            <div class="challenge-result" id="challengeResultBox" style="display: none;">
-              <!-- Result content injected dynamically -->
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Pinned Repositories -->
+    <h3 class="reveal" style="font-size: 1.2rem; font-weight: 700; margin-top: 48px; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+      <i data-lucide="folder-git-2" style="width: 22px; height: 22px;"></i> Featured Repositories
+    </h3>
+    <div id="githubReposGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px;">
+      <!-- Populated by github_stats.js -->
     </div>
   </section>
 
@@ -1489,9 +1287,8 @@
   <script src="js/glow.js"></script>
   <script src="js/magnetic.js"></script>
   <script src="js/animations.js"></script>
-  <script src="js/recruiter.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/playground.js"></script>
+  <script src="js/github_stats.js"></script>
   <script>lucide.createIcons();</script>
 </body>
 </html>
