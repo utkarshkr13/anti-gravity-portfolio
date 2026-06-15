@@ -6,8 +6,25 @@
 /* ---------- Google Fonts ---------- */
 
 
+@property --accent-h {
+  syntax: '<number>';
+  initial-value: 210;
+  inherits: true;
+}
+@property --accent-s {
+  syntax: '<percentage>';
+  initial-value: 40%;
+  inherits: true;
+}
+@property --accent-l {
+  syntax: '<percentage>';
+  initial-value: 58%;
+  inherits: true;
+}
+
 /* ---------- CSS Custom Properties ---------- */
 :root {
+  transition: --accent-h 0.8s ease, --accent-s 0.8s ease, --accent-l 0.8s ease;
   /* Accent — Steel Blue (extracted from profile: mountain mist, snow, clouds) */
   --accent-h: 210;
   --accent-s: 40%;
@@ -85,7 +102,7 @@
   --bg-nav: rgba(248, 249, 250, 0.75);
   --text-primary: #202124;
   --text-secondary: #5f6368;
-  --text-tertiary: #9aa0a6;
+  --text-tertiary: #6a737d;
   --border-color: rgba(0, 0, 0, 0.06);
   --border-color-hover: rgba(0, 0, 0, 0.12);
   --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
@@ -2151,7 +2168,8 @@ body.egg-cyberpunk {
     bottom: 80px;
     left: 20px;
     width: calc(100vw - 40px);
-    max-height: 400px;
+    max-height: 520px;
+    height: calc(100vh - 120px);
   }
 }
 

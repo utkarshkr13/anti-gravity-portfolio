@@ -217,10 +217,14 @@
       const currentHeight = window.innerHeight;
       const widthChanged = Math.abs(currentWidth - lastWidth) > 20;
       
+      const dpr = window.devicePixelRatio || 1;
       width = currentWidth;
       height = currentHeight;
-      canvas.width = width;
-      canvas.height = height;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.scale(dpr, dpr);
       
       if (widthChanged || texts.length === 0) {
         lastWidth = currentWidth;
