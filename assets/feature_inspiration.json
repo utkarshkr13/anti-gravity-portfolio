@@ -1,14 +1,14 @@
 {
-  "repo_name": "adrianhajdin/portfolio_website",
-  "owner": "adrianhajdin",
-  "stars": 3493,
-  "url": "https://github.com/adrianhajdin/portfolio_website",
-  "homepage": "https://www.jsmastery.pro",
-  "featured_trend": "Server-side rendered performance and fast client-side hydration using Next.js framework.",
-  "effect_class": "reactive",
-  "accent_h": 175,
-  "accent_s": "65%",
-  "accent_l": "57%",
-  "theme_name": "Ocean Cyan",
-  "last_sync": "2026-06-15 06:45:16 UTC"
+  "repo_name": "henryjeff/portfolio-website",
+  "owner": "henryjeff",
+  "stars": 2175,
+  "url": "https://github.com/henryjeff/portfolio-website",
+  "homepage": "https://henryheffernan.com",
+  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
+  "effect_class": "typescript",
+  "accent_h": 286,
+  "accent_s": "56%",
+  "accent_l": "56%",
+  "theme_name": "Magenta Pink",
+  "last_sync": "2026-06-15 07:00:16 UTC"
 }
