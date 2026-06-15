@@ -1,14 +1,14 @@
 {
-  "repo_name": "sourcerer-io/sourcerer-app",
-  "owner": "sourcerer-io",
-  "stars": 6735,
-  "url": "https://github.com/sourcerer-io/sourcerer-app",
-  "homepage": "https://sourcerer.io/start",
-  "featured_trend": "Modern modular layout with responsive grids emphasizing analytics, curriculum-vitae, cv workflows.",
-  "effect_class": "generic",
-  "accent_h": 220,
-  "accent_s": "65%",
+  "repo_name": "saadpasta/developerFolio",
+  "owner": "saadpasta",
+  "stars": 6568,
+  "url": "https://github.com/saadpasta/developerFolio",
+  "homepage": "https://developerfolio.js.org/",
+  "featured_trend": "Server-side rendered performance and fast client-side hydration using Next.js framework.",
+  "effect_class": "reactive",
+  "accent_h": 236,
+  "accent_s": "66%",
   "accent_l": "54%",
-  "theme_name": "Steel Blue",
-  "last_sync": "2026-06-15 10:30:17 UTC"
+  "theme_name": "Electric Indigo",
+  "last_sync": "2026-06-15 10:45:17 UTC"
 }
