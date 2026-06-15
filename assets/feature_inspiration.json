@@ -1,14 +1,14 @@
 {
-  "repo_name": "tbakerx/react-resume-template",
-  "owner": "tbakerx",
-  "stars": 2131,
-  "url": "https://github.com/tbakerx/react-resume-template",
-  "homepage": "https://reactresume.com",
-  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
-  "effect_class": "tailwind",
-  "accent_h": 263,
-  "accent_s": "63%",
-  "accent_l": "57%",
-  "theme_name": "Amethyst Violet",
-  "last_sync": "2026-06-15 11:15:16 UTC"
+  "repo_name": "ghostfolio/ghostfolio",
+  "owner": "ghostfolio",
+  "stars": 8718,
+  "url": "https://github.com/ghostfolio/ghostfolio",
+  "homepage": "https://Ghostfol.io",
+  "featured_trend": "Type-safe client architecture and modular component design pattern using TypeScript.",
+  "effect_class": "typescript",
+  "accent_h": 44,
+  "accent_s": "69%",
+  "accent_l": "54%",
+  "theme_name": "Warm Amber",
+  "last_sync": "2026-06-15 11:30:19 UTC"
 }
