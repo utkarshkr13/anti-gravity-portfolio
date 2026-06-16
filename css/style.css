@@ -1540,9 +1540,10 @@ ul, ol {
     padding: var(--space-2xl) var(--space-md);
   }
   .nav-wrapper {
-    max-width: 95vw;
-    margin: 0 auto;
-    right: 0;
+    width: 95vw;
+    left: 2.5vw;
+    right: auto;
+    margin: 0;
   }
   .navbar {
     padding: 6px 8px;
