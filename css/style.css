@@ -569,7 +569,7 @@ ul, ol {
 .btn-secondary {
   background: rgba(255, 255, 255, 0.03);
   color: var(--text-primary);
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid var(--btn-secondary-border);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -586,7 +586,7 @@ ul, ol {
 [data-theme="light"] .btn-secondary {
   background: rgba(0, 0, 0, 0.02);
   color: var(--text-primary);
-  border-color: rgba(0, 0, 0, 0.15);
+  border-color: var(--btn-secondary-border);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
@@ -1129,12 +1129,12 @@ ul, ol {
 }
 
 .project-card-links .btn-secondary {
-  border-color: var(--border-color) !important;
+  border-color: var(--btn-secondary-border) !important;
 }
 
 .project-card-links .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.05) !important;
-  border-color: rgba(255, 255, 255, 0.25) !important;
+  border-color: var(--btn-secondary-border) !important;
   color: var(--text-primary) !important;
 }
 
@@ -1395,7 +1395,7 @@ ul, ol {
   outline: none;
   border-color: var(--accent);
   background: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 [data-theme="light"] .contact-form input,
@@ -1415,7 +1415,7 @@ ul, ol {
 [data-theme="light"] .contact-form textarea:focus {
   background: #ffffff;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 /* ---------- Interactive QR Code Component ---------- */

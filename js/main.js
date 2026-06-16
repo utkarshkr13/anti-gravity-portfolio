@@ -178,15 +178,9 @@
         // Update active class on buttons
         filterBtns.forEach(b => {
           b.classList.remove('active');
-          b.style.background = 'transparent';
-          b.style.color = 'var(--text-secondary)';
-          b.style.borderColor = 'var(--border-color)';
         });
         
         btn.classList.add('active');
-        btn.style.background = 'var(--accent)';
-        btn.style.color = '#fff';
-        btn.style.borderColor = 'var(--accent)';
         
         const filterValue = btn.getAttribute('data-filter');
         

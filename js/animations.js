@@ -69,7 +69,7 @@
 
     window.addEventListener('theme-change', () => {
       currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-      const opacity = currentTheme === 'light' ? 0.18 : 0.05;
+      const opacity = currentTheme === 'light' ? 0.35 : 0.15;
       texts.forEach(t => t.opacity = opacity);
     });
 
@@ -89,7 +89,7 @@
         this.y = this.baseY;
         this.vx = 0;
         this.vy = 0;
-        this.opacity = currentTheme === 'light' ? 0.18 : 0.05; 
+        this.opacity = currentTheme === 'light' ? 0.35 : 0.15; 
         this.scrollSpeed = rowSpeed || 0.8;
       }
       
