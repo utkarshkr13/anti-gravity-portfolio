@@ -1635,6 +1635,7 @@ ul, ol {
   .project-card.featured .project-card-image {
     width: 100%;
     aspect-ratio: 16/10;
+    min-height: auto;
   }
   .project-card.featured .project-card-body {
     width: 100%;
