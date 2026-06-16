@@ -299,7 +299,7 @@
         impactContainer.innerHTML = '';
         data.impact.forEach(item => {
           const div = document.createElement('div');
-          div.style.cssText = "padding:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border-color); border-radius:8px;";
+          div.style.cssText = "padding:12px; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:8px;";
           div.innerHTML = `
             <div style="font-size:0.75rem; color:var(--text-tertiary); margin-bottom:4px; display:flex; align-items:center; gap:4px;"><i data-lucide="check" style="width:12px; height:12px; color:#10b981;"></i> KPI Achieved</div>
             <div style="font-size:0.82rem; font-weight:600; color:var(--text-primary); line-height:1.4;">${item}</div>

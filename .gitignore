@@ -10,3 +10,9 @@ Desktop.ini
 # PDF source (not needed in deployed site)
 New_CV.pdf
 Profile Image.jpg
+
+# Agent and python cache
+.agents/
+__pycache__/
+*.pyc
+

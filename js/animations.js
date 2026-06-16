@@ -40,6 +40,7 @@
     const ctx = canvas.getContext('2d');
     let width, height;
     let tickerActive = true;
+    let currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     
     // Top-tier fallbacks matching Utkarsh's global FMCG and SaaS background
     let marketData = [
@@ -66,6 +67,12 @@
     let mouse = { x: -1000, y: -1000 };
     let texts = [];
 
+    window.addEventListener('theme-change', () => {
+      currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const opacity = currentTheme === 'light' ? 0.18 : 0.05;
+      texts.forEach(t => t.opacity = opacity);
+    });
+
     class TextNode {
       constructor(stockData, colX, rowY, rowSpeed) {
         const sign = stockData.change_pct >= 0 ? '+' : '';
@@ -82,7 +89,7 @@
         this.y = this.baseY;
         this.vx = 0;
         this.vy = 0;
-        this.opacity = 0.05; 
+        this.opacity = currentTheme === 'light' ? 0.18 : 0.05; 
         this.scrollSpeed = rowSpeed || 0.8;
       }
       
@@ -131,10 +138,18 @@
       }
       
       draw() {
-        if (this.isPositive) {
-          ctx.fillStyle = `rgba(34, 197, 94, ${this.opacity})`; // Neon Green
+        if (currentTheme === 'light') {
+          if (this.isPositive) {
+            ctx.fillStyle = `rgba(22, 101, 52, ${this.opacity})`; // Dark Forest Green
+          } else {
+            ctx.fillStyle = `rgba(185, 28, 28, ${this.opacity})`; // Dark Red
+          }
         } else {
-          ctx.fillStyle = `rgba(239, 68, 68, ${this.opacity})`; // CNBC Red
+          if (this.isPositive) {
+            ctx.fillStyle = `rgba(34, 197, 94, ${this.opacity})`; // Neon Green
+          } else {
+            ctx.fillStyle = `rgba(239, 68, 68, ${this.opacity})`; // CNBC Red
+          }
         }
         ctx.fillText(this.text, this.x, this.y);
       }

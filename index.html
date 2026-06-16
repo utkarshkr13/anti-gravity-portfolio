@@ -77,7 +77,7 @@
         </a>
       </div>
       <div class="magnetic-wrap">
-        <a href="javascript:window.print();" class="btn btn-secondary" data-cursor="hover" id="ctaResume" style="border-color: rgba(255,255,255,0.15);">
+        <a href="javascript:window.print();" class="btn btn-secondary" data-cursor="hover" id="ctaResume" style="border-color: var(--btn-secondary-border);">
           Download Resume <i data-lucide="download" style="width:14px;height:14px;margin-left:6px;display:inline-block;vertical-align:middle;"></i>
         </a>
       </div>
@@ -247,7 +247,7 @@
           </div>
           <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
             <a href="https://sap-tracker-mocha.vercel.app" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">Live Application <span style="font-size:0.75rem;">↗</span></a>
-            <a href="https://github.com/utkarshkr13/sap-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto; border-color: rgba(255,255,255,0.15);" data-cursor="hover">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
+            <a href="https://github.com/utkarshkr13/sap-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto; border-color: var(--btn-secondary-border);" data-cursor="hover">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
             <button class="btn btn-primary btn-case-study" data-project="sap-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags" style="margin-top: 15px;">
@@ -275,7 +275,7 @@
           </div>
           <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
             <a href="https://client-inbox-tracker.vercel.app" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">Live Application <span style="font-size:0.75rem;">↗</span></a>
-            <a href="https://github.com/utkarshkr13/client-inbox-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto; border-color: rgba(255,255,255,0.15);" data-cursor="hover">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
+            <a href="https://github.com/utkarshkr13/client-inbox-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto; border-color: var(--btn-secondary-border);" data-cursor="hover">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
             <button class="btn btn-primary btn-case-study" data-project="client-inbox-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags" style="margin-top: 15px;">
@@ -295,7 +295,7 @@
           <h3 class="project-card-title">Satellite Crop Classification</h3>
           <p class="project-card-desc">A research project using Sentinel-1 SAR and Sentinel-2 optical imagery on Google Earth Engine to support crop identification and vegetation analysis with machine learning methods.</p>
           <div style="margin-top: 12px; margin-bottom: 12px;">
-            <button class="btn btn-secondary btn-case-study" data-project="satellite-crop" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%; border-color: rgba(255,255,255,0.15);" data-cursor="hover">View Case Study</button>
+            <button class="btn btn-secondary btn-case-study" data-project="satellite-crop" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%; border-color: var(--btn-secondary-border);" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags">
             <span>Remote Sensing</span><span>ML</span><span>Google Earth Engine</span><span>Python</span>
@@ -314,7 +314,7 @@
           <h3 class="project-card-title">CityFlo BI Dashboards</h3>
           <p class="project-card-desc">Interactive dashboards built for location heat maps, market analysis, and pricing support using Python, scraping workflows, and PostgreSQL-backed data models.</p>
           <div style="margin-top: 12px; margin-bottom: 12px;">
-            <button class="btn btn-secondary btn-case-study" data-project="cityflo-bi" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%; border-color: rgba(255,255,255,0.15);" data-cursor="hover">View Case Study</button>
+            <button class="btn btn-secondary btn-case-study" data-project="cityflo-bi" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%; border-color: var(--btn-secondary-border);" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags">
             <span>Tableau</span><span>Python</span><span>PostgreSQL</span><span>BeautifulSoup</span><span>Selenium</span>
@@ -367,15 +367,15 @@
           <i data-lucide="github" style="width: 20px; height: 20px;"></i> Profile Activity
         </h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-          <div style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-color);">
+          <div class="github-metrics-subcard">
             <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Public Repos</div>
             <div id="githubReposCount" style="font-size: 1.6rem; font-weight: 800; color: var(--accent);">--</div>
           </div>
-          <div style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-color);">
+          <div class="github-metrics-subcard">
             <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Total Stars</div>
             <div id="githubStarsCount" style="font-size: 1.6rem; font-weight: 800; color: var(--accent);">--</div>
           </div>
-          <div style="padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-color); grid-column: span 2;">
+          <div class="github-metrics-subcard" style="grid-column: span 2;">
             <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Followers</div>
             <div id="githubFollowersCount" style="font-size: 1.4rem; font-weight: 800; color: var(--accent);">--</div>
           </div>
@@ -537,7 +537,7 @@
       </div>
       
       <!-- Inline Contact Form -->
-      <form action="https://formspree.io/f/mnjropbv" method="POST" class="contact-form" style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 16px; background: rgba(255,255,255,0.02); padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
+      <form action="https://formspree.io/f/mnjropbv" method="POST" class="contact-form" style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 16px; background: var(--bg-subtle); padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
         <h3 style="margin-bottom: 8px; font-size: 1.2rem; font-weight: 600;">Send a message</h3>
         <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
         <input type="email" name="email" placeholder="Your Email" autocomplete="email" required>
@@ -608,7 +608,7 @@
         </div>
         <div class="modal-footer" style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-color);display:flex;gap:12px;justify-content:flex-end">
           <a href="#" target="_blank" class="btn btn-primary" id="modalLiveLink" style="padding:10px 20px;font-size:0.85rem;height:auto">Live Application ↗</a>
-          <a href="#" target="_blank" class="btn btn-secondary" id="modalCodeLink" style="padding:10px 20px;font-size:0.85rem;height:auto;border-color:rgba(255,255,255,0.15)">GitHub Repository ↗</a>
+          <a href="#" target="_blank" class="btn btn-secondary" id="modalCodeLink" style="padding:10px 20px;font-size:0.85rem;height:auto;border-color:var(--btn-secondary-border)">GitHub Repository ↗</a>
         </div>
       </div>
     </div>

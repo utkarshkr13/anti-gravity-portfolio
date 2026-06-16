@@ -91,6 +91,9 @@
   --cursor-color: var(--accent-light);
   --gradient-hero: radial-gradient(circle at 50% -20%, hsla(210, 60%, 25%, 0.5) 0%, hsla(210, 30%, 15%, 0.3) 40%, transparent 80%);
   --dot-grid-color: rgba(255, 255, 255, 0.025);
+  --bg-subtle: rgba(255, 255, 255, 0.02);
+  --bg-subtle-hover: rgba(255, 255, 255, 0.04);
+  --btn-secondary-border: rgba(255, 255, 255, 0.15);
 }
 
 /* ---------- Light Theme ---------- */
@@ -111,6 +114,9 @@
   --cursor-color: var(--accent-dark);
   --gradient-hero: radial-gradient(circle at 50% -20%, hsla(210, 50%, 85%, 0.8) 0%, hsla(210, 40%, 92%, 0.4) 40%, transparent 80%);
   --dot-grid-color: rgba(0, 0, 0, 0.03);
+  --bg-subtle: rgba(0, 0, 0, 0.02);
+  --bg-subtle-hover: rgba(0, 0, 0, 0.04);
+  --btn-secondary-border: rgba(0, 0, 0, 0.15);
 }
 
 /* ---------- Reset ---------- */
@@ -2413,8 +2419,16 @@ body.egg-cyberpunk {
 .github-repo-card:hover .github-repo-card-inner {
   transform: translateY(-4px);
   border-color: var(--accent) !important;
-  background: rgba(255, 255, 255, 0.04) !important;
+  background: var(--bg-subtle-hover) !important;
   box-shadow: 0 12px 30px rgba(8, 9, 12, 0.2), 0 0 15px rgba(59, 130, 246, 0.05);
+}
+
+.github-metrics-subcard {
+  padding: 16px;
+  background: var(--bg-subtle);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: background-color var(--theme-transition), border-color var(--theme-transition);
 }
 
 .github-lang-bar-fill {

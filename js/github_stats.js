@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="${url}" target="_blank" rel="noopener" style="font-size:0.85rem; font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:4px; transition:color 0.2s;">
                   <i data-lucide="github" style="width:14px; height:14px; display:inline-block; vertical-align:middle;"></i> <span style="vertical-align:middle;">${repoName}</span>
                 </a>
-                <span style="font-size:0.7rem; font-weight:700; background:rgba(255,255,255,0.04); padding:3px 8px; border-radius:100px; color:var(--text-primary); display:flex; align-items:center; gap:4px; border:1px solid var(--border-color);">
+                <span style="font-size:0.7rem; font-weight:700; background:var(--bg-subtle-hover); padding:3px 8px; border-radius:100px; color:var(--text-primary); display:flex; align-items:center; gap:4px; border:1px solid var(--border-color);">
                   <i data-lucide="star" style="width:10px; height:10px; color:#f59e0b;"></i> ${stars.toLocaleString()}
                 </span>
               </div>
@@ -148,7 +148,7 @@ function updateGitHubUI(data) {
       card.style.display = 'block';
 
       card.innerHTML = `
-        <div class="github-repo-card-inner" style="padding:20px; background:rgba(255,255,255,0.02); border:1px solid var(--border-color); border-radius:12px; height:100%; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.3s;">
+        <div class="github-repo-card-inner" style="padding:20px; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:12px; height:100%; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.3s;">
           <div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
               <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin:0;">${repo.name}</h4>
