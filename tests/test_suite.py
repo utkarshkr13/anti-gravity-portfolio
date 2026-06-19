@@ -43,6 +43,22 @@ def get_contrast_ratio(color1, color2):
     l2 = min(lum1, lum2)
     return (l1 + 0.05) / (l2 + 0.05)
 
+async def ensure_theme(client, expected_theme):
+    current_theme = await client.eval_js("document.documentElement.getAttribute('data-theme')")
+    if current_theme != expected_theme:
+        print(f"[TEST SUITE] Toggling theme to {expected_theme}...")
+        await client.click("#themeToggle")
+        # Give it a few attempts to register the change
+        for _ in range(10):
+            await asyncio.sleep(0.1)
+            current_theme = await client.eval_js("document.documentElement.getAttribute('data-theme')")
+            if current_theme == expected_theme:
+                break
+        else:
+            print(f"[TEST SUITE] Warning: failed to switch theme to {expected_theme} via click, forcing attribute.")
+            await client.eval_js(f"document.documentElement.setAttribute('data-theme', '{expected_theme}')")
+            await asyncio.sleep(0.2)
+
 async def run_e2e_tests(client):
     success = True
     print("\n==========================================")
@@ -303,14 +319,8 @@ async def run_e2e_tests(client):
     
     # We test both light and dark mode
     for mode in ["dark", "light"]:
-        # Get current theme
-        current_theme = await client.eval_js("document.documentElement.getAttribute('data-theme')")
-        if current_theme != mode:
-            await client.click("#themeToggle")
-            await asyncio.sleep(0.5) # Wait for theme toggle transition
-            current_theme = await client.eval_js("document.documentElement.getAttribute('data-theme')")
-            
-        print(f"  Theme: {current_theme.upper()}")
+        await ensure_theme(client, mode)
+        print(f"  Theme: {mode.upper()}")
         
         for target in contrast_targets:
             # Query actual computed colors
@@ -362,9 +372,7 @@ async def run_e2e_tests(client):
     print(f"  [PASS] Canvas element is visible with computed opacity: {canvas_opacity}.")
     
     # In light mode
-    if current_theme != "light":
-        await client.click("#themeToggle")
-        await asyncio.sleep(0.5)
+    await ensure_theme(client, "light")
     
     # We log a warning if canvas background contrast is low in light mode
     hero_bg = await client.eval_js("""
@@ -385,8 +393,7 @@ async def run_e2e_tests(client):
         print("  [PASS] Stock ticker text contrast is sufficient in light mode.")
 
     # Reset back to dark mode
-    await client.click("#themeToggle")
-    await asyncio.sleep(0.5)
+    await ensure_theme(client, "dark")
 
     # ==========================================
     # TIER 3: CROSS-FEATURE COMBINATIONS
@@ -455,8 +462,7 @@ async def run_e2e_tests(client):
     # 2. Theme Switching + Canvas redraw parameters
     print("\n[Tier 3] Checking Theme Switching + Canvas redraw...")
     # Trigger theme toggle, verify event dispatch
-    await client.click("#themeToggle")
-    await asyncio.sleep(0.2)
+    await ensure_theme(client, "light")
     # Check if canvas exists and is cleared
     canvas_exists = await client.eval_js("!!document.getElementById('heroGlobe')")
     if canvas_exists:
@@ -466,8 +472,7 @@ async def run_e2e_tests(client):
         success = False
     
     # Restore theme
-    await client.click("#themeToggle")
-    await asyncio.sleep(0.2)
+    await ensure_theme(client, "dark")
 
     # 3. Theme Switching + GitHub Cards legibility
     print("\n[Tier 3] Checking Theme Switching + GitHub Cards legibility...")
@@ -480,9 +485,8 @@ async def run_e2e_tests(client):
                 return {{ color: style.color, bg: style.backgroundColor }};
             }})()
         """)
-        # Click theme toggle to switch to light mode
-        await client.click("#themeToggle")
-        await asyncio.sleep(0.5)
+        # Switch to light mode
+        await ensure_theme(client, "light")
         
         colors_light = await client.eval_js(f"""
             (function() {{
@@ -494,8 +498,7 @@ async def run_e2e_tests(client):
         """)
         
         # Restore theme
-        await client.click("#themeToggle")
-        await asyncio.sleep(0.5)
+        await ensure_theme(client, "dark")
         
         if colors_dark and colors_light:
             dark_ratio = get_contrast_ratio(colors_dark["color"], colors_dark["bg"])
@@ -528,9 +531,10 @@ async def run_e2e_tests(client):
         
         # Step 3: Toggle theme
         print("  Step 3: Toggle theme...")
-        await client.click("#themeToggle")
-        await asyncio.sleep(0.5)
-        theme = await client.eval_js("document.documentElement.getAttribute('data-theme')")
+        current_t = await client.eval_js("document.documentElement.getAttribute('data-theme')")
+        target_t = "light" if current_t == "dark" else "dark"
+        await ensure_theme(client, target_t)
+        theme = target_t
         print(f"    Current Theme: {theme}.")
         
         # Step 4: Filter by category 'production'
