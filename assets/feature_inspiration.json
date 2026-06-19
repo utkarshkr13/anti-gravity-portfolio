@@ -1,14 +1,14 @@
 {
-  "repo_name": "saadpasta/developerFolio",
-  "owner": "saadpasta",
-  "stars": 6573,
-  "url": "https://github.com/saadpasta/developerFolio",
-  "homepage": "https://developerfolio.js.org/",
-  "featured_trend": "Server-side rendered performance and fast client-side hydration using Next.js framework.",
-  "effect_class": "reactive",
-  "accent_h": 236,
-  "accent_s": "66%",
-  "accent_l": "54%",
-  "theme_name": "Electric Indigo",
-  "last_sync": "2026-06-19 21:15:23 UTC"
+  "repo_name": "cobiwave/simplefolio",
+  "owner": "cobiwave",
+  "stars": 14159,
+  "url": "https://github.com/cobiwave/simplefolio",
+  "homepage": "https://the-simplefolio.netlify.app/",
+  "featured_trend": "Elegant minimalist aesthetic focused on typography, breathing space, and high readability.",
+  "effect_class": "minimal",
+  "accent_h": 32,
+  "accent_s": "57%",
+  "accent_l": "50%",
+  "theme_name": "Warm Amber",
+  "last_sync": "2026-06-19 21:30:18 UTC"
 }
