@@ -124,6 +124,10 @@ async def run_challenger_verification():
             print("  [FAIL] Page elements crashed or became unresponsive.")
             success = False
 
+        # Settle style transitions after rapid clicking to get accurate static colors
+        print("  Waiting 2.0 seconds for CSS theme transitions to settle...")
+        await asyncio.sleep(2.0)
+
         # 3. Dynamic Contrast Verification for Ticker and Body in Both Themes
         print("\n--- 3. DYNAMIC CONTRAST AND CANVAS ADAPTATION VERIFICATION ---")
         
