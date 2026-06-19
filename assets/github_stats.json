@@ -1,42 +1,42 @@
 {
   "profile": {
     "username": "utkarshkr13",
-    "public_repos": 17,
+    "public_repos": 19,
     "followers": 1,
     "following": 4,
     "total_stars": 0
   },
   "languages": [
     {
-      "name": "CSS",
-      "percentage": 55.1
+      "name": "Python",
+      "percentage": 54.1
     },
     {
       "name": "Dart",
-      "percentage": 42.7
+      "percentage": 42.3
     },
     {
       "name": "JavaScript",
-      "percentage": 1.8
+      "percentage": 1.7
+    },
+    {
+      "name": "CSS",
+      "percentage": 0.9
+    },
+    {
+      "name": "HTML",
+      "percentage": 0.6
     },
     {
       "name": "TypeScript",
-      "percentage": 0.2
+      "percentage": 0.3
     },
     {
       "name": "Jupyter Notebook",
       "percentage": 0.1
     },
     {
-      "name": "HTML",
-      "percentage": 0.1
-    },
-    {
       "name": "Java",
-      "percentage": 0.0
-    },
-    {
-      "name": "Python",
       "percentage": 0.0
     }
   ],
@@ -45,7 +45,7 @@
       "name": "anti-gravity-portfolio",
       "description": "Premium portfolio website  - Apple/Google inspired with GSAP animations, custom cursor, dark/light mode",
       "stars": 0,
-      "language": "CSS",
+      "language": "Python",
       "url": "https://github.com/utkarshkr13/anti-gravity-portfolio"
     },
     {
