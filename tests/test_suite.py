@@ -105,7 +105,7 @@ async def run_e2e_tests(client):
     for filt in filters:
         # Click the filter button
         await client.click(f".filter-btn[data-filter='{filt}']")
-        await asyncio.sleep(0.3)  # Wait for GSAP/transition to run
+        await asyncio.sleep(0.6)  # Wait for GSAP/transition to run
         
         # Verify display property matches filter
         cards_match = await client.eval_js(f"""
@@ -540,7 +540,7 @@ async def run_e2e_tests(client):
         # Step 4: Filter by category 'production'
         print("  Step 4: Filter by category 'production'...")
         await client.click(".filter-btn[data-filter='production']")
-        await asyncio.sleep(0.3)
+        await asyncio.sleep(0.6)
         featured_card_disp = await client.eval_js("window.getComputedStyle(document.querySelector('.project-card[data-category=\"production\"]')).display")
         print(f"    Production project display: {featured_card_disp}.")
         

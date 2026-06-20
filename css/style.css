@@ -143,6 +143,11 @@ body {
   transition: background-color var(--theme-transition), color var(--theme-transition);
 }
 
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -1001,7 +1006,7 @@ ul, ol {
   overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  transition: all var(--dur-slow) var(--ease-out), background var(--theme-transition), border-color var(--theme-transition);
+  transition: border-color var(--dur-slow) var(--ease-out), background var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
   will-change: transform;
   display: flex;
   flex-direction: column;
@@ -1689,12 +1694,18 @@ ul, ol {
 }
 
 /* smooth all themed transitions */
-.section, .timeline-card, .skill-category, .project-card, .stat-card,
+.section, .timeline-card, .skill-category, .stat-card,
 .cert-card, .contact-link, .footer, .about-text p, .about-text p strong,
 .timeline-company, .timeline-details li, .skill-category-title,
 .project-card-title, .project-card-desc, .contact-link-value, .cert-info h3,
 .cert-info p {
   transition-property: background-color, color, border-color, box-shadow, transform;
+  transition-duration: var(--dur-normal);
+  transition-timing-function: var(--ease-out);
+}
+
+.project-card {
+  transition-property: background-color, color, border-color, box-shadow;
   transition-duration: var(--dur-normal);
   transition-timing-function: var(--ease-out);
 }
@@ -1964,7 +1975,9 @@ body.egg-cyberpunk {
   height: 32px;
   border-radius: 50%;
   border: 1px solid var(--border-color);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--text-secondary);
   display: flex;
   align-items: center;
@@ -1975,7 +1988,7 @@ body.egg-cyberpunk {
 }
 
 [data-theme="light"] .modal-close-btn {
-  background: rgba(0, 0, 0, 0.02);
+  background: var(--bg-card);
 }
 
 .modal-close-btn:hover {
@@ -1985,9 +1998,10 @@ body.egg-cyberpunk {
 }
 
 .modal-container {
-  padding: 36px 40px;
+  padding: 48px 56px 36px 40px;
   overflow-y: auto;
   flex: 1;
+  overscroll-behavior: contain;
 }
 
 .modal-header {

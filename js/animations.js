@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, Flip);
 
   /* ---------- Hero animations ---------- */
   function initHeroAnimations() {

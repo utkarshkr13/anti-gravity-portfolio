@@ -38,61 +38,10 @@
   // Expose Lenis globally so other components can access or control it
   window.lenis = lenis;
 
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-
   // Sync Lenis with GSAP ScrollTrigger
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
-
-  // Bulletproof Scroll Containment delegation for data-lenis-prevent
-  // Temporarily stops Lenis during interaction inside any element with data-lenis-prevent
-  let isLenisStopped = false;
-
-  document.addEventListener('mouseover', (e) => {
-    if (e.target && typeof e.target.closest === 'function') {
-      const container = e.target.closest('[data-lenis-prevent]');
-      if (container) {
-        if (!isLenisStopped) {
-          lenis.stop();
-          isLenisStopped = true;
-        }
-      } else {
-        if (isLenisStopped) {
-          lenis.start();
-          isLenisStopped = false;
-        }
-      }
-    }
-  }, { passive: true });
-
-  document.addEventListener('touchstart', (e) => {
-    if (e.target && typeof e.target.closest === 'function') {
-      const container = e.target.closest('[data-lenis-prevent]');
-      if (container) {
-        if (!isLenisStopped) {
-          lenis.stop();
-          isLenisStopped = true;
-        }
-      } else {
-        if (isLenisStopped) {
-          lenis.start();
-          isLenisStopped = false;
-        }
-      }
-    }
-  }, { passive: true });
-
-  document.addEventListener('touchend', (e) => {
-    if (isLenisStopped) {
-      lenis.start();
-      isLenisStopped = false;
-    }
-  }, { passive: true });
 
   /* ---------- Smooth anchor scrolling ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -184,21 +133,31 @@
         
         const filterValue = btn.getAttribute('data-filter');
         
+        // Get Flip state
+        const state = Flip.getState(projectCards);
+        
         projectCards.forEach(card => {
           const category = card.getAttribute('data-category');
           
+          // Kill active tweens to prevent layout stutter
+          gsap.killTweensOf(card);
+          
           if (filterValue === 'all' || category === filterValue) {
-            // Smooth show
-            card.style.display = 'block';
-            gsap.fromTo(card, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
+            // Clear the display style
+            card.style.display = '';
           } else {
-            // Hide
+            // Hide card
             card.style.display = 'none';
           }
         });
 
-        // Refresh ScrollTrigger to recalculate positions
-        ScrollTrigger.refresh();
+        // Run Flip transition
+        Flip.from(state, {
+          duration: 0.5,
+          ease: 'power2.out',
+          absolute: true,
+          onComplete: () => ScrollTrigger.refresh()
+        });
       });
     });
   }
@@ -327,6 +286,9 @@
         // Show Modal
         projectModal.style.display = 'flex';
         projectModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        const navWrapper = document.querySelector('.nav-wrapper');
+        if (navWrapper) navWrapper.style.display = 'none';
         
         // Stop Lenis background scroll
         if (window.lenis) window.lenis.stop();
@@ -339,6 +301,9 @@
 
     // Close Modal Function
     const closeModal = () => {
+      document.body.classList.remove('modal-open');
+      const navWrapper = document.querySelector('.nav-wrapper');
+      if (navWrapper) navWrapper.style.display = '';
       gsap.to('.modal-wrapper', { y: 30, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => {
         projectModal.style.display = 'none';
         projectModal.setAttribute('aria-hidden', 'true');
