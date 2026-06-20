@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 63944.47,
-      "change": 460.03,
-      "change_pct": 0.72,
+      "price": 63748.6,
+      "change": 264.16,
+      "change_pct": 0.42,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1733.3,
-      "change": 23.62,
-      "change_pct": 1.38,
+      "price": 1725.27,
+      "change": 15.59,
+      "change_pct": 0.91,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 71.57,
-      "change": 1.85,
-      "change_pct": 2.66,
+      "price": 71.59,
+      "change": 1.87,
+      "change_pct": 2.69,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 586.1,
-      "change": 4.93,
-      "change_pct": 0.85,
+      "price": 585.52,
+      "change": 4.35,
+      "change_pct": 0.75,
       "is_positive": true
     },
     {
@@ -437,15 +437,15 @@
       "currency": "$",
       "price": 0.16,
       "change": -0.0,
-      "change_pct": -0.05,
+      "change_pct": -0.67,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.15,
+      "price": 1.14,
       "change": 0.01,
-      "change_pct": 0.85,
+      "change_pct": 0.54,
       "is_positive": true
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -0.01,
+      "change_pct": -0.47,
       "is_positive": false
     },
     {
@@ -461,16 +461,16 @@
       "currency": "$",
       "price": 0.96,
       "change": 0.0,
-      "change_pct": 0.47,
+      "change_pct": 0.16,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.94,
-      "change": 0.0,
-      "change_pct": 0.0,
-      "is_positive": true
+      "price": 7.9,
+      "change": -0.04,
+      "change_pct": -0.48,
+      "is_positive": false
     },
     {
       "symbol": "RELIANCE",
