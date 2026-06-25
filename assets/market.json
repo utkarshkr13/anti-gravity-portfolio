@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 60800.87,
-      "change": -1859.24,
-      "change_pct": -2.97,
+      "price": 60658.1,
+      "change": -325.33,
+      "change_pct": -0.53,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1613.44,
-      "change": -51.69,
-      "change_pct": -3.1,
+      "price": 1616.93,
+      "change": -2.58,
+      "change_pct": -0.16,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 67.78,
-      "change": -1.86,
-      "change_pct": -2.67,
+      "price": 67.59,
+      "change": -0.38,
+      "change_pct": -0.57,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 562.61,
-      "change": -14.98,
-      "change_pct": -2.59,
-      "is_positive": false
+      "price": 564.53,
+      "change": 0.78,
+      "change_pct": 0.14,
+      "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.15,
       "change": -0.0,
-      "change_pct": -2.82,
+      "change_pct": -0.0,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.07,
-      "change": -0.04,
-      "change_pct": -3.56,
+      "change": -0.0,
+      "change_pct": -0.23,
       "is_positive": false
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -3.91,
+      "change_pct": -0.01,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
       "price": 0.88,
-      "change": -0.03,
-      "change_pct": -2.87,
+      "change": -0.0,
+      "change_pct": -0.26,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.4,
-      "change": -0.22,
-      "change_pct": -2.9,
+      "price": 7.39,
+      "change": -0.03,
+      "change_pct": -0.35,
       "is_positive": false
     },
     {
@@ -579,8 +579,8 @@
     {
       "symbol": "LICI",
       "currency": "₹",
-      "price": 436.6,
-      "change": -3.5,
+      "price": 426.6,
+      "change": -3.42,
       "change_pct": -0.8,
       "is_positive": false
     },
