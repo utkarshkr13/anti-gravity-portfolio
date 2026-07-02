@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 59880.28,
-      "change": -81.52,
-      "change_pct": -0.14,
-      "is_positive": false
+      "price": 60275.79,
+      "change": 313.99,
+      "change_pct": 0.52,
+      "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1604.5,
-      "change": -3.38,
-      "change_pct": -0.21,
-      "is_positive": false
+      "price": 1617.96,
+      "change": 10.08,
+      "change_pct": 0.63,
+      "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 77.33,
-      "change": -0.05,
-      "change_pct": -0.06,
-      "is_positive": false
+      "price": 78.04,
+      "change": 0.66,
+      "change_pct": 0.86,
+      "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 549.07,
-      "change": -0.98,
-      "change_pct": -0.18,
+      "price": 549.91,
+      "change": -0.14,
+      "change_pct": -0.03,
       "is_positive": false
     },
     {
@@ -437,40 +437,40 @@
       "currency": "$",
       "price": 0.15,
       "change": -0.0,
-      "change_pct": -0.28,
+      "change_pct": -0.02,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.05,
-      "change": -0.0,
-      "change_pct": -0.12,
-      "is_positive": false
+      "price": 1.06,
+      "change": 0.0,
+      "change_pct": 0.36,
+      "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.07,
-      "change": -0.0,
-      "change_pct": -0.03,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.23,
+      "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.83,
-      "change": -0.0,
-      "change_pct": -0.21,
-      "is_positive": false
+      "price": 0.84,
+      "change": 0.01,
+      "change_pct": 1.24,
+      "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.35,
-      "change": -0.0,
-      "change_pct": -0.01,
-      "is_positive": false
+      "price": 7.41,
+      "change": 0.06,
+      "change_pct": 0.77,
+      "is_positive": true
     },
     {
       "symbol": "RELIANCE",
@@ -515,8 +515,8 @@
     {
       "symbol": "TECHM",
       "currency": "₹",
-      "price": 1362.2,
-      "change": -42.5,
+      "price": 1326.2,
+      "change": -41.38,
       "change_pct": -3.03,
       "is_positive": false
     },
@@ -603,8 +603,8 @@
     {
       "symbol": "M&M",
       "currency": "₹",
-      "price": 3130.0,
-      "change": 42.0,
+      "price": 3097.0,
+      "change": 41.56,
       "change_pct": 1.36,
       "is_positive": true
     },
