@@ -403,74 +403,74 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 61362.57,
-      "change": -130.42,
-      "change_pct": -0.21,
+      "price": 61250.42,
+      "change": -242.57,
+      "change_pct": -0.39,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1697.29,
-      "change": -1.08,
-      "change_pct": -0.06,
+      "price": 1697.76,
+      "change": -0.61,
+      "change_pct": -0.04,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 80.57,
-      "change": -0.07,
-      "change_pct": -0.08,
-      "is_positive": false
+      "price": 80.74,
+      "change": 0.1,
+      "change_pct": 0.13,
+      "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 558.05,
-      "change": 0.04,
-      "change_pct": 0.01,
+      "price": 559.44,
+      "change": 1.43,
+      "change_pct": 0.26,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
-      "price": 0.16,
-      "change": -0.0,
-      "change_pct": -0.18,
-      "is_positive": false
+      "price": 0.17,
+      "change": 0.0,
+      "change_pct": 2.79,
+      "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.09,
-      "change": -0.0,
-      "change_pct": -0.13,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.09,
+      "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 0.03,
+      "change_pct": 0.41,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.84,
-      "change": -0.0,
-      "change_pct": -0.05,
-      "is_positive": false
+      "price": 0.85,
+      "change": 0.01,
+      "change_pct": 0.9,
+      "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.73,
-      "change": -0.01,
-      "change_pct": -0.1,
-      "is_positive": false
+      "price": 7.75,
+      "change": 0.01,
+      "change_pct": 0.1,
+      "is_positive": true
     },
     {
       "symbol": "RELIANCE",
@@ -763,8 +763,8 @@
     {
       "symbol": "MAXHEALTH",
       "currency": "₹",
-      "price": 1127.4,
-      "change": -14.3,
+      "price": 1125.4,
+      "change": -14.27,
       "change_pct": -1.25,
       "is_positive": false
     },
