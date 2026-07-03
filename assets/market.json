@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 62108.89,
-      "change": 615.9,
-      "change_pct": 1.0,
+      "price": 62363.54,
+      "change": 870.55,
+      "change_pct": 1.42,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1735.27,
-      "change": 36.9,
-      "change_pct": 2.17,
+      "price": 1745.8,
+      "change": 47.43,
+      "change_pct": 2.79,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 81.62,
-      "change": 0.98,
-      "change_pct": 1.22,
+      "price": 82.35,
+      "change": 1.71,
+      "change_pct": 2.13,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 567.61,
-      "change": 9.6,
-      "change_pct": 1.72,
+      "price": 570.31,
+      "change": 12.3,
+      "change_pct": 2.21,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.18,
-      "change": 0.01,
-      "change_pct": 8.81,
+      "change": 0.02,
+      "change_pct": 12.84,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.12,
-      "change": 0.03,
-      "change_pct": 3.09,
+      "price": 1.13,
+      "change": 0.05,
+      "change_pct": 4.26,
       "is_positive": true
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.08,
       "change": 0.0,
-      "change_pct": 3.61,
+      "change_pct": 4.5,
       "is_positive": true
     },
     {
@@ -461,15 +461,15 @@
       "currency": "$",
       "price": 0.88,
       "change": 0.04,
-      "change_pct": 4.47,
+      "change_pct": 5.19,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.88,
-      "change": 0.13,
-      "change_pct": 1.74,
+      "price": 7.96,
+      "change": 0.22,
+      "change_pct": 2.85,
       "is_positive": true
     },
     {
