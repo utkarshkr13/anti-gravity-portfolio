@@ -403,73 +403,73 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 62574.0,
-      "change": 25.4,
-      "change_pct": 0.04,
+      "price": 62899.34,
+      "change": 350.74,
+      "change_pct": 0.56,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1767.29,
-      "change": 10.44,
-      "change_pct": 0.59,
+      "price": 1789.0,
+      "change": 32.15,
+      "change_pct": 1.83,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 81.61,
-      "change": -0.67,
-      "change_pct": -0.82,
+      "price": 82.2,
+      "change": -0.08,
+      "change_pct": -0.1,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 574.72,
-      "change": 1.28,
-      "change_pct": 0.22,
+      "price": 576.05,
+      "change": 2.61,
+      "change_pct": 0.45,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
-      "price": 0.18,
-      "change": 0.0,
-      "change_pct": 0.38,
+      "price": 0.19,
+      "change": 0.01,
+      "change_pct": 7.94,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.16,
+      "price": 1.17,
       "change": 0.03,
-      "change_pct": 2.57,
+      "change_pct": 2.98,
       "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.08,
-      "change": -0.0,
-      "change_pct": -0.24,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 1.23,
+      "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.87,
-      "change": -0.01,
-      "change_pct": -0.99,
-      "is_positive": false
+      "price": 0.89,
+      "change": 0.01,
+      "change_pct": 0.6,
+      "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.97,
-      "change": 0.01,
-      "change_pct": 0.07,
+      "price": 8.08,
+      "change": 0.12,
+      "change_pct": 1.48,
       "is_positive": true
     },
     {
@@ -494,6 +494,14 @@
       "price": 1047.2,
       "change": -15.8,
       "change_pct": -1.49,
+      "is_positive": false
+    },
+    {
+      "symbol": "WIPRO",
+      "currency": "₹",
+      "price": 176.08,
+      "change": -0.12,
+      "change_pct": -0.07,
       "is_positive": false
     },
     {
