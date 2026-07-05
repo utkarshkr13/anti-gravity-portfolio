@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 62773.09,
-      "change": -314.65,
-      "change_pct": -0.5,
+      "price": 62628.78,
+      "change": -458.96,
+      "change_pct": -0.73,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1781.24,
-      "change": 2.17,
-      "change_pct": 0.12,
-      "is_positive": true
+      "price": 1773.04,
+      "change": -6.03,
+      "change_pct": -0.34,
+      "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 80.89,
-      "change": -0.76,
-      "change_pct": -0.93,
+      "price": 80.95,
+      "change": -0.7,
+      "change_pct": -0.86,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 589.51,
-      "change": 14.56,
-      "change_pct": 2.53,
+      "price": 586.85,
+      "change": 11.9,
+      "change_pct": 2.07,
       "is_positive": true
     },
     {
@@ -437,7 +437,7 @@
       "currency": "$",
       "price": 0.19,
       "change": -0.0,
-      "change_pct": -1.16,
+      "change_pct": -2.1,
       "is_positive": false
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.14,
       "change": -0.02,
-      "change_pct": -1.85,
+      "change_pct": -1.77,
       "is_positive": false
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -0.22,
+      "change_pct": -0.75,
       "is_positive": false
     },
     {
@@ -461,16 +461,16 @@
       "currency": "$",
       "price": 0.88,
       "change": -0.0,
-      "change_pct": -0.06,
+      "change_pct": -0.51,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.02,
-      "change": 0.01,
-      "change_pct": 0.17,
-      "is_positive": true
+      "price": 7.98,
+      "change": -0.02,
+      "change_pct": -0.23,
+      "is_positive": false
     },
     {
       "symbol": "RELIANCE",
