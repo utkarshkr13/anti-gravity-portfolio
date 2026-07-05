@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 62694.77,
-      "change": -392.97,
-      "change_pct": -0.62,
+      "price": 62767.32,
+      "change": -320.42,
+      "change_pct": -0.51,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1763.44,
-      "change": -15.63,
-      "change_pct": -0.88,
+      "price": 1773.36,
+      "change": -5.71,
+      "change_pct": -0.32,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 81.06,
-      "change": -0.59,
-      "change_pct": -0.72,
+      "price": 81.26,
+      "change": -0.39,
+      "change_pct": -0.48,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 583.74,
-      "change": 8.79,
-      "change_pct": 1.53,
+      "price": 587.64,
+      "change": 12.69,
+      "change_pct": 2.21,
       "is_positive": true
     },
     {
@@ -437,15 +437,15 @@
       "currency": "$",
       "price": 0.19,
       "change": -0.0,
-      "change_pct": -2.05,
+      "change_pct": -1.47,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.13,
+      "price": 1.14,
       "change": -0.02,
-      "change_pct": -2.12,
+      "change_pct": -1.77,
       "is_positive": false
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -1.39,
+      "change_pct": -0.77,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.87,
-      "change": -0.01,
-      "change_pct": -1.42,
+      "price": 0.88,
+      "change": -0.0,
+      "change_pct": -0.51,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.92,
-      "change": -0.08,
-      "change_pct": -1.03,
+      "price": 7.97,
+      "change": -0.03,
+      "change_pct": -0.42,
       "is_positive": false
     },
     {
@@ -598,6 +598,14 @@
       "price": 14366.0,
       "change": -84.0,
       "change_pct": -0.58,
+      "is_positive": false
+    },
+    {
+      "symbol": "M&M",
+      "currency": "₹",
+      "price": 3136.9,
+      "change": -57.1,
+      "change_pct": -1.79,
       "is_positive": false
     },
     {
