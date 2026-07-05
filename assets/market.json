@@ -403,41 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 62647.19,
-      "change": -440.55,
-      "change_pct": -0.7,
+      "price": 62773.09,
+      "change": -314.65,
+      "change_pct": -0.5,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1774.69,
-      "change": -4.38,
-      "change_pct": -0.25,
-      "is_positive": false
+      "price": 1781.24,
+      "change": 2.17,
+      "change_pct": 0.12,
+      "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 81.0,
-      "change": -0.65,
-      "change_pct": -0.79,
+      "price": 80.89,
+      "change": -0.76,
+      "change_pct": -0.93,
       "is_positive": false
+    },
+    {
+      "symbol": "BNB-USD",
+      "currency": "$",
+      "price": 589.51,
+      "change": 14.56,
+      "change_pct": 2.53,
+      "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.19,
       "change": -0.0,
-      "change_pct": -1.11,
+      "change_pct": -1.16,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.13,
+      "price": 1.14,
       "change": -0.02,
-      "change_pct": -1.9,
+      "change_pct": -1.85,
       "is_positive": false
     },
     {
@@ -445,24 +453,24 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -0.6,
+      "change_pct": -0.22,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
       "price": 0.88,
-      "change": -0.01,
-      "change_pct": -0.74,
+      "change": -0.0,
+      "change_pct": -0.06,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 7.97,
-      "change": -0.03,
-      "change_pct": -0.4,
-      "is_positive": false
+      "price": 8.02,
+      "change": 0.01,
+      "change_pct": 0.17,
+      "is_positive": true
     },
     {
       "symbol": "RELIANCE",
