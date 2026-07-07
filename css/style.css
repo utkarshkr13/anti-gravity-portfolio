@@ -8,30 +8,30 @@
 
 @property --accent-h {
   syntax: '<number>';
-  initial-value: 217;
+  initial-value: 125;
   inherits: true;
 }
 @property --accent-s {
   syntax: '<percentage>';
-  initial-value: 90%;
+  initial-value: 16%;
   inherits: true;
 }
 @property --accent-l {
   syntax: '<percentage>';
-  initial-value: 56%;
+  initial-value: 46%;
   inherits: true;
 }
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
   transition: --accent-h 0.8s ease, --accent-s 0.8s ease, --accent-l 0.8s ease;
-  /* Accent — Steel Blue (extracted from profile: mountain mist, snow, clouds) */
-  --accent-h: 217;
-  --accent-s: 90%;
-  --accent-l: 56%;
+  /* Accent — Sage Green #618764 */
+  --accent-h: 125;
+  --accent-s: 16%;
+  --accent-l: 46%;
   --accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
   --accent-light: hsl(var(--accent-h), var(--accent-s), 70%);
-  --accent-dark: hsl(var(--accent-h), var(--accent-s), 42%);
+  --accent-dark: hsl(var(--accent-h), var(--accent-s), 30%);
   --accent-glow: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.2);
 
   /* Typography — Poppins (Google Product Sans alternative) */
@@ -89,7 +89,7 @@
   --shadow-card-hover: 0 20px 60px rgba(0, 0, 0, 0.5);
   --shadow-nav: 0 4px 30px rgba(0, 0, 0, 0.4);
   --cursor-color: var(--accent-light);
-  --gradient-hero: radial-gradient(circle at 50% -20%, hsla(210, 60%, 25%, 0.5) 0%, hsla(210, 30%, 15%, 0.3) 40%, transparent 80%);
+  --gradient-hero: radial-gradient(circle at 50% -20%, hsla(125, 30%, 15%, 0.5) 0%, hsla(125, 20%, 10%, 0.3) 40%, transparent 80%);
   --dot-grid-color: rgba(255, 255, 255, 0.025);
   --bg-subtle: rgba(255, 255, 255, 0.02);
   --bg-subtle-hover: rgba(255, 255, 255, 0.04);
@@ -112,7 +112,7 @@
   --shadow-card-hover: 0 20px 50px rgba(0, 0, 0, 0.1);
   --shadow-nav: 0 4px 20px rgba(0, 0, 0, 0.06);
   --cursor-color: var(--accent-dark);
-  --gradient-hero: radial-gradient(circle at 50% -20%, hsla(210, 50%, 85%, 0.8) 0%, hsla(210, 40%, 92%, 0.4) 40%, transparent 80%);
+  --gradient-hero: radial-gradient(circle at 50% -20%, hsla(125, 25%, 90%, 0.8) 0%, hsla(125, 15%, 94%, 0.4) 40%, transparent 80%);
   --dot-grid-color: rgba(0, 0, 0, 0.03);
   --bg-subtle: rgba(0, 0, 0, 0.02);
   --bg-subtle-hover: rgba(0, 0, 0, 0.04);

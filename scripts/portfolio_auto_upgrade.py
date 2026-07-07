@@ -94,19 +94,19 @@ def fetch_portfolio_inspiration():
             trend = selected["description"]
         effect = "generic"
 
-    # Compute a beautiful, stable HSL color accent by hashing the repo full name, constrained to the Blue family
+    # Compute a beautiful, stable HSL color accent by hashing the repo full name, constrained to the Sage Green family
     fullname = f"{selected['owner']}/{selected['name']}"
     hash_val = int(hashlib.md5(fullname.encode('utf-8')).hexdigest(), 16)
-    hue = 195 + (hash_val % 41) # Blue family hue range: 195 (Cyan-Blue) to 235 (Indigo-Blue)
-    saturation = 80 + (hash_val % 15) # 80% to 95% (vibrant color pop)
-    lightness = 50 + (hash_val % 7)   # 50% to 56% (great for readability & contrast in both modes)
+    hue = 115 + (hash_val % 21)       # Sage Green family hue range: 115 (Muted Olive) to 135 (Muted Mint)
+    saturation = 14 + (hash_val % 9)  # 14% to 22% (subtle muted saturation)
+    lightness = 42 + (hash_val % 7)   # 42% to 48% (fits #618764 design spec)
 
     color_names = {
-        195: "Ocean Sky Blue",
-        205: "Deep Cobalt",
-        215: "Vibrant Royal Blue",
-        225: "Classic Navy",
-        235: "Electric Blue"
+        115: "Muted Olive",
+        120: "Sage Green",
+        125: "Forest Sage",
+        130: "Earthy Green",
+        135: "Muted Mint"
     }
     closest_hue = min(color_names.keys(), key=lambda k: min(abs(hue - k), 360 - abs(hue - k)))
     theme_name = color_names[closest_hue]

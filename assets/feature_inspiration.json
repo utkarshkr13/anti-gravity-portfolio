@@ -1,14 +1,14 @@
 {
-  "repo_name": "cobiwave/simplefolio",
-  "owner": "cobiwave",
-  "stars": 14166,
-  "url": "https://github.com/cobiwave/simplefolio",
-  "homepage": "https://the-simplefolio.netlify.app/",
-  "featured_trend": "Elegant minimalist aesthetic focused on typography, breathing space, and high readability.",
-  "effect_class": "minimal",
-  "accent_h": 219,
-  "accent_s": "82%",
-  "accent_l": "50%",
-  "theme_name": "Vibrant Royal Blue",
-  "last_sync": "2026-07-07 14:02:35 UTC"
+  "repo_name": "Renovamen/playground-macos",
+  "owner": "Renovamen",
+  "stars": 3480,
+  "url": "https://github.com/Renovamen/playground-macos",
+  "homepage": "https://portfolio.zxh.me",
+  "featured_trend": "Utility-first responsive layout and streamlined modern design components using Tailwind CSS.",
+  "effect_class": "tailwind",
+  "accent_h": 121,
+  "accent_s": "17%",
+  "accent_l": "48%",
+  "theme_name": "Sage Green",
+  "last_sync": "2026-07-07 14:11:11 UTC"
 }

@@ -146,20 +146,20 @@
         
         if (opacity < 0.02) return;
         
-        // Royal Blue Accent Theme colors:
-        // Positive/Gain: Bright Cyan/Blue glow for contrast.
-        // Negative/Drop: Premium Royal Blue / Steel Blue.
+        // Sage Green Accent Theme colors:
+        // Positive/Gain: Bright Glowing Light Sage for contrast.
+        // Negative/Drop: Muted Sage Green.
         if (currentTheme === 'light') {
           if (this.isPositive) {
-            ctx.fillStyle = `rgba(29, 78, 216, ${opacity * 0.85})`; // Dark Royal Blue
+            ctx.fillStyle = `rgba(61, 91, 64, ${opacity * 0.85})`;  // Dark Sage Green
           } else {
-            ctx.fillStyle = `rgba(71, 85, 105, ${opacity * 0.85})`; // Slate Grey
+            ctx.fillStyle = `rgba(71, 85, 105, ${opacity * 0.85})`;  // Slate Grey
           }
         } else {
           if (this.isPositive) {
-            ctx.fillStyle = `rgba(0, 220, 255, ${opacity * 0.95})`; // Glowing Cyan
+            ctx.fillStyle = `rgba(164, 203, 169, ${opacity * 0.95})`; // Glowing Light Sage
           } else {
-            ctx.fillStyle = `rgba(37, 99, 235, ${opacity * 0.9})`;  // Glowing Royal Blue
+            ctx.fillStyle = `rgba(97, 135, 100, ${opacity * 0.9})`;   // Glowing Sage Green
           }
         }
         
@@ -270,13 +270,13 @@
       function drawLongitudinalLines(pass) {
         if (currentTheme === 'light') {
           ctx.strokeStyle = pass === 1 
-            ? 'rgba(37, 99, 235, 0.06)'  // thicker transparent blue
-            : 'rgba(29, 78, 216, 0.25)';  // thinner blue
+            ? 'rgba(97, 135, 100, 0.06)'  // thicker transparent sage
+            : 'rgba(61, 91, 64, 0.25)';    // thinner dark sage
           ctx.lineWidth = pass === 1 ? 3.0 : 0.8;
         } else {
           ctx.strokeStyle = pass === 1 
-            ? 'rgba(37, 99, 235, 0.16)'  // thicker transparent blue
-            : 'rgba(0, 220, 255, 0.65)';  // thinner glowing cyan
+            ? 'rgba(97, 135, 100, 0.18)'  // thicker transparent sage
+            : 'rgba(164, 203, 169, 0.65)'; // thinner glowing light sage
           ctx.lineWidth = pass === 1 ? 4.0 : 1.0;
         }
         
@@ -324,26 +324,26 @@
         const ringCenterX = currentCenterX + dx * 0.85 * offsetFactor;
         const ringCenterY = currentCenterY + dy * 0.85 * offsetFactor;
         
-        // Pass 1: Thicker glowing blue base
+        // Pass 1: Thicker glowing sage base
         ctx.beginPath();
         ctx.arc(ringCenterX, ringCenterY, ringRadius, 0, Math.PI * 2);
         if (currentTheme === 'light') {
-          ctx.strokeStyle = `rgba(37, 99, 235, ${0.06 * scale})`;
+          ctx.strokeStyle = `rgba(97, 135, 100, ${0.06 * scale})`;
           ctx.lineWidth = 3.5;
         } else {
-          ctx.strokeStyle = `rgba(37, 99, 235, ${0.16 * scale})`;
+          ctx.strokeStyle = `rgba(97, 135, 100, ${0.18 * scale})`;
           ctx.lineWidth = 4.5;
         }
         ctx.stroke();
         
-        // Pass 2: Thinner cyan core
+        // Pass 2: Thinner glowing light sage core
         ctx.beginPath();
         ctx.arc(ringCenterX, ringCenterY, ringRadius, 0, Math.PI * 2);
         if (currentTheme === 'light') {
-          ctx.strokeStyle = `rgba(29, 78, 216, ${0.25 * scale})`;
+          ctx.strokeStyle = `rgba(61, 91, 64, ${0.25 * scale})`;
           ctx.lineWidth = 0.8;
         } else {
-          ctx.strokeStyle = `rgba(0, 220, 255, ${0.65 * scale})`;
+          ctx.strokeStyle = `rgba(164, 203, 169, ${0.65 * scale})`;
           ctx.lineWidth = 1.0;
         }
         ctx.stroke();
