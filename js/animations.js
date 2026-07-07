@@ -29,9 +29,7 @@
     }, '-=0.6');
 
 
-  }
-
-  /* ---------- Hero 3D Share Market Tunnel Background ---------- */
+  }  /* ---------- Hero 3D Share Market Tunnel Background ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe'); 
     if (!canvas) return;
@@ -58,6 +56,62 @@
     // Smooth centers (Locked at screen center to remove mouse parallax)
     let currentCenterX = 0;
     let currentCenterY = 0;
+
+    // Floating Ambient Light Motes for high-end depth layers
+    class LightMote {
+      constructor(z) {
+        this.reset(z);
+      }
+      reset(zValue) {
+        this.z = zValue !== undefined ? zValue : maxDepth;
+        const angle = Math.random() * Math.PI * 2;
+        // Distribute them inside the cylinder tunnel space
+        const radius = (tunnelRadius * 0.2) + Math.random() * (tunnelRadius * 0.85);
+        this.x = Math.cos(angle) * radius;
+        this.y = Math.sin(angle) * radius;
+        this.size = 0.8 + Math.random() * 2.0;
+        this.speedZ = 1.0 + Math.random() * 1.6;
+        this.driftSpeed = 0.01 + Math.random() * 0.02;
+        this.driftOffset = Math.random() * 100;
+      }
+      update(delta) {
+        this.z -= (this.speedZ + scrollSpeed * 0.12) * delta;
+        if (this.z <= 10) {
+          this.reset(maxDepth);
+        }
+      }
+      draw(centerX, centerY) {
+        const scale = focalLength / this.z;
+        // Slow float drift
+        const dx = Math.sin(timeOffset * this.driftSpeed + this.driftOffset) * 12;
+        const dy = Math.cos(timeOffset * this.driftSpeed + this.driftOffset) * 12;
+        
+        const screenX = centerX + (this.x + dx) * scale;
+        const screenY = centerY + (this.y + dy) * scale;
+        
+        let opacity = scale * 1.2;
+        if (this.z > 1800) opacity *= (maxDepth - this.z) / 700;
+        else if (this.z < 100) opacity *= (this.z - 10) / 90;
+        opacity = Math.min(0.65, Math.max(0, opacity));
+        
+        if (opacity < 0.02) return;
+        
+        ctx.beginPath();
+        ctx.arc(screenX, screenY, this.size * scale, 0, Math.PI * 2);
+        if (currentTheme === 'light') {
+          ctx.fillStyle = `rgba(97, 135, 100, ${opacity * 0.5})`;
+        } else {
+          ctx.fillStyle = `rgba(164, 203, 169, ${opacity * 0.8})`;
+        }
+        ctx.fill();
+      }
+    }
+
+    let motes = [];
+    const moteCount = 80;
+    for (let i = 0; i < moteCount; i++) {
+      motes.push(new LightMote(10 + (maxDepth / moteCount) * i));
+    }
     
     // Handle viewport resizing
     function resize() {
@@ -159,7 +213,7 @@
       
       drawLongitudinalLines();
       
-      // --- PART 2: Volumetric Hollow Glass Rings (Non-Skeleton Apple Design) ---
+      // --- PART 2: Volumetric Hollow Segmented Glass Rings (Alternating Rotations) ---
       const totalRings = 24; 
       for (let i = 0; i < totalRings; i++) {
         let ringZ = ((i * (maxDepth / totalRings)) - timeOffset) % maxDepth;
@@ -185,53 +239,71 @@
         const opacity = scale * 1.5 * opacityMultiplier;
         if (opacity < 0.02) continue;
         
-        // Fill hollow volumetric ring (subtracting inner circle from outer circle)
-        ctx.beginPath();
-        ctx.arc(currentCenterX, currentCenterY, outerRadius, 0, Math.PI * 2);
-        ctx.arc(currentCenterX, currentCenterY, innerRadius, 0, Math.PI * 2, true);
-        if (currentTheme === 'light') {
-          ctx.fillStyle = `rgba(97, 135, 100, ${0.05 * opacity})`;
-        } else {
-          ctx.fillStyle = `rgba(97, 135, 100, ${0.12 * opacity})`;
-        }
-        ctx.fill();
+        // High-end alternating slow rotation for each segment washer
+        const rotDir = (i % 2 === 0) ? 1 : -1;
+        const ringAngle = timeOffset * 0.005 * rotDir + (i * 0.12);
         
-        // Draw soft glowing borders on edges for high-end glass refraction look
-        ctx.beginPath();
-        ctx.arc(currentCenterX, currentCenterY, outerRadius, 0, Math.PI * 2);
-        if (currentTheme === 'light') {
-          ctx.strokeStyle = `rgba(61, 91, 64, ${0.16 * opacity})`;
-        } else {
-          ctx.strokeStyle = `rgba(164, 203, 169, ${0.32 * opacity})`;
-        }
-        ctx.lineWidth = 0.8 * scale;
-        ctx.stroke();
+        // Draw 3 curved hollow glass segments with gaps (scifi/telemetry look)
+        const segments = 3;
+        for (let s = 0; s < segments; s++) {
+          const startAngle = ringAngle + (s * Math.PI * 2 / segments);
+          const endAngle = startAngle + (Math.PI * 2 / segments * 0.72); // 72% segment, 28% gap
+          
+          ctx.beginPath();
+          ctx.arc(currentCenterX, currentCenterY, outerRadius, startAngle, endAngle);
+          ctx.arc(currentCenterX, currentCenterY, innerRadius, endAngle, startAngle, true);
+          if (currentTheme === 'light') {
+            ctx.fillStyle = `rgba(97, 135, 100, ${0.06 * opacity})`;
+          } else {
+            ctx.fillStyle = `rgba(97, 135, 100, ${0.14 * opacity})`;
+          }
+          ctx.fill();
+          
+          // Draw soft glowing segment borders
+          ctx.beginPath();
+          ctx.arc(currentCenterX, currentCenterY, outerRadius, startAngle, endAngle);
+          if (currentTheme === 'light') {
+            ctx.strokeStyle = `rgba(61, 91, 64, ${0.2 * opacity})`;
+          } else {
+            ctx.strokeStyle = `rgba(164, 203, 169, ${0.36 * opacity})`;
+          }
+          ctx.lineWidth = 0.8 * scale;
+          ctx.stroke();
 
-        ctx.beginPath();
-        ctx.arc(currentCenterX, currentCenterY, innerRadius, 0, Math.PI * 2);
-        if (currentTheme === 'light') {
-          ctx.strokeStyle = `rgba(61, 91, 64, ${0.1 * opacity})`;
-        } else {
-          ctx.strokeStyle = `rgba(164, 203, 169, ${0.2 * opacity})`;
+          ctx.beginPath();
+          ctx.arc(currentCenterX, currentCenterY, innerRadius, startAngle, endAngle);
+          if (currentTheme === 'light') {
+            ctx.strokeStyle = `rgba(61, 91, 64, ${0.12 * opacity})`;
+          } else {
+            ctx.strokeStyle = `rgba(164, 203, 169, ${0.22 * opacity})`;
+          }
+          ctx.lineWidth = 0.5 * scale;
+          ctx.stroke();
         }
-        ctx.lineWidth = 0.5 * scale;
-        ctx.stroke();
       }
 
-      // --- PART 3: Glowing Horizon vanishing point (light source at end of tunnel) ---
-      const glowRadius = currentTheme === 'light' ? 60 : 120;
+      // --- PART 3: Floating Atmospheric Light Motes ---
+      for (let mote of motes) {
+        mote.update(delta);
+        mote.draw(currentCenterX, currentCenterY);
+      }
+
+      // --- PART 4: Glowing Pulsating Horizon vanishing point (Apple-style breathing light) ---
+      const pulse = Math.sin(timeOffset * 0.04) * 8;
+      const glowRadius = (currentTheme === 'light' ? 60 : 120) + pulse;
+      
       const gradient = ctx.createRadialGradient(
         currentCenterX, currentCenterY, 0,
         currentCenterX, currentCenterY, glowRadius
       );
       if (currentTheme === 'light') {
-        gradient.addColorStop(0, 'rgba(164, 203, 169, 0.8)');
-        gradient.addColorStop(0.3, 'rgba(97, 135, 100, 0.25)');
+        gradient.addColorStop(0, 'rgba(164, 203, 169, 0.85)');
+        gradient.addColorStop(0.3, 'rgba(97, 135, 100, 0.28)');
         gradient.addColorStop(1, 'rgba(248, 249, 250, 0)');
       } else {
-        gradient.addColorStop(0, 'rgba(164, 203, 169, 0.9)');
-        gradient.addColorStop(0.2, 'rgba(97, 135, 100, 0.35)');
-        gradient.addColorStop(0.5, 'rgba(164, 203, 169, 0.08)');
+        gradient.addColorStop(0, 'rgba(164, 203, 169, 0.95)');
+        gradient.addColorStop(0.2, 'rgba(97, 135, 100, 0.4)');
+        gradient.addColorStop(0.5, 'rgba(164, 203, 169, 0.12)');
         gradient.addColorStop(1, 'rgba(8, 9, 12, 0)');
       }
       ctx.fillStyle = gradient;
