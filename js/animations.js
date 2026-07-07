@@ -55,7 +55,7 @@
     const focalLength = 320;
     const tunnelRadius = 380;
     
-    // Smooth centers for mouse reactive bending (parallax)
+    // Smooth centers (Locked at screen center to remove mouse parallax)
     let currentCenterX = 0;
     let currentCenterY = 0;
     
@@ -71,25 +71,14 @@
       canvas.style.height = height + 'px';
       ctx.scale(dpr, dpr);
       
-      if (currentCenterX === 0 && currentCenterY === 0) {
-        currentCenterX = width / 2;
-        currentCenterY = height / 2;
-      }
+      currentCenterX = width / 2;
+      currentCenterY = height / 2;
       mouse.targetX = width / 2;
       mouse.targetY = height / 2;
     }
     
     window.addEventListener('resize', resize);
     resize();
-    
-    // Track cursor coordinates
-    document.addEventListener('mousemove', (e) => {
-      // Scale coordinates to control bending radius
-      const dx = e.clientX - window.innerWidth / 2;
-      const dy = e.clientY - window.innerHeight / 2;
-      mouse.targetX = window.innerWidth / 2 + dx * 0.55;
-      mouse.targetY = window.innerHeight / 2 + dy * 0.55;
-    });
     
     // Monitor scroll velocity
     window.addEventListener('scroll', () => {
@@ -124,52 +113,30 @@
       scrollSpeed *= Math.pow(0.92, delta);
       if (scrollSpeed < 0.1) scrollSpeed = 0;
       
-      // Interpolate center point for smooth mouse tracking inertia (frame-rate independent)
-      // Lerp rate is 0.035 to make camera movements extremely heavy, smooth, and fluid
-      currentCenterX += (mouse.targetX - currentCenterX) * (1 - Math.pow(1 - 0.035, delta));
-      currentCenterY += (mouse.targetY - currentCenterY) * (1 - Math.pow(1 - 0.035, delta));
+      // Locked camera centers for a stable, clean Apple-style aesthetic
+      currentCenterX = width / 2;
+      currentCenterY = height / 2;
       
-      // Calculate bending offset vectors
-      const dx = currentCenterX - width / 2;
-      const dy = currentCenterY - height / 2;
-      
-      // Compute center at absolute infinity (farthest point of the tunnel)
-      const infiniteCenterX = currentCenterX + dx * 0.85;
-      const infiniteCenterY = currentCenterY + dy * 0.85;
-
-      // --- PART 1: Curved Longitudinal Grid Lines (Double-Pass Glowing Neon) ---
-      function drawLongitudinalLines(pass) {
-        if (currentTheme === 'light') {
-          ctx.strokeStyle = pass === 1 
-            ? 'rgba(97, 135, 100, 0.05)'  // thicker transparent sage
-            : 'rgba(61, 91, 64, 0.22)';    // thinner dark sage
-          ctx.lineWidth = pass === 1 ? 3.0 : 0.8;
-        } else {
-          ctx.strokeStyle = pass === 1 
-            ? 'rgba(97, 135, 100, 0.15)'  // thicker transparent sage
-            : 'rgba(164, 203, 169, 0.6)';  // thinner glowing light sage
-          ctx.lineWidth = pass === 1 ? 4.0 : 1.0;
-        }
+      // --- PART 1: Soft Longitudinal Light Ribbons (Apple Aesthetic) ---
+      function drawLongitudinalLines() {
+        const radialLinesCount = 16; // Cleaner, less busy structure
         
-        const radialLinesCount = 24; // slightly denser for extra structure
         for (let j = 0; j < radialLinesCount; j++) {
           const theta = (Math.PI * 2 / radialLinesCount) * j;
           ctx.beginPath();
           
           let first = true;
-          // Trace depth points from z = 2500 down to 40
-          for (let zVal = maxDepth; zVal >= 40; zVal -= 40) {
+          // Trace depth points from maxDepth down to 40
+          for (let zVal = maxDepth; zVal >= 40; zVal -= 50) {
             const scale = focalLength / zVal;
             const offsetFactor = (maxDepth - zVal) / maxDepth;
-            const ptCenterX = currentCenterX + dx * 0.85 * offsetFactor;
-            const ptCenterY = currentCenterY + dy * 0.85 * offsetFactor;
             
-            // Igloo-style organic undulation ripple wave (pulses organically near camera)
-            const wave = Math.sin(zVal * 0.005 - timeOffset * 0.03) * 18 * offsetFactor;
+            // Waving ripple effect
+            const wave = Math.sin(zVal * 0.005 - timeOffset * 0.03) * 15 * offsetFactor;
             const radius = tunnelRadius + wave;
             
-            const ptX = ptCenterX + radius * Math.cos(theta) * scale;
-            const ptY = ptCenterY + radius * Math.sin(theta) * scale;
+            const ptX = currentCenterX + radius * Math.cos(theta) * scale;
+            const ptY = currentCenterY + radius * Math.sin(theta) * scale;
             
             if (first) {
               ctx.moveTo(ptX, ptY);
@@ -178,15 +145,22 @@
               ctx.lineTo(ptX, ptY);
             }
           }
+          
+          // Draw as a soft, wide ribbon of light that scales with Z-depth
+          if (currentTheme === 'light') {
+            ctx.strokeStyle = 'rgba(97, 135, 100, 0.035)';
+          } else {
+            ctx.strokeStyle = 'rgba(164, 203, 169, 0.07)';
+          }
+          ctx.lineWidth = 3.5;
           ctx.stroke();
         }
       }
       
-      drawLongitudinalLines(1);
-      drawLongitudinalLines(2);
+      drawLongitudinalLines();
       
-      // --- PART 2: Concentric Depth Rings (Double-Pass Glowing Neon) ---
-      const totalRings = 35; // denser concentric rings for infinite depth mapping
+      // --- PART 2: Volumetric Hollow Glass Rings (Non-Skeleton Apple Design) ---
+      const totalRings = 24; 
       for (let i = 0; i < totalRings; i++) {
         let ringZ = ((i * (maxDepth / totalRings)) - timeOffset) % maxDepth;
         if (ringZ < 0) ringZ += maxDepth;
@@ -195,49 +169,60 @@
         const scale = focalLength / ringZ;
         const offsetFactor = (maxDepth - ringZ) / maxDepth;
         
-        // Igloo-style organic undulation ripple wave matching the longitudinal lines
-        const wave = Math.sin(ringZ * 0.005 - timeOffset * 0.03) * 18 * offsetFactor;
-        const ringRadius = (tunnelRadius + wave) * scale;
+        // Waving ripple wave matching the longitudinal lines
+        const wave = Math.sin(ringZ * 0.005 - timeOffset * 0.03) * 15 * offsetFactor;
+        const baseRadius = tunnelRadius + wave;
         
-        const ringCenterX = currentCenterX + dx * 0.85 * offsetFactor;
-        const ringCenterY = currentCenterY + dy * 0.85 * offsetFactor;
+        // Solid volumetric body: outer and inner ring boundaries
+        const outerRadius = (baseRadius + 20) * scale;
+        const innerRadius = (baseRadius - 20) * scale;
         
-        // Fade out rings as they approach absolute horizon to prevent mesh cluttering
+        // Fade out rings near the horizon
         let opacityMultiplier = 1.0;
         if (ringZ > 1800) {
           opacityMultiplier = (maxDepth - ringZ) / 700;
         }
+        const opacity = scale * 1.5 * opacityMultiplier;
+        if (opacity < 0.02) continue;
         
-        // Pass 1: Thicker glowing sage base
+        // Fill hollow volumetric ring (subtracting inner circle from outer circle)
         ctx.beginPath();
-        ctx.arc(ringCenterX, ringCenterY, ringRadius, 0, Math.PI * 2);
+        ctx.arc(currentCenterX, currentCenterY, outerRadius, 0, Math.PI * 2);
+        ctx.arc(currentCenterX, currentCenterY, innerRadius, 0, Math.PI * 2, true);
         if (currentTheme === 'light') {
-          ctx.strokeStyle = `rgba(97, 135, 100, ${0.06 * scale * opacityMultiplier})`;
-          ctx.lineWidth = 3.5;
+          ctx.fillStyle = `rgba(97, 135, 100, ${0.05 * opacity})`;
         } else {
-          ctx.strokeStyle = `rgba(97, 135, 100, ${0.18 * scale * opacityMultiplier})`;
-          ctx.lineWidth = 4.5;
+          ctx.fillStyle = `rgba(97, 135, 100, ${0.12 * opacity})`;
         }
+        ctx.fill();
+        
+        // Draw soft glowing borders on edges for high-end glass refraction look
+        ctx.beginPath();
+        ctx.arc(currentCenterX, currentCenterY, outerRadius, 0, Math.PI * 2);
+        if (currentTheme === 'light') {
+          ctx.strokeStyle = `rgba(61, 91, 64, ${0.16 * opacity})`;
+        } else {
+          ctx.strokeStyle = `rgba(164, 203, 169, ${0.32 * opacity})`;
+        }
+        ctx.lineWidth = 0.8 * scale;
         ctx.stroke();
-        
-        // Pass 2: Thinner glowing light sage core
+
         ctx.beginPath();
-        ctx.arc(ringCenterX, ringCenterY, ringRadius, 0, Math.PI * 2);
+        ctx.arc(currentCenterX, currentCenterY, innerRadius, 0, Math.PI * 2);
         if (currentTheme === 'light') {
-          ctx.strokeStyle = `rgba(61, 91, 64, ${0.25 * scale * opacityMultiplier})`;
-          ctx.lineWidth = 0.8;
+          ctx.strokeStyle = `rgba(61, 91, 64, ${0.1 * opacity})`;
         } else {
-          ctx.strokeStyle = `rgba(164, 203, 169, ${0.65 * scale * opacityMultiplier})`;
-          ctx.lineWidth = 1.0;
+          ctx.strokeStyle = `rgba(164, 203, 169, ${0.2 * opacity})`;
         }
+        ctx.lineWidth = 0.5 * scale;
         ctx.stroke();
       }
 
       // --- PART 3: Glowing Horizon vanishing point (light source at end of tunnel) ---
       const glowRadius = currentTheme === 'light' ? 60 : 120;
       const gradient = ctx.createRadialGradient(
-        infiniteCenterX, infiniteCenterY, 0,
-        infiniteCenterX, infiniteCenterY, glowRadius
+        currentCenterX, currentCenterY, 0,
+        currentCenterX, currentCenterY, glowRadius
       );
       if (currentTheme === 'light') {
         gradient.addColorStop(0, 'rgba(164, 203, 169, 0.8)');
@@ -251,7 +236,7 @@
       }
       ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(infiniteCenterX, infiniteCenterY, glowRadius, 0, Math.PI * 2);
+      ctx.arc(currentCenterX, currentCenterY, glowRadius, 0, Math.PI * 2);
       ctx.fill();
       
       requestAnimationFrame(animate);
