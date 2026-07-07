@@ -31,9 +31,7 @@
 
   }
 
-  // Removed hero glow as per tunnel background update.
-
-  /* ---------- Hero 3D Share Market Tunnel Background ---------- */
+  // Removed hero glow as per tunnel background update.  /* ---------- Hero 3D Share Market Tunnel Background ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe'); 
     if (!canvas) return;
@@ -67,6 +65,7 @@
     let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
     let scrollSpeed = 0;
     let lastScrollY = window.scrollY;
+    let timeOffset = 0;
 
     // Listen for theme-change events
     window.addEventListener('theme-change', () => {
@@ -76,7 +75,7 @@
     // 3D coordinate system configuration
     const maxDepth = 1000;
     const focalLength = 320;
-    const tunnelRadius = 350;
+    const tunnelRadius = 380;
     
     // Ticker node instances
     class TunnelTicker {
@@ -98,15 +97,16 @@
         this.isPositive = this.stock.change_pct >= 0;
         
         // Speed of movement along Z axis
-        this.baseSpeedZ = 1.8 + Math.random() * 0.8;
-        // Rotational offset speed for spiral effect
-        this.angularSpeed = (Math.random() - 0.5) * 0.003;
+        this.baseSpeedZ = 1.2 + Math.random() * 0.6;
+        // Rotational offset speed for spiral effect (makes them spin around the tunnel)
+        this.rotationDirection = Math.random() < 0.5 ? 1 : -1;
+        this.angularSpeed = this.rotationDirection * (0.006 + Math.random() * 0.006);
       }
       
       update(delta) {
         // Move towards the camera (Z decreases)
         // Scroll velocity increases speed
-        const currentSpeedZ = (this.baseSpeedZ + (scrollSpeed * 0.15)) * delta;
+        const currentSpeedZ = (this.baseSpeedZ + (scrollSpeed * 0.18)) * delta;
         this.z -= currentSpeedZ;
         this.theta += this.angularSpeed * delta;
         
@@ -116,19 +116,24 @@
         }
       }
       
-      draw(centerX, centerY) {
+      draw(centerX, centerY, dx, dy) {
         const scale = focalLength / this.z;
+        
+        // Calculate center at this specific z-depth (bend factor)
+        const offsetFactor = (maxDepth - this.z) / maxDepth;
+        const ptCenterX = centerX + dx * 0.85 * offsetFactor;
+        const ptCenterY = centerY + dy * 0.85 * offsetFactor;
         
         // Project onto screen coordinate space
         const x3d = tunnelRadius * Math.cos(this.theta);
         const y3d = tunnelRadius * Math.sin(this.theta);
         
-        const screenX = centerX + x3d * scale;
-        const screenY = centerY + y3d * scale;
+        const screenX = ptCenterX + x3d * scale;
+        const screenY = ptCenterY + y3d * scale;
         
         // Font sizing based on 3D depth scale
-        const fontSize = Math.max(5, Math.floor(15 * scale));
-        ctx.font = `${fontSize}px 'Courier New', Courier, monospace`;
+        const fontSize = Math.max(5, Math.floor(14 * scale));
+        ctx.font = `bold ${fontSize}px 'Courier New', Courier, monospace`;
         
         // Opacity mapping (fade in at back, fade out when passing by camera)
         let opacity = scale * 1.6;
@@ -141,18 +146,20 @@
         
         if (opacity < 0.02) return;
         
-        // Styling colors based on theme and stock performance (contrast AA compliant)
+        // Royal Blue Accent Theme colors:
+        // Positive/Gain: Bright Cyan/Blue glow for contrast.
+        // Negative/Drop: Premium Royal Blue / Steel Blue.
         if (currentTheme === 'light') {
           if (this.isPositive) {
-            ctx.fillStyle = `rgba(22, 101, 52, ${opacity * 0.85})`; // Forest Green
+            ctx.fillStyle = `rgba(29, 78, 216, ${opacity * 0.85})`; // Dark Royal Blue
           } else {
-            ctx.fillStyle = `rgba(185, 28, 28, ${opacity * 0.85})`; // Forest Red
+            ctx.fillStyle = `rgba(71, 85, 105, ${opacity * 0.85})`; // Slate Grey
           }
         } else {
           if (this.isPositive) {
-            ctx.fillStyle = `rgba(34, 197, 94, ${opacity * 0.9})`; // Neon Green
+            ctx.fillStyle = `rgba(0, 220, 255, ${opacity * 0.95})`; // Glowing Cyan
           } else {
-            ctx.fillStyle = `rgba(239, 68, 68, ${opacity * 0.9})`; // CNBC Red
+            ctx.fillStyle = `rgba(37, 99, 235, ${opacity * 0.9})`;  // Glowing Royal Blue
           }
         }
         
@@ -169,7 +176,7 @@
     
     // Create pool of tunnel tickers
     let tickers = [];
-    const tickerCount = 120;
+    const tickerCount = 100;
     
     function initTunnel() {
       tickers = [];
@@ -214,8 +221,8 @@
       // Scale coordinates to control bending radius
       const dx = e.clientX - window.innerWidth / 2;
       const dy = e.clientY - window.innerHeight / 2;
-      mouse.targetX = window.innerWidth / 2 + dx * 0.45;
-      mouse.targetY = window.innerHeight / 2 + dy * 0.45;
+      mouse.targetX = window.innerWidth / 2 + dx * 0.55;
+      mouse.targetY = window.innerHeight / 2 + dy * 0.55;
     });
     
     // Monitor scroll velocity
@@ -244,6 +251,9 @@
       if (delta > 4.0) delta = 4.0;
       if (delta < 0.1) delta = 0.1;
       
+      // Update tunnel timeOffset
+      timeOffset += (1.5 + scrollSpeed * 0.18) * delta;
+      
       // Decelerate scroll velocity impact smoothly
       scrollSpeed *= Math.pow(0.92, delta);
       if (scrollSpeed < 0.1) scrollSpeed = 0;
@@ -252,55 +262,101 @@
       currentCenterX += (mouse.targetX - currentCenterX) * (1 - Math.pow(1 - 0.06, delta));
       currentCenterY += (mouse.targetY - currentCenterY) * (1 - Math.pow(1 - 0.06, delta));
       
-      // 1. Draw 3D wireframe depth rings
-      const ringIntervals = [200, 400, 600, 800, 1000];
-      ringIntervals.forEach(ringZ => {
-        // Adjust ring depth relative to average flight velocity
-        const adjustedZ = ((ringZ - (window.scrollY * 0.05)) % maxDepth + maxDepth) % maxDepth;
-        const scale = focalLength / adjustedZ;
+      // Calculate bending offset vectors
+      const dx = currentCenterX - width / 2;
+      const dy = currentCenterY - height / 2;
+      
+      // --- PART 1: Curved Longitudinal Grid Lines (Double-Pass Glowing Neon) ---
+      function drawLongitudinalLines(pass) {
+        if (currentTheme === 'light') {
+          ctx.strokeStyle = pass === 1 
+            ? 'rgba(37, 99, 235, 0.06)'  // thicker transparent blue
+            : 'rgba(29, 78, 216, 0.25)';  // thinner blue
+          ctx.lineWidth = pass === 1 ? 3.0 : 0.8;
+        } else {
+          ctx.strokeStyle = pass === 1 
+            ? 'rgba(37, 99, 235, 0.16)'  // thicker transparent blue
+            : 'rgba(0, 220, 255, 0.65)';  // thinner glowing cyan
+          ctx.lineWidth = pass === 1 ? 4.0 : 1.0;
+        }
+        
+        const radialLinesCount = 20;
+        for (let j = 0; j < radialLinesCount; j++) {
+          const theta = (Math.PI * 2 / radialLinesCount) * j;
+          ctx.beginPath();
+          
+          let first = true;
+          // Trace depth points from z = 1000 down to 40
+          for (let zVal = 1000; zVal >= 40; zVal -= 40) {
+            const scale = focalLength / zVal;
+            const offsetFactor = (maxDepth - zVal) / maxDepth;
+            const ptCenterX = currentCenterX + dx * 0.85 * offsetFactor;
+            const ptCenterY = currentCenterY + dy * 0.85 * offsetFactor;
+            
+            const ptX = ptCenterX + tunnelRadius * Math.cos(theta) * scale;
+            const ptY = ptCenterY + tunnelRadius * Math.sin(theta) * scale;
+            
+            if (first) {
+              ctx.moveTo(ptX, ptY);
+              first = false;
+            } else {
+              ctx.lineTo(ptX, ptY);
+            }
+          }
+          ctx.stroke();
+        }
+      }
+      
+      drawLongitudinalLines(1);
+      drawLongitudinalLines(2);
+      
+      // --- PART 2: Concentric Depth Rings (Double-Pass Glowing Neon) ---
+      const totalRings = 15;
+      for (let i = 0; i < totalRings; i++) {
+        let ringZ = ((i * (maxDepth / totalRings)) - timeOffset) % maxDepth;
+        if (ringZ < 0) ringZ += maxDepth;
+        if (ringZ < 30 || ringZ > 950) continue;
+        
+        const scale = focalLength / ringZ;
         const ringRadius = tunnelRadius * scale;
         
-        ctx.strokeStyle = currentTheme === 'light' 
-          ? `rgba(71, 85, 105, ${0.06 * scale})` 
-          : `rgba(34, 197, 94, ${0.08 * scale})`;
-        ctx.lineWidth = 1.0;
+        const offsetFactor = (maxDepth - ringZ) / maxDepth;
+        const ringCenterX = currentCenterX + dx * 0.85 * offsetFactor;
+        const ringCenterY = currentCenterY + dy * 0.85 * offsetFactor;
+        
+        // Pass 1: Thicker glowing blue base
         ctx.beginPath();
-        ctx.arc(currentCenterX, currentCenterY, ringRadius, 0, Math.PI * 2);
+        ctx.arc(ringCenterX, ringCenterY, ringRadius, 0, Math.PI * 2);
+        if (currentTheme === 'light') {
+          ctx.strokeStyle = `rgba(37, 99, 235, ${0.06 * scale})`;
+          ctx.lineWidth = 3.5;
+        } else {
+          ctx.strokeStyle = `rgba(37, 99, 235, ${0.16 * scale})`;
+          ctx.lineWidth = 4.5;
+        }
         ctx.stroke();
-      });
-      
-      // 2. Draw 3D radial perspective guidelines
-      const radialLinesCount = 12;
-      ctx.strokeStyle = currentTheme === 'light' 
-        ? 'rgba(71, 85, 105, 0.015)' 
-        : 'rgba(34, 197, 94, 0.02)';
-      ctx.lineWidth = 0.5;
-      for (let i = 0; i < radialLinesCount; i++) {
-        const theta = (Math.PI * 2 / radialLinesCount) * i;
-        const scaleOuter = focalLength / 100;
-        const scaleInner = focalLength / maxDepth;
         
-        const xOuter = currentCenterX + tunnelRadius * Math.cos(theta) * scaleOuter;
-        const yOuter = currentCenterY + tunnelRadius * Math.sin(theta) * scaleOuter;
-        
-        const xInner = currentCenterX + tunnelRadius * Math.cos(theta) * scaleInner;
-        const yInner = currentCenterY + tunnelRadius * Math.sin(theta) * scaleInner;
-        
+        // Pass 2: Thinner cyan core
         ctx.beginPath();
-        ctx.moveTo(xInner, yInner);
-        ctx.lineTo(xOuter, yOuter);
+        ctx.arc(ringCenterX, ringCenterY, ringRadius, 0, Math.PI * 2);
+        if (currentTheme === 'light') {
+          ctx.strokeStyle = `rgba(29, 78, 216, ${0.25 * scale})`;
+          ctx.lineWidth = 0.8;
+        } else {
+          ctx.strokeStyle = `rgba(0, 220, 255, ${0.65 * scale})`;
+          ctx.lineWidth = 1.0;
+        }
         ctx.stroke();
       }
       
-      // 3. Draw and update each floating stock ticker
+      // --- PART 3: Draw and update each spiraling stock ticker ---
       for (let ticker of tickers) {
         ticker.update(delta);
-        ticker.draw(currentCenterX, currentCenterY);
+        ticker.draw(currentCenterX, currentCenterY, dx, dy);
       }
       
       requestAnimationFrame(animate);
     }
-    
     animate();
   }
 
