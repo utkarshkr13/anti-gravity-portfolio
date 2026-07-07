@@ -29,294 +29,189 @@
     }, '-=0.6');
 
 
-  }  /* ---------- Hero 3D Share Market Tunnel Background ---------- */
+  }  /* ---------- Hero — Cinematic Warp-Speed Light Trails ---------- */
   function initParticles() {
-    const canvas = document.getElementById('heroGlobe'); 
+    const canvas = document.getElementById('heroGlobe');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    let width, height;
-    let tickerActive = true;
+    let width, height, cx, cy;
     let currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-
-    let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let timeOffset  = 0;
     let scrollSpeed = 0;
     let lastScrollY = window.scrollY;
-    let timeOffset = 0;
+    let lastTime    = performance.now();
 
-    // Listen for theme-change events
     window.addEventListener('theme-change', () => {
       currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     });
 
-    // 3D coordinate system configuration (Extended depth to create infinite tunnel effect)
-    const maxDepth = 2500;
-    const focalLength = 320;
-    const tunnelRadius = 380;
-    
-    // Smooth centers (Locked at screen center to remove mouse parallax)
-    let currentCenterX = 0;
-    let currentCenterY = 0;
-
-    // Floating Ambient Light Motes for high-end depth layers
-    class LightMote {
-      constructor(z) {
-        this.reset(z);
-      }
-      reset(zValue) {
-        this.z = zValue !== undefined ? zValue : maxDepth;
-        const angle = Math.random() * Math.PI * 2;
-        // Distribute them inside the cylinder tunnel space
-        const radius = (tunnelRadius * 0.2) + Math.random() * (tunnelRadius * 0.85);
-        this.x = Math.cos(angle) * radius;
-        this.y = Math.sin(angle) * radius;
-        this.size = 0.8 + Math.random() * 2.0;
-        this.speedZ = 1.0 + Math.random() * 1.6;
-        this.driftSpeed = 0.01 + Math.random() * 0.02;
-        this.driftOffset = Math.random() * 100;
-      }
-      update(delta) {
-        this.z -= (this.speedZ + scrollSpeed * 0.12) * delta;
-        if (this.z <= 10) {
-          this.reset(maxDepth);
-        }
-      }
-      draw(centerX, centerY) {
-        const scale = focalLength / this.z;
-        // Slow float drift
-        const dx = Math.sin(timeOffset * this.driftSpeed + this.driftOffset) * 12;
-        const dy = Math.cos(timeOffset * this.driftSpeed + this.driftOffset) * 12;
-        
-        const screenX = centerX + (this.x + dx) * scale;
-        const screenY = centerY + (this.y + dy) * scale;
-        
-        let opacity = scale * 1.2;
-        if (this.z > 1800) opacity *= (maxDepth - this.z) / 700;
-        else if (this.z < 100) opacity *= (this.z - 10) / 90;
-        opacity = Math.min(0.65, Math.max(0, opacity));
-        
-        if (opacity < 0.02) return;
-        
-        ctx.beginPath();
-        ctx.arc(screenX, screenY, this.size * scale, 0, Math.PI * 2);
-        if (currentTheme === 'light') {
-          ctx.fillStyle = `rgba(97, 135, 100, ${opacity * 0.5})`;
-        } else {
-          ctx.fillStyle = `rgba(164, 203, 169, ${opacity * 0.8})`;
-        }
-        ctx.fill();
-      }
-    }
-
-    let motes = [];
-    const moteCount = 80;
-    for (let i = 0; i < moteCount; i++) {
-      motes.push(new LightMote(10 + (maxDepth / moteCount) * i));
-    }
-    
-    // Handle viewport resizing
+    /* ---- resize ---- */
     function resize() {
       const dpr = window.devicePixelRatio || 1;
-      width = window.innerWidth;
+      width  = window.innerWidth;
       height = window.innerHeight;
-      
-      canvas.width = width * dpr;
+      canvas.width  = width  * dpr;
       canvas.height = height * dpr;
-      canvas.style.width = width + 'px';
+      canvas.style.width  = width  + 'px';
       canvas.style.height = height + 'px';
       ctx.scale(dpr, dpr);
-      
-      currentCenterX = width / 2;
-      currentCenterY = height / 2;
-      mouse.targetX = width / 2;
-      mouse.targetY = height / 2;
+      cx = width  / 2;
+      cy = height / 2;
     }
-    
     window.addEventListener('resize', resize);
     resize();
-    
-    // Monitor scroll velocity
+
     window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-      scrollSpeed = Math.abs(currentScrollY - lastScrollY);
-      lastScrollY = currentScrollY;
+      const cur = window.scrollY;
+      scrollSpeed = Math.abs(cur - lastScrollY);
+      lastScrollY = cur;
     });
 
-    let lastTime = performance.now();
+    /* ---- streak class ---- */
+    class Streak {
+      constructor() { this.init(true); }
 
-    // Render loop
+      init(scatter) {
+        /* Random angle from center — full 360° */
+        this.angle  = Math.random() * Math.PI * 2;
+
+        /* Start near center, end far out */
+        this.startR = scatter ? Math.random() * 60 : 2 + Math.random() * 30;
+        this.speed  = 3.5 + Math.random() * 6.5;          // px/frame at 60fps
+        this.r      = scatter ? Math.random() * 350 : this.startR;
+        this.maxR   = 260 + Math.random() * 420;           // how far it travels
+
+        /* Visual */
+        this.baseLen = 18 + Math.random() * 60;            // trail length (grows w/ speed)
+        this.width   = 0.5 + Math.random() * 1.5;
+
+        /* Colour — sage green tones with occasional white-hot core */
+        const roll = Math.random();
+        if (roll < 0.15) {
+          this.hue = 0; this.sat = 0; this.lit = 98;       // white-hot
+        } else if (roll < 0.45) {
+          this.hue = 125; this.sat = 38; this.lit = 78;    // mint
+        } else {
+          this.hue = 125; this.sat = 22; this.lit = 58;    // sage
+        }
+        this.alpha  = 0.25 + Math.random() * 0.55;
+      }
+
+      update(delta) {
+        this.r += (this.speed + scrollSpeed * 0.14) * delta;
+        if (this.r >= this.maxR) this.init(false);
+      }
+
+      draw() {
+        /* Progress 0→1 as streak flies out */
+        const progress = (this.r - this.startR) / (this.maxR - this.startR);
+        /* Fade in fast, fade out near edge */
+        const fade = progress < 0.12
+          ? progress / 0.12
+          : progress > 0.75
+            ? (1 - progress) / 0.25
+            : 1;
+
+        const opacity = this.alpha * fade;
+        if (opacity < 0.01) return;
+
+        /* Trail length grows as streak accelerates outward */
+        const trailLen = this.baseLen * (0.4 + progress * 0.9);
+
+        const cos = Math.cos(this.angle);
+        const sin = Math.sin(this.angle);
+
+        const x1 = cx + cos * this.r;
+        const y1 = cy + sin * this.r;
+        const x0 = cx + cos * Math.max(this.startR, this.r - trailLen);
+        const y0 = cy + sin * Math.max(this.startR, this.r - trailLen);
+
+        const grad = ctx.createLinearGradient(x0, y0, x1, y1);
+        const col  = `hsla(${this.hue},${this.sat}%,${this.lit}%,`;
+        grad.addColorStop(0, col + '0)');
+        grad.addColorStop(0.6, col + opacity * 0.6 + ')');
+        grad.addColorStop(1,   col + opacity + ')');
+
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x1, y1);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth   = this.width * (0.5 + progress);
+        ctx.lineCap     = 'round';
+        ctx.stroke();
+      }
+    }
+
+    /* ---- pool of streaks ---- */
+    const STREAK_COUNT = 220;
+    const streaks = Array.from({ length: STREAK_COUNT }, () => new Streak());
+
+    /* ---- render loop ---- */
     function animate() {
-      ctx.clearRect(0, 0, width, height);
-      if (!tickerActive) {
-        requestAnimationFrame(animate);
-        return;
-      }
-      
-      const currentTime = performance.now();
-      // Calculate elapsed time delta normalized to 60fps (16.66ms per frame)
-      let delta = (currentTime - lastTime) / 16.666;
-      lastTime = currentTime;
-      
-      // Clamp delta to prevent massive jumps when returning to backgrounded tab
-      if (delta > 4.0) delta = 4.0;
+      const now   = performance.now();
+      let   delta = (now - lastTime) / 16.666;
+      lastTime    = now;
+      if (delta > 4)   delta = 4;
       if (delta < 0.1) delta = 0.1;
-      
-      // Update tunnel timeOffset - travels slowly and elegantly (igloo.inc style)
-      timeOffset += (0.6 + scrollSpeed * 0.08) * delta;
-      
-      // Decelerate scroll velocity impact smoothly
-      scrollSpeed *= Math.pow(0.92, delta);
+
+      timeOffset  += (0.6 + scrollSpeed * 0.06) * delta;
+      scrollSpeed *= Math.pow(0.90, delta);
       if (scrollSpeed < 0.1) scrollSpeed = 0;
-      
-      // Locked camera centers for a stable, clean Apple-style aesthetic
-      currentCenterX = width / 2;
-      currentCenterY = height / 2;
-      
-      // --- PART 1: Soft Longitudinal Light Ribbons (Apple Aesthetic) ---
-      function drawLongitudinalLines() {
-        const radialLinesCount = 16; // Cleaner, less busy structure
-        
-        for (let j = 0; j < radialLinesCount; j++) {
-          const theta = (Math.PI * 2 / radialLinesCount) * j;
-          ctx.beginPath();
-          
-          let first = true;
-          // Trace depth points from maxDepth down to 40
-          for (let zVal = maxDepth; zVal >= 40; zVal -= 50) {
-            const scale = focalLength / zVal;
-            const offsetFactor = (maxDepth - zVal) / maxDepth;
-            
-            // Waving ripple effect
-            const wave = Math.sin(zVal * 0.005 - timeOffset * 0.03) * 15 * offsetFactor;
-            const radius = tunnelRadius + wave;
-            
-            const ptX = currentCenterX + radius * Math.cos(theta) * scale;
-            const ptY = currentCenterY + radius * Math.sin(theta) * scale;
-            
-            if (first) {
-              ctx.moveTo(ptX, ptY);
-              first = false;
-            } else {
-              ctx.lineTo(ptX, ptY);
-            }
-          }
-          
-          // Draw as a soft, wide ribbon of light that scales with Z-depth
-          if (currentTheme === 'light') {
-            ctx.strokeStyle = 'rgba(97, 135, 100, 0.035)';
-          } else {
-            ctx.strokeStyle = 'rgba(164, 203, 169, 0.07)';
-          }
-          ctx.lineWidth = 3.5;
-          ctx.stroke();
-        }
-      }
-      
-      drawLongitudinalLines();
-      
-      // --- PART 2: Volumetric Hollow Segmented Glass Rings (Alternating Rotations) ---
-      const totalRings = 24; 
-      for (let i = 0; i < totalRings; i++) {
-        let ringZ = ((i * (maxDepth / totalRings)) - timeOffset) % maxDepth;
-        if (ringZ < 0) ringZ += maxDepth;
-        if (ringZ < 30 || ringZ > 2450) continue;
-        
-        const scale = focalLength / ringZ;
-        const offsetFactor = (maxDepth - ringZ) / maxDepth;
-        
-        // Waving ripple wave matching the longitudinal lines
-        const wave = Math.sin(ringZ * 0.005 - timeOffset * 0.03) * 15 * offsetFactor;
-        const baseRadius = tunnelRadius + wave;
-        
-        // Solid volumetric body: outer and inner ring boundaries
-        const outerRadius = (baseRadius + 20) * scale;
-        const innerRadius = (baseRadius - 20) * scale;
-        
-        // Fade out rings near the horizon
-        let opacityMultiplier = 1.0;
-        if (ringZ > 1800) {
-          opacityMultiplier = (maxDepth - ringZ) / 700;
-        }
-        const opacity = scale * 1.5 * opacityMultiplier;
-        if (opacity < 0.02) continue;
-        
-        // High-end alternating slow rotation for each segment washer
-        const rotDir = (i % 2 === 0) ? 1 : -1;
-        const ringAngle = timeOffset * 0.005 * rotDir + (i * 0.12);
-        
-        // Draw 3 curved hollow glass segments with gaps (scifi/telemetry look)
-        const segments = 3;
-        for (let s = 0; s < segments; s++) {
-          const startAngle = ringAngle + (s * Math.PI * 2 / segments);
-          const endAngle = startAngle + (Math.PI * 2 / segments * 0.72); // 72% segment, 28% gap
-          
-          ctx.beginPath();
-          ctx.arc(currentCenterX, currentCenterY, outerRadius, startAngle, endAngle);
-          ctx.arc(currentCenterX, currentCenterY, innerRadius, endAngle, startAngle, true);
-          if (currentTheme === 'light') {
-            ctx.fillStyle = `rgba(97, 135, 100, ${0.06 * opacity})`;
-          } else {
-            ctx.fillStyle = `rgba(97, 135, 100, ${0.14 * opacity})`;
-          }
-          ctx.fill();
-          
-          // Draw soft glowing segment borders
-          ctx.beginPath();
-          ctx.arc(currentCenterX, currentCenterY, outerRadius, startAngle, endAngle);
-          if (currentTheme === 'light') {
-            ctx.strokeStyle = `rgba(61, 91, 64, ${0.2 * opacity})`;
-          } else {
-            ctx.strokeStyle = `rgba(164, 203, 169, ${0.36 * opacity})`;
-          }
-          ctx.lineWidth = 0.8 * scale;
-          ctx.stroke();
 
-          ctx.beginPath();
-          ctx.arc(currentCenterX, currentCenterY, innerRadius, startAngle, endAngle);
-          if (currentTheme === 'light') {
-            ctx.strokeStyle = `rgba(61, 91, 64, ${0.12 * opacity})`;
-          } else {
-            ctx.strokeStyle = `rgba(164, 203, 169, ${0.22 * opacity})`;
-          }
-          ctx.lineWidth = 0.5 * scale;
-          ctx.stroke();
-        }
-      }
-
-      // --- PART 3: Floating Atmospheric Light Motes ---
-      for (let mote of motes) {
-        mote.update(delta);
-        mote.draw(currentCenterX, currentCenterY);
-      }
-
-      // --- PART 4: Glowing Pulsating Horizon vanishing point (Apple-style breathing light) ---
-      const pulse = Math.sin(timeOffset * 0.04) * 8;
-      const glowRadius = (currentTheme === 'light' ? 60 : 120) + pulse;
-      
-      const gradient = ctx.createRadialGradient(
-        currentCenterX, currentCenterY, 0,
-        currentCenterX, currentCenterY, glowRadius
-      );
+      /* Clear with slight motion-blur trail (NOT full clear — gives glow echo) */
       if (currentTheme === 'light') {
-        gradient.addColorStop(0, 'rgba(164, 203, 169, 0.85)');
-        gradient.addColorStop(0.3, 'rgba(97, 135, 100, 0.28)');
-        gradient.addColorStop(1, 'rgba(248, 249, 250, 0)');
+        ctx.fillStyle = 'rgba(245, 247, 245, 0.18)';
       } else {
-        gradient.addColorStop(0, 'rgba(164, 203, 169, 0.95)');
-        gradient.addColorStop(0.2, 'rgba(97, 135, 100, 0.4)');
-        gradient.addColorStop(0.5, 'rgba(164, 203, 169, 0.12)');
-        gradient.addColorStop(1, 'rgba(8, 9, 12, 0)');
+        ctx.fillStyle = 'rgba(6, 7, 10, 0.22)';
       }
-      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      /* Draw streaks */
+      ctx.save();
+      for (const s of streaks) {
+        s.update(delta);
+        s.draw();
+      }
+      ctx.restore();
+
+      /* Central vanishing-point glow — pulsating */
+      const pulse     = Math.sin(timeOffset * 0.045) * 10;
+      const coreSize  = (currentTheme === 'light' ? 45 : 80) + pulse;
+      const coreGrad  = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreSize);
+      if (currentTheme === 'light') {
+        coreGrad.addColorStop(0,   'rgba(164,203,169,0.95)');
+        coreGrad.addColorStop(0.35,'rgba(97,135,100,0.40)');
+        coreGrad.addColorStop(1,   'rgba(245,247,245,0)');
+      } else {
+        coreGrad.addColorStop(0,   'rgba(200,230,202,1.0)');
+        coreGrad.addColorStop(0.25,'rgba(97,135,100,0.55)');
+        coreGrad.addColorStop(0.6, 'rgba(97,135,100,0.10)');
+        coreGrad.addColorStop(1,   'rgba(6,7,10,0)');
+      }
+      ctx.fillStyle = coreGrad;
       ctx.beginPath();
-      ctx.arc(currentCenterX, currentCenterY, glowRadius, 0, Math.PI * 2);
+      ctx.arc(cx, cy, coreSize, 0, Math.PI * 2);
       ctx.fill();
-      
+
+      /* Outer vignette — cinematic letterbox feel */
+      const vigSize  = Math.max(width, height) * 0.85;
+      const vigGrad  = ctx.createRadialGradient(cx, cy, vigSize * 0.35, cx, cy, vigSize);
+      if (currentTheme === 'light') {
+        vigGrad.addColorStop(0, 'rgba(245,247,245,0)');
+        vigGrad.addColorStop(1, 'rgba(220,222,220,0.55)');
+      } else {
+        vigGrad.addColorStop(0, 'rgba(6,7,10,0)');
+        vigGrad.addColorStop(1, 'rgba(4,5,8,0.72)');
+      }
+      ctx.fillStyle = vigGrad;
+      ctx.fillRect(0, 0, width, height);
+
       requestAnimationFrame(animate);
     }
     animate();
   }
 
-  /* ---------- About Section Image Slider ---------- */
+
   function initAboutSlider() {
     const slider = document.getElementById('aboutSlider');
     const container = document.getElementById('aboutGridContainer');
