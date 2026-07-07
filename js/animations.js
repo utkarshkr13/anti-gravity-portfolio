@@ -33,7 +33,7 @@
 
   // Removed hero glow as per tunnel background update.
 
-  /* ---------- Hero Market Ticker Background ---------- */
+  /* ---------- Hero 3D Share Market Tunnel Background ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe'); 
     if (!canvas) return;
@@ -64,178 +64,232 @@
       })
       .catch(e => console.log('Using robust global fallback market data'));
 
-    let mouse = { x: -1000, y: -1000 };
-    let texts = [];
+    let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let scrollSpeed = 0;
+    let lastScrollY = window.scrollY;
 
+    // Listen for theme-change events
     window.addEventListener('theme-change', () => {
       currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-      const opacity = currentTheme === 'light' ? 0.35 : 0.15;
-      texts.forEach(t => t.opacity = opacity);
     });
 
-    class TextNode {
-      constructor(stockData, colX, rowY, rowSpeed) {
-        const sign = stockData.change_pct >= 0 ? '+' : '';
-        const arrow = stockData.change_pct >= 0 ? '▲' : '▼';
-        this.text = `${stockData.symbol}  ${stockData.currency || '$'}${stockData.price}  ${arrow} ${sign}${stockData.change_pct}%`;
-        this.isPositive = stockData.change_pct >= 0;
+    // 3D coordinate system configuration
+    const maxDepth = 1000;
+    const focalLength = 320;
+    const tunnelRadius = 350;
+    
+    // Ticker node instances
+    class TunnelTicker {
+      constructor(stockData, z) {
+        this.stock = stockData;
+        this.reset(z);
+      }
+      
+      reset(zValue) {
+        this.z = zValue !== undefined ? zValue : maxDepth;
+        this.theta = Math.random() * Math.PI * 2;
         
-        ctx.font = `13px 'Courier New', Courier, monospace`;
-        this.textWidth = ctx.measureText(this.text).width;
+        // Pick a random stock from the latest available dataset
+        this.stock = marketData[Math.floor(Math.random() * marketData.length)];
         
-        this.baseX = colX;
-        this.baseY = rowY;
-        this.x = this.baseX;
-        this.y = this.baseY;
-        this.vx = 0;
-        this.vy = 0;
-        this.opacity = currentTheme === 'light' ? 0.35 : 0.15; 
-        this.scrollSpeed = rowSpeed || 0.8;
+        const sign = this.stock.change_pct >= 0 ? '+' : '';
+        const arrow = this.stock.change_pct >= 0 ? '▲' : '▼';
+        this.text = `${this.stock.symbol}  ${this.stock.currency || '$'}${this.stock.price}  ${arrow} ${sign}${this.stock.change_pct}%`;
+        this.isPositive = this.stock.change_pct >= 0;
+        
+        // Speed of movement along Z axis
+        this.baseSpeedZ = 1.8 + Math.random() * 0.8;
+        // Rotational offset speed for spiral effect
+        this.angularSpeed = (Math.random() - 0.5) * 0.003;
       }
       
       update() {
-        // Horizontally scroll to the right
-        this.baseX += this.scrollSpeed;
+        // Move towards the camera (Z decreases)
+        // Scroll velocity increases speed
+        const currentSpeedZ = this.baseSpeedZ + (scrollSpeed * 0.15);
+        this.z -= currentSpeedZ;
+        this.theta += this.angularSpeed;
         
-        // Wrap around off-screen seamlessly
-        if (this.baseX > width + 100) {
-          let minX = this.baseX;
-          for (let i = 0; i < texts.length; i++) {
-            if (texts[i].baseY === this.baseY && texts[i].baseX < minX) {
-              minX = texts[i].baseX;
-            }
-          }
-          this.baseX = minX - this.textWidth - 75;
-          this.x = this.baseX;
+        // Recycle back to the tunnel end once past the camera
+        if (this.z <= 10) {
+          this.reset(maxDepth);
         }
-
-        // True Interactive Cursor Collision
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const influenceRadius = 220; 
-        
-        if (dist < influenceRadius) {
-          const force = (influenceRadius - dist) / influenceRadius;
-          // Displace text spherically away from cursor coordinates
-          this.vx -= (dx / dist) * force * 4.5;
-          this.vy -= (dy / dist) * force * 4.5;
-        }
-
-        // Spring physics restore
-        const springDx = (this.baseX - this.x) * 0.05;
-        const springDy = (this.baseY - this.y) * 0.05;
-        
-        this.vx += springDx;
-        this.vy += springDy;
-
-        // Velocity friction
-        this.vx *= 0.85;
-        this.vy *= 0.85;
-
-        this.x += this.vx;
-        this.y += this.vy;
       }
       
-      draw() {
+      draw(centerX, centerY) {
+        const scale = focalLength / this.z;
+        
+        // Project onto screen coordinate space
+        const x3d = tunnelRadius * Math.cos(this.theta);
+        const y3d = tunnelRadius * Math.sin(this.theta);
+        
+        const screenX = centerX + x3d * scale;
+        const screenY = centerY + y3d * scale;
+        
+        // Font sizing based on 3D depth scale
+        const fontSize = Math.max(5, Math.floor(15 * scale));
+        ctx.font = `${fontSize}px 'Courier New', Courier, monospace`;
+        
+        // Opacity mapping (fade in at back, fade out when passing by camera)
+        let opacity = scale * 1.6;
+        if (this.z > 800) {
+          opacity *= (maxDepth - this.z) / 200; // fade in at the back
+        } else if (this.z < 150) {
+          opacity *= (this.z - 10) / 140;     // fade out near camera
+        }
+        opacity = Math.min(1.0, Math.max(0, opacity));
+        
+        if (opacity < 0.02) return;
+        
+        // Styling colors based on theme and stock performance (contrast AA compliant)
         if (currentTheme === 'light') {
           if (this.isPositive) {
-            ctx.fillStyle = `rgba(22, 101, 52, ${this.opacity})`; // Dark Forest Green
+            ctx.fillStyle = `rgba(22, 101, 52, ${opacity * 0.85})`; // Forest Green
           } else {
-            ctx.fillStyle = `rgba(185, 28, 28, ${this.opacity})`; // Dark Red
+            ctx.fillStyle = `rgba(185, 28, 28, ${opacity * 0.85})`; // Forest Red
           }
         } else {
           if (this.isPositive) {
-            ctx.fillStyle = `rgba(34, 197, 94, ${this.opacity})`; // Neon Green
+            ctx.fillStyle = `rgba(34, 197, 94, ${opacity * 0.9})`; // Neon Green
           } else {
-            ctx.fillStyle = `rgba(239, 68, 68, ${this.opacity})`; // CNBC Red
+            ctx.fillStyle = `rgba(239, 68, 68, ${opacity * 0.9})`; // CNBC Red
           }
         }
-        ctx.fillText(this.text, this.x, this.y);
-      }
-    }
-
-    function initGrid() {
-      texts = [];
-      ctx.font = `13px 'Courier New', Courier, monospace`; 
-      
-      const gapX = 75; 
-      const rowHeight = 45; 
-      const rows = Math.ceil(height / rowHeight) + 1;
-
-      let index = 0;
-      
-      for (let r = 0; r < rows; r++) {
-        const baseSpeed = 0.6 + (r % 4) * 0.2; 
-        const rowSpeed = baseSpeed + Math.random() * 0.1;
-        let currentX = -Math.random() * 250; 
         
-        while (currentX < width + 600) {
-          const stockData = marketData[index % marketData.length];
-          const node = new TextNode(stockData, currentX, r * rowHeight + 25, rowSpeed);
-          texts.push(node);
-          
-          currentX += node.textWidth + gapX;
-          index++;
-        }
+        ctx.save();
+        ctx.translate(screenX, screenY);
+        // Rotate text to face outward/tangent to the tunnel curvature
+        ctx.rotate(this.theta + Math.PI / 2);
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(this.text, 0, 0);
+        ctx.restore();
       }
     }
-
-    let lastWidth = 0;
+    
+    // Create pool of tunnel tickers
+    let tickers = [];
+    const tickerCount = 120;
+    
+    function initTunnel() {
+      tickers = [];
+      for (let i = 0; i < tickerCount; i++) {
+        // Distribute them evenly in depth initially to fill the tunnel
+        const initialZ = 10 + (maxDepth / tickerCount) * i;
+        tickers.push(new TunnelTicker(marketData[i % marketData.length], initialZ));
+      }
+    }
+    
+    initTunnel();
+    
+    // Smooth centers for mouse reactive bending (parallax)
+    let currentCenterX = 0;
+    let currentCenterY = 0;
+    
+    // Handle viewport resizing
     function resize() {
-      const currentWidth = window.innerWidth;
-      const currentHeight = window.innerHeight;
-      const widthChanged = Math.abs(currentWidth - lastWidth) > 20;
-      
       const dpr = window.devicePixelRatio || 1;
-      width = currentWidth;
-      height = currentHeight;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = width + 'px';
       canvas.style.height = height + 'px';
       ctx.scale(dpr, dpr);
       
-      if (widthChanged || texts.length === 0) {
-        lastWidth = currentWidth;
-        initGrid();
+      if (currentCenterX === 0 && currentCenterY === 0) {
+        currentCenterX = width / 2;
+        currentCenterY = height / 2;
       }
+      mouse.targetX = width / 2;
+      mouse.targetY = height / 2;
     }
-
+    
     window.addEventListener('resize', resize);
     resize();
+    
+    // Track cursor coordinates
+    document.addEventListener('mousemove', (e) => {
+      // Scale coordinates to control bending radius
+      const dx = e.clientX - window.innerWidth / 2;
+      const dy = e.clientY - window.innerHeight / 2;
+      mouse.targetX = window.innerWidth / 2 + dx * 0.45;
+      mouse.targetY = window.innerHeight / 2 + dy * 0.45;
+    });
+    
+    // Monitor scroll velocity
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      scrollSpeed = Math.abs(currentScrollY - lastScrollY);
+      lastScrollY = currentScrollY;
+    });
 
-    // Hot-reload spacing once data hydrates
-    const reinitInterval = setInterval(() => {
-      if (marketData.length > 11) {
-        initGrid();
-        clearInterval(reinitInterval);
-      }
-    }, 600);
-
+    // Render loop
     function animate() {
       ctx.clearRect(0, 0, width, height);
       if (!tickerActive) {
         requestAnimationFrame(animate);
         return;
       }
-
-      ctx.font = `13px 'Courier New', Courier, monospace`; 
       
-      for (let txt of texts) {
-        txt.update();
-        txt.draw();
+      // Decelerate scroll velocity impact smoothly
+      scrollSpeed *= 0.92;
+      if (scrollSpeed < 0.1) scrollSpeed = 0;
+      
+      // Interpolate center point for smooth mouse tracking inertia
+      currentCenterX += (mouse.targetX - currentCenterX) * 0.06;
+      currentCenterY += (mouse.targetY - currentCenterY) * 0.06;
+      
+      // 1. Draw 3D wireframe depth rings
+      const ringIntervals = [200, 400, 600, 800, 1000];
+      ringIntervals.forEach(ringZ => {
+        // Adjust ring depth relative to average flight velocity
+        const adjustedZ = ((ringZ - (window.scrollY * 0.05)) % maxDepth + maxDepth) % maxDepth;
+        const scale = focalLength / adjustedZ;
+        const ringRadius = tunnelRadius * scale;
+        
+        ctx.strokeStyle = currentTheme === 'light' 
+          ? `rgba(71, 85, 105, ${0.06 * scale})` 
+          : `rgba(34, 197, 94, ${0.08 * scale})`;
+        ctx.lineWidth = 1.0;
+        ctx.beginPath();
+        ctx.arc(currentCenterX, currentCenterY, ringRadius, 0, Math.PI * 2);
+        ctx.stroke();
+      });
+      
+      // 2. Draw 3D radial perspective guidelines
+      const radialLinesCount = 12;
+      ctx.strokeStyle = currentTheme === 'light' 
+        ? 'rgba(71, 85, 105, 0.015)' 
+        : 'rgba(34, 197, 94, 0.02)';
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < radialLinesCount; i++) {
+        const theta = (Math.PI * 2 / radialLinesCount) * i;
+        const scaleOuter = focalLength / 100;
+        const scaleInner = focalLength / maxDepth;
+        
+        const xOuter = currentCenterX + tunnelRadius * Math.cos(theta) * scaleOuter;
+        const yOuter = currentCenterY + tunnelRadius * Math.sin(theta) * scaleOuter;
+        
+        const xInner = currentCenterX + tunnelRadius * Math.cos(theta) * scaleInner;
+        const yInner = currentCenterY + tunnelRadius * Math.sin(theta) * scaleInner;
+        
+        ctx.beginPath();
+        ctx.moveTo(xInner, yInner);
+        ctx.lineTo(xOuter, yOuter);
+        ctx.stroke();
+      }
+      
+      // 3. Draw and update each floating stock ticker
+      for (let ticker of tickers) {
+        ticker.update();
+        ticker.draw(currentCenterX, currentCenterY);
       }
       
       requestAnimationFrame(animate);
     }
-
-    document.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
-
+    
     animate();
   }
 
