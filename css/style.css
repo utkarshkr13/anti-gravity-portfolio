@@ -2941,11 +2941,11 @@ body.egg-cyberpunk {
 }
 
 .bento-stats {
-  grid-column: span 5;
+  grid-column: span 4;
 }
 
 .bento-clock {
-  grid-column: span 3;
+  grid-column: span 4;
   background: radial-gradient(circle at 100% 100%, hsla(var(--accent-h), var(--accent-s), 14%, 0.15) 0%, var(--bg-card) 80%);
 }
 
@@ -3120,7 +3120,7 @@ body.egg-cyberpunk {
 /* ============================================================
    BENTO SKILLS GRID
    ============================================================ */
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   .skills-grid.bento {
     display: grid !important;
     grid-template-columns: repeat(12, 1fr) !important;
@@ -3150,7 +3150,7 @@ body.egg-cyberpunk {
 /* ============================================================
    RESPONSIVE BENTO ADJUSTMENTS (DOWN TO 320PX)
    ============================================================ */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .about-bento {
     grid-template-columns: 1fr !important;
     gap: var(--space-md);

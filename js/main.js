@@ -1013,10 +1013,10 @@
       document.body.classList.remove('modal-open');
       const navWrapper = document.querySelector('.nav-wrapper');
       if (navWrapper) navWrapper.style.display = '';
+      if (window.lenis) window.lenis.start();
       gsap.to('.modal-wrapper', { y: 30, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => {
         projectModal.style.display = 'none';
         projectModal.setAttribute('aria-hidden', 'true');
-        if (window.lenis) window.lenis.start();
       }});
       gsap.to(modalOverlay, { opacity: 0, duration: 0.3 });
     };
