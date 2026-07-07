@@ -30,23 +30,44 @@
 
 
   }
-  /* ---------- Hero — 3D Wave Grid (Linear.app style) ---------- */
+  /* ---------- Hero — Full-Screen Dot Wave Matrix (Claude-style) ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx    = canvas.getContext('2d');
     let width, height;
     let currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    let t = 0;                     // global time
-    let scrollSpeed = 0;
-    let lastScrollY = window.scrollY;
+    let t        = 0;
     let lastTime = performance.now();
+
+    /* ── Smooth mouse / touch tracking ── */
+    let mx = 0, my = 0;       // lerped (smooth) position
+    let tmx = 0, tmy = 0;     // raw target position
 
     window.addEventListener('theme-change', () => {
       currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     });
+    window.addEventListener('mousemove', e => { tmx = e.clientX; tmy = e.clientY; });
+    window.addEventListener('touchmove', e => {
+      tmx = e.touches[0].clientX;
+      tmy = e.touches[0].clientY;
+    }, { passive: true });
 
-    /* ── resize ── */
+    /* ── Dot grid ── */
+    const SPACING = 36;   // px between dots — tweak for density
+    let dots = [];
+
+    function buildGrid() {
+      dots = [];
+      const cols = Math.ceil(width  / SPACING) + 2;
+      const rows = Math.ceil(height / SPACING) + 2;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          dots.push({ x: c * SPACING, y: r * SPACING });
+        }
+      }
+    }
+
     function resize() {
       const dpr = window.devicePixelRatio || 1;
       width  = window.innerWidth;
@@ -56,81 +77,40 @@
       canvas.style.width  = width  + 'px';
       canvas.style.height = height + 'px';
       ctx.scale(dpr, dpr);
+      /* Initialise mouse to center so grid isn't dark on load */
+      mx = tmx = width  / 2;
+      my = tmy = height / 2;
+      buildGrid();
     }
     window.addEventListener('resize', resize);
     resize();
 
-    window.addEventListener('scroll', () => {
-      const cur = window.scrollY;
-      scrollSpeed = Math.abs(cur - lastScrollY);
-      lastScrollY = cur;
-    });
+    /* ── Per-frame wave value for a dot at (x, y) ──
+       Returns a number roughly in −1 … +1.
+       Three layers:
+         1. Slow ambient undulation (always running, 4 overlapping sine waves)
+         2. Ripple from mouse  (sin wave expanding outward, decays with distance)
+         3. Proximity glow    (dots very close to cursor are always bright)        */
+    function waveValue(x, y) {
+      /* 1 — ambient */
+      const amb = (
+        Math.sin(x * 0.013 + y * 0.009 + t * 0.65) * 0.32 +
+        Math.sin(x * 0.009 - y * 0.012 - t * 0.48) * 0.28 +
+        Math.sin((x + y) * 0.008 + t * 0.38) * 0.22 +
+        Math.sin((x - y) * 0.006 - t * 0.52) * 0.18
+      );  /* range ≈ ±1 */
 
-    /* ── Grid parameters ──
-       World-space: X left↔right, Z near→far (depth), Y = wave height.
-       Camera sits above the plane looking toward the +Z horizon.         */
-    const COLS     = 72;    // columns across X
-    const ROWS     = 38;    // rows along Z (depth)
-    const WORLD_W  = 2800;  // world width (X span)
-    const WORLD_D  = 2200;  // world depth (Z span)
-    const MAX_WAVE = 95;    // max wave amplitude
+      /* 2 — mouse ripple */
+      const dx   = x - mx;
+      const dy   = y - my;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const ripple = Math.sin(dist * 0.020 - t * 5.0) * Math.exp(-dist * 0.0030);
 
-    /* Camera / projection */
-    const CAM_Y  = 340;    // camera height above plane
-    const CAM_Z  = -180;   // camera Z (behind near edge)
-    const FOCAL  = 620;    // perspective focal length
+      /* 3 — proximity glow (Gaussian falloff, peaks right at cursor) */
+      const prox = Math.exp(-dist * 0.0016) * 0.75;
 
-    function horizonY() { return height * 0.48; }
-
-    /* ── Perspective projection ── */
-    function project(wx, wy, wz) {
-      const rx = wx;
-      const ry = wy - CAM_Y;
-      const rz = wz - CAM_Z;
-      if (rz <= 0) return null;
-      const s  = FOCAL / rz;
-      return { x: width / 2 + rx * s, y: horizonY() - ry * s, s };
-    }
-
-    /* ── Wave surface — overlapping sines give organic topology ── */
-    function waveH(wx, wz, time) {
-      const nx = wx / WORLD_W;
-      const nz = wz / WORLD_D;
-      return (
-        Math.sin(nx * 6.2  + time * 0.55) * 0.42 +
-        Math.sin(nz * 5.1  - time * 0.42) * 0.38 +
-        Math.sin((nx + nz) * 4.3 + time * 0.28) * 0.22 +
-        Math.sin((nx - nz) * 7.8 - time * 0.61) * 0.14 +
-        Math.sin(nx * 11.4 + time * 0.18) * 0.08 +
-        Math.sin(nz *  9.7 + time * 0.22) * 0.06
-      ) * MAX_WAVE;
-    }
-
-    /* ── Project an entire row ── */
-    function projectRow(r, time) {
-      const wz  = (r / ROWS) * WORLD_D;
-      const pts = [];
-      for (let c = 0; c <= COLS; c++) {
-        const wx = -WORLD_W / 2 + (c / COLS) * WORLD_W;
-        const wy = waveH(wx, wz, time);
-        pts.push(project(wx, wy, wz));
-      }
-      return pts;
-    }
-
-    /* ── Height → colour (sage green palette) ── */
-    function hColor(normH, depthFade, isLight) {
-      const t01 = (normH + 1) / 2;            // 0 = trough, 1 = peak
-      if (isLight) {
-        const l = 30 + t01 * 38;
-        const a = (0.07 + t01 * 0.26) * (1 - depthFade * 0.80);
-        return `hsla(125,28%,${l|0}%,${a.toFixed(3)})`;
-      } else {
-        const l = 20 + t01 * 54;
-        const s = 16 + t01 * 30;
-        const a = (0.10 + t01 * 0.58) * (1 - depthFade * 0.82);
-        return `hsla(125,${s|0}%,${l|0}%,${a.toFixed(3)})`;
-      }
+      /* Blend — clamp to −1…+1 */
+      return Math.max(-1, Math.min(1, amb * 0.55 + ripple * 0.55 + prox));
     }
 
     /* ── Render loop ── */
@@ -141,99 +121,77 @@
       if (delta > 4)   delta = 4;
       if (delta < 0.1) delta = 0.1;
 
-      t           += (0.016 + scrollSpeed * 0.003) * delta;
-      scrollSpeed *= Math.pow(0.88, delta);
-      if (scrollSpeed < 0.05) scrollSpeed = 0;
+      t  += 0.014 * delta;
+
+      /* Smooth mouse interpolation — easing factor tuned for responsiveness */
+      const ease = 1 - Math.pow(0.90, delta);
+      mx += (tmx - mx) * ease;
+      my += (tmy - my) * ease;
 
       const isLight = currentTheme === 'light';
-
       ctx.clearRect(0, 0, width, height);
 
-      /* Horizon glow */
-      const hY    = horizonY();
-      const hGlow = height * 0.40;
-      const hGrad = ctx.createRadialGradient(width / 2, hY, 0, width / 2, hY, hGlow);
-      if (isLight) {
-        hGrad.addColorStop(0,    'rgba(164,203,169,0.50)');
-        hGrad.addColorStop(0.40, 'rgba(97,135,100,0.16)');
-        hGrad.addColorStop(1,    'rgba(248,249,248,0)');
-      } else {
-        hGrad.addColorStop(0,    'rgba(180,222,186,0.42)');
-        hGrad.addColorStop(0.35, 'rgba(97,135,100,0.20)');
-        hGrad.addColorStop(0.75, 'rgba(24,34,26,0.08)');
-        hGrad.addColorStop(1,    'rgba(6,7,10,0)');
-      }
-      ctx.fillStyle = hGrad;
-      ctx.fillRect(0, 0, width, height);
+      /* ── Draw all dots ── */
+      for (const dot of dots) {
+        const wv  = waveValue(dot.x, dot.y);
+        const t01 = (wv + 1) * 0.5;   /* 0 = trough, 1 = peak */
 
-      /* Pre-compute all rows */
-      const allRows = [];
-      for (let r = 0; r <= ROWS; r++) allRows.push(projectRow(r, t));
+        /* Dot radius: 0.55 at rest → 2.6 at peak */
+        const radius = 0.55 + t01 * 2.05;
 
-      /* Draw back-to-front (painter's algorithm) */
-      for (let r = ROWS; r >= 0; r--) {
-        const df   = r / ROWS;          // depthFade: 0=near bright, 1=far faint
-        const pts  = allRows[r];
-        const wz   = (r / ROWS) * WORLD_D;
+        /* Opacity */
+        const alpha = isLight
+          ? 0.04 + t01 * 0.32   /* light mode: very subtle */
+          : 0.05 + t01 * 0.55;  /* dark mode:  vivid peaks */
 
-        /* Horizontal lines */
-        for (let c = 0; c < COLS; c++) {
-          const p0 = pts[c], p1 = pts[c + 1];
-          if (!p0 || !p1) continue;
-          const wx0  = -WORLD_W / 2 + (c / COLS) * WORLD_W;
-          const wx1  = -WORLD_W / 2 + ((c + 1) / COLS) * WORLD_W;
-          const h0   = waveH(wx0, wz, t) / MAX_WAVE;
-          const h1   = waveH(wx1, wz, t) / MAX_WAVE;
-          ctx.beginPath();
-          ctx.moveTo(p0.x, p0.y);
-          ctx.lineTo(p1.x, p1.y);
-          ctx.strokeStyle = hColor((h0 + h1) / 2, df, isLight);
-          ctx.lineWidth   = Math.max(0.25, (1 - df * 0.75) * 1.15);
-          ctx.stroke();
+        if (alpha < 0.015) continue;  /* skip near-invisible dots */
+
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, radius, 0, 6.2832);
+
+        /* Colour: sage green, brighter at peaks */
+        if (isLight) {
+          /* dark sage on light bg */
+          const l = 30 + t01 * 22;
+          ctx.fillStyle = `hsla(125,26%,${l | 0}%,${alpha.toFixed(3)})`;
+        } else {
+          /* mint→white on dark bg */
+          const l = 38 + t01 * 44;
+          const s = 20 + t01 * 24;
+          ctx.fillStyle = `hsla(125,${s | 0}%,${l | 0}%,${alpha.toFixed(3)})`;
         }
-
-        /* Vertical lines (every 2nd col to keep it elegant) */
-        if (r < ROWS) {
-          const nPts = allRows[r + 1];
-          const dfV  = (r + 0.5) / ROWS;
-          for (let c = 0; c <= COLS; c += 2) {
-            const p0 = pts[c], p1 = nPts[c];
-            if (!p0 || !p1) continue;
-            const wx = -WORLD_W / 2 + (c / COLS) * WORLD_W;
-            const h0 = waveH(wx, wz, t) / MAX_WAVE;
-            ctx.beginPath();
-            ctx.moveTo(p0.x, p0.y);
-            ctx.lineTo(p1.x, p1.y);
-            ctx.strokeStyle = hColor(h0, dfV, isLight);
-            ctx.lineWidth   = Math.max(0.15, (1 - dfV * 0.80) * 0.65);
-            ctx.stroke();
-          }
-        }
+        ctx.fill();
       }
 
-      /* Radial vignette — draws focus to horizon */
-      const vSize = Math.max(width, height) * 0.90;
-      const vGrad = ctx.createRadialGradient(width/2, hY, vSize*0.28, width/2, hY, vSize);
+      /* ── Soft cursor spotlight ── */
+      const spotR  = 180;
+      const spotG  = ctx.createRadialGradient(mx, my, 0, mx, my, spotR);
       if (isLight) {
-        vGrad.addColorStop(0, 'rgba(248,249,248,0)');
-        vGrad.addColorStop(1, 'rgba(235,237,235,0.62)');
+        spotG.addColorStop(0,   'rgba(97,135,100,0.10)');
+        spotG.addColorStop(0.5, 'rgba(97,135,100,0.04)');
+        spotG.addColorStop(1,   'rgba(97,135,100,0)');
       } else {
-        vGrad.addColorStop(0, 'rgba(6,7,10,0)');
-        vGrad.addColorStop(1, 'rgba(4,5,8,0.78)');
+        spotG.addColorStop(0,   'rgba(164,203,169,0.14)');
+        spotG.addColorStop(0.5, 'rgba(97,135,100,0.05)');
+        spotG.addColorStop(1,   'rgba(97,135,100,0)');
       }
-      ctx.fillStyle = vGrad;
-      ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = spotG;
+      ctx.fillRect(mx - spotR, my - spotR, spotR * 2, spotR * 2);
 
-      /* Bottom dissolve — grid fades under hero text */
-      const bGrad = ctx.createLinearGradient(0, height * 0.70, 0, height);
+      /* ── Edge vignette — darkens corners, keeps focus central ── */
+      const vR   = Math.max(width, height) * 0.85;
+      const vG   = ctx.createRadialGradient(
+        width / 2, height / 2, vR * 0.25,
+        width / 2, height / 2, vR
+      );
       if (isLight) {
-        bGrad.addColorStop(0, 'rgba(248,249,248,0)');
-        bGrad.addColorStop(1, 'rgba(248,249,248,0.96)');
+        vG.addColorStop(0, 'rgba(248,249,248,0)');
+        vG.addColorStop(1, 'rgba(230,232,230,0.60)');
       } else {
-        bGrad.addColorStop(0, 'rgba(6,7,10,0)');
-        bGrad.addColorStop(1, 'rgba(6,7,10,0.96)');
+        vG.addColorStop(0, 'rgba(8,9,12,0)');
+        vG.addColorStop(1, 'rgba(4,5,8,0.75)');
       }
-      ctx.fillStyle = bGrad;
+      ctx.fillStyle = vG;
       ctx.fillRect(0, 0, width, height);
 
       requestAnimationFrame(animate);
