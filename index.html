@@ -19,6 +19,14 @@
 </head>
 <body>
 
+  <!-- ===== Cinematic Film Grain Overlay ===== -->
+  <div class="film-grain"></div>
+
+  <!-- ===== Liquid Sweep Transition ===== -->
+  <div class="theme-sweep-wrapper">
+    <div class="theme-sweep-circle" id="themeSweepCircle"></div>
+  </div>
+
   <!-- ===== Page Loader ===== -->
   <div class="page-loader" id="pageLoader">
     <div class="loader-content">
@@ -98,41 +106,100 @@
     <div class="section-label reveal">About Me</div>
     <h2 class="section-title reveal" style="font-size: 2.2rem; line-height: 1.3;">I bridge product requirements and technical delivery — from BRDs and UAT coordination to <span class="accent-text">building internal tools that make cross-border go-lives actually work.</span></h2>
 
-    <div class="about-grid" id="aboutGridContainer">
-      <div class="about-image-wrap reveal-left">
-        <div class="about-slider" id="aboutSlider">
-          <div class="about-slide active" data-color="130, 132, 138">
-            <img src="assets/profile.jpg" alt="Utkarsh Kumar Rajput" loading="lazy">
-          </div>
-          <div class="about-slide" data-color="140, 119, 103">
-            <img src="assets/pf-3.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
-          </div>
-          <div class="about-slide" data-color="59, 59, 49">
-            <img src="assets/pf-4.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
-          </div>
-          <div class="about-slide" data-color="147, 155, 161">
-            <img src="assets/pf-5.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
-          </div>
-        </div>
-        <!-- Progress Indicators -->
-        <div class="slider-indicators" id="sliderIndicators">
-          <div class="indicator-dot active"><div class="indicator-fill"></div></div>
-          <div class="indicator-dot"><div class="indicator-fill"></div></div>
-          <div class="indicator-dot"><div class="indicator-fill"></div></div>
-          <div class="indicator-dot"><div class="indicator-fill"></div></div>
+    <div class="about-bento" id="aboutGridContainer">
+      <!-- Bento Card 1: Bio Text (Left, spans 8 cols) -->
+      <div class="bento-card bento-bio reveal-left">
+        <div class="bento-badge"><i data-lucide="user" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Biography</div>
+        <h3 class="bento-card-title">Bridging Requirements &amp; Technical Execution</h3>
+        <div class="bento-bio-content">
+          <p>
+            I work at the intersection of product management, business analysis, and software delivery. My focus is on turning operational problems into practical products that teams can use, trust, and maintain. I have experience shaping requirements, mapping user flows, writing BRDs, reviewing test coverage, and supporting UAT and go-live activities across enterprise RTM programs.
+          </p>
+          <p>
+            I also build lightweight tools and automation where process gaps create friction. My work combines product thinking with hands-on implementation using <strong>Next.js, TypeScript, Node.js, PostgreSQL, Prisma, Clerk,</strong> and AI-assisted development workflows.
+          </p>
+          <p>
+            I hold a <strong>B.Tech in Electronics and Communication Engineering from VIT</strong>. That background helps me stay grounded in both business context and technical execution.
+          </p>
         </div>
       </div>
-      <div class="about-text">
-        <p class="reveal-right">
-          I work at the intersection of product management, business analysis, and software delivery. My focus is on turning operational problems into practical products that teams can use, trust, and maintain. I have experience shaping requirements, mapping user flows, writing BRDs, reviewing test coverage, and supporting UAT and go-live activities across enterprise RTM programs.
-        </p>
-        <p class="reveal-right">
-          I also build lightweight tools and automation where process gaps create friction. My work combines product thinking with hands-on implementation using <strong>Next.js, TypeScript, Node.js, PostgreSQL, Prisma, Clerk,</strong> and AI-assisted development workflows.
-        </p>
-        <p class="reveal-right">
-          I hold a <strong>B.Tech in Electronics and Communication Engineering from VIT</strong> and am a certified <strong>Microsoft Azure Administrator Associate (AZ-104)</strong>. That background helps me stay grounded in both business context and technical execution.
-        </p>
+
+      <!-- Bento Card 2: Interactive Slider (Right, spans 4 cols, spans 2 rows) -->
+      <div class="bento-card bento-slider reveal-right">
+        <div class="about-image-wrap">
+          <div class="about-slider" id="aboutSlider">
+            <div class="about-slide active" data-color="130, 132, 138">
+              <img src="assets/profile.jpg" alt="Utkarsh Kumar Rajput" loading="lazy">
+            </div>
+            <div class="about-slide" data-color="140, 119, 103">
+              <img src="assets/pf-3.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
+            </div>
+            <div class="about-slide" data-color="59, 59, 49">
+              <img src="assets/pf-4.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
+            </div>
+            <div class="about-slide" data-color="147, 155, 161">
+              <img src="assets/pf-5.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
+            </div>
+          </div>
+          <!-- Progress Indicators -->
+          <div class="slider-indicators" id="sliderIndicators">
+            <div class="indicator-dot active"><div class="indicator-fill"></div></div>
+            <div class="indicator-dot"><div class="indicator-fill"></div></div>
+            <div class="indicator-dot"><div class="indicator-fill"></div></div>
+            <div class="indicator-dot"><div class="indicator-fill"></div></div>
+          </div>
+        </div>
       </div>
+
+      <!-- Bento Card 3: Enterprise Metrics Widget (Row 2, spans 5 cols) -->
+      <div class="bento-card bento-stats reveal">
+        <div class="bento-badge"><i data-lucide="bar-chart-3" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Delivery Impact</div>
+        <div class="bento-stats-grid">
+          <div class="bento-stat-item">
+            <div class="bento-stat-num" data-count="600">600+</div>
+            <div class="bento-stat-label">Jira Issues Owned</div>
+          </div>
+          <div class="bento-stat-item">
+            <div class="bento-stat-num" data-count="15">15+</div>
+            <div class="bento-stat-label">Hrs Saved / Wk</div>
+          </div>
+          <div class="bento-stat-item">
+            <div class="bento-stat-num" data-count="40">40+</div>
+            <div class="bento-stat-label">Daily Active Users</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento Card 4: Clock & Status Widget (Row 2, spans 3 cols) -->
+      <div class="bento-card bento-clock reveal">
+        <div class="bento-badge"><i data-lucide="globe" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Time &amp; Location</div>
+        <div class="bento-clock-content">
+          <div class="bento-location">Mumbai, India</div>
+          <div class="bento-time" id="mumbaiTime">00:00:00 AM</div>
+          <div class="bento-availability">
+            <span class="availability-dot"></span>
+            <span class="availability-text">Open to Roles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento Card 5: Azure Certification Widget (Row 3, spans 12 cols) -->
+      <div class="bento-card bento-cert reveal">
+        <div class="bento-badge"><i data-lucide="shield-check" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Cloud &amp; Infrastructure</div>
+        <div class="bento-cert-layout">
+          <div class="bento-cert-badge-wrapper">
+            <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Microsoft Certified: Azure Administrator Associate" class="bento-cert-badge">
+          </div>
+          <div class="bento-cert-info">
+            <h4 class="bento-cert-title">Microsoft Certified: Azure Administrator Associate (AZ-104)</h4>
+            <p class="bento-cert-desc">Validates enterprise capability in managing cloud identities, resource governance, virtual networks, and hybrid storage structures.</p>
+          </div>
+          <div class="bento-cert-actions">
+            <a href="https://learn.microsoft.com/en-us/users/utkarshkumarrajput-4148/credentials/certification/azure-administrator?tab=credentials-tab" target="_blank" class="btn btn-secondary bento-cert-btn" data-cursor="hover">Verify Credential <i data-lucide="external-link" style="width:14px;height:14px;margin-left:4px;display:inline-block;vertical-align:middle;"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ===== Experience Section ===== -->
@@ -358,11 +425,11 @@
 
   <!-- ===== Skills Section ===== -->
   <section class="section" id="skills">
-    <div class="section-label reveal">Skills & Tools</div>
+    <div class="section-label reveal">Skills &amp; Tools</div>
     <h2 class="section-title reveal">My <span class="accent-text">toolkit.</span></h2>
-    <p class="section-subtitle reveal">A blend of business acumen, technical proficiency, and analytical thinking.</p>
+    <p class="section-subtitle reveal text-letter-reveal">A blend of business acumen, technical proficiency, and analytical thinking.</p>
 
-    <div class="skills-grid">
+    <div class="skills-grid bento">
 
       <div class="skill-category reveal">
         <div class="skill-category-icon"><i data-lucide="briefcase" style="width:22px;height:22px"></i></div>
@@ -497,6 +564,86 @@
   <button class="scroll-top-btn" id="scrollTopBtn" data-cursor="hover" aria-label="Scroll to Top">
     <i data-lucide="arrow-up" style="width:20px;height:20px"></i>
   </button>
+
+  <!-- ===== Command Palette Modal ===== -->
+  <div class="cmd-palette" id="cmdPalette" aria-hidden="true" style="display: none;">
+    <div class="cmd-palette-overlay" id="cmdOverlay"></div>
+    <div class="cmd-palette-wrapper" data-lenis-prevent>
+      <div class="cmd-palette-search-wrapper">
+        <div class="cmd-palette-search-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+        <input type="text" id="cmdSearchInput" class="cmd-palette-search" placeholder="Search sections, switch themes..." autocomplete="off">
+        <span class="cmd-palette-kbd">ESC</span>
+      </div>
+      <div class="cmd-palette-list" id="cmdResults">
+        <div class="cmd-palette-group-title">Navigation</div>
+        <div class="cmd-palette-item" data-action="nav" data-target="#hero" data-cursor="hover">
+          <div class="cmd-palette-item-left">
+            <div class="cmd-palette-item-icon"><i data-lucide="home" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">Go to Home</div>
+          </div>
+          <span class="cmd-palette-item-shortcut">⌥1</span>
+        </div>
+        <div class="cmd-palette-item" data-action="nav" data-target="#about" data-cursor="hover">
+          <div class="cmd-palette-item-left">
+            <div class="cmd-palette-item-icon"><i data-lucide="user" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">Go to About</div>
+          </div>
+          <span class="cmd-palette-item-shortcut">⌥2</span>
+        </div>
+        <div class="cmd-palette-item" data-action="nav" data-target="#experience" data-cursor="hover">
+          <div class="cmd-palette-item-left">
+            <div class="cmd-palette-item-icon"><i data-lucide="briefcase" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">Go to Experience</div>
+          </div>
+          <span class="cmd-palette-item-shortcut">⌥3</span>
+        </div>
+        <div class="cmd-palette-item" data-action="nav" data-target="#projects" data-cursor="hover">
+          <div class="cmd-palette-item-left">
+            <div class="cmd-palette-item-icon"><i data-lucide="folder-git-2" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">Go to Projects</div>
+          </div>
+          <span class="cmd-palette-item-shortcut">⌥4</span>
+        </div>
+        <div class="cmd-palette-item" data-action="nav" data-target="#skills" data-cursor="hover">
+          <div class="cmd-palette-item-left">
+            <div class="cmd-palette-item-icon"><i data-lucide="cpu" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">Go to Skills</div>
+          </div>
+          <span class="cmd-palette-item-shortcut">⌥5</span>
+        </div>
+        <div class="cmd-palette-item" data-action="nav" data-target="#contact" data-cursor="hover">
+          <div class="cmd-palette-item-left">
+            <div class="cmd-palette-item-icon"><i data-lucide="mail" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">Go to Contact</div>
+          </div>
+          <span class="cmd-palette-item-shortcut">⌥6</span>
+        </div>
+        
+        <div class="cmd-palette-group-title">Actions</div>
+        <div class="cmd-palette-item" data-action="theme" data-cursor="hover">
+          <div class="cmd-palette-item-left">
+            <div class="cmd-palette-item-icon"><i data-lucide="sun-moon" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">Toggle Theme</div>
+          </div>
+          <span class="cmd-palette-item-shortcut">⌥T</span>
+        </div>
+        <div class="cmd-palette-item" data-action="resume" data-cursor="hover">
+          <div class="cmd-palette-item-left">
+            <div class="cmd-palette-item-icon"><i data-lucide="download" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">Download Resume</div>
+          </div>
+          <span class="cmd-palette-item-shortcut">⌥R</span>
+        </div>
+      </div>
+      <div class="cmd-palette-footer">
+        <div class="cmd-palette-hints">
+          <span class="cmd-palette-hint"><kbd class="cmd-palette-kbd">↑↓</kbd> Navigate</span>
+          <span class="cmd-palette-hint"><kbd class="cmd-palette-kbd">↵</kbd> Select</span>
+        </div>
+        <span class="cmd-palette-hint"><kbd class="cmd-palette-kbd">ESC</kbd> Close</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== Case Study Modal ===== -->
   <div class="project-modal" id="projectModal" aria-hidden="true" style="display: none;">

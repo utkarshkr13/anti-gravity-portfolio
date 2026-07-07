@@ -31,6 +31,7 @@
 
   }
   /* ---------- Hero — Full-Screen Dot Wave Matrix (Claude-style) ---------- */
+  /* ---------- Hero — Full-Screen Dot Wave Matrix (Claude-style) with 3D depth, gravity well, and shockwaves ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe');
     if (!canvas) return;
@@ -44,6 +45,9 @@
     let mx = 0, my = 0;       // lerped (smooth) position
     let tmx = 0, tmy = 0;     // raw target position
 
+    /* ── Shockwave Click Ripples ── */
+    let activeRipples = [];
+
     window.addEventListener('theme-change', () => {
       currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     });
@@ -53,19 +57,59 @@
       tmy = e.touches[0].clientY;
     }, { passive: true });
 
-    /* ── Dot grid ── */
-    const SPACING = 36;   // px between dots — tweak for density
-    let dots = [];
+    // Track clicks on the window to spawn shockwaves
+    window.addEventListener('mousedown', e => {
+      activeRipples.push({
+        x: e.clientX,
+        y: e.clientY,
+        radius: 0,
+        maxRadius: Math.max(window.innerWidth, window.innerHeight) * 1.2,
+        speed: 15,
+        thickness: 90,
+        intensity: 1.0
+      });
+    });
+
+    /* ── 3D Parallax Layers Definition ── */
+    const layers = [
+      {
+        z: 0.6,          // Depth factor (furthest)
+        spacing: 42,
+        dotRadius: 0.45,
+        alphaMult: 0.3,
+        dots: []
+      },
+      {
+        z: 1.0,          // Depth factor (midground)
+        spacing: 34,
+        dotRadius: 0.75,
+        alphaMult: 0.6,
+        dots: []
+      },
+      {
+        z: 1.5,          // Depth factor (closest)
+        spacing: 26,
+        dotRadius: 1.1,
+        alphaMult: 0.9,
+        dots: []
+      }
+    ];
 
     function buildGrid() {
-      dots = [];
-      const cols = Math.ceil(width  / SPACING) + 2;
-      const rows = Math.ceil(height / SPACING) + 2;
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          dots.push({ x: c * SPACING, y: r * SPACING });
+      layers.forEach(layer => {
+        layer.dots = [];
+        const cols = Math.ceil(width  / layer.spacing) + 4;
+        const rows = Math.ceil(height / layer.spacing) + 4;
+        // Start slightly negative to handle offsets and parallax shift
+        for (let r = -2; r < rows; r++) {
+          for (let c = -2; c < cols; c++) {
+            layer.dots.push({
+              ox: c * layer.spacing, // original x
+              oy: r * layer.spacing  // original y
+            });
+          }
         }
-      }
+      });
     }
 
     function resize() {
@@ -85,32 +129,16 @@
     window.addEventListener('resize', resize);
     resize();
 
-    /* ── Per-frame wave value for a dot at (x, y) ──
-       Returns a number roughly in −1 … +1.
-       Three layers:
-         1. Slow ambient undulation (always running, 4 overlapping sine waves)
-         2. Ripple from mouse  (sin wave expanding outward, decays with distance)
-         3. Proximity glow    (dots very close to cursor are always bright)        */
-    function waveValue(x, y) {
-      /* 1 — ambient */
+    /* ── Wave amplitude and structure ── */
+    function getWaveValue(x, y, z) {
+      // Ambient waves: differ slightly by depth z to animate layers independently
       const amb = (
-        Math.sin(x * 0.013 + y * 0.009 + t * 0.65) * 0.32 +
-        Math.sin(x * 0.009 - y * 0.012 - t * 0.48) * 0.28 +
-        Math.sin((x + y) * 0.008 + t * 0.38) * 0.22 +
-        Math.sin((x - y) * 0.006 - t * 0.52) * 0.18
-      );  /* range ≈ ±1 */
-
-      /* 2 — mouse ripple */
-      const dx   = x - mx;
-      const dy   = y - my;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const ripple = Math.sin(dist * 0.020 - t * 5.0) * Math.exp(-dist * 0.0030);
-
-      /* 3 — proximity glow (Gaussian falloff, peaks right at cursor) */
-      const prox = Math.exp(-dist * 0.0016) * 0.75;
-
-      /* Blend — clamp to −1…+1 */
-      return Math.max(-1, Math.min(1, amb * 0.55 + ripple * 0.55 + prox));
+        Math.sin(x * 0.013 + y * 0.009 + t * 0.5 * z) * 0.35 +
+        Math.sin(x * 0.009 - y * 0.012 - t * 0.4 * z) * 0.30 +
+        Math.sin((x + y) * 0.008 + t * 0.3 * z) * 0.20 +
+        Math.sin((x - y) * 0.006 - t * 0.45 * z) * 0.15
+      );
+      return Math.max(-1, Math.min(1, amb));
     }
 
     /* ── Render loop ── */
@@ -123,62 +151,136 @@
 
       t  += 0.014 * delta;
 
-      /* Smooth mouse interpolation — easing factor tuned for responsiveness */
+      /* Smooth mouse interpolation */
       const ease = 1 - Math.pow(0.90, delta);
       mx += (tmx - mx) * ease;
       my += (tmy - my) * ease;
 
+      // Update ripples
+      activeRipples.forEach(ripple => {
+        ripple.radius += ripple.speed * delta;
+        ripple.intensity *= Math.pow(0.965, delta); // decay over time
+      });
+      // Remove dead ripples
+      activeRipples = activeRipples.filter(r => r.intensity > 0.02 && r.radius < r.maxRadius);
+
       const isLight = currentTheme === 'light';
       ctx.clearRect(0, 0, width, height);
 
-      /* ── Draw all dots ── */
-      for (const dot of dots) {
-        const wv  = waveValue(dot.x, dot.y);
-        const t01 = (wv + 1) * 0.5;   /* 0 = trough, 1 = peak */
+      /* ── Draw layers from back to front ── */
+      layers.forEach(layer => {
+        // Parallax offset based on depth (z-factor)
+        const px = (mx - width / 2) * (layer.z - 1.0) * 0.05;
+        const py = (my - height / 2) * (layer.z - 1.0) * 0.05;
 
-        /* Dot radius: 0.55 at rest → 2.6 at peak */
-        const radius = 0.55 + t01 * 2.05;
+        for (const dot of layer.dots) {
+          // 1. Calculate actual base coordinates after parallax offset
+          let x = dot.ox + px;
+          let y = dot.oy + py;
 
-        /* Opacity */
-        const alpha = isLight
-          ? 0.04 + t01 * 0.32   /* light mode: very subtle */
-          : 0.05 + t01 * 0.55;  /* dark mode:  vivid peaks */
+          // 2. Mouse Gravity Well effect: pulls dots toward the mouse
+          const dx = x - mx;
+          const dy = y - my;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const gravityRadius = 260;
 
-        if (alpha < 0.015) continue;  /* skip near-invisible dots */
+          if (dist < gravityRadius && dist > 1) {
+            // Stronger pull closer to cursor, fading to zero at gravityRadius
+            const force = (gravityRadius - dist) / gravityRadius;
+            // Displacement scale factor: higher layer means closer to screen, moves more
+            const pull = force * force * 35 * (1.0 / layer.z);
+            x -= (dx / dist) * pull;
+            y -= (dy / dist) * pull;
+          }
 
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, radius, 0, 6.2832);
+          // 3. Shockwave Click Ripples: displace dots along the wave boundary
+          let rippleDisplacementX = 0;
+          let rippleDisplacementY = 0;
+          let rippleOpacityBoost = 0;
 
-        /* Colour: sage green, brighter at peaks */
-        if (isLight) {
-          /* dark sage on light bg */
-          const l = 30 + t01 * 22;
-          ctx.fillStyle = `hsla(125,26%,${l | 0}%,${alpha.toFixed(3)})`;
-        } else {
-          /* mint→white on dark bg */
-          const l = 38 + t01 * 44;
-          const s = 20 + t01 * 24;
-          ctx.fillStyle = `hsla(125,${s | 0}%,${l | 0}%,${alpha.toFixed(3)})`;
+          activeRipples.forEach(ripple => {
+            const rdx = x - ripple.x;
+            const rdy = y - ripple.y;
+            const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+            
+            // If dot is near the wave boundary
+            const distFromWave = Math.abs(rdist - ripple.radius);
+            if (distFromWave < ripple.thickness) {
+              const waveFactor = 1.0 - (distFromWave / ripple.thickness); // 0 at edge, 1 at peak
+              const pushForce = waveFactor * waveFactor * 45 * ripple.intensity;
+              
+              // Displace outwards from click center
+              if (rdist > 0) {
+                rippleDisplacementX += (rdx / rdist) * pushForce;
+                rippleDisplacementY += (rdy / rdist) * pushForce;
+              }
+              // Brightness boost on the ripple peak
+              rippleOpacityBoost += waveFactor * ripple.intensity * 0.7;
+            }
+          });
+
+          x += rippleDisplacementX;
+          y += rippleDisplacementY;
+
+          // Skip drawing if dot is off-screen
+          if (x < -20 || x > width + 20 || y < -20 || y > height + 20) {
+            continue;
+          }
+
+          // 4. Wave undulation + mouse proximity glow
+          const wv  = getWaveValue(x, y, layer.z);
+          // Mouse proximity glow factor
+          const glow = Math.exp(-dist * 0.0018) * 0.70;
+          const t01 = Math.max(-1, Math.min(1, wv * 0.6 + glow * 0.4 + rippleOpacityBoost));
+          const normVal = (t01 + 1) * 0.5; // 0..1
+
+          /* Radius: scales with layer depth and wave height */
+          const radius = layer.dotRadius * (0.6 + normVal * 1.5);
+
+          /* Alpha: layered baseline + wave influence */
+          let alpha = isLight
+            ? (0.02 + normVal * 0.22) * layer.alphaMult
+            : (0.03 + normVal * 0.45) * layer.alphaMult;
+
+          // Apply extra opacity boost from shockwaves
+          alpha = Math.min(0.9, alpha + rippleOpacityBoost * 0.4);
+
+          if (alpha < 0.008) continue;
+
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, 6.2832);
+
+          // Render dot with HSL based on current theme
+          if (isLight) {
+            // Darker forest green/sage on light theme
+            const l = 25 + normVal * 20;
+            ctx.fillStyle = `hsla(125, 26%, ${l | 0}%, ${alpha.toFixed(3)})`;
+          } else {
+            // Mint green glowing on dark theme
+            const l = 40 + normVal * 42;
+            const s = 18 + normVal * 22;
+            ctx.fillStyle = `hsla(125, ${s | 0}%, ${l | 0}%, ${alpha.toFixed(3)})`;
+          }
+          ctx.fill();
         }
-        ctx.fill();
-      }
+      });
 
-      /* ── Soft cursor spotlight ── */
-      const spotR  = 180;
+      /* ── Soft cursor spotlight (always midground depth) ── */
+      const spotR  = 200;
       const spotG  = ctx.createRadialGradient(mx, my, 0, mx, my, spotR);
       if (isLight) {
-        spotG.addColorStop(0,   'rgba(97,135,100,0.10)');
-        spotG.addColorStop(0.5, 'rgba(97,135,100,0.04)');
+        spotG.addColorStop(0,   'rgba(97,135,100,0.08)');
+        spotG.addColorStop(0.5, 'rgba(97,135,100,0.03)');
         spotG.addColorStop(1,   'rgba(97,135,100,0)');
       } else {
-        spotG.addColorStop(0,   'rgba(164,203,169,0.14)');
-        spotG.addColorStop(0.5, 'rgba(97,135,100,0.05)');
+        spotG.addColorStop(0,   'rgba(164,203,169,0.12)');
+        spotG.addColorStop(0.5, 'rgba(97,135,100,0.04)');
         spotG.addColorStop(1,   'rgba(97,135,100,0)');
       }
       ctx.fillStyle = spotG;
       ctx.fillRect(mx - spotR, my - spotR, spotR * 2, spotR * 2);
 
-      /* ── Edge vignette — darkens corners, keeps focus central ── */
+      /* ── Edge vignette ── */
       const vR   = Math.max(width, height) * 0.85;
       const vG   = ctx.createRadialGradient(
         width / 2, height / 2, vR * 0.25,
@@ -186,10 +288,10 @@
       );
       if (isLight) {
         vG.addColorStop(0, 'rgba(248,249,248,0)');
-        vG.addColorStop(1, 'rgba(230,232,230,0.60)');
+        vG.addColorStop(1, 'rgba(230,232,230,0.55)');
       } else {
         vG.addColorStop(0, 'rgba(8,9,12,0)');
-        vG.addColorStop(1, 'rgba(4,5,8,0.75)');
+        vG.addColorStop(1, 'rgba(4,5,8,0.70)');
       }
       ctx.fillStyle = vG;
       ctx.fillRect(0, 0, width, height);
@@ -413,6 +515,42 @@
     });
   }
 
+  /* ---------- Text Letter Reveal ---------- */
+  function initTextLetterReveals() {
+    const revealElements = document.querySelectorAll('.text-letter-reveal');
+    revealElements.forEach(el => {
+      const text = el.textContent.trim();
+      el.textContent = '';
+      
+      // Wrap characters in spans
+      const chars = text.split('').map(char => {
+        const span = document.createElement('span');
+        span.className = 'reveal-char';
+        span.textContent = char === ' ' ? '\u00A0' : char; // use non-breaking space
+        el.appendChild(span);
+        return span;
+      });
+
+      // Animate characters via GSAP ScrollTrigger
+      gsap.fromTo(chars,
+        { opacity: 0, y: '30%', rotateX: -20 },
+        {
+          opacity: 1,
+          y: '0%',
+          rotateX: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+          stagger: 0.02,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+  }
+
   window.initAnimations = function () {
     initHeroAnimations();
     initParticles();
@@ -422,6 +560,7 @@
     initActiveNavLink();
     initSkillTagFloat();
     initTimelineStagger();
+    initTextLetterReveals();
   };
 
 })();
