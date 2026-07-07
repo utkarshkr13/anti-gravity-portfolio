@@ -190,35 +190,7 @@ async def run_e2e_tests(client):
         print("  [FAIL] Stock Ticker canvas '#heroGlobe' not found.")
         success = False
 
-    # 5. GitHub Stats elements
-    print("\n[Tier 1] Checking GitHub stats injection...")
-    github_stats_injected = await client.eval_js("""
-        (function() {
-            const repos = document.getElementById('githubReposCount').innerText.trim();
-            const stars = document.getElementById('githubStarsCount').innerText.trim();
-            const followers = document.getElementById('githubFollowersCount').innerText.trim();
-            const languagesList = document.getElementById('githubLanguagesList');
-            const hasLanguages = languagesList && languagesList.children.length > 0;
-            return {
-                repos: repos,
-                stars: stars,
-                followers: followers,
-                hasLanguages: hasLanguages
-            };
-        })()
-    """)
-    # We check if they are not the initial loading values '--'
-    if github_stats_injected["repos"] != "--" and github_stats_injected["followers"] != "--":
-        print(f"  [PASS] GitHub stats populated: Repos={github_stats_injected['repos']}, Followers={github_stats_injected['followers']}.")
-    else:
-        print(f"  [FAIL] GitHub stats not populated. Got repos='{github_stats_injected['repos']}', followers='{github_stats_injected['followers']}'.")
-        success = False
-        
-    if github_stats_injected["hasLanguages"]:
-        print("  [PASS] GitHub language percentages list rendered.")
-    else:
-        print("  [FAIL] GitHub language percentages list is empty.")
-        success = False
+
 
     # ==========================================
     # TIER 2: BOUNDARY & CORNER CASES
@@ -313,8 +285,7 @@ async def run_e2e_tests(client):
     print("\n[Tier 2] Verifying Text Contrast (WCAG 2.1 AA)...")
     contrast_targets = [
         {"selector": "body", "name": "Primary Body Text", "default_bg": "rgb(8,9,12)"},
-        {"selector": ".project-card-title", "name": "Project Card Title", "default_bg": "rgb(19,22,28)"},
-        {"selector": ".github-metrics-card", "name": "GitHub Metrics Card", "default_bg": "rgb(19,22,28)"}
+        {"selector": ".project-card-title", "name": "Project Card Title", "default_bg": "rgb(19,22,28)"}
     ]
     
     # We test both light and dark mode
@@ -474,45 +445,7 @@ async def run_e2e_tests(client):
     # Restore theme
     await ensure_theme(client, "dark")
 
-    # 3. Theme Switching + GitHub Cards legibility
-    print("\n[Tier 3] Checking Theme Switching + GitHub Cards legibility...")
-    for target in [".github-metrics-card", ".github-languages-card", ".github-spotlight-card"]:
-        colors_dark = await client.eval_js(f"""
-            (function() {{
-                const el = document.querySelector('{target}');
-                if(!el) return null;
-                const style = window.getComputedStyle(el);
-                return {{ color: style.color, bg: style.backgroundColor }};
-            }})()
-        """)
-        # Switch to light mode
-        await ensure_theme(client, "light")
-        
-        colors_light = await client.eval_js(f"""
-            (function() {{
-                const el = document.querySelector('{target}');
-                if(!el) return null;
-                const style = window.getComputedStyle(el);
-                return {{ color: style.color, bg: style.backgroundColor }};
-            }})()
-        """)
-        
-        # Restore theme
-        await ensure_theme(client, "dark")
-        
-        if colors_dark and colors_light:
-            dark_ratio = get_contrast_ratio(colors_dark["color"], colors_dark["bg"])
-            light_ratio = get_contrast_ratio(colors_light["color"], colors_light["bg"])
-            print(f"  {target}:")
-            print(f"    Dark Mode Contrast: {dark_ratio:.2f}:1")
-            print(f"    Light Mode Contrast: {light_ratio:.2f}:1")
-            if dark_ratio >= 4.5 and light_ratio >= 4.5:
-                print("    [PASS] Sub-card maintains legibility in both modes.")
-            else:
-                print("    [WARN] Sub-card contrast is low in one of the modes. Layout task M3 will fix this.")
-        else:
-            print(f"  [FAIL] Could not query colors for GitHub sub-card: {target}.")
-            success = False
+
 
     # ==========================================
     # TIER 4: REAL-WORLD SCENARIO

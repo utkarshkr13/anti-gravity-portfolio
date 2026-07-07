@@ -5,6 +5,21 @@
 (function () {
   'use strict';
 
+  /* ---------- Dynamic Theme Accent Color Loader ---------- */
+  fetch('assets/feature_inspiration.json')
+    .then(response => {
+      if (response.ok) return response.json();
+    })
+    .then(data => {
+      if (data && data.accent_h && data.accent_s && data.accent_l) {
+        document.documentElement.style.setProperty('--accent-h', data.accent_h);
+        document.documentElement.style.setProperty('--accent-s', data.accent_s);
+        document.documentElement.style.setProperty('--accent-l', data.accent_l);
+        console.log(`[Theme Engine] Injected dynamic accent color: HSL(${data.accent_h}, ${data.accent_s}, ${data.accent_l}) representing ${data.theme_name || 'custom'} theme.`);
+      }
+    })
+    .catch(error => console.log('Error loading design spotlight theme:', error));
+
   /* ---------- Theme Toggle ---------- */
   const html = document.documentElement;
   const THEME_KEY = 'ukr-portfolio-theme';

@@ -354,67 +354,7 @@
     </div>
   </section>
 
-  <!-- ===== GitHub Analytics Section ===== -->
-  <section class="section" id="github-analytics">
-    <div class="section-label reveal">Dynamic Activity</div>
-    <h2 class="section-title reveal">GitHub <span class="accent-text">Activity.</span></h2>
-    <p class="section-subtitle reveal">Live contributions, codebase stats, and featured projects synced in real-time.</p>
 
-    <div class="github-dashboard reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 32px;">
-      <!-- Profile Metrics Card -->
-      <div class="github-metrics-card" style="padding: 24px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
-        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-          <i data-lucide="github" style="width: 20px; height: 20px;"></i> Profile Activity
-        </h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-          <div class="github-metrics-subcard">
-            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Public Repos</div>
-            <div id="githubReposCount" style="font-size: 1.6rem; font-weight: 800; color: var(--accent);">--</div>
-          </div>
-          <div class="github-metrics-subcard">
-            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Total Stars</div>
-            <div id="githubStarsCount" style="font-size: 1.6rem; font-weight: 800; color: var(--accent);">--</div>
-          </div>
-          <div class="github-metrics-subcard" style="grid-column: span 2;">
-            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">Followers</div>
-            <div id="githubFollowersCount" style="font-size: 1.4rem; font-weight: 800; color: var(--accent);">--</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Languages Breakdown Card -->
-      <div class="github-languages-card" style="padding: 24px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
-        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-          <i data-lucide="code-2" style="width: 20px; height: 20px;"></i> Language Weight
-        </h3>
-        <div id="githubLanguagesList">
-          <p style="font-size: 0.8rem; color: var(--text-secondary);">Loading language statistics...</p>
-        </div>
-      </div>
-
-      <!-- Portfolio Feature Spotlight Card -->
-      <div class="github-spotlight-card" style="padding: 24px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px); grid-column: span 1; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-            <i data-lucide="sparkles" style="width: 20px; height: 20px; color: #f59e0b;"></i> Portfolio Feature Spotlight
-          </h3>
-          <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
-            Every 15 minutes, my autonomous subagent analyzes portfolio design elements from GitHub Stars / Reddit and spotlights a top developer feature or design paradigm.
-          </p>
-        </div>
-        <div style="padding: 16px; background: var(--accent-glow); border: 1px solid var(--accent); border-radius: 12px; transition: all 0.3s var(--ease-out);">
-          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 6px; display: flex; align-items: center; gap: 4px;">
-            <i data-lucide="compass" style="width: 12px; height: 12px;"></i> Inspiration Sync
-          </div>
-          <div id="portfolioSpotlightText" style="font-size: 0.8rem; font-weight: 600; color: var(--text-primary); line-height: 1.4;">
-            Connecting to live telemetry feed...
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-  </section>
 
   <!-- ===== Skills Section ===== -->
   <section class="section" id="skills">
@@ -620,7 +560,6 @@
   <script src="js/magnetic.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/github_stats.js"></script>
   <script>lucide.createIcons();</script>
 </body>
 </html>
