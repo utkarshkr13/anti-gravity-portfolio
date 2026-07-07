@@ -8,17 +8,17 @@
 
 @property --accent-h {
   syntax: '<number>';
-  initial-value: 210;
+  initial-value: 217;
   inherits: true;
 }
 @property --accent-s {
   syntax: '<percentage>';
-  initial-value: 40%;
+  initial-value: 90%;
   inherits: true;
 }
 @property --accent-l {
   syntax: '<percentage>';
-  initial-value: 58%;
+  initial-value: 56%;
   inherits: true;
 }
 
@@ -26,12 +26,12 @@
 :root {
   transition: --accent-h 0.8s ease, --accent-s 0.8s ease, --accent-l 0.8s ease;
   /* Accent — Steel Blue (extracted from profile: mountain mist, snow, clouds) */
-  --accent-h: 210;
-  --accent-s: 40%;
-  --accent-l: 58%;
+  --accent-h: 217;
+  --accent-s: 90%;
+  --accent-l: 56%;
   --accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-  --accent-light: hsl(var(--accent-h), var(--accent-s), 72%);
-  --accent-dark: hsl(var(--accent-h), var(--accent-s), 40%);
+  --accent-light: hsl(var(--accent-h), var(--accent-s), 70%);
+  --accent-dark: hsl(var(--accent-h), var(--accent-s), 42%);
   --accent-glow: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.2);
 
   /* Typography — Poppins (Google Product Sans alternative) */
