@@ -50,8 +50,8 @@
       currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     });
 
-    // 3D coordinate system configuration
-    const maxDepth = 1000;
+    // 3D coordinate system configuration (Extended depth to create infinite tunnel effect)
+    const maxDepth = 2500;
     const focalLength = 320;
     const tunnelRadius = 380;
     
@@ -133,17 +133,21 @@
       const dx = currentCenterX - width / 2;
       const dy = currentCenterY - height / 2;
       
+      // Compute center at absolute infinity (farthest point of the tunnel)
+      const infiniteCenterX = currentCenterX + dx * 0.85;
+      const infiniteCenterY = currentCenterY + dy * 0.85;
+
       // --- PART 1: Curved Longitudinal Grid Lines (Double-Pass Glowing Neon) ---
       function drawLongitudinalLines(pass) {
         if (currentTheme === 'light') {
           ctx.strokeStyle = pass === 1 
-            ? 'rgba(97, 135, 100, 0.06)'  // thicker transparent sage
-            : 'rgba(61, 91, 64, 0.25)';    // thinner dark sage
+            ? 'rgba(97, 135, 100, 0.05)'  // thicker transparent sage
+            : 'rgba(61, 91, 64, 0.22)';    // thinner dark sage
           ctx.lineWidth = pass === 1 ? 3.0 : 0.8;
         } else {
           ctx.strokeStyle = pass === 1 
-            ? 'rgba(97, 135, 100, 0.18)'  // thicker transparent sage
-            : 'rgba(164, 203, 169, 0.65)'; // thinner glowing light sage
+            ? 'rgba(97, 135, 100, 0.15)'  // thicker transparent sage
+            : 'rgba(164, 203, 169, 0.6)';  // thinner glowing light sage
           ctx.lineWidth = pass === 1 ? 4.0 : 1.0;
         }
         
@@ -153,15 +157,15 @@
           ctx.beginPath();
           
           let first = true;
-          // Trace depth points from z = 1000 down to 40
-          for (let zVal = 1000; zVal >= 40; zVal -= 30) {
+          // Trace depth points from z = 2500 down to 40
+          for (let zVal = maxDepth; zVal >= 40; zVal -= 40) {
             const scale = focalLength / zVal;
             const offsetFactor = (maxDepth - zVal) / maxDepth;
             const ptCenterX = currentCenterX + dx * 0.85 * offsetFactor;
             const ptCenterY = currentCenterY + dy * 0.85 * offsetFactor;
             
             // Igloo-style organic undulation ripple wave (pulses organically near camera)
-            const wave = Math.sin(zVal * 0.006 - timeOffset * 0.03) * 18 * offsetFactor;
+            const wave = Math.sin(zVal * 0.005 - timeOffset * 0.03) * 18 * offsetFactor;
             const radius = tunnelRadius + wave;
             
             const ptX = ptCenterX + radius * Math.cos(theta) * scale;
@@ -182,30 +186,36 @@
       drawLongitudinalLines(2);
       
       // --- PART 2: Concentric Depth Rings (Double-Pass Glowing Neon) ---
-      const totalRings = 18; // slightly denser concentric rings
+      const totalRings = 35; // denser concentric rings for infinite depth mapping
       for (let i = 0; i < totalRings; i++) {
         let ringZ = ((i * (maxDepth / totalRings)) - timeOffset) % maxDepth;
         if (ringZ < 0) ringZ += maxDepth;
-        if (ringZ < 30 || ringZ > 950) continue;
+        if (ringZ < 30 || ringZ > 2450) continue;
         
         const scale = focalLength / ringZ;
         const offsetFactor = (maxDepth - ringZ) / maxDepth;
         
         // Igloo-style organic undulation ripple wave matching the longitudinal lines
-        const wave = Math.sin(ringZ * 0.006 - timeOffset * 0.03) * 18 * offsetFactor;
+        const wave = Math.sin(ringZ * 0.005 - timeOffset * 0.03) * 18 * offsetFactor;
         const ringRadius = (tunnelRadius + wave) * scale;
         
         const ringCenterX = currentCenterX + dx * 0.85 * offsetFactor;
         const ringCenterY = currentCenterY + dy * 0.85 * offsetFactor;
         
+        // Fade out rings as they approach absolute horizon to prevent mesh cluttering
+        let opacityMultiplier = 1.0;
+        if (ringZ > 1800) {
+          opacityMultiplier = (maxDepth - ringZ) / 700;
+        }
+        
         // Pass 1: Thicker glowing sage base
         ctx.beginPath();
         ctx.arc(ringCenterX, ringCenterY, ringRadius, 0, Math.PI * 2);
         if (currentTheme === 'light') {
-          ctx.strokeStyle = `rgba(97, 135, 100, ${0.06 * scale})`;
+          ctx.strokeStyle = `rgba(97, 135, 100, ${0.06 * scale * opacityMultiplier})`;
           ctx.lineWidth = 3.5;
         } else {
-          ctx.strokeStyle = `rgba(97, 135, 100, ${0.18 * scale})`;
+          ctx.strokeStyle = `rgba(97, 135, 100, ${0.18 * scale * opacityMultiplier})`;
           ctx.lineWidth = 4.5;
         }
         ctx.stroke();
@@ -214,14 +224,35 @@
         ctx.beginPath();
         ctx.arc(ringCenterX, ringCenterY, ringRadius, 0, Math.PI * 2);
         if (currentTheme === 'light') {
-          ctx.strokeStyle = `rgba(61, 91, 64, ${0.25 * scale})`;
+          ctx.strokeStyle = `rgba(61, 91, 64, ${0.25 * scale * opacityMultiplier})`;
           ctx.lineWidth = 0.8;
         } else {
-          ctx.strokeStyle = `rgba(164, 203, 169, ${0.65 * scale})`;
+          ctx.strokeStyle = `rgba(164, 203, 169, ${0.65 * scale * opacityMultiplier})`;
           ctx.lineWidth = 1.0;
         }
         ctx.stroke();
       }
+
+      // --- PART 3: Glowing Horizon vanishing point (light source at end of tunnel) ---
+      const glowRadius = currentTheme === 'light' ? 60 : 120;
+      const gradient = ctx.createRadialGradient(
+        infiniteCenterX, infiniteCenterY, 0,
+        infiniteCenterX, infiniteCenterY, glowRadius
+      );
+      if (currentTheme === 'light') {
+        gradient.addColorStop(0, 'rgba(164, 203, 169, 0.8)');
+        gradient.addColorStop(0.3, 'rgba(97, 135, 100, 0.25)');
+        gradient.addColorStop(1, 'rgba(248, 249, 250, 0)');
+      } else {
+        gradient.addColorStop(0, 'rgba(164, 203, 169, 0.9)');
+        gradient.addColorStop(0.2, 'rgba(97, 135, 100, 0.35)');
+        gradient.addColorStop(0.5, 'rgba(164, 203, 169, 0.08)');
+        gradient.addColorStop(1, 'rgba(8, 9, 12, 0)');
+      }
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(infiniteCenterX, infiniteCenterY, glowRadius, 0, Math.PI * 2);
+      ctx.fill();
       
       requestAnimationFrame(animate);
     }
