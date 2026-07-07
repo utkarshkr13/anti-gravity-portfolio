@@ -607,7 +607,9 @@
 
   window.initAnimations = function () {
     initHeroAnimations();
-    initParticles();
+    // initParticles is NOT called here by default.
+    // The YouTube background replaces particles.
+    // If YouTube fails, showParticleFallback() in index.html calls window._startParticlesFallback().
     initAboutSlider();
     initScrollReveals();
     initNavBarScroll();
@@ -615,6 +617,13 @@
     initSkillTagFloat();
     initTimelineStagger();
     initTextLetterReveals();
+  };
+
+  // Called by the YouTube fallback handler if video fails to load
+  window._startParticlesFallback = function () {
+    if (window._particlesStarted) return;
+    window._particlesStarted = true;
+    initParticles();
   };
 
 })();

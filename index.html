@@ -56,8 +56,7 @@
 </head>
 <body>
 
-  <!-- ===== Cinematic Film Grain Overlay ===== -->
-  <div class="film-grain"></div>
+  <!-- ===== Film grain removed ===== -->
 
   <!-- ===== Liquid Sweep Transition ===== -->
   <div class="theme-sweep-wrapper">
@@ -95,6 +94,13 @@
 
   <!-- ===== Hero Section ===== -->
   <section class="hero" id="hero">
+
+    <!-- YouTube Background (primary) -->
+    <div id="hero-video-bg" class="hero-video-bg" aria-hidden="true">
+      <div id="ytBgPlaceholder"></div>
+    </div>
+
+    <!-- Particle canvas (fallback when YouTube unavailable) -->
     <canvas id="heroGlobe" class="hero-particles"></canvas>
     <div class="hero-blur-tunnel"></div>
 
@@ -743,5 +749,95 @@
   <script defer src="js/magnetic.js"></script>
   <script defer src="js/animations.js"></script>
   <script defer src="js/main.js"></script>
+
+  <!-- ===== YouTube Background Video ===== -->
+  <script>
+    /* YouTube IFrame API — load as non-deferred so onYouTubeIframeAPIReady
+       is available globally before the API script calls it back. */
+    (function () {
+      var VIDEO_ID = 'detaxy_bDuA';
+      var START_SEC = 58;
+      var FALLBACK_TIMEOUT = 6000; // show particles if video not ready in 6s
+
+      var canvas = document.getElementById('heroGlobe');
+      var videoBg = document.getElementById('hero-video-bg');
+      var fallbackTimer = null;
+      var videoReady = false;
+
+      function showParticleFallback() {
+        if (videoReady) return;
+        // Show particles by removing inactive class, hide video bg
+        if (canvas) {
+          canvas.classList.remove('hero-particles--inactive');
+        }
+        if (videoBg) videoBg.style.display = 'none';
+        // Start particle animation via dedicated fallback function
+        if (window._startParticlesFallback) {
+          window._startParticlesFallback();
+        }
+      }
+
+      // Fallback: start particles if YouTube doesn't respond in time
+      fallbackTimer = setTimeout(showParticleFallback, FALLBACK_TIMEOUT);
+
+      // YouTube IFrame API callback
+      window.onYouTubeIframeAPIReady = function () {
+        try {
+          var player = new YT.Player('ytBgPlaceholder', {
+            videoId: VIDEO_ID,
+            playerVars: {
+              autoplay: 1,
+              mute: 1,
+              loop: 1,
+              controls: 0,
+              start: START_SEC,
+              playlist: VIDEO_ID, // required for loop
+              iv_load_policy: 3,
+              disablekb: 1,
+              modestbranding: 1,
+              playsinline: 1,
+              rel: 0,
+              showinfo: 0,
+              fs: 0
+            },
+            events: {
+              onReady: function (e) {
+                clearTimeout(fallbackTimer);
+                videoReady = true;
+                e.target.setVolume(0);
+                e.target.playVideo();
+                // Fade in video bg, make canvas inactive (invisible but still layouted)
+                if (videoBg) {
+                  videoBg.style.opacity = '1';
+                }
+                if (canvas) {
+                  canvas.classList.add('hero-particles--inactive');
+                }
+              },
+              onError: function () {
+                clearTimeout(fallbackTimer);
+                showParticleFallback();
+              },
+              onStateChange: function (e) {
+                // If video ends unexpectedly, loop it
+                if (e.data === YT.PlayerState.ENDED) {
+                  e.target.seekTo(START_SEC);
+                  e.target.playVideo();
+                }
+              }
+            }
+          });
+        } catch (err) {
+          showParticleFallback();
+        }
+      };
+
+      // Load the YouTube IFrame API script
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      tag.onerror = showParticleFallback;
+      document.head.appendChild(tag);
+    })();
+  </script>
 </body>
 </html>
