@@ -349,10 +349,20 @@
 
   /* ---------- Scroll-triggered reveal animations ---------- */
   function initScrollReveals() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Standard fade-up reveals
     gsap.utils.toArray('.reveal').forEach(el => {
       // Skip hero reveals — they're handled by the hero timeline
       if (el.closest('.hero')) return;
+
+      // If already in viewport or reduced motion: snap to final state immediately
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (prefersReducedMotion || inView) {
+        gsap.set(el, { opacity: 1, y: 0 });
+        return;
+      }
 
       gsap.fromTo(el,
         { opacity: 0, y: 40 },
@@ -364,7 +374,8 @@
           scrollTrigger: {
             trigger: el,
             start: 'top 88%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play none none none',
+            once: true
           }
         }
       );
@@ -372,6 +383,12 @@
 
     // Left reveals
     gsap.utils.toArray('.reveal-left').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (prefersReducedMotion || inView) {
+        gsap.set(el, { opacity: 1, x: 0 });
+        return;
+      }
       gsap.fromTo(el,
         { opacity: 0, x: -40 },
         {
@@ -382,7 +399,8 @@
           scrollTrigger: {
             trigger: el,
             start: 'top 88%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play none none none',
+            once: true
           }
         }
       );
@@ -390,6 +408,12 @@
 
     // Right reveals
     gsap.utils.toArray('.reveal-right').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (prefersReducedMotion || inView) {
+        gsap.set(el, { opacity: 1, x: 0 });
+        return;
+      }
       gsap.fromTo(el,
         { opacity: 0, x: 40 },
         {
@@ -400,7 +424,8 @@
           scrollTrigger: {
             trigger: el,
             start: 'top 88%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play none none none',
+            once: true
           }
         }
       );
@@ -408,6 +433,12 @@
 
     // Scale reveals (project cards)
     gsap.utils.toArray('.reveal-scale').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (prefersReducedMotion || inView) {
+        gsap.set(el, { opacity: 1, scale: 1 });
+        return;
+      }
       gsap.fromTo(el,
         { opacity: 0, scale: 0.92 },
         {
@@ -418,7 +449,8 @@
           scrollTrigger: {
             trigger: el,
             start: 'top 88%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play none none none',
+            once: true
           }
         }
       );
@@ -495,8 +527,13 @@
 
   /* ---------- Timeline stagger ---------- */
   function initTimelineStagger() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const items = gsap.utils.toArray('.timeline-item');
     items.forEach((item, i) => {
+      if (prefersReducedMotion) {
+        gsap.set(item, { opacity: 1, y: 0 });
+        return;
+      }
       gsap.fromTo(item, 
         { opacity: 0, y: 50 },
         {
@@ -508,7 +545,8 @@
           scrollTrigger: {
             trigger: item,
             start: 'top 85%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play none none none',
+            once: true
           }
         }
       );
@@ -517,6 +555,7 @@
 
   /* ---------- Text Letter Reveal ---------- */
   function initTextLetterReveals() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealElements = document.querySelectorAll('.text-letter-reveal');
     revealElements.forEach(el => {
       const text = el.textContent.trim();
@@ -531,6 +570,20 @@
         return span;
       });
 
+      // If reduced motion: show all chars immediately
+      if (prefersReducedMotion) {
+        gsap.set(chars, { opacity: 1, y: '0%', rotateX: 0 });
+        return;
+      }
+
+      // Check if element is already in viewport — snap if so
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        gsap.set(chars, { opacity: 1, y: '0%', rotateX: 0 });
+        return;
+      }
+
       // Animate characters via GSAP ScrollTrigger
       gsap.fromTo(chars,
         { opacity: 0, y: '30%', rotateX: -20 },
@@ -544,7 +597,8 @@
           scrollTrigger: {
             trigger: el,
             start: 'top 85%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play none none none',
+            once: true
           }
         }
       );

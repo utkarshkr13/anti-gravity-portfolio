@@ -608,7 +608,7 @@
       { id: 'case-cityflo', title: 'View Case Study: CityFlo BI Dashboards', category: 'Case Studies', icon: 'file-text', action: () => openCaseStudy('cityflo-bi') },
       
       { id: 'toggle-theme', title: 'Toggle Theme (Dark / Light)', category: 'Actions', icon: 'sun', action: () => document.getElementById('themeToggle')?.click() },
-      { id: 'download-resume', title: 'Download Resume', category: 'Actions', icon: 'download', action: () => window.print() }
+      { id: 'download-resume', title: 'Open Resume PDF', category: 'Actions', icon: 'download', action: () => window.open('assets/resume.pdf', '_blank') }
     ];
     
     function openPalette() {
@@ -758,7 +758,7 @@
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (target) {
-        lenis.scrollTo(target, { offset: -60 });
+        lenis.scrollTo(target, { offset: -80 });
       }
     });
   });
@@ -784,6 +784,8 @@
             loader.style.display = 'none';
             // Fire animations after loader
             window.initAnimations();
+            // Re-init lucide icons (deferred script, safe to call after DOM ready)
+            if (window.lucide) window.lucide.createIcons();
           }
         });
       }
@@ -797,7 +799,7 @@
     })
     .to(loaderBar, {
       width: '100%',
-      duration: 1.2,
+      duration: 0.8,
       ease: 'power2.inOut'
     }, '-=0.3')
     .to(loaderName, {
@@ -885,7 +887,7 @@
         "Supported 40+ daily users during critical UAT cycles.",
         "Accelerated QA sign-offs, leading to successful zero-downtime go-live."
       ],
-      live: "https://sap-tracker-mocha.vercel.app",
+      live: '#',
       code: "https://github.com/utkarshkr13/sap-tracker"
     },
     'client-inbox-tracker': {
@@ -1169,7 +1171,7 @@
             setTimeout(() => themeToggle.click(), 350);
           }
         } else if (action === 'resume') {
-          window.print();
+          window.open('assets/resume.pdf', '_blank');
         }
       });
     });
@@ -1213,6 +1215,6 @@
         if (window.initAnimations) window.initAnimations();
       }, 400);
     }
-  }, 5000);
+  }, 2500);
 
 })();

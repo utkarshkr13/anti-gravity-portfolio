@@ -6,16 +6,53 @@
   <title>Utkarsh Rajput — Product Manager &amp; Business Analyst</title>
   <meta name="description" content="Portfolio of Utkarsh Rajput — Product Manager and Business Analyst focused on AI-enabled product delivery, enterprise workflows, and practical automation.">
   <meta name="author" content="Utkarsh Rajput">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://utkarsh.ind.in/">
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Utkarsh Rajput — Product Manager &amp; Business Analyst">
   <meta property="og:description" content="Product Manager and Business Analyst focused on AI-enabled product delivery, enterprise workflows, and practical automation.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://utkarsh.ind.in/">
+  <meta property="og:image" content="https://utkarsh.ind.in/assets/og-cover.png">
+  <meta property="og:site_name" content="Utkarsh Rajput Portfolio">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Utkarsh Rajput — Product Manager &amp; Business Analyst">
+  <meta name="twitter:description" content="PM & BA focused on AI-enabled product delivery, enterprise workflows, and practical automation.">
+  <meta name="twitter:image" content="https://utkarsh.ind.in/assets/og-cover.png">
+
+  <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2308090C'/><text y='53%' x='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter, -apple-system, sans-serif' font-size='60' font-weight='800' fill='%233b82f6'>U</text></svg>">
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2308090C'/><text y='53%' x='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter, -apple-system, sans-serif' font-size='60' font-weight='800' fill='%233b82f6'>U</text></svg>">
+
+  <!-- Structured Data (Person schema) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Utkarsh Rajput",
+    "url": "https://utkarsh.ind.in",
+    "jobTitle": "Product Manager and Business Analyst",
+    "description": "Product Manager and Business Analyst focused on AI-enabled product delivery, enterprise workflows, and practical automation.",
+    "sameAs": [
+      "https://www.linkedin.com/in/utkarshkr13",
+      "https://github.com/utkarshkr13"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mumbai",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="css/style.css">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap">
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -85,15 +122,13 @@
         </a>
       </div>
       <div class="magnetic-wrap">
-        <a href="javascript:window.print();" class="btn btn-secondary" data-cursor="hover" id="ctaResume">
-          Download Resume <i data-lucide="download" style="width:14px;height:14px;margin-left:6px;display:inline-block;vertical-align:middle;"></i>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener" class="btn btn-secondary" data-cursor="hover" id="ctaResume">
+          Resume <i data-lucide="download" style="width:14px;height:14px;margin-left:6px;display:inline-block;vertical-align:middle;"></i>
         </a>
       </div>
-      <div class="magnetic-wrap">
-        <a href="#contact" class="btn btn-secondary" data-cursor="hover" id="ctaContact">
-          Get in Touch <span class="btn-arrow">→</span>
-        </a>
-      </div>
+      <a href="#contact" class="cta-text-link" data-cursor="hover" id="ctaContact">
+        Get in Touch <span class="btn-arrow">→</span>
+      </a>
     </div>
 
     <div class="hero-scroll-indicator reveal">
@@ -195,7 +230,7 @@
             <p class="bento-cert-desc">Validates enterprise capability in managing cloud identities, resource governance, virtual networks, and hybrid storage structures.</p>
           </div>
           <div class="bento-cert-actions">
-            <a href="https://learn.microsoft.com/en-us/users/utkarshkumarrajput-4148/credentials/certification/azure-administrator?tab=credentials-tab" target="_blank" class="btn btn-secondary bento-cert-btn" data-cursor="hover">Verify Credential <i data-lucide="external-link" style="width:14px;height:14px;margin-left:4px;display:inline-block;vertical-align:middle;"></i></a>
+            <span class="bento-cert-verified"><i data-lucide="shield-check" style="width:14px;height:14px;margin-right:6px;display:inline-block;vertical-align:middle;color:#10b981;"></i>Verified · Microsoft Learn · AZ-104</span>
           </div>
         </div>
       </div>
@@ -695,18 +730,18 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <!-- ===== Third-party Libraries (deferred — non-render-blocking) ===== -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+  <script defer src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
 
-  <!-- ===== App Scripts ===== -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-  <script src="js/cursor.js"></script>
-  <script src="js/glow.js"></script>
-  <script src="js/magnetic.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/main.js"></script>
-  <script>lucide.createIcons();</script>
+  <!-- ===== App Scripts (deferred) ===== -->
+  <script defer src="js/cursor.js"></script>
+  <script defer src="js/glow.js"></script>
+  <script defer src="js/magnetic.js"></script>
+  <script defer src="js/animations.js"></script>
+  <script defer src="js/main.js"></script>
 </body>
 </html>

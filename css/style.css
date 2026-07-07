@@ -317,6 +317,11 @@ ul, ol {
   max-width: 1200px;
   margin: 0 auto;
   transition: background-color var(--theme-transition);
+  scroll-margin-top: 80px;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
 }
 
 .section-label {
@@ -497,6 +502,25 @@ ul, ol {
   z-index: 10;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+}
+
+/* Demoted text-style CTA link */
+.cta-text-link {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: color var(--dur-normal) var(--ease-out);
+  cursor: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.cta-text-link:hover {
+  color: var(--text-primary);
 }
 
 .hero-scroll-indicator {
@@ -1734,6 +1758,20 @@ ul, ol {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  /* Snap all GSAP reveal elements to final state */
+  .reveal, .reveal-left, .reveal-right, .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .reveal-char {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* Stop film grain animation */
+  .film-grain {
+    animation: none !important;
+  }
+  /* Stop canvas particle animation — handled in JS */
 }
 
 /* smooth all themed transitions */
@@ -3115,6 +3153,20 @@ body.egg-cyberpunk {
   padding: 8px 18px !important;
   height: auto !important;
   border-radius: var(--radius-full) !important;
+}
+
+.bento-cert-verified {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 /* ============================================================
