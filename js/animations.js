@@ -31,8 +31,6 @@
 
   }
 
-  // Removed hero glow as per tunnel background update.  /* ---------- Hero 3D Share Market Tunnel Background ---------- */
-  function initParticles() {
   /* ---------- Hero 3D Share Market Tunnel Background ---------- */
   function initParticles() {
     const canvas = document.getElementById('heroGlobe'); 
@@ -228,7 +226,6 @@
       requestAnimationFrame(animate);
     }
     animate();
-  }
   }
 
   /* ---------- About Section Image Slider ---------- */
