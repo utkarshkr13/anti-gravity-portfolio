@@ -135,46 +135,7 @@ function updateGitHubUI(data) {
     });
   }
 
-  // Update Repository Cards
-  const reposGrid = document.getElementById('githubReposGrid');
-  if (reposGrid) {
-    reposGrid.innerHTML = '';
-    repos.forEach(repo => {
-      const card = document.createElement('a');
-      card.href = repo.url;
-      card.target = '_blank';
-      card.rel = 'noopener';
-      card.className = 'github-repo-card reveal';
-      card.style.display = 'block';
 
-      card.innerHTML = `
-        <div class="github-repo-card-inner" style="padding:20px; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:12px; height:100%; display:flex; flex-direction:column; justify-content:space-between; transition:all 0.3s;">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin:0;">${repo.name}</h4>
-              <i data-lucide="external-link" style="width:14px; height:14px; color:var(--text-tertiary);"></i>
-            </div>
-            <p style="font-size:0.78rem; color:var(--text-secondary); line-height:1.4; margin-bottom:16px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">${repo.description}</p>
-          </div>
-          <div style="display:flex; gap:16px; font-size:0.75rem; color:var(--text-tertiary); font-weight:600;">
-            <span style="display:flex; align-items:center; gap:4px;">
-              <span style="width:8px; height:8px; border-radius:50%; background:${getLanguageColor(repo.language)}; display:inline-block;"></span>
-              ${repo.language}
-            </span>
-            <span style="display:flex; align-items:center; gap:4px;">
-              <i data-lucide="star" style="width:12px; height:12px;"></i>
-              ${repo.stars} stars
-            </span>
-          </div>
-        </div>
-      `;
-      reposGrid.appendChild(card);
-    });
-    // Create new Lucide icons inside injected HTML
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
-  }
 }
 
 function getLanguageColor(lang) {

@@ -560,7 +560,7 @@ async def run_e2e_tests(client):
         
         # Step 7: Click GitHub repo link (verify it exists and is clickable)
         print("  Step 7: Verify GitHub repository link...")
-        git_link = await client.eval_js("document.querySelector('#githubReposGrid a').getAttribute('href')")
+        git_link = await client.eval_js("document.querySelector('#projects a[href*=\"github.com\"]').getAttribute('href')")
         print(f"    First GitHub repo link found: {git_link}.")
         if git_link and git_link.startswith("https://github.com/"):
             print("  [PASS] Full User Journey completed successfully.")

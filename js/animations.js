@@ -103,12 +103,12 @@
         this.angularSpeed = (Math.random() - 0.5) * 0.003;
       }
       
-      update() {
+      update(delta) {
         // Move towards the camera (Z decreases)
         // Scroll velocity increases speed
-        const currentSpeedZ = this.baseSpeedZ + (scrollSpeed * 0.15);
+        const currentSpeedZ = (this.baseSpeedZ + (scrollSpeed * 0.15)) * delta;
         this.z -= currentSpeedZ;
-        this.theta += this.angularSpeed;
+        this.theta += this.angularSpeed * delta;
         
         // Recycle back to the tunnel end once past the camera
         if (this.z <= 10) {
@@ -225,6 +225,8 @@
       lastScrollY = currentScrollY;
     });
 
+    let lastTime = performance.now();
+
     // Render loop
     function animate() {
       ctx.clearRect(0, 0, width, height);
@@ -233,13 +235,22 @@
         return;
       }
       
+      const currentTime = performance.now();
+      // Calculate elapsed time delta normalized to 60fps (16.66ms per frame)
+      let delta = (currentTime - lastTime) / 16.666;
+      lastTime = currentTime;
+      
+      // Clamp delta to prevent massive jumps when returning to backgrounded tab
+      if (delta > 4.0) delta = 4.0;
+      if (delta < 0.1) delta = 0.1;
+      
       // Decelerate scroll velocity impact smoothly
-      scrollSpeed *= 0.92;
+      scrollSpeed *= Math.pow(0.92, delta);
       if (scrollSpeed < 0.1) scrollSpeed = 0;
       
-      // Interpolate center point for smooth mouse tracking inertia
-      currentCenterX += (mouse.targetX - currentCenterX) * 0.06;
-      currentCenterY += (mouse.targetY - currentCenterY) * 0.06;
+      // Interpolate center point for smooth mouse tracking inertia (frame-rate independent)
+      currentCenterX += (mouse.targetX - currentCenterX) * (1 - Math.pow(1 - 0.06, delta));
+      currentCenterY += (mouse.targetY - currentCenterY) * (1 - Math.pow(1 - 0.06, delta));
       
       // 1. Draw 3D wireframe depth rings
       const ringIntervals = [200, 400, 600, 800, 1000];
@@ -283,7 +294,7 @@
       
       // 3. Draw and update each floating stock ticker
       for (let ticker of tickers) {
-        ticker.update();
+        ticker.update(delta);
         ticker.draw(currentCenterX, currentCenterY);
       }
       
