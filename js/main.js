@@ -333,43 +333,11 @@
     if (ring) ring.style.display = 'none';
   }
 
-  // Interactivity Binder for Synthesizer, Magnets, & Cursor Hover
+  // Interactivity Binder — hover/click only (no magnetic position shift)
   function bindElementInteractions(el) {
     if (el._interactionsBound) return;
     el._interactionsBound = true;
-    
-    const child = el.classList.contains('magnetic-wrap') ? el.children[0] : el;
-    if (!child) return;
-    
-    el.addEventListener('mousemove', (e) => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      gsap.to(child, {
-        x: x * 0.35,
-        y: y * 0.35,
-        duration: 0.3,
-        ease: 'power2.out'
-      });
-      
-      if (!isTouchDevice) {
-        hoveredMagnet = child;
-      }
-    });
-    
-    el.addEventListener('mouseleave', () => {
-      gsap.to(child, {
-        x: 0,
-        y: 0,
-        duration: 0.6,
-        ease: 'elastic.out(1, 0.4)'
-      });
-      if (!isTouchDevice) {
-        hoveredMagnet = null;
-      }
-    });
-    
+
     el.addEventListener('mouseenter', () => {
       synth.playHover();
       if (!isTouchDevice && dot && ring) {
@@ -377,14 +345,14 @@
         ring.classList.add('hovering');
       }
     });
-    
+
     el.addEventListener('mouseleave', () => {
       if (!isTouchDevice && dot && ring) {
         dot.classList.remove('hovering');
         ring.classList.remove('hovering');
       }
     });
-    
+
     el.addEventListener('click', () => {
       synth.playClick();
     });

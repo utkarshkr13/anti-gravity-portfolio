@@ -1,0 +1,622 @@
+/* ============================================================
+   UI REVAMP — polish existing components only
+   No new sections. Same layout, sharper visuals.
+   Inspired by: Apple clarity · Tesla restraint · Igloo craft
+   ============================================================ */
+
+/* ---------- Design token tweaks (existing system) ---------- */
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-full: 999px;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #050608;
+  --bg-secondary: #0a0c10;
+  --bg-card: #12151c;
+  --bg-card-hover: #181c26;
+  --bg-nav: rgba(12, 14, 18, 0.72);
+  --text-primary: #f0f2f5;
+  --text-secondary: rgba(240, 242, 245, 0.68);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-hover: rgba(255, 255, 255, 0.16);
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f5f6f8;
+  --bg-secondary: #eef0f3;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8f9fb;
+  --bg-nav: rgba(255, 255, 255, 0.78);
+  --text-primary: #15171c;
+  --text-secondary: rgba(21, 23, 28, 0.62);
+  --border-color: rgba(0, 0, 0, 0.07);
+  --border-color-hover: rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Nav: keep pill, refine glass ---------- */
+.navbar {
+  background: var(--bg-nav);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.nav-link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .nav-link.active {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- Hero: clearer hierarchy, no smear ---------- */
+.hero {
+  background: #050608;
+}
+
+/* Soften heavy video grade — more cinematic, still readable */
+.hero-video-bg {
+  pointer-events: none !important;
+}
+
+.hero-video-bg iframe,
+.hero-video-bg #ytBgPlaceholder {
+  pointer-events: none !important;
+  /* Crop YouTube chrome */
+  width: max(112%, 200vh) !important;
+  height: max(63vw, 112%) !important;
+  min-width: 112% !important;
+  min-height: 112% !important;
+}
+
+.hero-video-blocker {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: auto;
+  background: transparent;
+}
+
+.hero-video-bg::after {
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(5, 6, 8, 0.45) 0%, rgba(5, 6, 8, 0.28) 40%, rgba(5, 6, 8, 0.72) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 45%, transparent 20%, rgba(5, 6, 8, 0.55) 100%) !important;
+}
+
+/* Blur tunnel was smearing the availability badge — turn into soft glow only */
+.hero-blur-tunnel {
+  width: min(720px, 90vw) !important;
+  height: 280px !important;
+  border: none !important;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.25) 0%, transparent 70%) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  opacity: 0.7;
+  z-index: 0 !important;
+}
+
+.hero-greeting {
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  font-size: 0.75rem;
+  opacity: 0.95;
+}
+
+.hero-name {
+  letter-spacing: -0.04em;
+  font-weight: 650;
+  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-subtitle {
+  max-width: 34rem;
+  line-height: 1.55;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  color: rgba(240, 242, 245, 0.72);
+}
+
+/* CRITICAL FIX: availability badge was an unreadable green smear */
+.availability-badge {
+  position: relative;
+  z-index: 12;
+  margin-top: 1.25rem;
+  padding: 9px 18px;
+  gap: 10px;
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1px solid rgba(52, 211, 153, 0.35) !important;
+  border-radius: var(--radius-full);
+  color: #6ee7b7 !important;
+  font-size: 0.8rem !important;
+  font-weight: 550 !important;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+  max-width: none;
+  /* kill float that made it look broken */
+  animation: none !important;
+  transform: none !important;
+}
+
+.availability-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  background: #34d399 !important;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+}
+
+.availability-dot::after {
+  border-color: #34d399 !important;
+  animation: availabilityPulse 2.2s ease-out infinite;
+}
+
+[data-theme="light"] .hero {
+  background: #eef1f5;
+}
+
+[data-theme="light"] .hero-video-bg::after {
+  background:
+    linear-gradient(180deg, rgba(238, 241, 245, 0.55) 0%, rgba(238, 241, 245, 0.3) 40%, rgba(238, 241, 245, 0.8) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 45%, transparent 25%, rgba(180, 190, 200, 0.4) 100%) !important;
+}
+
+[data-theme="light"] .hero-subtitle {
+  color: rgba(21, 23, 28, 0.65);
+}
+
+[data-theme="light"] .hero-name {
+  color: #15171c;
+  text-shadow: none;
+}
+
+[data-theme="light"] .availability-badge {
+  background: rgba(4, 120, 87, 0.08) !important;
+  border-color: rgba(4, 120, 87, 0.28) !important;
+  color: #047857 !important;
+}
+
+[data-theme="light"] .availability-dot {
+  background: #059669 !important;
+}
+
+/* ---------- Buttons: liquid glass on existing .btn ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-full);
+  transition:
+    transform 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out),
+    background 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    color 0.25s ease;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(255, 255, 255, 0.08) 55%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  background-position: 140% 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn:hover::before {
+  opacity: 1;
+  animation: btn-shine 0.95s var(--ease-out) forwards;
+}
+
+@keyframes btn-shine {
+  0%   { background-position: 140% 0; }
+  100% { background-position: -40% 0; }
+}
+
+.btn > * {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-primary {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 42%),
+    linear-gradient(165deg, hsla(var(--accent-h), var(--accent-s), 58%, 0.95), hsla(var(--accent-h), var(--accent-s), 40%, 0.92)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  color: #fff !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 8px 28px hsla(var(--accent-h), var(--accent-s), 40%, 0.35) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 14px 36px hsla(var(--accent-h), var(--accent-s), 40%, 0.45) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: #fff !important;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: var(--text-primary) !important;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .btn-primary {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 40%),
+    linear-gradient(165deg, hsla(var(--accent-h), var(--accent-s), 42%, 1), hsla(var(--accent-h), var(--accent-s), 32%, 1)) !important;
+}
+
+[data-theme="light"] .btn-secondary {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 #fff !important;
+}
+
+[data-theme="light"] .btn-secondary:hover {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+/* CTA text link polish */
+.cta-text-link {
+  font-weight: 500;
+  opacity: 0.85;
+  transition: opacity 0.25s ease, color 0.25s ease;
+}
+.cta-text-link:hover {
+  opacity: 1;
+  color: var(--text-primary);
+}
+
+/* Kill magnetic layout drift — keep structure, stop movement */
+.magnetic-wrap {
+  display: inline-block;
+  transform: none !important;
+}
+.magnetic-wrap > * {
+  transform: none !important;
+}
+
+/* ---------- Bento / cards ---------- */
+.bento-card,
+.timeline-card,
+.project-card,
+.cert-card,
+.skill-category,
+.contact-link,
+.contact-form {
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  transition:
+    border-color 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out),
+    transform 0.35s var(--ease-out),
+    background 0.35s var(--ease-out);
+}
+
+.bento-card:hover,
+.timeline-card:hover,
+.project-card:hover,
+.cert-card:hover {
+  border-color: var(--border-color-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.bento-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ---------- Project cards: denser, cleaner, less wall-of-text feel ---------- */
+.projects-grid {
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.project-card-image {
+  aspect-ratio: 16 / 10;
+}
+
+.project-card-image img {
+  transition: transform 0.7s var(--ease-out);
+}
+
+.project-card:hover .project-card-image img {
+  transform: scale(1.04);
+}
+
+.project-card-body {
+  gap: 0.65rem;
+  padding: 1.35rem 1.4rem 1.5rem;
+}
+
+.project-card-category {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  opacity: 0.9;
+}
+
+.project-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.project-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Collapse long bullet walls — keep first visual quieter */
+.project-card-details {
+  font-size: 0.82rem;
+  opacity: 0.8;
+  max-height: 4.8em;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(180deg, #000 55%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+}
+
+.project-card:hover .project-card-details,
+.project-card:focus-within .project-card-details {
+  max-height: none;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.project-card-links .btn {
+  padding: 9px 16px !important;
+  font-size: 0.78rem !important;
+  height: auto !important;
+  border-radius: var(--radius-full) !important;
+}
+
+.project-card-links .btn.btn-primary {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 40%),
+    linear-gradient(165deg, hsla(var(--accent-h), var(--accent-s), 55%, 0.95), hsla(var(--accent-h), var(--accent-s), 38%, 0.9)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #fff !important;
+}
+
+.project-card-links .btn.btn-secondary {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: var(--text-primary) !important;
+}
+
+.project-card-tags span {
+  border-radius: 999px;
+  font-size: 0.68rem;
+  padding: 4px 10px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+}
+
+/* Filter chips */
+.filter-btn {
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 9px 16px;
+  transition: all 0.25s var(--ease-out);
+}
+
+.filter-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-color-hover);
+  background: var(--bg-subtle);
+}
+
+.filter-btn.active {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+/* ---------- Cert cards: row → refined tiles ---------- */
+.certs-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: 1rem !important;
+  margin-top: 2.5rem !important;
+}
+
+.cert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.35rem;
+  background: var(--bg-card);
+  min-height: 120px;
+  box-shadow: var(--shadow-card);
+}
+
+.cert-card:hover {
+  transform: translateY(-3px);
+}
+
+.cert-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+}
+
+.cert-info h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  color: var(--text-primary);
+}
+
+.cert-info p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ---------- Timeline polish ---------- */
+.timeline-card {
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.timeline-company {
+  letter-spacing: -0.02em;
+}
+
+.timeline-details li {
+  line-height: 1.55;
+  font-size: 0.9rem;
+}
+
+/* ---------- Skills tags ---------- */
+.skill-tag {
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.skill-tag:hover {
+  border-color: var(--border-color-hover);
+  background: var(--bg-subtle-hover);
+  transform: translateY(-1px);
+}
+
+/* ---------- Contact ---------- */
+.contact-form input,
+.contact-form textarea {
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .contact-form input,
+[data-theme="light"] .contact-form textarea {
+  background: #fff;
+}
+
+/* ---------- Section titles ---------- */
+.section-title {
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.section-label {
+  letter-spacing: 0.18em;
+  font-weight: 550;
+}
+
+/* ---------- Motion: calmer, less jitter ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .btn::before,
+  .availability-dot::after {
+    animation: none !important;
+  }
+  .btn:hover,
+  .bento-card:hover,
+  .cert-card:hover {
+    transform: none !important;
+  }
+}
+
+/* Mobile: stacked CTAs stay clean; badge can wrap */
+@media (max-width: 640px) {
+  .availability-badge {
+    white-space: normal;
+    max-width: 92vw;
+    text-align: left;
+    line-height: 1.35;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: min(100%, 300px);
+  }
+  .hero-cta-group .magnetic-wrap,
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+  .hero-cta-group .btn {
+    justify-content: center;
+  }
+  .certs-container {
+    grid-template-columns: 1fr !important;
+  }
+}

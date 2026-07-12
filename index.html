@@ -49,6 +49,7 @@
   </script>
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ui-revamp.css">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,9 +96,10 @@
   <!-- ===== Hero Section ===== -->
   <section class="hero" id="hero">
 
-    <!-- YouTube Background (primary) -->
+    <!-- YouTube Background (primary) — non-interactive -->
     <div id="hero-video-bg" class="hero-video-bg" aria-hidden="true">
       <div id="ytBgPlaceholder"></div>
+      <div class="hero-video-blocker" aria-hidden="true"></div>
     </div>
 
     <!-- Particle canvas (fallback when YouTube unavailable) -->
@@ -791,37 +793,37 @@
               loop: 1,
               controls: 0,
               start: START_SEC,
-              playlist: VIDEO_ID, // required for loop
+              playlist: VIDEO_ID,
               iv_load_policy: 3,
               disablekb: 1,
               modestbranding: 1,
               playsinline: 1,
               rel: 0,
               showinfo: 0,
-              fs: 0
+              fs: 0,
+              cc_load_policy: 0
             },
             events: {
               onReady: function (e) {
                 clearTimeout(fallbackTimer);
                 videoReady = true;
-                e.target.setVolume(0);
-                e.target.playVideo();
-                // Fade in video bg, make canvas inactive (invisible but still layouted)
-                if (videoBg) {
-                  videoBg.style.opacity = '1';
-                }
-                if (canvas) {
-                  canvas.classList.add('hero-particles--inactive');
-                }
+                try { e.target.mute(); e.target.setVolume(0); e.target.playVideo(); } catch (_) {}
+                if (videoBg) videoBg.style.opacity = '1';
+                if (canvas) canvas.classList.add('hero-particles--inactive');
               },
               onError: function () {
                 clearTimeout(fallbackTimer);
                 showParticleFallback();
               },
               onStateChange: function (e) {
-                // If video ends unexpectedly, loop it
                 if (e.data === YT.PlayerState.ENDED) {
                   e.target.seekTo(START_SEC);
+                  e.target.mute();
+                  e.target.playVideo();
+                }
+                /* prevent pause UI / play button overlay */
+                if (e.data === YT.PlayerState.PAUSED) {
+                  e.target.mute();
                   e.target.playVideo();
                 }
               }
