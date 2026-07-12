@@ -323,6 +323,42 @@
   transform: none !important;
 }
 
+/* ---------- Interaction polish (press feedback + focus states) ---------- */
+/* Buttons should feel instantly responsive to a press, not just a hover */
+.btn:active,
+.btn-primary:active,
+.btn-secondary:active {
+  transform: scale(0.97) !important;
+  transition: transform 120ms ease-out !important;
+}
+
+/* Hero "Get in Touch" arrow never moved — .btn:hover .btn-arrow doesn't match a plain text link */
+.cta-text-link .btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.cta-text-link:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Keyboard focus was only styled on form fields — nav, buttons and links had none */
+.nav-link:focus-visible,
+.btn:focus-visible,
+.cta-text-link:focus-visible,
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-full);
+}
+
+.bento-card:focus-visible,
+.project-card:focus-visible,
+.contact-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* ---------- Bento / cards ---------- */
 .bento-card,
 .timeline-card,
