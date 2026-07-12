@@ -392,6 +392,12 @@
 .projects-grid {
   gap: 1.25rem;
   padding-bottom: 1.5rem;
+  /* This is a horizontally-scrolling carousel (overflow-x: auto in style.css),
+     not a wrapping grid -- cards were getting hard-clipped at the container
+     edge with no cue that there was more to drag/scroll to. Fade the last
+     card out instead of clipping it. */
+  mask-image: linear-gradient(90deg, #000 0%, #000 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 90%, transparent 100%);
 }
 
 .project-card {
