@@ -830,11 +830,14 @@
           }
         });
 
-        // Run Flip transition
+        // Run Flip transition. Note: no `absolute: true` here — .projects-grid
+        // is a horizontally-scrolling flex carousel, not a static grid, so
+        // Flip's viewport-relative absolute positioning fought the carousel's
+        // own scrollLeft and left cards overlapping. Animating in normal flow
+        // keeps them anchored correctly inside the scroll container.
         Flip.from(state, {
           duration: 0.5,
           ease: 'power2.out',
-          absolute: true,
           onComplete: () => ScrollTrigger.refresh()
         });
       });
