@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64728.4,
-      "change": 840.2,
-      "change_pct": 1.32,
+      "price": 64771.68,
+      "change": 883.48,
+      "change_pct": 1.38,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1860.06,
-      "change": 19.4,
-      "change_pct": 1.05,
+      "price": 1862.74,
+      "change": 22.08,
+      "change_pct": 1.2,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 75.44,
-      "change": 0.43,
-      "change_pct": 0.58,
+      "price": 75.52,
+      "change": 0.51,
+      "change_pct": 0.68,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 570.35,
-      "change": 2.61,
-      "change_pct": 0.46,
+      "price": 569.9,
+      "change": 2.16,
+      "change_pct": 0.38,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.17,
-      "change": -0.0,
-      "change_pct": -0.32,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.16,
+      "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.09,
       "change": 0.0,
-      "change_pct": 0.46,
+      "change_pct": 0.45,
       "is_positive": true
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.07,
       "change": -0.0,
-      "change_pct": -0.15,
+      "change_pct": -0.08,
       "is_positive": false
     },
     {
@@ -461,15 +461,15 @@
       "currency": "$",
       "price": 0.84,
       "change": -0.01,
-      "change_pct": -1.39,
+      "change_pct": -1.51,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.35,
-      "change": 0.09,
-      "change_pct": 1.08,
+      "price": 8.36,
+      "change": 0.1,
+      "change_pct": 1.21,
       "is_positive": true
     },
     {
