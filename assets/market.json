@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 63919.91,
-      "change": 31.71,
-      "change_pct": 0.05,
+      "price": 63958.4,
+      "change": 70.2,
+      "change_pct": 0.11,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1844.09,
-      "change": 3.43,
-      "change_pct": 0.19,
+      "price": 1842.28,
+      "change": 1.62,
+      "change_pct": 0.09,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 74.96,
-      "change": -0.05,
-      "change_pct": -0.06,
+      "price": 74.86,
+      "change": -0.15,
+      "change_pct": -0.2,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 566.89,
-      "change": -0.85,
-      "change_pct": -0.15,
+      "price": 567.28,
+      "change": -0.46,
+      "change_pct": -0.08,
       "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.17,
-      "change": 0.0,
-      "change_pct": 0.04,
-      "is_positive": true
+      "change": -0.0,
+      "change_pct": -0.26,
+      "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.09,
       "change": -0.0,
-      "change_pct": -0.02,
+      "change_pct": -0.09,
       "is_positive": false
     },
     {
@@ -453,15 +453,15 @@
       "currency": "$",
       "price": 0.07,
       "change": -0.0,
-      "change_pct": -0.19,
+      "change_pct": -0.39,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.85,
-      "change": -0.0,
-      "change_pct": -0.33,
+      "price": 0.84,
+      "change": -0.01,
+      "change_pct": -0.92,
       "is_positive": false
     },
     {
@@ -469,7 +469,7 @@
       "currency": "$",
       "price": 8.24,
       "change": -0.01,
-      "change_pct": -0.16,
+      "change_pct": -0.18,
       "is_positive": false
     },
     {
