@@ -1,18 +1,24 @@
-# OS files
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
-Desktop.ini
-
-# IDE
-.vscode/
-.idea/
-
-# PDF source (not needed in deployed site)
-New_CV.pdf
-Profile Image.jpg
-
-# Agent and python cache
-.agents/
-__pycache__/
-*.pyc
-
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
