@@ -159,6 +159,33 @@ export function About() {
           isRevealed={revealedItems.has("stats")}
         />
       </div>
+
+      {/* Skills badges */}
+      <div
+        className={`mt-14 border-t border-line pt-10 transition-all duration-1000 transform ${
+          revealedItems.has("skills")
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-6"
+        } reveal-item`}
+        data-idx="skills"
+      >
+        <p className="text-[0.72rem] tracking-[0.24em] uppercase text-muted mb-5">Tools &amp; Stack</p>
+        <div className="flex flex-wrap gap-2.5">
+          {[
+            "Jira", "Confluence", "SAP", "BRD / RTM", "UAT",
+            "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Prisma",
+            "Python", "Power BI", "Tableau", "Google Earth Engine",
+            "Azure AZ-104", "Clerk", "Firebase", "Vercel",
+          ].map((skill) => (
+            <span
+              key={skill}
+              className="text-[0.75rem] border border-line rounded-full px-3.5 py-1.5 text-muted hover:border-accent/40 hover:text-fg transition-all duration-200 font-sans tracking-wide"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

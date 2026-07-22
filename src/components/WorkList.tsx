@@ -6,6 +6,7 @@ interface Project {
   desc: string;
   tags: string[];
   href: string;
+  year: string;
 }
 
 const projects: Project[] = [
@@ -15,6 +16,7 @@ const projects: Project[] = [
     desc: "Centralized testing & sign-off tracker for Coca-Cola Beverages South Africa's van-sales SAP go-live. Replaced fragmented spreadsheets — 40+ daily users, ~15 hrs/wk saved.",
     tags: ["Vanilla JS", "Clerk", "Firebase"],
     href: "https://sap-tracker-mocha.vercel.app",
+    year: "2025",
   },
   {
     idx: "02",
@@ -22,6 +24,7 @@ const projects: Project[] = [
     desc: "Real-time ticket triage SaaS that syncs with Gmail, auto-routes escalations, and tracks SLAs. Cut average L2 triage time by 40% across 3 client regions.",
     tags: ["Next.js 14", "Postgres", "Prisma"],
     href: "https://client-inbox-tracker.vercel.app",
+    year: "2025",
   },
   {
     idx: "03",
@@ -29,6 +32,7 @@ const projects: Project[] = [
     desc: "VIT capstone fusing Sentinel-1 SAR + Sentinel-2 optical imagery on Google Earth Engine, training ML models for low-cost regional crop mapping.",
     tags: ["Earth Engine", "Python", "ML"],
     href: "#work",
+    year: "2024",
   },
   {
     idx: "04",
@@ -36,6 +40,7 @@ const projects: Project[] = [
     desc: "Geospatial heatmaps and pricing analytics built from automated scraping pipelines — powering route optimization and price-elasticity decisions.",
     tags: ["Tableau", "Python", "PostgreSQL"],
     href: "#work",
+    year: "2023",
   },
 ];
 
@@ -111,7 +116,7 @@ export function WorkList() {
               href={project.href}
               target={project.href.startsWith("http") ? "_blank" : undefined}
               rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className={`group/work work-item relative grid grid-cols-1 md:grid-cols-[80px_1fr_1.6fr_1fr] items-center py-10 border-b border-line transition-all duration-1000 transform hover:pl-5 ${
+              className={`group/work work-item relative grid grid-cols-1 md:grid-cols-[72px_auto_1fr_auto] items-center gap-4 py-9 border-b border-line transition-all duration-700 transform hover:bg-bg-soft/50 hover:px-4 hover:rounded-xl ${
                 isRevealed
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -119,38 +124,60 @@ export function WorkList() {
               data-idx={project.idx}
               data-cursor
             >
-              <div className="absolute inset-0 bg-bg-soft/75 border border-white/5 opacity-0 group-hover/work:opacity-100 transition-opacity duration-300 scale-y-0 group-hover/work:scale-y-100 transform origin-bottom group-hover/work:origin-top transition-transform duration-300 z-0 pointer-events-none rounded-lg" />
+              {/* Index + year */}
+              <div className="flex flex-col z-10">
+                <span className="text-[0.75rem] font-mono opacity-35 group-hover/work:opacity-70 transition-opacity">{project.idx}</span>
+                <span className="text-[0.7rem] font-mono text-accent/50 group-hover/work:text-accent/80 transition-colors mt-0.5">{project.year}</span>
+              </div>
 
-              <span className="text-[0.82rem] opacity-40 font-sans z-10 group-hover/work:opacity-60 transition-opacity">
-                {project.idx}
-              </span>
-
-              <div className="text-[clamp(1.2rem,2.2vw,2rem)] font-medium tracking-tight text-fg font-sans z-10 group-hover/work:text-accent transition-colors py-2 md:py-0">
+              {/* Title */}
+              <div className="text-[clamp(1.1rem,2vw,1.75rem)] font-medium tracking-tight text-fg font-sans z-10 group-hover/work:text-accent transition-colors duration-300 py-2 md:py-0 md:mr-6">
                 {project.name}
               </div>
 
-              <p className="text-[0.88rem] text-muted max-w-[560px] leading-relaxed pr-8 font-sans z-10 group-hover/work:text-fg transition-colors py-2 md:py-0">
+              {/* Description */}
+              <p className="text-[0.86rem] text-muted leading-relaxed font-sans z-10 group-hover/work:text-fg/80 transition-colors py-2 md:py-0 hidden md:block">
                 {project.desc}
               </p>
 
-              <div className="flex justify-between items-center gap-4 z-10 w-full col-span-1 md:col-auto">
-                <div className="flex gap-2 flex-wrap">
+              {/* Tags + arrow */}
+              <div className="flex flex-col sm:flex-row justify-end items-end sm:items-center gap-3 z-10">
+                <div className="flex gap-1.5 flex-wrap justify-end">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[0.74rem] bg-line/80 rounded-full px-2.5 py-1 text-muted-foreground border border-white/5 font-sans"
+                      className="text-[0.68rem] bg-accent/[0.06] border border-accent/15 rounded-full px-2.5 py-1 text-accent/60 font-sans tracking-wide group-hover/work:border-accent/30 group-hover/work:text-accent/90 transition-all"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <span className="text-2xl opacity-35 group-hover/work:opacity-100 group-hover/work:text-accent transition-all duration-300 transform group-hover/work:translate-x-1 group-hover/work:-translate-y-1 font-light pr-2">
+                <span className="text-lg opacity-25 group-hover/work:opacity-100 group-hover/work:text-accent transition-all duration-300 group-hover/work:translate-x-0.5 group-hover/work:-translate-y-0.5 transform font-light shrink-0">
                   ↗
                 </span>
               </div>
             </a>
           );
         })}
+      </div>
+
+      <div
+        className={`mt-10 flex justify-center transition-all duration-1000 transform ${
+          revealedItems.has("cta")
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4"
+        } reveal-item`}
+        data-idx="cta"
+      >
+        <a
+          href="https://github.com/utkarshkr13"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 border border-line rounded-full px-6 py-3 text-[0.75rem] tracking-widest uppercase text-muted hover:border-accent hover:text-accent transition-all duration-300"
+          data-cursor
+        >
+          View all on GitHub ↗
+        </a>
       </div>
     </section>
   );
