@@ -7,6 +7,8 @@ import { Hero } from './components/Hero'
 import { WorkList } from './components/WorkList'
 import { Experience } from './components/Experience'
 import { About } from './components/About'
+import { Contact } from './components/Contact'
+import { Footer } from './components/Footer'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -23,6 +25,8 @@ function App() {
         <WorkList />
         <Experience />
         <About />
+        <Contact />
+        <Footer />
       </main>
     </>
   )

@@ -1,0 +1,211 @@
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  subject: z.string().min(3, "Subject must be at least 3 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormValues = z.infer<typeof contactSchema>;
+
+export function Contact() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [revealedItems, setRevealedItems] = useState<Set<string>>(new Set());
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = entry.target.getAttribute("data-idx");
+            if (idx) {
+              setRevealedItems((prev) => {
+                const next = new Set(prev);
+                next.add(idx);
+                return next;
+              });
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    const items = sectionRef.current?.querySelectorAll(".reveal-item");
+    items?.forEach((item) => observer.observe(item));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormValues) => {
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+    console.log("Contact form submitted:", data);
+    setIsSubmitted(true);
+    reset();
+  };
+
+  return (
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="py-[14vh] px-[6vw] border-t border-line relative z-10 bg-bg/10 backdrop-blur-sm"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
+        <div
+          className={`flex flex-col items-start transition-all duration-1000 transform ${
+            revealedItems.has("info")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
+          } reveal-item`}
+          data-idx="info"
+        >
+          <div className="eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.28em] uppercase text-accent before:content-[''] before:w-6 before:h-[1px] before:bg-accent">
+            Contact
+          </div>
+          <h2 className="font-serif text-[clamp(2.5rem,6vw,5.5rem)] italic leading-[1.1] font-medium text-fg mb-8">
+            Let's build<br />something <em>great.</em>
+          </h2>
+          <a
+            href="mailto:hello@utkarsh.ind.in"
+            className="font-serif text-[clamp(1.5rem,4vw,3rem)] italic text-accent hover:opacity-85 transition-opacity mb-10 block cursor-none"
+            data-cursor
+          >
+            hello@utkarsh.ind.in
+          </a>
+          <div className="flex gap-8">
+            <a
+              href="https://linkedin.com/in/utkarshkr13"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[0.82rem] uppercase tracking-wider text-muted hover:text-fg transition-colors cursor-none"
+              data-cursor
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/utkarshkr13"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[0.82rem] uppercase tracking-wider text-muted hover:text-fg transition-colors cursor-none"
+              data-cursor
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div
+          className={`bg-bg-soft/45 border border-line rounded-xl p-8 md:p-10 backdrop-blur-md transition-all duration-1000 transform ${
+            revealedItems.has("form")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+          } reveal-item`}
+          data-idx="form"
+        >
+          {isSubmitted ? (
+            <div className="text-center py-12 space-y-4">
+              <span className="inline-block text-4xl text-accent animate-bounce">✓</span>
+              <h3 className="text-xl font-medium text-fg font-sans">Message Sent!</h3>
+              <p className="text-sm text-muted max-w-sm mx-auto leading-relaxed">
+                Thank you for reaching out. I'll review your inquiry and get back to you within 24 hours.
+              </p>
+              <Button
+                onClick={() => setIsSubmitted(false)}
+                className="mt-6 rounded-full px-6 py-2.5 text-xs tracking-wider uppercase font-medium bg-accent text-[#04150a] border border-accent hover:bg-fg hover:text-black hover:border-fg transition-all cursor-none"
+                data-cursor
+              >
+                Send another message
+              </Button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest opacity-60">Name</label>
+                <Input
+                  {...register("name")}
+                  placeholder="Your name"
+                  aria-invalid={errors.name ? "true" : "false"}
+                  className="rounded-lg border-line/60 bg-transparent px-4 py-6 text-sm text-fg placeholder:text-muted/40 cursor-none"
+                  data-cursor
+                />
+                {errors.name && (
+                  <p className="text-xs text-destructive/80 mt-1">{errors.name.message}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest opacity-60">Email</label>
+                <Input
+                  type="email"
+                  {...register("email")}
+                  placeholder="Your email address"
+                  aria-invalid={errors.email ? "true" : "false"}
+                  className="rounded-lg border-line/60 bg-transparent px-4 py-6 text-sm text-fg placeholder:text-muted/40 cursor-none"
+                  data-cursor
+                />
+                {errors.email && (
+                  <p className="text-xs text-destructive/80 mt-1">{errors.email.message}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest opacity-60">Subject</label>
+                <Input
+                  {...register("subject")}
+                  placeholder="What is this inquiry about?"
+                  aria-invalid={errors.subject ? "true" : "false"}
+                  className="rounded-lg border-line/60 bg-transparent px-4 py-6 text-sm text-fg placeholder:text-muted/40 cursor-none"
+                  data-cursor
+                />
+                {errors.subject && (
+                  <p className="text-xs text-destructive/80 mt-1">{errors.subject.message}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest opacity-60">Message</label>
+                <Textarea
+                  {...register("message")}
+                  placeholder="Tell me about your project, team, or opportunity..."
+                  aria-invalid={errors.message ? "true" : "false"}
+                  className="rounded-lg border-line/60 bg-transparent px-4 py-3 min-h-[120px] text-sm text-fg placeholder:text-muted/40 cursor-none"
+                  data-cursor
+                />
+                {errors.message && (
+                  <p className="text-xs text-destructive/80 mt-1">{errors.message.message}</p>
+                )}
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full rounded-full py-6 text-[0.82rem] tracking-widest uppercase font-medium bg-accent text-[#04150a] border border-accent hover:bg-fg hover:text-black hover:border-fg transition-all duration-300 disabled:opacity-50 cursor-none"
+                data-cursor
+              >
+                {isSubmitting ? "Sending Inquiry..." : "Submit Inquiry"}
+              </Button>
+            </form>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
