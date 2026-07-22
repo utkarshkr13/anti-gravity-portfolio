@@ -11,6 +11,7 @@ interface ExperienceItem {
   role: string;
   co: string;
   when: string;
+  type: string;
   points: string[];
 }
 
@@ -20,6 +21,7 @@ const experiences: ExperienceItem[] = [
     role: "Product Manager & Business Analyst",
     co: "SalesCode.ai",
     when: "Apr 2025 — Present · Gurgaon",
+    type: "Full-time",
     points: [
       "Owned the Jira delivery pipeline across 600+ RTM issues for India, KSA & Nepal go-lives.",
       "Authored BRDs for van sales, inventory, return logic & merchandising across multi-region rollouts.",
@@ -31,6 +33,7 @@ const experiences: ExperienceItem[] = [
     role: "BI & Marketing Analyst",
     co: "CityFlo",
     when: "Sep 2023 — Nov 2023 · Mumbai",
+    type: "Internship",
     points: [
       "Delivered geospatial dashboards in Python + PostgreSQL supporting pricing & route optimization.",
       "Automated scraping workflows, eliminating manual weekly reporting overhead.",
@@ -41,6 +44,7 @@ const experiences: ExperienceItem[] = [
     role: "Research & Data Analytics Head",
     co: "Medide · VIT",
     when: "Jun 2023 — Oct 2023 · Vellore",
+    type: "Student Lead",
     points: [
       "Built a blood-bank availability tracking model within a 15km radius for critical healthcare access.",
       "Structured the product workflow for a clinic booking & appointment system.",
@@ -133,16 +137,21 @@ export function Experience() {
               <span className="absolute -left-[31px] md:-left-[47px] top-[26px] w-[9px] h-[9px] rounded-full bg-[#181a20] border-2 border-line group-hover:border-accent transition-colors z-20" />
 
               <AccordionTrigger className="w-full text-left py-2 hover:no-underline font-sans cursor-none" data-cursor>
-                <div className="flex flex-col md:flex-row md:items-baseline md:justify-between w-full gap-2 pr-4">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between w-full gap-2 pr-4">
                   <div>
-                    <h3 className="text-[clamp(1.1rem,1.8vw,1.5rem)] font-medium text-fg tracking-tight group-hover:text-accent transition-colors">
-                      {exp.role}
-                    </h3>
-                    <span className="text-[0.92rem] font-semibold text-accent/85 mt-1 block">
+                    <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
+                      <h3 className="text-[clamp(1.05rem,1.6vw,1.35rem)] font-medium text-fg tracking-tight group-hover:text-accent transition-colors">
+                        {exp.role}
+                      </h3>
+                      <span className="text-[0.62rem] border border-accent/30 text-accent/70 rounded-full px-2 py-0.5 tracking-widest uppercase">
+                        {exp.type}
+                      </span>
+                    </div>
+                    <span className="text-[0.88rem] font-semibold text-accent/80 block">
                       {exp.co}
                     </span>
                   </div>
-                  <span className="text-[0.78rem] text-muted opacity-80 whitespace-nowrap font-mono mt-1 md:mt-0">
+                  <span className="text-[0.75rem] text-muted opacity-70 whitespace-nowrap font-mono mt-1 md:mt-0.5 shrink-0">
                     {exp.when}
                   </span>
                 </div>
