@@ -1,0 +1,105 @@
+diff --git a/js/main.js b/js/main.js
+index a123456..b654321 100644
+--- a/js/main.js
++++ b/js/main.js
+@@ -41,56 +41,10 @@
+-  function raf(time) {
+-    lenis.raf(time);
+-    requestAnimationFrame(raf);
+-  }
+-  requestAnimationFrame(raf);
+-
+   // Sync Lenis with GSAP ScrollTrigger
+   lenis.on('scroll', ScrollTrigger.update);
+   gsap.ticker.add((time) => lenis.raf(time * 1000));
+   gsap.ticker.lagSmoothing(0);
+ 
+-  // Bulletproof Scroll Containment delegation for data-lenis-prevent
+-  // Temporarily stops Lenis during interaction inside any element with data-lenis-prevent
+-  let isLenisStopped = false;
+-
+-  document.addEventListener('mouseover', (e) => {
+-    if (e.target && typeof e.target.closest === 'function') {
+-      const container = e.target.closest('[data-lenis-prevent]');
+-      if (container) {
+-        if (!isLenisStopped) {
+-          lenis.stop();
+-          isLenisStopped = true;
+-        }
+-      } else {
+-        if (isLenisStopped) {
+-          lenis.start();
+-          isLenisStopped = false;
+-        }
+-      }
+-    }
+-  }, { passive: true });
+-
+-  document.addEventListener('touchstart', (e) => {
+-    if (e.target && typeof e.target.closest === 'function') {
+-      const container = e.target.closest('[data-lenis-prevent]');
+-      if (container) {
+-        if (!isLenisStopped) {
+-          lenis.stop();
+-          isLenisStopped = true;
+-        }
+-      } else {
+-        if (isLenisStopped) {
+-          lenis.start();
+-          isLenisStopped = false;
+-        }
+-      }
+-    }
+-  }, { passive: true });
+-
+-  document.addEventListener('touchend', (e) => {
+-    if (isLenisStopped) {
+-      lenis.start();
+-      isLenisStopped = false;
+-    }
+-  }, { passive: true });
+-
+   /* ---------- Smooth anchor scrolling ---------- */
+@@ -328,6 +282,7 @@
+         // Show Modal
+         projectModal.style.display = 'flex';
+         projectModal.setAttribute('aria-hidden', 'false');
+         
+-        // Stop Lenis background scroll
+-        if (window.lenis) window.lenis.stop();
++        // Stop Lenis background scroll and lock body
++        if (window.lenis) window.lenis.stop();
++        document.body.classList.add('modal-open');
+ 
+         // Animate elements
+@@ -341,6 +296,7 @@
+     const closeModal = () => {
+       gsap.to('.modal-wrapper', { y: 30, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => {
+         projectModal.style.display = 'none';
+         projectModal.setAttribute('aria-hidden', 'true');
+-        if (window.lenis) window.lenis.start();
++        document.body.classList.remove('modal-open');
++        if (window.lenis) window.lenis.start();
+       }});
+       gsap.to(modalOverlay, { opacity: 0, duration: 0.3 });
+     };
+diff --git a/css/style.css b/css/style.css
+index c123456..d654321 100644
+--- a/css/style.css
++++ b/css/style.css
+@@ -144,3 +144,8 @@
+ }
+ 
++body.modal-open {
++  overflow: hidden;
++  height: 100vh;
++}
++
+ a {
+@@ -1987,5 +1992,6 @@
+ .modal-container {
+   padding: 36px 40px;
+   overflow-y: auto;
+   flex: 1;
++  overscroll-behavior: contain;
+ }

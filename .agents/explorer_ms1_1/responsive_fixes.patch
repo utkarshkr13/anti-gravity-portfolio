@@ -1,0 +1,67 @@
+diff --git a/index.html b/index.html
+index 72f0bc3..a1b2c3d 100000
+--- a/index.html
++++ b/index.html
+@@ -360,7 +360,7 @@
+     <h2 class="section-title reveal">GitHub <span class="accent-text">Activity.</span></h2>
+     <p class="section-subtitle reveal">Live contributions, codebase stats, and featured projects synced in real-time.</p>
+ 
+-    <div class="github-dashboard reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 32px;">
++    <div class="github-dashboard reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 24px; margin-top: 32px;">
+       <!-- Profile Metrics Card -->
+       <div class="github-metrics-card" style="padding: 24px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(20px);">
+         <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+@@ -417,7 +417,7 @@
+     <h3 class="reveal" style="font-size: 1.2rem; font-weight: 700; margin-top: 48px; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+       <i data-lucide="folder-git-2" style="width: 22px; height: 22px;"></i> Featured Repositories
+     </h3>
+-    <div id="githubReposGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px;">
++    <div id="githubReposGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 24px; margin-bottom: 48px;">
+       <!-- Populated by github_stats.js -->
+     </div>
+   </section>
+diff --git a/css/style.css b/css/style.css
+index 61014ab..ab012cd 100000
+--- a/css/style.css
++++ b/css/style.css
+@@ -1540,8 +1540,9 @@
+   .section {
+     padding: var(--space-2xl) var(--space-md);
+   }
+   .nav-wrapper {
+     max-width: 95vw;
+     margin: 0 auto;
++    right: 0;
+   }
+   .navbar {
+@@ -1613,6 +1614,21 @@
+   body {
+     cursor: auto;
+   }
+   a, button {
+     cursor: pointer;
+   }
++
++  /* Responsive card padding and modal adjustments */
++  .timeline-card,
++  .skill-category,
++  .project-card-body,
++  .modal-container {
++    padding: 20px;
++  }
++
++  /* Stack featured projects on mobile */
++  .project-card.featured {
++    flex-direction: column;
++  }
++  .project-card.featured .project-card-image {
++    width: 100%;
++    aspect-ratio: 16/10;
++  }
++  .project-card.featured .project-card-body {
++    width: 100%;
++    padding: 20px;
++  }
+ }
+ 
+ @media (max-width: 480px) {
