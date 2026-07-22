@@ -6,6 +6,7 @@ import { WebGLCanvas } from './components/WebGLCanvas'
 import { Hero } from './components/Hero'
 import { WorkList } from './components/WorkList'
 import { Experience } from './components/Experience'
+import { About } from './components/About'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -21,6 +22,7 @@ function App() {
         <Hero showText={!loading} />
         <WorkList />
         <Experience />
+        <About />
       </main>
     </>
   )
