@@ -1,13 +1,52 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+
+@theme {
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  
+  --color-bg: #07080a;
+  --color-bg-soft: #0e1013;
+  --color-fg: #f4f5f2;
+  --color-muted: rgba(244, 245, 242, 0.55);
+  --color-line: rgba(244, 245, 242, 0.10);
+  --color-accent: #9dff6b;
+  --color-accent-dim: #6fce46;
+
+  --ease-custom: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base resets */
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #07080a;
+  color: #f4f5f2;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Custom cursor reset for desktop only */
+@media (hover: hover) {
+  body {
+    cursor: none;
+  }
+  a, button, [data-cursor] {
+    cursor: none;
+  }
+}@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
+    --font-heading: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Space Grotesk', system-ui, sans-serif;
+    --font-serif: 'Instrument Serif', Georgia, serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
