@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar'
 import { WebGLCanvas } from './components/WebGLCanvas'
 import { Hero } from './components/Hero'
 import { WorkList } from './components/WorkList'
+import { Experience } from './components/Experience'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -19,6 +20,7 @@ function App() {
         <Navbar />
         <Hero showText={!loading} />
         <WorkList />
+        <Experience />
       </main>
     </>
   )
