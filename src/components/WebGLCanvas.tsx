@@ -82,6 +82,7 @@ export function WebGLCanvas() {
       uTime: { value: 0 },
       uMouse: { value: new THREE.Vector2(0, 0) },
       uAccent: { value: new THREE.Color("#9dff6b") },
+      uBase: { value: new THREE.Color("#050607") },
     };
 
     const mat = new THREE.ShaderMaterial({
@@ -105,9 +106,10 @@ export function WebGLCanvas() {
       `,
       fragmentShader: `
         uniform vec3 uAccent;
+        uniform vec3 uBase;
         varying float vN;
         void main() {
-          vec3 base = mix(vec3(0.05, 0.06, 0.07), uAccent, smoothstep(-0.2, 0.9, vN));
+          vec3 base = mix(uBase, uAccent, smoothstep(-0.2, 0.9, vN));
           gl_FragColor = vec4(base, 0.55 + vN * 0.3);
         }
       `,
@@ -136,6 +138,29 @@ export function WebGLCanvas() {
     });
     const pts = new THREE.Points(pg, pm);
     scene.add(pts);
+
+    // Watch and update theme colors dynamically
+    const updateThemeColors = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark) {
+        uniforms.uAccent.value.set("#9dff6b");
+        uniforms.uBase.value.set("#050607");
+        pm.color.set(0xffffff);
+      } else {
+        uniforms.uAccent.value.set("#1e7e34");
+        uniforms.uBase.value.set("#d4d5d2");
+        pm.color.set(0x000000);
+      }
+    };
+    updateThemeColors();
+
+    const themeObserver = new MutationObserver(() => {
+      updateThemeColors();
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
     let tmx = 0,
       tmy = 0,
@@ -199,6 +224,7 @@ export function WebGLCanvas() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      themeObserver.disconnect();
       renderer.dispose();
       mat.dispose();
       pm.dispose();

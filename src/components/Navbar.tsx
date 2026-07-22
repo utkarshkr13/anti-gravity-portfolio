@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -17,12 +18,29 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") || "dark";
+    }
+    return "dark";
+  });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Sync theme to root classList
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // Scroll-spy: observe each section
   useEffect(() => {
@@ -60,12 +78,16 @@ export function Navbar() {
     if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
   return (
     <>
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 flex justify-between items-center px-6 md:px-14 ${
           scrolled
-            ? "py-3.5 bg-[#07080a]/80 backdrop-blur-xl border-b border-line"
+            ? "py-3.5 bg-bg/80 backdrop-blur-xl border-b border-line"
             : "py-6 bg-transparent border-b border-transparent"
         }`}
       >
@@ -105,45 +127,58 @@ export function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* Desktop CTA badge */}
-        <a
-          href="#contact"
-          onClick={(e) => handleNavClick(e, "#contact")}
-          className="hidden md:flex items-center gap-2 border border-line rounded-full px-4 py-2 text-[0.72rem] tracking-wider uppercase hover:border-accent hover:text-accent transition-all duration-300"
-          data-cursor
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          Hire me
-        </a>
+        {/* Right side controls */}
+        <div className="flex items-center gap-4">
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-center w-9 h-9 rounded-full border border-line text-muted hover:text-accent hover:border-accent transition-all duration-300 bg-bg-soft/40"
+            aria-label="Toggle theme"
+            data-cursor
+          >
+            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2 z-[60] relative"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          data-cursor
-        >
-          <span
-            className={`block w-5 h-[1.5px] bg-fg transition-all duration-300 origin-center ${
-              mobileOpen ? "rotate-45 translate-y-[5px]" : ""
-            }`}
-          />
-          <span
-            className={`block w-5 h-[1.5px] bg-fg transition-all duration-300 ${
-              mobileOpen ? "opacity-0 scale-x-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-5 h-[1.5px] bg-fg transition-all duration-300 origin-center ${
-              mobileOpen ? "-rotate-45 -translate-y-[5px]" : ""
-            }`}
-          />
-        </button>
+          {/* Desktop CTA badge */}
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, "#contact")}
+            className="hidden md:flex items-center gap-2 border border-line rounded-full px-4 py-2 text-[0.72rem] tracking-wider uppercase hover:border-accent hover:text-accent transition-all duration-300"
+            data-cursor
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            Hire me
+          </a>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden flex flex-col gap-1.5 p-2 z-[60] relative"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            data-cursor
+          >
+            <span
+              className={`block w-5 h-[1.5px] bg-fg transition-all duration-300 origin-center ${
+                mobileOpen ? "rotate-45 translate-y-[5px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-5 h-[1.5px] bg-fg transition-all duration-300 ${
+                mobileOpen ? "opacity-0 scale-x-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-5 h-[1.5px] bg-fg transition-all duration-300 origin-center ${
+                mobileOpen ? "-rotate-45 -translate-y-[5px]" : ""
+              }`}
+            />
+          </button>
+        </div>
       </header>
 
       {/* Mobile fullscreen drawer */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col justify-center items-center gap-10 bg-[#07080a] transition-all duration-500 md:hidden ${
+        className={`fixed inset-0 z-40 flex flex-col justify-center items-center gap-10 bg-bg transition-all duration-500 md:hidden ${
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
