@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 63987.66,
-      "change": -104.3,
-      "change_pct": -0.16,
+      "price": 64072.49,
+      "change": -19.47,
+      "change_pct": -0.03,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1857.21,
-      "change": -2.81,
-      "change_pct": -0.15,
-      "is_positive": false
+      "price": 1861.87,
+      "change": 1.85,
+      "change_pct": 0.1,
+      "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 73.94,
-      "change": 0.06,
-      "change_pct": 0.08,
+      "price": 73.91,
+      "change": 0.03,
+      "change_pct": 0.04,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 565.12,
-      "change": 0.78,
-      "change_pct": 0.14,
+      "price": 566.66,
+      "change": 2.32,
+      "change_pct": 0.41,
       "is_positive": true
     },
     {
@@ -437,7 +437,7 @@
       "currency": "$",
       "price": 0.16,
       "change": -0.0,
-      "change_pct": -1.11,
+      "change_pct": -0.14,
       "is_positive": false
     },
     {
@@ -445,32 +445,32 @@
       "currency": "$",
       "price": 1.09,
       "change": -0.0,
-      "change_pct": -0.11,
+      "change_pct": -0.03,
       "is_positive": false
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.07,
-      "change": -0.0,
-      "change_pct": -0.1,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.54,
+      "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.81,
+      "price": 0.82,
       "change": 0.01,
-      "change_pct": 0.83,
+      "change_pct": 1.69,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.31,
-      "change": -0.03,
-      "change_pct": -0.32,
-      "is_positive": false
+      "price": 8.35,
+      "change": 0.02,
+      "change_pct": 0.21,
+      "is_positive": true
     },
     {
       "symbol": "RELIANCE",
