@@ -403,74 +403,74 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64832.98,
-      "change": 930.08,
-      "change_pct": 1.46,
-      "is_positive": true
+      "price": 64307.75,
+      "change": -416.28,
+      "change_pct": -0.64,
+      "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1925.77,
-      "change": 17.43,
-      "change_pct": 0.91,
-      "is_positive": true
+      "price": 1904.42,
+      "change": -12.74,
+      "change_pct": -0.66,
+      "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 74.66,
-      "change": 1.06,
-      "change_pct": 1.44,
-      "is_positive": true
+      "price": 74.19,
+      "change": -0.27,
+      "change_pct": -0.37,
+      "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 592.58,
-      "change": 21.19,
-      "change_pct": 3.71,
-      "is_positive": true
+      "price": 587.88,
+      "change": -4.13,
+      "change_pct": -0.7,
+      "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.17,
-      "change": 0.01,
-      "change_pct": 4.68,
+      "change": 0.0,
+      "change_pct": 0.55,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.09,
-      "change": 0.01,
-      "change_pct": 1.28,
-      "is_positive": true
+      "price": 1.08,
+      "change": -0.0,
+      "change_pct": -0.34,
+      "is_positive": false
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.07,
-      "change": 0.0,
-      "change_pct": 0.89,
-      "is_positive": true
+      "change": -0.0,
+      "change_pct": -0.76,
+      "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.77,
-      "change": 0.01,
-      "change_pct": 1.1,
-      "is_positive": true
+      "price": 0.76,
+      "change": -0.0,
+      "change_pct": -0.39,
+      "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.48,
-      "change": 0.16,
-      "change_pct": 1.88,
-      "is_positive": true
+      "price": 8.38,
+      "change": -0.07,
+      "change_pct": -0.86,
+      "is_positive": false
     },
     {
       "symbol": "RELIANCE",
@@ -587,8 +587,8 @@
     {
       "symbol": "RECLTD",
       "currency": "₹",
-      "price": 374.9,
-      "change": 2.1,
+      "price": 370.65,
+      "change": 2.08,
       "change_pct": 0.56,
       "is_positive": true
     },
@@ -675,8 +675,8 @@
     {
       "symbol": "BRITANNIA",
       "currency": "₹",
-      "price": 5524.5,
-      "change": -3.5,
+      "price": 5434.0,
+      "change": -3.44,
       "change_pct": -0.06,
       "is_positive": false
     },
@@ -851,8 +851,8 @@
     {
       "symbol": "COALINDIA",
       "currency": "₹",
-      "price": 417.2,
-      "change": 4.25,
+      "price": 411.7,
+      "change": 4.19,
       "change_pct": 1.03,
       "is_positive": true
     },
