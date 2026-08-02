@@ -403,41 +403,41 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 62994.28,
-      "change": 231.86,
-      "change_pct": 0.37,
+      "price": 63093.22,
+      "change": 330.8,
+      "change_pct": 0.53,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1852.46,
-      "change": 9.04,
-      "change_pct": 0.49,
+      "price": 1860.42,
+      "change": 17.0,
+      "change_pct": 0.92,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 73.01,
-      "change": 1.14,
-      "change_pct": 1.59,
+      "price": 73.04,
+      "change": 1.17,
+      "change_pct": 1.63,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 583.76,
-      "change": 8.81,
-      "change_pct": 1.53,
+      "price": 587.21,
+      "change": 12.26,
+      "change_pct": 2.13,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.19,
-      "change": 0.02,
-      "change_pct": 8.99,
+      "change": 0.01,
+      "change_pct": 8.3,
       "is_positive": true
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.08,
       "change": 0.02,
-      "change_pct": 1.95,
+      "change_pct": 1.84,
       "is_positive": true
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 1.78,
+      "change_pct": 1.68,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.8,
-      "change": 0.02,
-      "change_pct": 1.98,
+      "price": 0.79,
+      "change": 0.01,
+      "change_pct": 1.59,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.28,
-      "change": 0.22,
-      "change_pct": 2.75,
+      "price": 8.27,
+      "change": 0.21,
+      "change_pct": 2.62,
       "is_positive": true
     },
     {
