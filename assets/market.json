@@ -403,41 +403,41 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 63597.12,
-      "change": 834.7,
-      "change_pct": 1.33,
+      "price": 63501.82,
+      "change": 739.4,
+      "change_pct": 1.18,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1892.78,
-      "change": 49.36,
-      "change_pct": 2.68,
+      "price": 1883.21,
+      "change": 39.79,
+      "change_pct": 2.16,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 74.02,
-      "change": 2.15,
-      "change_pct": 2.99,
+      "price": 73.55,
+      "change": 1.68,
+      "change_pct": 2.34,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 589.69,
-      "change": 14.74,
-      "change_pct": 2.56,
+      "price": 587.85,
+      "change": 12.9,
+      "change_pct": 2.24,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.19,
-      "change": 0.01,
-      "change_pct": 8.59,
+      "change": 0.02,
+      "change_pct": 8.71,
       "is_positive": true
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.09,
       "change": 0.03,
-      "change_pct": 2.51,
+      "change_pct": 2.46,
       "is_positive": true
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 2.49,
+      "change_pct": 2.39,
       "is_positive": true
     },
     {
@@ -467,9 +467,9 @@
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.38,
-      "change": 0.33,
-      "change_pct": 4.06,
+      "price": 8.37,
+      "change": 0.32,
+      "change_pct": 3.92,
       "is_positive": true
     },
     {
@@ -495,14 +495,6 @@
       "change": 11.2,
       "change_pct": 1.0,
       "is_positive": true
-    },
-    {
-      "symbol": "WIPRO",
-      "currency": "₹",
-      "price": 183.65,
-      "change": -1.2,
-      "change_pct": -0.65,
-      "is_positive": false
     },
     {
       "symbol": "HCLTECH",
