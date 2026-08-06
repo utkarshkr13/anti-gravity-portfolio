@@ -721,12 +721,26 @@
   initCommandPalette();
 
   /* ---------- Smooth anchor scrolling ---------- */
+  let isAnchorScrolling = false;
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (target) {
-        lenis.scrollTo(target, { offset: -80 });
+        if (isAnchorScrolling) return;
+        isAnchorScrolling = true;
+
+        // Instantly resolve character animations to prevent stuck wavy baseline text
+        if (window.gsap) {
+          window.gsap.set('.reveal-char', { opacity: 1, y: '0%', rotateX: 0 });
+        }
+
+        lenis.scrollTo(target, { 
+          offset: -80,
+          onComplete: () => {
+            isAnchorScrolling = false;
+          }
+        });
       }
     });
   });
@@ -966,6 +980,8 @@
         projectModal.style.display = 'flex';
         projectModal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('modal-open');
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
         const navWrapper = document.querySelector('.nav-wrapper');
         if (navWrapper) navWrapper.style.display = 'none';
         
@@ -981,6 +997,8 @@
     // Close Modal Function
     const closeModal = () => {
       document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       const navWrapper = document.querySelector('.nav-wrapper');
       if (navWrapper) navWrapper.style.display = '';
       if (window.lenis) window.lenis.start();
@@ -1031,6 +1049,8 @@
       cmdPalette.classList.add('open');
       cmdPalette.setAttribute('aria-hidden', 'false');
       document.body.classList.add('modal-open');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
       const navWrapper = document.querySelector('.nav-wrapper');
       if (navWrapper) navWrapper.style.display = 'none';
       if (window.lenis) window.lenis.stop();
@@ -1043,6 +1063,8 @@
     const hidePalette = () => {
       cmdPalette.classList.remove('open');
       document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       const navWrapper = document.querySelector('.nav-wrapper');
       if (navWrapper) navWrapper.style.display = '';
       

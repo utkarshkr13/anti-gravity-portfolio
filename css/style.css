@@ -98,6 +98,8 @@
 
 /* ---------- Light Theme ---------- */
 [data-theme="light"] {
+  --accent-s: 38%;
+  --accent-l: 28%;
   --bg-primary: #f8f9fa;
   --bg-secondary: #f0f1f3;
   --bg-card: #ffffff;
@@ -462,7 +464,7 @@ section[id] {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.52);
+  background: rgba(0, 0, 0, 0.65);
   pointer-events: none;
   z-index: 1;
 }

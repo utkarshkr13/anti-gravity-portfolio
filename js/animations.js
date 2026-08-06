@@ -602,6 +602,21 @@
           }
         }
       );
+
+      // Fallback: if ScrollTrigger fails or gets stuck after entering viewport, force snap after 1.2s
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                gsap.set(chars, { opacity: 1, y: '0%', rotateX: 0 });
+              }, 1200);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05 });
+        observer.observe(el);
+      }
     });
   }
 
