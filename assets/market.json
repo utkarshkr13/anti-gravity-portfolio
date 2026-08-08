@@ -403,41 +403,41 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64875.17,
-      "change": -8.99,
-      "change_pct": -0.01,
-      "is_positive": false
+      "price": 64989.94,
+      "change": 105.78,
+      "change_pct": 0.16,
+      "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1913.7,
-      "change": 0.42,
-      "change_pct": 0.02,
+      "price": 1915.33,
+      "change": 2.05,
+      "change_pct": 0.11,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 73.89,
-      "change": 0.25,
-      "change_pct": 0.34,
+      "price": 74.14,
+      "change": 0.5,
+      "change_pct": 0.68,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 590.79,
-      "change": -1.4,
-      "change_pct": -0.24,
-      "is_positive": false
+      "price": 592.3,
+      "change": 0.11,
+      "change_pct": 0.02,
+      "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.2,
       "change": -0.0,
-      "change_pct": -0.62,
+      "change_pct": -0.23,
       "is_positive": false
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.03,
       "change": 0.01,
-      "change_pct": 0.86,
+      "change_pct": 1.19,
       "is_positive": true
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 0.46,
+      "change_pct": 0.6,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
       "price": 0.82,
-      "change": 0.01,
-      "change_pct": 0.65,
+      "change": 0.0,
+      "change_pct": 0.36,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.19,
-      "change": 0.01,
-      "change_pct": 0.07,
+      "price": 8.22,
+      "change": 0.04,
+      "change_pct": 0.51,
       "is_positive": true
     },
     {
