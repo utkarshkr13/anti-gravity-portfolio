@@ -403,73 +403,73 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64854.83,
-      "change": 595.15,
-      "change_pct": 0.93,
+      "price": 64897.62,
+      "change": 13.46,
+      "change_pct": 0.02,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1914.23,
-      "change": 12.03,
-      "change_pct": 0.63,
+      "price": 1914.6,
+      "change": 1.32,
+      "change_pct": 0.07,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 73.6,
-      "change": 1.02,
-      "change_pct": 1.4,
+      "price": 73.75,
+      "change": 0.11,
+      "change_pct": 0.15,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 592.3,
-      "change": 0.64,
-      "change_pct": 0.11,
-      "is_positive": true
+      "price": 590.82,
+      "change": -1.37,
+      "change_pct": -0.23,
+      "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.2,
       "change": -0.0,
-      "change_pct": -0.24,
+      "change_pct": -0.66,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.02,
-      "change": -0.01,
-      "change_pct": -1.14,
-      "is_positive": false
+      "price": 1.03,
+      "change": 0.01,
+      "change_pct": 0.53,
+      "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 0.97,
+      "change_pct": 0.33,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.81,
-      "change": -0.01,
-      "change_pct": -0.72,
-      "is_positive": false
+      "price": 0.82,
+      "change": 0.0,
+      "change_pct": 0.28,
+      "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.18,
-      "change": -0.0,
-      "change_pct": -0.05,
+      "price": 8.17,
+      "change": -0.01,
+      "change_pct": -0.11,
       "is_positive": false
     },
     {
@@ -670,14 +670,6 @@
       "price": 1540.0,
       "change": 17.0,
       "change_pct": 1.12,
-      "is_positive": true
-    },
-    {
-      "symbol": "BRITANNIA",
-      "currency": "₹",
-      "price": 5510.0,
-      "change": 7.5,
-      "change_pct": 0.14,
       "is_positive": true
     },
     {
