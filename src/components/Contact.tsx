@@ -66,7 +66,7 @@ export function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-[14vh] px-[6vw] border-t border-line relative z-10 bg-bg/10 backdrop-blur-sm"
+      className="py-[14vh] px-[6vw] border-t border-white/15 relative z-10 bg-black/60 backdrop-blur-md"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
         <div
@@ -77,43 +77,46 @@ export function Contact() {
           } reveal-item`}
           data-idx="info"
         >
-          <div className="eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.28em] uppercase text-accent before:content-[''] before:w-6 before:h-[1px] before:bg-accent">
-            Contact
+          <div className="eyebrow mb-6 flex items-center gap-2.5 text-[0.75rem] tracking-[0.28em] uppercase text-emerald-400 font-mono font-bold">
+            Establish Uplink
           </div>
-          <h2 className="font-serif text-[clamp(2.5rem,6vw,5.5rem)] italic leading-[1.1] font-medium text-fg mb-8">
-            Let's build<br />something <em>great.</em>
+          <h2 className="font-sans text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[1.05] text-white mb-6 tracking-tight">
+            Let's build<br />something <span className="text-emerald-400 italic font-serif">extraordinary.</span>
           </h2>
+          <p className="text-[1.05rem] text-gray-200 leading-relaxed font-normal mb-8 max-w-md">
+            Direct channel for product leadership inquiries, enterprise RTM consultations, and high-impact software projects.
+          </p>
           <a
             href="mailto:hello@utkarsh.ind.in"
-            className="font-serif text-[clamp(1.5rem,4vw,3rem)] italic text-accent hover:opacity-85 transition-opacity mb-10 block cursor-none"
+            className="font-mono text-[clamp(1.4rem,3.5vw,2.5rem)] font-bold text-emerald-400 hover:text-emerald-300 transition-colors mb-10 block cursor-none"
             data-cursor
           >
             hello@utkarsh.ind.in
           </a>
-          <div className="flex gap-8">
+          <div className="flex gap-8 font-mono text-[0.85rem] font-bold">
             <a
               href="https://linkedin.com/in/utkarshkr13"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[0.82rem] uppercase tracking-wider text-muted hover:text-fg transition-colors cursor-none"
+              className="text-gray-300 hover:text-emerald-400 transition-colors uppercase tracking-wider cursor-none"
               data-cursor
             >
-              LinkedIn
+              LinkedIn ↗
             </a>
             <a
               href="https://github.com/utkarshkr13"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[0.82rem] uppercase tracking-wider text-muted hover:text-fg transition-colors cursor-none"
+              className="text-gray-300 hover:text-emerald-400 transition-colors uppercase tracking-wider cursor-none"
               data-cursor
             >
-              GitHub
+              GitHub ↗
             </a>
           </div>
         </div>
 
         <div
-          className={`bg-bg-soft/45 border border-line rounded-xl p-8 md:p-10 backdrop-blur-md transition-all duration-1000 transform ${
+          className={`bg-white/5 border border-white/20 rounded-3xl p-8 md:p-10 backdrop-blur-xl shadow-2xl transition-all duration-1000 transform ${
             revealedItems.has("form")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
@@ -121,15 +124,15 @@ export function Contact() {
           data-idx="form"
         >
           {isSubmitted ? (
-            <div className="text-center py-12 space-y-4">
-              <span className="inline-block text-4xl text-accent animate-bounce">✓</span>
-              <h3 className="text-xl font-medium text-fg font-sans">Message Sent!</h3>
-              <p className="text-sm text-muted max-w-sm mx-auto leading-relaxed">
-                Thank you for reaching out. I'll review your inquiry and get back to you within 24 hours.
+            <div className="text-center py-12 space-y-4 font-sans">
+              <span className="inline-block text-5xl text-emerald-400 animate-bounce">✓</span>
+              <h3 className="text-2xl font-bold text-white">Uplink Confirmed!</h3>
+              <p className="text-sm text-gray-200 max-w-sm mx-auto leading-relaxed font-medium">
+                Thank you for reaching out. Transmission received — I'll get back to you within 24 hours.
               </p>
               <Button
                 onClick={() => setIsSubmitted(false)}
-                className="mt-6 rounded-full px-6 py-2.5 text-xs tracking-wider uppercase font-medium bg-accent text-[#04150a] border border-accent hover:bg-fg hover:text-black hover:border-fg transition-all cursor-none"
+                className="mt-6 rounded-full px-6 py-2.5 text-xs tracking-wider uppercase font-bold bg-emerald-400 text-black hover:bg-emerald-300 transition-all cursor-none"
                 data-cursor
               >
                 Send another message

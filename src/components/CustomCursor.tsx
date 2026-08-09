@@ -17,7 +17,6 @@ export function CustomCursor() {
 
   const [isHovered, setIsHovered] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (window.matchMedia("(hover: none)").matches) return;
@@ -46,10 +45,9 @@ export function CustomCursor() {
     let lastMouseY = mouseY;
 
     const particles: Particle[] = [];
-    const colors = ["#94eb6c", "#60a5fa", "#f59e0b", "#eeeae4"];
+    const colors = ["#94eb6c", "#60a5fa", "#f59e0b", "#ffffff"];
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isVisible) setIsVisible(true);
       mouseX = e.clientX;
       mouseY = e.clientY;
 
@@ -57,21 +55,21 @@ export function CustomCursor() {
         dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
       }
 
-      // Calculate speed vector for particle generation
+      // Speed vector for particle trail
       const dx = mouseX - lastMouseX;
       const dy = mouseY - lastMouseY;
       const speed = Math.sqrt(dx * dx + dy * dy);
 
-      if (speed > 1) {
-        const count = Math.min(Math.floor(speed / 3), 4);
+      if (speed > 0.8) {
+        const count = Math.min(Math.floor(speed / 2.5), 5);
         for (let i = 0; i < count; i++) {
           particles.push({
-            x: mouseX + (Math.random() - 0.5) * 8,
-            y: mouseY + (Math.random() - 0.5) * 8,
-            vx: (Math.random() - 0.5) * 1.5 - dx * 0.1,
-            vy: (Math.random() - 0.5) * 1.5 - dy * 0.1,
-            size: Math.random() * 3.5 + 1.5,
-            alpha: 0.85,
+            x: mouseX + (Math.random() - 0.5) * 10,
+            y: mouseY + (Math.random() - 0.5) * 10,
+            vx: (Math.random() - 0.5) * 1.5 - dx * 0.08,
+            vy: (Math.random() - 0.5) * 1.5 - dy * 0.08,
+            size: Math.random() * 4 + 2,
+            alpha: 0.9,
             color: colors[Math.floor(Math.random() * colors.length)],
           });
         }
@@ -98,26 +96,25 @@ export function CustomCursor() {
     let animId: number;
 
     const render = () => {
-      // Clear canvas
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth ring lerping (Lusion elastic easing)
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
+      // Smooth elastic ring tracking
+      ringX += (mouseX - ringX) * 0.2;
+      ringY += (mouseY - ringY) * 0.2;
 
       if (ringRef.current) {
         ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) scale(${
-          isMouseDown ? 0.75 : isHovered ? 1.6 : 1
+          isMouseDown ? 0.7 : isHovered ? 1.7 : 1
         })`;
       }
 
-      // Draw particle ribbon trail
+      // Render Lusion fluid particle trail
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.alpha -= 0.025;
-        p.size *= 0.96;
+        p.alpha -= 0.022;
+        p.size *= 0.95;
 
         if (p.alpha <= 0 || p.size <= 0.2) {
           particles.splice(i, 1);
@@ -127,7 +124,7 @@ export function CustomCursor() {
         ctx.save();
         ctx.globalAlpha = Math.max(0, p.alpha);
         ctx.fillStyle = p.color;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10;
         ctx.shadowColor = p.color;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -148,9 +145,7 @@ export function CustomCursor() {
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, [isVisible, isHovered, isMouseDown]);
-
-  if (!isVisible) return null;
+  }, [isHovered, isMouseDown]);
 
   return (
     <>
@@ -160,20 +155,20 @@ export function CustomCursor() {
         className="fixed inset-0 pointer-events-none z-[9998]"
       />
 
-      {/* Center dot pointer */}
+      {/* Center glowing pointer dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 bg-emerald-400 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_#94eb6c]"
+        className="fixed top-0 left-0 w-3 h-3 -ml-1.5 -mt-1.5 bg-emerald-400 rounded-full pointer-events-none z-[9999] shadow-[0_0_15px_#94eb6c]"
         style={{ willChange: "transform" }}
       />
 
-      {/* Outer elastic ring */}
+      {/* Outer elastic spring ring */}
       <div
         ref={ringRef}
-        className={`fixed top-0 left-0 w-10 h-10 -ml-5 -mt-5 rounded-full pointer-events-none z-[9999] border transition-[border-color,background-color] duration-200 ${
+        className={`fixed top-0 left-0 w-12 h-12 -ml-6 -mt-6 rounded-full pointer-events-none z-[9999] border transition-[border-color,background-color] duration-200 ${
           isHovered
-            ? "border-emerald-400/80 bg-emerald-400/10 backdrop-blur-[2px]"
-            : "border-white/40 bg-transparent"
+            ? "border-emerald-400 bg-emerald-400/20 backdrop-blur-[2px] shadow-[0_0_20px_rgba(148,235,108,0.4)]"
+            : "border-white/70 bg-transparent"
         }`}
         style={{ willChange: "transform" }}
       />

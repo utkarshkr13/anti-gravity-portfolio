@@ -1,15 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Briefcase, Calendar, MapPin, CheckCircle } from "lucide-react";
 
 interface ExperienceItem {
   id: string;
   role: string;
   co: string;
+  location: string;
   when: string;
   type: string;
   points: string[];
@@ -20,8 +16,9 @@ const experiences: ExperienceItem[] = [
     id: "exp-1",
     role: "Product Manager & Business Analyst",
     co: "SalesCode.ai",
-    when: "Apr 2025 — Present · Gurgaon",
-    type: "Full-time",
+    location: "Gurgaon, India",
+    when: "Apr 2025 — Present",
+    type: "Full-time Mission",
     points: [
       "Owned the Jira delivery pipeline across 600+ RTM issues for India, KSA & Nepal go-lives.",
       "Authored BRDs for van sales, inventory, return logic & merchandising across multi-region rollouts.",
@@ -32,8 +29,9 @@ const experiences: ExperienceItem[] = [
     id: "exp-2",
     role: "BI & Marketing Analyst",
     co: "CityFlo",
-    when: "Sep 2023 — Nov 2023 · Mumbai",
-    type: "Internship",
+    location: "Mumbai, India",
+    when: "Sep 2023 — Nov 2023",
+    type: "Analyst Deployment",
     points: [
       "Delivered geospatial dashboards in Python + PostgreSQL supporting pricing & route optimization.",
       "Automated scraping workflows, eliminating manual weekly reporting overhead.",
@@ -43,7 +41,8 @@ const experiences: ExperienceItem[] = [
     id: "exp-3",
     role: "Research & Data Analytics Head",
     co: "Medide · VIT",
-    when: "Jun 2023 — Oct 2023 · Vellore",
+    location: "Vellore, India",
+    when: "Jun 2023 — Oct 2023",
     type: "Student Lead",
     points: [
       "Built a blood-bank availability tracking model within a 15km radius for critical healthcare access.",
@@ -86,86 +85,79 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="py-[14vh] px-[6vw] border-t border-line relative z-10 bg-bg/10 backdrop-blur-sm"
+      className="py-[14vh] px-[6vw] border-t border-white/15 relative z-10 bg-black/40 backdrop-blur-md"
     >
       <div
-        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.24em] uppercase text-accent font-semibold before:content-[''] before:w-6 before:h-[1.5px] before:bg-accent transition-all duration-1000 transform ${
+        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.75rem] tracking-[0.24em] uppercase text-emerald-400 font-mono font-bold transition-all duration-1000 transform ${
           revealedItems.has("eyebrow")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
         } reveal-item`}
         data-idx="eyebrow"
       >
-        Experience
+        Track Record &amp; Deployments
       </div>
 
       <div
-        className={`sec-head flex justify-between items-baseline mb-14 transition-all duration-1000 transform ${
+        className={`sec-head flex justify-between items-baseline mb-14 flex-wrap gap-5 transition-all duration-1000 transform ${
           revealedItems.has("header")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
         } reveal-item`}
         data-idx="header"
       >
-        <h2 className="font-sans font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-none text-fg">
-          Where I've made <span className="text-accent font-medium italic font-serif">impact</span>
+        <h2 className="font-sans font-extrabold text-[clamp(2.2rem,5.5vw,4.5rem)] tracking-tight leading-none text-white">
+          Mission Log &amp; <span className="text-emerald-400 italic font-medium font-serif">Enterprise Impact</span>
         </h2>
+        <span className="text-[0.8rem] text-gray-400 font-mono uppercase tracking-widest font-bold flex items-center gap-2">
+          <Briefcase size={14} className="text-emerald-400" />
+          RTM Delivery History
+        </span>
       </div>
 
-      <div
-        className={`max-w-4xl mx-auto border-l border-line pl-6 md:pl-10 relative transition-all duration-1000 transform ${
-          revealedItems.has("list")
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-8"
-        } reveal-item`}
-        data-idx="list"
-      >
-        <div className="absolute top-0 bottom-0 left-0 w-[1px] bg-accent/25 z-0" />
+      {/* Experience Cards Grid */}
+      <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
+        {experiences.map((exp) => (
+          <div
+            key={exp.id}
+            className={`p-8 border border-white/20 bg-white/5 backdrop-blur-xl rounded-3xl transition-all duration-300 hover:border-emerald-400/50 shadow-2xl transform ${
+              revealedItems.has(exp.id)
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            } reveal-item`}
+            data-idx={exp.id}
+          >
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/15">
+              <div>
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-[0.68rem] uppercase font-bold tracking-wider mb-2">
+                  {exp.type}
+                </span>
+                <h3 className="font-sans font-extrabold text-[1.4rem] text-white tracking-tight">
+                  {exp.role} <span className="text-emerald-400">@ {exp.co}</span>
+                </h3>
+              </div>
+              <div className="flex flex-col md:items-end font-mono text-[0.75rem] text-gray-300 gap-1">
+                <span className="flex items-center gap-1.5 font-bold text-amber-300">
+                  <Calendar size={13} />
+                  {exp.when}
+                </span>
+                <span className="flex items-center gap-1.5 text-gray-400">
+                  <MapPin size={13} />
+                  {exp.location}
+                </span>
+              </div>
+            </div>
 
-        <Accordion
-          type="single"
-          collapsible
-          defaultValue="exp-1"
-          className="w-full space-y-6 z-10 relative"
-        >
-          {experiences.map((exp) => (
-            <AccordionItem
-              key={exp.id}
-              value={exp.id}
-              className="border border-line rounded-lg px-6 py-4 bg-bg-soft/45 backdrop-blur-md relative hover:border-accent/40 transition-all duration-300 group"
-            >
-              <span className="absolute -left-[31px] md:-left-[47px] top-[26px] w-[11px] h-[11px] rounded-full bg-background border-2 border-line group-hover:border-accent transition-colors z-20" />
-
-              <AccordionTrigger className="w-full text-left py-2 hover:no-underline font-sans active:scale-[0.99] transition-all duration-100 ease-out cursor-none" data-cursor>
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between w-full gap-2 pr-4">
-                  <div>
-                    <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
-                      <h3 className="text-[clamp(1.05rem,1.6vw,1.35rem)] font-bold text-fg tracking-tight group-hover:text-accent transition-colors">
-                        {exp.role}
-                      </h3>
-                      <span className="text-[0.62rem] border border-accent/30 text-accent/70 rounded-full px-2 py-0.5 tracking-widest uppercase font-semibold font-sans">
-                        {exp.type}
-                      </span>
-                    </div>
-                    <span className="text-[0.88rem] font-semibold text-accent/80 block font-sans">
-                      {exp.co}
-                    </span>
-                  </div>
-                  <span className="text-[0.75rem] text-muted opacity-70 whitespace-nowrap font-mono mt-1 md:mt-0.5 shrink-0">
-                    {exp.when}
-                  </span>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2 border-t border-line mt-4">
-                <ul className="list-disc pl-5 space-y-3 text-[0.92rem] text-muted-foreground leading-relaxed font-sans">
-                  {exp.points.map((pt, i) => (
-                    <li key={i}>{pt}</li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+            <ul className="mt-6 space-y-3">
+              {exp.points.map((pt, i) => (
+                <li key={i} className="flex items-start gap-3 text-[0.92rem] text-gray-200 leading-relaxed font-sans font-medium">
+                  <CheckCircle size={16} className="text-emerald-400 shrink-0 mt-1" />
+                  <span>{pt}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   );
