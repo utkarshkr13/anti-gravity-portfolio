@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64811.51,
-      "change": -96.97,
-      "change_pct": -0.15,
+      "price": 64766.31,
+      "change": -142.18,
+      "change_pct": -0.22,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1917.73,
-      "change": 2.29,
-      "change_pct": 0.12,
+      "price": 1916.39,
+      "change": 0.95,
+      "change_pct": 0.05,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 76.36,
-      "change": 0.39,
-      "change_pct": 0.51,
+      "price": 76.27,
+      "change": 0.3,
+      "change_pct": 0.39,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 602.91,
-      "change": 2.5,
-      "change_pct": 0.42,
+      "price": 602.89,
+      "change": 2.48,
+      "change_pct": 0.41,
       "is_positive": true
     },
     {
@@ -437,23 +437,23 @@
       "currency": "$",
       "price": 0.2,
       "change": -0.0,
-      "change_pct": -0.4,
+      "change_pct": -0.17,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.04,
-      "change": 0.0,
-      "change_pct": 0.15,
-      "is_positive": true
+      "change": -0.0,
+      "change_pct": -0.23,
+      "is_positive": false
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.07,
       "change": -0.0,
-      "change_pct": -0.34,
+      "change_pct": -0.38,
       "is_positive": false
     },
     {
@@ -461,15 +461,15 @@
       "currency": "$",
       "price": 0.81,
       "change": -0.0,
-      "change_pct": -0.14,
+      "change_pct": -0.57,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.34,
-      "change": 0.04,
-      "change_pct": 0.48,
+      "price": 8.33,
+      "change": 0.03,
+      "change_pct": 0.31,
       "is_positive": true
     },
     {
