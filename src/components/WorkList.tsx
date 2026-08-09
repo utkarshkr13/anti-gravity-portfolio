@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, ExternalLink, Kanban, CheckCircle, Clock, RotateCcw } from "lucide-react";
 
 interface Project {
   idx: string;
@@ -7,9 +8,10 @@ interface Project {
   tags: string[];
   href: string;
   year: string;
+  status: "backlog" | "progress" | "done";
 }
 
-const projects: Project[] = [
+const initialProjects: Project[] = [
   {
     idx: "01",
     name: "SAP Integration Tracker",
@@ -17,6 +19,7 @@ const projects: Project[] = [
     tags: ["Vanilla JS", "Clerk", "Firebase"],
     href: "https://sap-tracker-mocha.vercel.app",
     year: "2025",
+    status: "done",
   },
   {
     idx: "02",
@@ -25,6 +28,7 @@ const projects: Project[] = [
     tags: ["Next.js 14", "Postgres", "Prisma"],
     href: "https://client-inbox-tracker.vercel.app",
     year: "2025",
+    status: "progress",
   },
   {
     idx: "03",
@@ -33,6 +37,7 @@ const projects: Project[] = [
     tags: ["Earth Engine", "Python", "ML"],
     href: "#work",
     year: "2024",
+    status: "backlog",
   },
   {
     idx: "04",
@@ -41,12 +46,14 @@ const projects: Project[] = [
     tags: ["Tableau", "Python", "PostgreSQL"],
     href: "#work",
     year: "2023",
+    status: "backlog",
   },
 ];
 
 export function WorkList() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [revealedItems, setRevealedItems] = useState<Set<string>>(new Set());
+  const [boardProjects, setBoardProjects] = useState<Project[]>(initialProjects);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,6 +81,28 @@ export function WorkList() {
     return () => observer.disconnect();
   }, []);
 
+  const moveProject = (idx: string, direction: "left" | "right") => {
+    setBoardProjects((prev) =>
+      prev.map((p) => {
+        if (p.idx !== idx) return p;
+        let newStatus: "backlog" | "progress" | "done" = p.status;
+        if (p.status === "backlog" && direction === "right") newStatus = "progress";
+        else if (p.status === "progress" && direction === "left") newStatus = "backlog";
+        else if (p.status === "progress" && direction === "right") newStatus = "done";
+        else if (p.status === "done" && direction === "left") newStatus = "progress";
+        return { ...p, status: newStatus };
+      })
+    );
+  };
+
+  const resetBoard = () => {
+    setBoardProjects(initialProjects);
+  };
+
+  const getColProjects = (col: "backlog" | "progress" | "done") => {
+    return boardProjects.filter((p) => p.status === col);
+  };
+
   return (
     <section
       id="work"
@@ -88,81 +117,223 @@ export function WorkList() {
         } reveal-item`}
         data-idx="eyebrow"
       >
-        Selected Work
+        Sprint Delivery
       </div>
 
       <div
-        className={`sec-head flex justify-between items-baseline mb-14 flex-wrap gap-5 transition-all duration-1000 transform ${
+        className={`sec-head flex justify-between items-baseline mb-12 flex-wrap gap-5 transition-all duration-1000 transform ${
           revealedItems.has("header")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
         } reveal-item`}
         data-idx="header"
       >
-        <h2 className="font-sans font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-none text-fg">
-          Things I've <span className="text-accent font-medium italic font-serif">built &amp; shipped</span>
-        </h2>
-        <span className="text-[0.78rem] opacity-50 uppercase tracking-widest font-mono font-semibold">
-          04 projects
+        <div className="flex items-center gap-3">
+          <h2 className="font-sans font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-none text-fg">
+            Interactive <span className="text-accent italic font-medium font-serif">Kanban Board</span>
+          </h2>
+          <button
+            onClick={resetBoard}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-line text-[0.68rem] tracking-wider uppercase text-muted hover:text-accent hover:border-accent hover:bg-bg-soft/40 active:scale-95 transition-all duration-150 cursor-none"
+            data-cursor
+            title="Reset Sprint Board"
+          >
+            <RotateCcw size={12} />
+            Reset
+          </button>
+        </div>
+        <span className="text-[0.78rem] opacity-50 uppercase tracking-widest font-mono font-semibold flex items-center gap-2">
+          <Kanban size={14} />
+          SLA tracking active
         </span>
       </div>
 
-      <div className="flex flex-col">
-        {projects.map((project) => {
-          const isRevealed = revealedItems.has(project.idx);
-          return (
-            <a
-              key={project.idx}
-              href={project.href}
-              target={project.href.startsWith("http") ? "_blank" : undefined}
-              rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className={`group/work work-item relative grid grid-cols-1 md:grid-cols-[64px_240px_1fr_auto] items-center gap-4 py-8 border-b border-line transition-all duration-200 ease-out active:scale-[0.99] hover:bg-bg-soft/40 hover:px-4 hover:rounded-xl ${
-                isRevealed
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              } reveal-item`}
-              data-idx={project.idx}
-              data-cursor
-            >
-              {/* Index + year */}
-              <div className="flex flex-col z-10">
-                <span className="text-[0.75rem] font-mono opacity-35 group-hover/work:opacity-70 transition-opacity">{project.idx}</span>
-                <span className="text-[0.7rem] font-mono text-accent/50 group-hover/work:text-accent/80 transition-colors mt-0.5">{project.year}</span>
-              </div>
+      {/* Kanban Columns Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Column 1: Backlog */}
+        <div className="flex flex-col bg-bg-soft/25 border border-line rounded-3xl p-5 backdrop-blur-md min-h-[450px]">
+          <div className="flex items-center justify-between pb-4 border-b border-line/60 mb-4">
+            <span className="text-[0.75rem] font-bold uppercase tracking-wider text-muted flex items-center gap-2">
+              <Clock size={13} className="text-amber-500" />
+              1. Backlog / BRD
+            </span>
+            <span className="bg-line px-2 py-0.5 rounded text-[0.68rem] font-mono text-fg font-bold">
+              {getColProjects("backlog").length}
+            </span>
+          </div>
 
-              {/* Title */}
-              <div className="text-[clamp(1.1rem,1.8vw,1.5rem)] font-bold tracking-tight text-fg font-sans z-10 group-hover/work:text-accent transition-colors duration-300 py-2 md:py-0 md:mr-6">
-                {project.name}
-              </div>
-
-              {/* Description */}
-              <p className="text-[0.86rem] text-muted leading-relaxed font-sans z-10 group-hover/work:text-fg/80 transition-colors py-2 md:py-0 hidden md:block pr-6">
-                {project.desc}
-              </p>
-
-              {/* Tags + arrow */}
-              <div className="flex flex-col sm:flex-row justify-end items-end sm:items-center gap-3 z-10">
-                <div className="flex gap-1.5 flex-wrap justify-end">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[0.68rem] bg-accent/[0.06] border border-accent/15 rounded-full px-2.5 py-1 text-accent/60 font-sans tracking-wide group-hover/work:border-accent/30 group-hover/work:text-accent/90 transition-all"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+          <div className="flex flex-col gap-4 flex-grow">
+            {getColProjects("backlog").map((p) => (
+              <div
+                key={p.idx}
+                className="bg-bg-soft/60 border border-line rounded-2xl p-5 flex flex-col justify-between hover:border-accent/40 transition-all duration-300 shadow-sm"
+              >
+                <div>
+                  <div className="flex justify-between items-start gap-2 mb-2">
+                    <span className="text-[0.62rem] font-mono text-muted uppercase font-bold">TASK-{p.idx}</span>
+                    <span className="text-[0.65rem] font-mono text-muted">{p.year}</span>
+                  </div>
+                  <h4 className="font-sans font-bold text-[0.95rem] tracking-tight text-fg mb-2">{p.name}</h4>
+                  <p className="text-[0.78rem] text-muted leading-relaxed font-sans mb-4">{p.desc}</p>
                 </div>
-                <span className="text-lg opacity-25 group-hover/work:opacity-100 group-hover/work:text-accent transition-all duration-300 group-hover/work:translate-x-0.5 group-hover/work:-translate-y-0.5 transform font-light shrink-0">
-                  ↗
-                </span>
+
+                <div className="flex flex-col gap-3">
+                  <div className="flex gap-1.5 flex-wrap">
+                    {p.tags.map((t) => (
+                      <span key={t} className="text-[0.6rem] bg-accent/[0.04] border border-accent/15 rounded px-2 py-0.5 text-accent font-semibold">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-between items-center pt-3 border-t border-line/60">
+                    <span className="text-[0.68rem] text-muted-foreground uppercase font-bold">Move State</span>
+                    <button
+                      onClick={() => moveProject(p.idx, "right")}
+                      className="w-7 h-7 rounded-full bg-accent/10 border border-accent/20 text-accent flex items-center justify-center hover:bg-accent hover:text-[#031502] active:scale-90 transition-all duration-150 cursor-none"
+                      data-cursor
+                    >
+                      <ArrowRight size={13} />
+                    </button>
+                  </div>
+                </div>
               </div>
-            </a>
-          );
-        })}
+            ))}
+          </div>
+        </div>
+
+        {/* Column 2: In Progress */}
+        <div className="flex flex-col bg-bg-soft/25 border border-line rounded-3xl p-5 backdrop-blur-md min-h-[450px]">
+          <div className="flex items-center justify-between pb-4 border-b border-line/60 mb-4">
+            <span className="text-[0.75rem] font-bold uppercase tracking-wider text-muted flex items-center gap-2">
+              <Clock size={13} className="text-blue-500 animate-pulse" />
+              2. In Progress / QA
+            </span>
+            <span className="bg-line px-2 py-0.5 rounded text-[0.68rem] font-mono text-fg font-bold">
+              {getColProjects("progress").length}
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-4 flex-grow">
+            {getColProjects("progress").map((p) => (
+              <div
+                key={p.idx}
+                className="bg-bg-soft/60 border border-line rounded-2xl p-5 flex flex-col justify-between hover:border-accent/40 transition-all duration-300 shadow-sm"
+              >
+                <div>
+                  <div className="flex justify-between items-start gap-2 mb-2">
+                    <span className="text-[0.62rem] font-mono text-muted uppercase font-bold">TASK-{p.idx}</span>
+                    <span className="text-[0.65rem] font-mono text-muted">{p.year}</span>
+                  </div>
+                  <h4 className="font-sans font-bold text-[0.95rem] tracking-tight text-fg mb-2">{p.name}</h4>
+                  <p className="text-[0.78rem] text-muted leading-relaxed font-sans mb-4">{p.desc}</p>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <div className="flex gap-1.5 flex-wrap">
+                    {p.tags.map((t) => (
+                      <span key={t} className="text-[0.6rem] bg-accent/[0.04] border border-accent/15 rounded px-2 py-0.5 text-accent font-semibold">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-between items-center pt-3 border-t border-line/60">
+                    <button
+                      onClick={() => moveProject(p.idx, "left")}
+                      className="w-7 h-7 rounded-full bg-accent/10 border border-accent/20 text-accent flex items-center justify-center hover:bg-accent hover:text-[#031502] active:scale-90 transition-all duration-150 cursor-none"
+                      data-cursor
+                    >
+                      <ArrowLeft size={13} />
+                    </button>
+                    <span className="text-[0.68rem] text-muted-foreground uppercase font-bold">Move State</span>
+                    <button
+                      onClick={() => moveProject(p.idx, "right")}
+                      className="w-7 h-7 rounded-full bg-accent/10 border border-accent/20 text-accent flex items-center justify-center hover:bg-accent hover:text-[#031502] active:scale-90 transition-all duration-150 cursor-none"
+                      data-cursor
+                    >
+                      <ArrowRight size={13} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Column 3: Go-Live */}
+        <div className="flex flex-col bg-bg-soft/25 border border-line rounded-3xl p-5 backdrop-blur-md min-h-[450px]">
+          <div className="flex items-center justify-between pb-4 border-b border-line/60 mb-4">
+            <span className="text-[0.75rem] font-bold uppercase tracking-wider text-muted flex items-center gap-2">
+              <CheckCircle size={13} className="text-emerald-500" />
+              3. Go-Live Production
+            </span>
+            <span className="bg-line px-2 py-0.5 rounded text-[0.68rem] font-mono text-fg font-bold">
+              {getColProjects("done").length}
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-4 flex-grow">
+            {getColProjects("done").map((p) => (
+              <div
+                key={p.idx}
+                className="bg-bg-soft/60 border border-line rounded-2xl p-5 flex flex-col justify-between hover:border-accent/40 transition-all duration-300 shadow-sm"
+              >
+                <div>
+                  <div className="flex justify-between items-start gap-2 mb-2">
+                    <span className="text-[0.62rem] font-mono text-muted uppercase font-bold font-semibold text-accent flex items-center gap-1">
+                      <CheckCircle size={10} />
+                      LIVE
+                    </span>
+                    <span className="text-[0.65rem] font-mono text-muted">{p.year}</span>
+                  </div>
+                  <h4 className="font-sans font-bold text-[0.95rem] tracking-tight text-fg mb-2">{p.name}</h4>
+                  <p className="text-[0.78rem] text-muted leading-relaxed font-sans mb-4">{p.desc}</p>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <div className="flex gap-1.5 flex-wrap">
+                    {p.tags.map((t) => (
+                      <span key={t} className="text-[0.6rem] bg-accent/[0.04] border border-accent/15 rounded px-2 py-0.5 text-accent font-semibold">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-between items-center pt-3 border-t border-line/60">
+                    <button
+                      onClick={() => moveProject(p.idx, "left")}
+                      className="w-7 h-7 rounded-full bg-accent/10 border border-accent/20 text-accent flex items-center justify-center hover:bg-accent hover:text-[#031502] active:scale-90 transition-all duration-150 cursor-none"
+                      data-cursor
+                    >
+                      <ArrowLeft size={13} />
+                    </button>
+
+                    {p.href !== "#work" ? (
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-[0.68rem] tracking-wider uppercase font-bold text-accent hover:underline cursor-none"
+                        data-cursor
+                      >
+                        Launch
+                        <ExternalLink size={11} />
+                      </a>
+                    ) : (
+                      <span className="text-[0.68rem] text-muted uppercase font-bold">Docs Ready</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
+      {/* Trailing GitHub CTA */}
       <div
-        className={`mt-10 flex justify-center transition-all duration-1000 transform ${
+        className={`mt-12 flex justify-center transition-all duration-1000 transform ${
           revealedItems.has("cta")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
@@ -173,7 +344,7 @@ export function WorkList() {
           href="https://github.com/utkarshkr13"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 border border-line rounded-full px-6 py-3 text-[0.75rem] tracking-widest uppercase text-muted hover:border-accent hover:text-accent transition-all duration-300"
+          className="inline-flex items-center gap-2 border border-line rounded-full px-6 py-3 text-[0.72rem] tracking-widest uppercase text-muted hover:border-accent hover:text-accent active:scale-95 transition-all duration-100 ease-out cursor-none"
           data-cursor
         >
           View all on GitHub ↗
