@@ -131,14 +131,14 @@ export function About() {
             <h3 className="text-[clamp(1.5rem,2.8vw,2.2rem)] font-extrabold leading-[1.15] text-fg tracking-tight mb-6">
               I work at the intersection of <span className="text-accent font-medium italic font-serif">product, analysis &amp; delivery</span> — turning messy operational problems into tools teams trust.
             </h3>
-            <div className="space-y-4 text-[0.98rem] text-muted leading-relaxed font-normal">
+            <div className="space-y-4 text-[0.98rem] text-fg/90 leading-relaxed font-medium">
               <p>
                 My focus is shaping requirements, mapping user flows, writing BRDs, reviewing test coverage,
                 and supporting UAT and go-live across enterprise RTM programs.
               </p>
               <p>
                 I also build lightweight tools where process gaps create friction — using{" "}
-                <strong className="text-fg font-semibold">Next.js, TypeScript, Node.js, PostgreSQL, Prisma</strong>{" "}
+                <strong className="text-accent font-bold">Next.js, TypeScript, Node.js, PostgreSQL, Prisma</strong>{" "}
                 and AI-assisted workflows.
               </p>
               <p>
@@ -159,34 +159,34 @@ export function About() {
         >
           <div>
             <div className="flex items-center justify-between mb-6">
-              <div className="text-[0.72rem] tracking-wider uppercase font-semibold text-muted flex items-center gap-2">
-                <Coffee size={14} className="text-accent" />
+              <div className="text-[0.75rem] tracking-wider uppercase font-bold text-fg flex items-center gap-2">
+                <Coffee size={15} className="text-accent" />
                 Espresso Brew Log
               </div>
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
             </div>
 
-            <div className="space-y-4 font-mono text-[0.82rem]">
+            <div className="space-y-4 font-mono text-[0.85rem]">
               <div className="border-b border-line/60 pb-2">
-                <span className="text-muted block text-[0.68rem] uppercase tracking-wider mb-0.5">Origin</span>
-                <span className="text-fg font-semibold">Ethiopia Yirgacheffe</span>
+                <span className="text-fg/70 block text-[0.68rem] uppercase tracking-wider mb-0.5 font-bold">Origin</span>
+                <span className="text-fg font-bold">Ethiopia Yirgacheffe</span>
               </div>
               <div className="border-b border-line/60 pb-2">
-                <span className="text-muted block text-[0.68rem] uppercase tracking-wider mb-0.5">Ratio</span>
-                <span className="text-fg font-semibold">18.5g In → 37g Out (1:2)</span>
+                <span className="text-fg/70 block text-[0.68rem] uppercase tracking-wider mb-0.5 font-bold">Ratio</span>
+                <span className="text-fg font-bold">18.5g In → 37g Out (1:2)</span>
               </div>
               <div className="border-b border-line/60 pb-2">
-                <span className="text-muted block text-[0.68rem] uppercase tracking-wider mb-0.5">Pressure</span>
-                <span className="text-fg font-semibold">9.2 Bar Extraction</span>
+                <span className="text-fg/70 block text-[0.68rem] uppercase tracking-wider mb-0.5 font-bold">Pressure</span>
+                <span className="text-fg font-bold">9.2 Bar Extraction</span>
               </div>
               <div>
-                <span className="text-muted block text-[0.68rem] uppercase tracking-wider mb-0.5">Temp / Time</span>
-                <span className="text-fg font-semibold">93.5°C @ 27 seconds</span>
+                <span className="text-fg/70 block text-[0.68rem] uppercase tracking-wider mb-0.5 font-bold">Temp / Time</span>
+                <span className="text-fg font-bold">93.5°C @ 27 seconds</span>
               </div>
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-line/60 flex justify-between items-center text-[0.7rem] uppercase tracking-wider font-semibold text-accent">
+          <div className="mt-6 pt-4 border-t border-line/60 flex justify-between items-center text-[0.72rem] uppercase tracking-wider font-bold text-accent">
             <span>Flow Profile: Classic Spring</span>
             <span>☕ Extracting</span>
           </div>
@@ -202,37 +202,37 @@ export function About() {
         >
           <div>
             <div className="flex items-center justify-between mb-6">
-              <div className="text-[0.72rem] tracking-wider uppercase font-semibold text-muted flex items-center gap-2">
-                <Plane size={14} className="rotate-45 text-accent" />
+              <div className="text-[0.75rem] tracking-wider uppercase font-bold text-fg flex items-center gap-2">
+                <Plane size={15} className="rotate-45 text-accent" />
                 Flight Deck Status
               </div>
-              <div className="text-[0.65rem] bg-accent/10 border border-accent/20 rounded px-2 py-0.5 text-accent font-semibold tracking-wider">
+              <div className="text-[0.68rem] bg-accent/15 border border-accent/30 rounded px-2 py-0.5 text-accent font-bold tracking-wider">
                 CRUISING
               </div>
             </div>
 
-            <div className="space-y-4 font-mono text-[0.82rem]">
+            <div className="space-y-4 font-mono text-[0.85rem]">
               <div className="flex justify-between border-b border-line/60 pb-2.5">
-                <span className="text-muted uppercase tracking-wider">Altitude</span>
+                <span className="text-fg/70 uppercase tracking-wider font-bold">Altitude</span>
                 <span className="text-fg font-bold tabular-nums">{altitude.toLocaleString()} FT</span>
               </div>
               <div className="flex justify-between border-b border-line/60 pb-2.5">
-                <span className="text-muted uppercase tracking-wider">Heading</span>
+                <span className="text-fg/70 uppercase tracking-wider font-bold">Heading</span>
                 <span className="text-fg font-bold tabular-nums">{heading}° WNW</span>
               </div>
               <div className="flex justify-between border-b border-line/60 pb-2.5">
-                <span className="text-muted uppercase tracking-wider">Speed</span>
+                <span className="text-fg/70 uppercase tracking-wider font-bold">Speed</span>
                 <span className="text-fg font-bold">Mach 0.78 (450 KTAS)</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted uppercase tracking-wider">Coordinates</span>
+                <span className="text-fg/70 uppercase tracking-wider font-bold">Coordinates</span>
                 <span className="text-fg font-bold text-[0.78rem]">19.076° N, 72.878° E</span>
               </div>
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-line/60 flex items-center gap-2 text-[0.7rem] uppercase tracking-wider font-semibold text-muted">
-            <Compass size={12} className="animate-spin text-accent" style={{ animationDuration: "8s" }} />
+          <div className="mt-6 pt-4 border-t border-line/60 flex items-center gap-2 text-[0.72rem] uppercase tracking-wider font-bold text-fg/80">
+            <Compass size={13} className="animate-spin text-accent" style={{ animationDuration: "8s" }} />
             <span>ATC Connection: Stable</span>
           </div>
         </div>

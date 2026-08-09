@@ -222,11 +222,11 @@ export function WorkList() {
               >
                 <div>
                   <div className="flex justify-between items-start gap-2 mb-2">
-                    <span className="text-[0.62rem] font-mono text-muted uppercase font-bold">TASK-{p.idx}</span>
-                    <span className="text-[0.65rem] font-mono text-muted">{p.year}</span>
+                    <span className="text-[0.68rem] font-mono text-accent uppercase font-bold">TASK-{p.idx}</span>
+                    <span className="text-[0.68rem] font-mono text-fg/80 font-bold">{p.year}</span>
                   </div>
-                  <h4 className="font-sans font-bold text-[0.95rem] tracking-tight text-fg mb-2">{p.name}</h4>
-                  <p className="text-[0.78rem] text-muted leading-relaxed font-sans mb-4">{p.desc}</p>
+                  <h4 className="font-sans font-extrabold text-[1rem] tracking-tight text-fg mb-2">{p.name}</h4>
+                  <p className="text-[0.82rem] text-fg/85 leading-relaxed font-sans mb-4 font-normal">{p.desc}</p>
                 </div>
 
                 <div className="flex flex-col gap-3">
