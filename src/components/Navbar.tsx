@@ -87,7 +87,7 @@ export function Navbar() {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 flex justify-between items-center px-6 md:px-14 ${
           scrolled
-            ? "py-3.5 bg-bg/80 backdrop-blur-xl border-b border-line"
+            ? "py-3.5 bg-bg/70 backdrop-blur-[20px] backdrop-saturate-[180%] border-b border-line"
             : "py-6 bg-transparent border-b border-transparent"
         }`}
       >
@@ -95,7 +95,7 @@ export function Navbar() {
         <a
           href="#top"
           onClick={(e) => handleNavClick(e, "body")}
-          className="font-serif text-[1.4rem] italic tracking-tight hover:opacity-80 transition-opacity"
+          className="font-sans font-bold text-[1.25rem] tracking-tight hover:opacity-80 active:scale-95 transition-all duration-100 ease-out"
           data-cursor
         >
           Utkarsh<span className="text-accent">.</span>
@@ -111,7 +111,7 @@ export function Navbar() {
                   <NavigationMenuLink
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`text-[0.78rem] tracking-wider uppercase font-sans font-medium transition-colors relative py-1
+                    className={`text-[0.75rem] tracking-wider uppercase font-sans font-semibold transition-all duration-100 ease-out relative py-1 active:scale-[0.96] block
                       after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-accent after:transition-all after:duration-300
                       ${isActive
                         ? "text-accent after:w-full"
@@ -132,18 +132,18 @@ export function Navbar() {
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="flex items-center justify-center w-9 h-9 rounded-full border border-line text-muted hover:text-accent hover:border-accent transition-all duration-300 bg-bg-soft/40"
+            className="flex items-center justify-center w-9 h-9 rounded-full border border-line text-muted hover:text-accent hover:border-accent active:scale-95 transition-all duration-100 ease-out bg-bg-soft/40"
             aria-label="Toggle theme"
             data-cursor
           >
-            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+            {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
           </button>
 
           {/* Desktop CTA badge */}
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
-            className="hidden md:flex items-center gap-2 border border-line rounded-full px-4 py-2 text-[0.72rem] tracking-wider uppercase hover:border-accent hover:text-accent transition-all duration-300"
+            className="hidden md:flex items-center gap-2 border border-line rounded-full px-4 py-2 text-[0.72rem] tracking-wider uppercase active:scale-[0.96] hover:border-accent hover:text-accent transition-all duration-100 ease-out"
             data-cursor
           >
             <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
@@ -187,7 +187,7 @@ export function Navbar() {
             key={item.label}
             href={item.href}
             onClick={(e) => handleNavClick(e, item.href)}
-            className={`font-serif italic text-[clamp(2.5rem,12vw,5rem)] leading-none transition-all duration-300 hover:text-accent ${
+            className={`font-sans font-extrabold tracking-tight text-[clamp(2.5rem,10vw,4.5rem)] leading-none transition-all duration-300 hover:text-accent active:scale-95 ${
               activeSection === item.href ? "text-accent" : "text-fg"
             }`}
             style={{ transitionDelay: mobileOpen ? `${i * 60}ms` : "0ms" }}
@@ -198,7 +198,7 @@ export function Navbar() {
         ))}
         <a
           href="mailto:hello@utkarsh.ind.in"
-          className="mt-6 text-[0.72rem] tracking-widest uppercase text-muted border border-line rounded-full px-6 py-3 hover:border-accent hover:text-accent transition-all"
+          className="mt-6 text-[0.72rem] tracking-widest uppercase text-muted border border-line rounded-full px-6 py-3 hover:border-accent hover:text-accent active:scale-95 transition-all duration-100 ease-out"
           data-cursor
         >
           hello@utkarsh.ind.in

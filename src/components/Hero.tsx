@@ -33,12 +33,12 @@ export function Hero({ showText }: HeroProps) {
     <section className="relative min-h-screen flex flex-col justify-center select-none z-10 overflow-hidden pt-24 pb-0">
       {/* Main content */}
       <div className="px-[6vw] pb-12">
-        <div className="text-[0.82rem] uppercase tracking-[0.18em] mb-3 opacity-55 flex items-center gap-3">
-          <span className="w-4 h-[1px] bg-current" />
+        <div className="text-[0.78rem] uppercase tracking-[0.22em] mb-4 text-accent font-semibold flex items-center gap-3">
+          <span className="w-4 h-[1.5px] bg-accent" />
           Hello — I'm a
         </div>
 
-        <h1 className="font-serif italic leading-[0.88] text-[clamp(3.5rem,9.5vw,8.5rem)] mb-8 tracking-tighter">
+        <h1 className="font-sans font-extrabold leading-[1.02] text-[clamp(3.5rem,9.2vw,8.2rem)] mb-8 tracking-[-0.035em] text-fg">
           {["Product", "Manager &", "Analyst"].map((line, index) => (
             <span key={line} className="block overflow-hidden py-1">
               <span
@@ -49,7 +49,7 @@ export function Hero({ showText }: HeroProps) {
               >
                 {line === "Manager &" ? (
                   <>
-                    Manager <span className="font-sans not-italic font-light opacity-40">&amp;</span>
+                    Manager <span className="font-light opacity-50">&amp;</span>
                   </>
                 ) : (
                   line
@@ -59,21 +59,21 @@ export function Hero({ showText }: HeroProps) {
           ))}
         </h1>
 
-        <p className="max-w-[560px] text-[clamp(1rem,1.4vw,1.2rem)] text-muted mb-10 leading-relaxed">
+        <p className="max-w-[560px] text-[clamp(1rem,1.35vw,1.15rem)] text-muted mb-10 leading-relaxed font-normal">
           I turn operational problems into products teams actually use —{" "}
           <strong className="text-fg font-semibold">BRDs, UAT, and cross-border go-lives</strong>,
           plus the internal tools that make them work.
         </p>
 
         <div className="flex gap-3 flex-wrap mb-10">
-          <span className="bg-bg-soft border border-line rounded-full px-4 py-2 text-[0.75rem] tracking-wide flex items-center gap-2">
+          <span className="bg-bg-soft border border-line rounded-full px-4 py-2 text-[0.72rem] tracking-wide font-medium flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
             Open to Senior PM roles
           </span>
-          <span className="bg-bg-soft border border-line rounded-full px-4 py-2 text-[0.75rem] tracking-wide">
+          <span className="bg-bg-soft border border-line rounded-full px-4 py-2 text-[0.72rem] tracking-wide font-medium">
             📍 Mumbai, India
           </span>
-          <span className="bg-bg-soft border border-line rounded-full px-4 py-2 text-[0.75rem] tracking-wide">
+          <span className="bg-bg-soft border border-line rounded-full px-4 py-2 text-[0.72rem] tracking-wide font-medium">
             Azure AZ-104 Certified
           </span>
         </div>
@@ -81,7 +81,7 @@ export function Hero({ showText }: HeroProps) {
         <div className="flex gap-4 flex-wrap">
           <Button
             asChild
-            className="rounded-full px-8 py-6 text-[0.78rem] tracking-widest uppercase font-medium bg-accent text-[#04150a] border border-accent hover:bg-fg hover:text-black hover:border-fg transition-all duration-300 shadow-[0_0_28px_rgba(157,255,107,0.20)] cursor-none"
+            className="rounded-full px-8 py-6 text-[0.75rem] tracking-wider uppercase font-semibold bg-primary text-primary-foreground border border-primary hover:opacity-90 active:scale-95 transition-all duration-100 ease-out shadow-md cursor-none"
             data-cursor
           >
             <a href="#work" onClick={(e) => handleNavClick(e, "#work")}>
@@ -91,7 +91,7 @@ export function Hero({ showText }: HeroProps) {
           <Button
             asChild
             variant="outline"
-            className="rounded-full px-8 py-6 text-[0.78rem] tracking-widest uppercase font-medium border-line text-fg hover:bg-fg hover:text-black hover:border-fg transition-all duration-300 cursor-none"
+            className="rounded-full px-8 py-6 text-[0.75rem] tracking-wider uppercase font-semibold border border-line text-fg hover:bg-bg-soft active:scale-95 transition-all duration-100 ease-out cursor-none"
             data-cursor
           >
             <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")}>

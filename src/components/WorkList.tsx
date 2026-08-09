@@ -81,7 +81,7 @@ export function WorkList() {
       className="py-[14vh] px-[6vw] border-t border-line relative z-10 bg-bg/20 backdrop-blur-sm"
     >
       <div
-        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.28em] uppercase text-accent before:content-[''] before:w-6 before:h-[1px] before:bg-accent transition-all duration-1000 transform ${
+        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.24em] uppercase text-accent font-semibold before:content-[''] before:w-6 before:h-[1.5px] before:bg-accent transition-all duration-1000 transform ${
           revealedItems.has("eyebrow")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
@@ -99,10 +99,10 @@ export function WorkList() {
         } reveal-item`}
         data-idx="header"
       >
-        <h2 className="font-serif text-[clamp(2rem,5.5vw,4.5rem)] italic leading-none font-medium text-fg">
-          Things I've <em>built &amp; shipped</em>
+        <h2 className="font-sans font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-none text-fg">
+          Things I've <span className="text-accent font-medium italic font-serif">built &amp; shipped</span>
         </h2>
-        <span className="text-[0.82rem] opacity-50 uppercase tracking-wider">
+        <span className="text-[0.78rem] opacity-50 uppercase tracking-widest font-mono font-semibold">
           04 projects
         </span>
       </div>
@@ -116,7 +116,7 @@ export function WorkList() {
               href={project.href}
               target={project.href.startsWith("http") ? "_blank" : undefined}
               rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className={`group/work work-item relative grid grid-cols-1 md:grid-cols-[72px_auto_1fr_auto] items-center gap-4 py-9 border-b border-line transition-all duration-700 transform hover:bg-bg-soft/50 hover:px-4 hover:rounded-xl ${
+              className={`group/work work-item relative grid grid-cols-1 md:grid-cols-[64px_240px_1fr_auto] items-center gap-4 py-8 border-b border-line transition-all duration-200 ease-out active:scale-[0.99] hover:bg-bg-soft/40 hover:px-4 hover:rounded-xl ${
                 isRevealed
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -131,12 +131,12 @@ export function WorkList() {
               </div>
 
               {/* Title */}
-              <div className="text-[clamp(1.1rem,2vw,1.75rem)] font-medium tracking-tight text-fg font-sans z-10 group-hover/work:text-accent transition-colors duration-300 py-2 md:py-0 md:mr-6">
+              <div className="text-[clamp(1.1rem,1.8vw,1.5rem)] font-bold tracking-tight text-fg font-sans z-10 group-hover/work:text-accent transition-colors duration-300 py-2 md:py-0 md:mr-6">
                 {project.name}
               </div>
 
               {/* Description */}
-              <p className="text-[0.86rem] text-muted leading-relaxed font-sans z-10 group-hover/work:text-fg/80 transition-colors py-2 md:py-0 hidden md:block">
+              <p className="text-[0.86rem] text-muted leading-relaxed font-sans z-10 group-hover/work:text-fg/80 transition-colors py-2 md:py-0 hidden md:block pr-6">
                 {project.desc}
               </p>
 

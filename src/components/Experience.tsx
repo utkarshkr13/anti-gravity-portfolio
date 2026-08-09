@@ -89,7 +89,7 @@ export function Experience() {
       className="py-[14vh] px-[6vw] border-t border-line relative z-10 bg-bg/10 backdrop-blur-sm"
     >
       <div
-        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.28em] uppercase text-accent before:content-[''] before:w-6 before:h-[1px] before:bg-accent transition-all duration-1000 transform ${
+        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.24em] uppercase text-accent font-semibold before:content-[''] before:w-6 before:h-[1.5px] before:bg-accent transition-all duration-1000 transform ${
           revealedItems.has("eyebrow")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
@@ -107,8 +107,8 @@ export function Experience() {
         } reveal-item`}
         data-idx="header"
       >
-        <h2 className="font-serif text-[clamp(2rem,5.5vw,4.5rem)] italic leading-none font-medium text-fg">
-          Where I've made <em>impact</em>
+        <h2 className="font-sans font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-none text-fg">
+          Where I've made <span className="text-accent font-medium italic font-serif">impact</span>
         </h2>
       </div>
 
@@ -134,20 +134,20 @@ export function Experience() {
               value={exp.id}
               className="border border-line rounded-lg px-6 py-4 bg-bg-soft/45 backdrop-blur-md relative hover:border-accent/40 transition-all duration-300 group"
             >
-              <span className="absolute -left-[31px] md:-left-[47px] top-[26px] w-[9px] h-[9px] rounded-full bg-[#181a20] border-2 border-line group-hover:border-accent transition-colors z-20" />
+              <span className="absolute -left-[31px] md:-left-[47px] top-[26px] w-[11px] h-[11px] rounded-full bg-background border-2 border-line group-hover:border-accent transition-colors z-20" />
 
-              <AccordionTrigger className="w-full text-left py-2 hover:no-underline font-sans cursor-none" data-cursor>
+              <AccordionTrigger className="w-full text-left py-2 hover:no-underline font-sans active:scale-[0.99] transition-all duration-100 ease-out cursor-none" data-cursor>
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between w-full gap-2 pr-4">
                   <div>
                     <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
-                      <h3 className="text-[clamp(1.05rem,1.6vw,1.35rem)] font-medium text-fg tracking-tight group-hover:text-accent transition-colors">
+                      <h3 className="text-[clamp(1.05rem,1.6vw,1.35rem)] font-bold text-fg tracking-tight group-hover:text-accent transition-colors">
                         {exp.role}
                       </h3>
-                      <span className="text-[0.62rem] border border-accent/30 text-accent/70 rounded-full px-2 py-0.5 tracking-widest uppercase">
+                      <span className="text-[0.62rem] border border-accent/30 text-accent/70 rounded-full px-2 py-0.5 tracking-widest uppercase font-semibold font-sans">
                         {exp.type}
                       </span>
                     </div>
-                    <span className="text-[0.88rem] font-semibold text-accent/80 block">
+                    <span className="text-[0.88rem] font-semibold text-accent/80 block font-sans">
                       {exp.co}
                     </span>
                   </div>
