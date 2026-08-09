@@ -110,14 +110,14 @@ export function WorkList() {
       className="py-[14vh] px-[6vw] border-t border-line relative z-10 bg-bg/20 backdrop-blur-sm"
     >
       <div
-        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.24em] uppercase text-accent font-semibold before:content-[''] before:w-6 before:h-[1.5px] before:bg-accent transition-all duration-1000 transform ${
+        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.75rem] tracking-[0.24em] uppercase text-[#D4AF37] font-mono font-bold transition-all duration-1000 transform ${
           revealedItems.has("eyebrow")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
         } reveal-item`}
         data-idx="eyebrow"
       >
-        Sprint Delivery
+        Fleet Specification &amp; Sprint Deck
       </div>
 
       <div
@@ -128,36 +128,36 @@ export function WorkList() {
         } reveal-item`}
         data-idx="header"
       >
-        <div className="flex items-center gap-3">
-          <h2 className="font-sans font-extrabold text-[clamp(2rem,5vw,4rem)] tracking-[-0.03em] leading-none text-fg">
-            Interactive <span className="text-accent italic font-medium font-serif">Kanban Board</span>
+        <div className="flex items-center gap-4 flex-wrap">
+          <h2 className="font-sans font-extrabold text-[clamp(2.2rem,5.5vw,4.5rem)] tracking-tight leading-none text-white">
+            Project <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#94EB6C]">Fleet &amp; Kanban Board</span>
           </h2>
           <button
             onClick={resetBoard}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-line text-[0.68rem] tracking-wider uppercase text-muted hover:text-accent hover:border-accent hover:bg-bg-soft/40 active:scale-95 transition-all duration-150 cursor-none"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#D4AF37]/40 text-[0.72rem] tracking-wider uppercase text-[#D4AF37] bg-[#D4AF37]/10 hover:bg-[#D4AF37] hover:text-black active:scale-95 transition-all duration-150 cursor-none font-bold"
             data-cursor
             title="Reset Sprint Board"
           >
             <RotateCcw size={12} />
-            Reset
+            Reset Board
           </button>
         </div>
-        <span className="text-[0.78rem] opacity-50 uppercase tracking-widest font-mono font-semibold flex items-center gap-2">
-          <Kanban size={14} />
-          SLA tracking active
+        <span className="text-[0.8rem] text-gray-300 font-mono font-bold uppercase tracking-widest flex items-center gap-2">
+          <Kanban size={14} className="text-[#94EB6C]" />
+          SLA TRACKING ACTIVE
         </span>
       </div>
 
       {/* Kanban Columns Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Column 1: Backlog */}
-        <div className="flex flex-col bg-bg-soft/25 border border-line rounded-3xl p-5 backdrop-blur-md min-h-[450px]">
-          <div className="flex items-center justify-between pb-4 border-b border-line/60 mb-4">
-            <span className="text-[0.75rem] font-bold uppercase tracking-wider text-muted flex items-center gap-2">
-              <Clock size={13} className="text-amber-500" />
+        <div className="flex flex-col bg-black/60 border border-white/20 rounded-3xl p-5 backdrop-blur-xl min-h-[450px] shadow-2xl">
+          <div className="flex items-center justify-between pb-4 border-b border-white/15 mb-4">
+            <span className="text-[0.78rem] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+              <Clock size={14} />
               1. Backlog / BRD
             </span>
-            <span className="bg-line px-2 py-0.5 rounded text-[0.68rem] font-mono text-fg font-bold">
+            <span className="bg-white/15 px-2 py-0.5 rounded-md text-[0.72rem] font-mono text-white font-extrabold">
               {getColProjects("backlog").length}
             </span>
           </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Plane, Compass, Radio, RefreshCw } from "lucide-react";
+import { Plane, Compass, RefreshCw, Zap } from "lucide-react";
 import { fetchLiveFlightData, type LiveFlight } from "@/services/flightApi";
 
 export function Hero({ showText }: { showText: boolean }) {
@@ -9,7 +9,6 @@ export function Hero({ showText }: { showText: boolean }) {
   const [loadingFlights, setLoadingFlights] = useState(true);
   const [localTime, setLocalTime] = useState("");
 
-  // Live Local Time
   useEffect(() => {
     const updateTime = () => {
       const d = new Date();
@@ -20,7 +19,6 @@ export function Hero({ showText }: { showText: boolean }) {
     return () => clearInterval(interval);
   }, []);
 
-  // Fetch Live OpenSky Aviation Data
   const loadFlights = async () => {
     setLoadingFlights(true);
     const data = await fetchLiveFlightData();
@@ -31,7 +29,7 @@ export function Hero({ showText }: { showText: boolean }) {
 
   useEffect(() => {
     loadFlights();
-    const interval = setInterval(loadFlights, 30000); // 30s auto-refresh
+    const interval = setInterval(loadFlights, 30000);
     return () => clearInterval(interval);
   }, []);
 
@@ -47,55 +45,55 @@ export function Hero({ showText }: { showText: boolean }) {
         showText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      {/* Top Telemetry Header Bar */}
-      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 p-4 border border-white/20 bg-black/40 backdrop-blur-xl rounded-2xl mb-10 font-mono text-[0.75rem] tracking-wider uppercase text-white shadow-2xl">
+      {/* Top Jesko Telemetry Header Bar */}
+      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 p-4 border border-[#D4AF37]/30 bg-black/70 backdrop-blur-2xl rounded-2xl mb-10 font-mono text-[0.75rem] tracking-wider uppercase text-white shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
         <div className="flex flex-col border-r border-white/15 pr-4">
           <span className="text-gray-400 text-[0.62rem] mb-1 font-bold">Local Deck Time</span>
-          <span className="text-emerald-400 font-bold text-[0.88rem] tabular-nums">{localTime || "--:--:--"}</span>
+          <span className="text-[#94EB6C] font-bold text-[0.88rem] tabular-nums">{localTime || "--:--:--"}</span>
         </div>
         <div className="flex flex-col md:border-r border-white/15 pr-4">
           <span className="text-gray-400 text-[0.62rem] mb-1 font-bold">OpenSky Network Uplink</span>
-          <span className="text-white font-semibold flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+          <span className="text-[#D4AF37] font-bold flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#94EB6C] animate-ping" />
             LIVE ADS-B FEED
           </span>
         </div>
         <div className="flex flex-col border-r border-white/15 pr-4">
           <span className="text-gray-400 text-[0.62rem] mb-1 font-bold">Airborne Trackers</span>
           <span className="text-white font-bold tabular-nums text-[0.88rem]">
-            {loadingFlights ? "FETCHING..." : `${flights.length} ACTIVE FLIGHTS`}
+            {loadingFlights ? "SYNCING..." : `${flights.length} LIVE AIRCRAFT`}
           </span>
         </div>
         <div className="flex flex-col">
-          <span className="text-gray-400 text-[0.62rem] mb-1 font-bold">Deck Telemetry</span>
-          <span className="text-amber-400 font-bold tabular-nums">JESKO AIR COCKPIT v4.2</span>
+          <span className="text-gray-400 text-[0.62rem] mb-1 font-bold">Showroom Config</span>
+          <span className="text-[#D4AF37] font-bold tabular-nums">JESKO LUXURY DECK v5.0</span>
         </div>
       </div>
 
       {/* Main Kinetic Hero Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center my-auto">
-        {/* Left Column: Bold Kinetic Typography */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto">
+        {/* Left Column: Jesko Bold Luxury Headline */}
         <div className="lg:col-span-7 flex flex-col">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-[0.72rem] tracking-widest uppercase font-bold mb-6 w-fit">
-            <Radio size={14} className="animate-pulse" />
-            Product Management &amp; RTM Architecture
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10 text-[#D4AF37] font-mono text-[0.72rem] tracking-widest uppercase font-bold mb-6 w-fit shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            <Zap size={14} className="text-[#94EB6C]" />
+            Senior Product Architect &amp; RTM Delivery
           </div>
 
-          <h1 className="font-sans font-extrabold text-[clamp(2.8rem,6.8vw,5.5rem)] leading-[1.02] tracking-tight mb-6 text-white">
+          <h1 className="font-sans font-extrabold text-[clamp(3rem,7.2vw,6rem)] leading-[0.98] tracking-tight mb-6 text-white">
             Utkarsh Kumar<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-300 to-white">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-white to-[#94EB6C]">
               Rajput
             </span>
           </h1>
 
-          <p className="max-w-[600px] text-[clamp(1rem,1.4vw,1.2rem)] text-gray-200 leading-relaxed font-normal mb-8">
-            Specialized in leading cross-border RTM deployments, writing high-coverage BRDs, executing enterprise UAT sign-offs, and shipping high-impact SaaS platforms.
+          <p className="max-w-[620px] text-[clamp(1.05rem,1.4vw,1.25rem)] text-gray-200 leading-relaxed font-normal mb-8">
+            Specialized in driving cross-border RTM deployments, authoring high-coverage BRDs, executing enterprise UAT sign-offs, and shipping mission-critical SaaS platforms.
           </p>
 
           <div className="flex gap-4 flex-wrap">
             <Button
               asChild
-              className="rounded-full px-8 py-6 text-[0.78rem] tracking-wider uppercase font-bold bg-emerald-400 text-black border border-emerald-400 hover:bg-emerald-300 active:scale-95 transition-all duration-150 shadow-[0_0_25px_rgba(148,235,108,0.4)] cursor-none"
+              className="rounded-full px-8 py-6 text-[0.78rem] tracking-wider uppercase font-bold bg-[#D4AF37] text-black border border-[#D4AF37] hover:bg-[#b89428] active:scale-95 transition-all duration-150 shadow-[0_0_30px_rgba(212,175,55,0.4)] cursor-none"
               data-cursor
             >
               <a href="#work" onClick={(e) => handleNavClick(e, "#work")}>
@@ -105,7 +103,7 @@ export function Hero({ showText }: { showText: boolean }) {
             <Button
               asChild
               variant="outline"
-              className="rounded-full px-8 py-6 text-[0.78rem] tracking-wider uppercase font-bold border border-white/25 text-white bg-white/5 hover:bg-white/15 active:scale-95 transition-all duration-150 cursor-none"
+              className="rounded-full px-8 py-6 text-[0.78rem] tracking-wider uppercase font-bold border border-white/30 text-white bg-white/5 hover:bg-white/15 active:scale-95 transition-all duration-150 cursor-none"
               data-cursor
             >
               <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")}>
@@ -117,26 +115,26 @@ export function Hero({ showText }: { showText: boolean }) {
 
         {/* Right Column: Live OpenSky Radar & Aircraft HUD */}
         <div className="lg:col-span-5 flex flex-col gap-4">
-          <div className="p-6 border border-white/20 bg-black/60 backdrop-blur-2xl rounded-3xl font-mono text-[0.78rem] text-white shadow-2xl space-y-5">
+          <div className="p-6 border border-[#D4AF37]/40 bg-black/80 backdrop-blur-2xl rounded-3xl font-mono text-[0.78rem] text-white shadow-[0_0_40px_rgba(0,0,0,0.8)] space-y-5">
             {/* Header & Flight Selector */}
             <div className="flex items-center justify-between pb-4 border-b border-white/15">
-              <div className="flex items-center gap-2 font-bold text-emerald-400">
-                <Plane size={16} className="animate-pulse" />
-                LIVE FLIGHT RADAR
+              <div className="flex items-center gap-2 font-bold text-[#D4AF37]">
+                <Plane size={16} className="text-[#94EB6C] animate-pulse" />
+                LIVE OPENSPACE RADAR
               </div>
               <button
                 onClick={loadFlights}
-                className="flex items-center gap-1.5 text-[0.68rem] text-gray-400 hover:text-emerald-400 active:scale-90 transition-all"
+                className="flex items-center gap-1.5 text-[0.68rem] text-gray-300 hover:text-[#94EB6C] active:scale-90 transition-all font-bold"
                 title="Refresh Live Data"
               >
                 <RefreshCw size={12} className={loadingFlights ? "animate-spin" : ""} />
-                SYNC
+                SYNC DATA
               </button>
             </div>
 
-            {/* Flight Selector */}
+            {/* Flight Selector Pills */}
             <div className="space-y-2">
-              <span className="text-gray-400 text-[0.68rem] uppercase font-bold">Select Active Aircraft:</span>
+              <span className="text-gray-300 text-[0.68rem] uppercase font-bold">Select Active Flight:</span>
               <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
                 {flights.map((f) => (
                   <button
@@ -144,8 +142,8 @@ export function Hero({ showText }: { showText: boolean }) {
                     onClick={() => setSelectedFlight(f)}
                     className={`px-3 py-1.5 rounded-lg border text-[0.7rem] uppercase font-bold transition-all shrink-0 ${
                       selectedFlight?.icao === f.icao
-                        ? "border-emerald-400 bg-emerald-500/20 text-emerald-300 shadow-[0_0_10px_rgba(148,235,108,0.3)]"
-                        : "border-white/15 bg-white/5 text-gray-300 hover:border-white/40"
+                        ? "border-[#D4AF37] bg-[#D4AF37]/20 text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                        : "border-white/20 bg-white/5 text-gray-300 hover:border-white/40"
                     }`}
                   >
                     {f.callsign}
@@ -157,51 +155,50 @@ export function Hero({ showText }: { showText: boolean }) {
             {/* Selected Flight Live Telemetry Display */}
             {selectedFlight && (
               <div className="space-y-3 pt-2">
-                <div className="grid grid-cols-2 gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+                <div className="grid grid-cols-2 gap-3 bg-white/5 p-3 rounded-xl border border-white/15">
                   <div>
-                    <span className="text-gray-400 text-[0.62rem] block uppercase">Callsign / Origin</span>
-                    <span className="text-white font-bold text-[0.9rem]">{selectedFlight.callsign}</span>
-                    <span className="text-emerald-400 text-[0.65rem] block truncate">{selectedFlight.country}</span>
+                    <span className="text-gray-400 text-[0.62rem] block uppercase font-bold">Callsign / Country</span>
+                    <span className="text-white font-extrabold text-[0.95rem]">{selectedFlight.callsign}</span>
+                    <span className="text-[#94EB6C] text-[0.68rem] block truncate font-bold">{selectedFlight.country}</span>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-[0.62rem] block uppercase">Squawk Code</span>
-                    <span className="text-amber-400 font-bold text-[0.9rem]">{selectedFlight.squawk}</span>
-                    <span className="text-gray-400 text-[0.65rem] block">MODE-S ADS-B</span>
+                    <span className="text-gray-400 text-[0.62rem] block uppercase font-bold">Squawk Transponder</span>
+                    <span className="text-[#D4AF37] font-extrabold text-[0.95rem]">{selectedFlight.squawk}</span>
+                    <span className="text-gray-300 text-[0.68rem] block font-bold">MODE-S ADS-B</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 text-center">
-                  <div className="bg-white/5 p-2 rounded-lg border border-white/10">
-                    <span className="text-gray-400 text-[0.6rem] block uppercase">Altitude</span>
-                    <span className="text-emerald-400 font-bold text-[0.82rem]">{selectedFlight.altitudeFt.toLocaleString()} FT</span>
+                  <div className="bg-white/5 p-2 rounded-lg border border-white/15">
+                    <span className="text-gray-400 text-[0.6rem] block uppercase font-bold">Altitude</span>
+                    <span className="text-[#94EB6C] font-extrabold text-[0.85rem]">{selectedFlight.altitudeFt.toLocaleString()} FT</span>
                   </div>
-                  <div className="bg-white/5 p-2 rounded-lg border border-white/10">
-                    <span className="text-gray-400 text-[0.6rem] block uppercase">Speed</span>
-                    <span className="text-white font-bold text-[0.82rem]">{selectedFlight.speedKts} KTS</span>
+                  <div className="bg-white/5 p-2 rounded-lg border border-white/15">
+                    <span className="text-gray-400 text-[0.6rem] block uppercase font-bold">Airspeed</span>
+                    <span className="text-white font-extrabold text-[0.85rem]">{selectedFlight.speedKts} KTS</span>
                   </div>
-                  <div className="bg-white/5 p-2 rounded-lg border border-white/10">
-                    <span className="text-gray-400 text-[0.6rem] block uppercase">Heading</span>
-                    <span className="text-amber-300 font-bold text-[0.82rem]">{selectedFlight.heading}°</span>
+                  <div className="bg-white/5 p-2 rounded-lg border border-white/15">
+                    <span className="text-gray-400 text-[0.6rem] block uppercase font-bold">Heading</span>
+                    <span className="text-[#D4AF37] font-extrabold text-[0.85rem]">{selectedFlight.heading}°</span>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Simulated Radar Sweep Canvas Visualizer */}
-            <div className="relative w-full h-24 bg-emerald-950/20 border border-emerald-500/20 rounded-xl overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 border border-emerald-500/10 rounded-full scale-75" />
-              <div className="absolute inset-0 border border-emerald-500/10 rounded-full scale-50" />
-              <div className="absolute w-full h-[1px] bg-emerald-500/20" />
-              <div className="absolute h-full w-[1px] bg-emerald-500/20" />
+            {/* Radar Scope Visualizer */}
+            <div className="relative w-full h-24 bg-black/80 border border-[#D4AF37]/30 rounded-xl overflow-hidden flex items-center justify-center">
+              <div className="absolute inset-0 border border-white/10 rounded-full scale-75" />
+              <div className="absolute inset-0 border border-white/10 rounded-full scale-50" />
+              <div className="absolute w-full h-[1px] bg-white/15" />
+              <div className="absolute h-full w-[1px] bg-white/15" />
               
-              {/* Radar Sweep Line */}
               <div
-                className="absolute w-1/2 h-1/2 origin-top-left bg-gradient-to-r from-emerald-500/40 to-transparent"
+                className="absolute w-1/2 h-1/2 origin-top-left bg-gradient-to-r from-[#94EB6C]/40 to-transparent"
                 style={{ animation: "spin 4s linear infinite" }}
               />
 
-              <div className="relative z-10 flex items-center gap-1.5 text-emerald-400 text-[0.68rem] font-bold">
-                <Compass className="animate-spin text-emerald-400" size={14} />
+              <div className="relative z-10 flex items-center gap-2 text-[#94EB6C] text-[0.72rem] font-extrabold">
+                <Compass className="animate-spin text-[#94EB6C]" size={14} />
                 <span>RADAR TARGET LOCKED // {selectedFlight?.callsign || "AIRBORNE"}</span>
               </div>
             </div>

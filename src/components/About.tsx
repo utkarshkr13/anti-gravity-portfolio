@@ -108,28 +108,28 @@ export function About() {
       className="py-[14vh] px-[6vw] border-t border-line relative z-10 bg-bg/20 backdrop-blur-sm"
     >
       <div
-        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.72rem] tracking-[0.24em] uppercase text-accent font-semibold before:content-[''] before:w-6 before:h-[1.5px] before:bg-accent transition-all duration-1000 transform ${
+        className={`eyebrow mb-6 flex items-center gap-2.5 text-[0.75rem] tracking-[0.24em] uppercase text-[#D4AF37] font-mono font-bold transition-all duration-1000 transform ${
           revealedItems.has("eyebrow")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4"
         } reveal-item`}
         data-idx="eyebrow"
       >
-        About &amp; Passions
+        Passions &amp; Telemetry Hub
       </div>
 
       {/* Main Bento Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
         {/* Card 1: Bio (Col span 2) */}
         <div
-          className={`lg:col-span-2 bg-bg-soft/45 border border-line rounded-3xl p-8 md:p-10 backdrop-blur-md flex flex-col justify-between transition-all duration-1000 transform ${
+          className={`lg:col-span-2 bg-black/70 border border-[#D4AF37]/30 rounded-3xl p-8 md:p-10 backdrop-blur-2xl flex flex-col justify-between shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-all duration-1000 transform ${
             revealedItems.has("bio") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           } reveal-item`}
           data-idx="bio"
         >
           <div>
-            <h3 className="text-[clamp(1.5rem,2.8vw,2.2rem)] font-extrabold leading-[1.15] text-fg tracking-tight mb-6">
-              I work at the intersection of <span className="text-accent font-medium italic font-serif">product, analysis &amp; delivery</span> — turning messy operational problems into tools teams trust.
+            <h3 className="text-[clamp(1.6rem,3vw,2.4rem)] font-extrabold leading-[1.12] text-white tracking-tight mb-6">
+              I work at the intersection of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#94EB6C] font-serif italic">product leadership, analysis &amp; delivery</span> — turning complex operational friction into software teams love.
             </h3>
             <div className="space-y-4 text-[0.98rem] text-fg/90 leading-relaxed font-medium">
               <p>
