@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64751.89,
-      "change": -156.59,
-      "change_pct": -0.24,
+      "price": 64729.48,
+      "change": -179.0,
+      "change_pct": -0.28,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1912.77,
-      "change": -2.67,
-      "change_pct": -0.14,
+      "price": 1912.42,
+      "change": -3.02,
+      "change_pct": -0.16,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 75.93,
-      "change": -0.04,
-      "change_pct": -0.05,
+      "price": 75.94,
+      "change": -0.03,
+      "change_pct": -0.04,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 600.72,
-      "change": 0.31,
-      "change_pct": 0.05,
+      "price": 601.03,
+      "change": 0.62,
+      "change_pct": 0.1,
       "is_positive": true
     },
     {
@@ -437,7 +437,7 @@
       "currency": "$",
       "price": 0.2,
       "change": -0.0,
-      "change_pct": -0.3,
+      "change_pct": -0.68,
       "is_positive": false
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.04,
       "change": -0.0,
-      "change_pct": -0.19,
+      "change_pct": -0.12,
       "is_positive": false
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.07,
       "change": -0.0,
-      "change_pct": -0.6,
+      "change_pct": -0.56,
       "is_positive": false
     },
     {
@@ -461,15 +461,15 @@
       "currency": "$",
       "price": 0.81,
       "change": -0.0,
-      "change_pct": -0.2,
+      "change_pct": -0.23,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.28,
-      "change": -0.02,
-      "change_pct": -0.21,
+      "price": 8.29,
+      "change": -0.01,
+      "change_pct": -0.15,
       "is_positive": false
     },
     {
@@ -663,14 +663,6 @@
       "change": -20.0,
       "change_pct": -0.73,
       "is_positive": false
-    },
-    {
-      "symbol": "NESTLEIND",
-      "currency": "₹",
-      "price": 1540.0,
-      "change": 17.0,
-      "change_pct": 1.12,
-      "is_positive": true
     },
     {
       "symbol": "BRITANNIA",
