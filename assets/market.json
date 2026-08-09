@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 65188.96,
-      "change": 280.48,
+      "price": 65187.99,
+      "change": 279.5,
       "change_pct": 0.43,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1922.6,
-      "change": 7.16,
-      "change_pct": 0.37,
+      "price": 1923.28,
+      "change": 7.84,
+      "change_pct": 0.41,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 77.19,
-      "change": 1.22,
-      "change_pct": 1.61,
+      "price": 77.18,
+      "change": 1.21,
+      "change_pct": 1.59,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 607.28,
-      "change": 6.87,
-      "change_pct": 1.14,
+      "price": 608.37,
+      "change": 7.96,
+      "change_pct": 1.33,
       "is_positive": true
     },
     {
@@ -437,7 +437,7 @@
       "currency": "$",
       "price": 0.2,
       "change": -0.0,
-      "change_pct": -0.72,
+      "change_pct": -0.67,
       "is_positive": false
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.04,
       "change": 0.0,
-      "change_pct": 0.45,
+      "change_pct": 0.37,
       "is_positive": true
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 0.24,
+      "change_pct": 0.34,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
       "price": 0.81,
-      "change": -0.0,
-      "change_pct": -0.42,
+      "change": -0.01,
+      "change_pct": -0.76,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.34,
-      "change": 0.03,
-      "change_pct": 0.42,
+      "price": 8.32,
+      "change": 0.02,
+      "change_pct": 0.3,
       "is_positive": true
     },
     {
@@ -518,14 +518,6 @@
       "price": 1635.0,
       "change": -4.8,
       "change_pct": -0.29,
-      "is_positive": false
-    },
-    {
-      "symbol": "HDFCBANK",
-      "currency": "₹",
-      "price": 731.0,
-      "change": -2.0,
-      "change_pct": -0.27,
       "is_positive": false
     },
     {
