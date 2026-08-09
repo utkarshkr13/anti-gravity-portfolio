@@ -187,9 +187,10 @@ export function WorkList() {
                   </div>
 
                   <div className="flex justify-between items-center pt-3 border-t border-line/60">
-                    <span className="text-[0.68rem] text-muted-foreground uppercase font-bold">Move State</span>
+                    <span className="text-[0.68rem] text-fg/70 uppercase font-bold">Move State</span>
                     <button
                       onClick={() => moveProject(p.idx, "right")}
+                      aria-label={`Move ${p.name} to In Progress`}
                       className="w-7 h-7 rounded-full bg-accent/10 border border-accent/20 text-accent flex items-center justify-center hover:bg-accent hover:text-[#031502] active:scale-90 transition-all duration-150 cursor-none"
                       data-cursor
                     >
@@ -205,8 +206,8 @@ export function WorkList() {
         {/* Column 2: In Progress */}
         <div className="flex flex-col bg-bg-soft/25 border border-line rounded-3xl p-5 backdrop-blur-md min-h-[450px]">
           <div className="flex items-center justify-between pb-4 border-b border-line/60 mb-4">
-            <span className="text-[0.75rem] font-bold uppercase tracking-wider text-muted flex items-center gap-2">
-              <Clock size={13} className="text-blue-500 animate-pulse" />
+            <span className="text-[0.75rem] font-bold uppercase tracking-wider text-fg/80 flex items-center gap-2">
+              <Clock size={13} className="text-blue-400 animate-pulse" />
               2. In Progress / QA
             </span>
             <span className="bg-line px-2 py-0.5 rounded text-[0.68rem] font-mono text-fg font-bold">
@@ -241,14 +242,16 @@ export function WorkList() {
                   <div className="flex justify-between items-center pt-3 border-t border-line/60">
                     <button
                       onClick={() => moveProject(p.idx, "left")}
+                      aria-label={`Move ${p.name} back to Backlog`}
                       className="w-7 h-7 rounded-full bg-accent/10 border border-accent/20 text-accent flex items-center justify-center hover:bg-accent hover:text-[#031502] active:scale-90 transition-all duration-150 cursor-none"
                       data-cursor
                     >
                       <ArrowLeft size={13} />
                     </button>
-                    <span className="text-[0.68rem] text-muted-foreground uppercase font-bold">Move State</span>
+                    <span className="text-[0.68rem] text-fg/70 uppercase font-bold">Move State</span>
                     <button
                       onClick={() => moveProject(p.idx, "right")}
+                      aria-label={`Move ${p.name} to Go-Live Production`}
                       className="w-7 h-7 rounded-full bg-accent/10 border border-accent/20 text-accent flex items-center justify-center hover:bg-accent hover:text-[#031502] active:scale-90 transition-all duration-150 cursor-none"
                       data-cursor
                     >

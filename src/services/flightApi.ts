@@ -26,10 +26,11 @@ export async function fetchLiveFlightData(): Promise<LiveFlight[]> {
     const timeoutId = setTimeout(() => controller.abort(), 4000);
 
     // Fetch live flights over Europe/Asia region box
-    const res = await fetch(
-      "https://opensky-network.org/api/states/all?lamin=10&lomin=60&lamax=55&lomax=120",
-      { signal: controller.signal }
-    );
+    const endpoint = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+      ? "/api/opensky/states/all?lamin=10&lomin=60&lamax=55&lomax=120"
+      : "https://opensky-network.org/api/states/all?lamin=10&lomin=60&lamax=55&lomax=120";
+
+    const res = await fetch(endpoint, { signal: controller.signal });
     clearTimeout(timeoutId);
 
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);

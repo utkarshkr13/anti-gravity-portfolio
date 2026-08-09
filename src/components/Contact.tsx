@@ -141,59 +141,65 @@ export function Contact() {
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest opacity-60">Name</label>
+                <label htmlFor="contact-name" className="text-xs uppercase tracking-widest text-gray-300 font-bold">Name</label>
                 <Input
+                  id="contact-name"
+                  autoComplete="name"
                   {...register("name")}
                   placeholder="Your name"
                   aria-invalid={errors.name ? "true" : "false"}
-                  className="rounded-lg border-line/60 bg-transparent px-4 py-6 text-sm text-fg placeholder:text-muted/40 cursor-none"
+                  className="rounded-xl border-white/20 bg-white/5 px-4 py-6 text-sm text-white placeholder:text-gray-400 cursor-none"
                   data-cursor
                 />
                 {errors.name && (
-                  <p className="text-xs text-destructive/80 mt-1">{errors.name.message}</p>
+                  <p className="text-xs text-red-400 mt-1 font-mono">{errors.name.message}</p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest opacity-60">Email</label>
+                <label htmlFor="contact-email" className="text-xs uppercase tracking-widest text-gray-300 font-bold">Email</label>
                 <Input
+                  id="contact-email"
                   type="email"
+                  autoComplete="email"
                   {...register("email")}
                   placeholder="Your email address"
                   aria-invalid={errors.email ? "true" : "false"}
-                  className="rounded-lg border-line/60 bg-transparent px-4 py-6 text-sm text-fg placeholder:text-muted/40 cursor-none"
+                  className="rounded-xl border-white/20 bg-white/5 px-4 py-6 text-sm text-white placeholder:text-gray-400 cursor-none"
                   data-cursor
                 />
                 {errors.email && (
-                  <p className="text-xs text-destructive/80 mt-1">{errors.email.message}</p>
+                  <p className="text-xs text-red-400 mt-1 font-mono">{errors.email.message}</p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest opacity-60">Subject</label>
+                <label htmlFor="contact-subject" className="text-xs uppercase tracking-widest text-gray-300 font-bold">Subject</label>
                 <Input
+                  id="contact-subject"
                   {...register("subject")}
                   placeholder="What is this inquiry about?"
                   aria-invalid={errors.subject ? "true" : "false"}
-                  className="rounded-lg border-line/60 bg-transparent px-4 py-6 text-sm text-fg placeholder:text-muted/40 cursor-none"
+                  className="rounded-xl border-white/20 bg-white/5 px-4 py-6 text-sm text-white placeholder:text-gray-400 cursor-none"
                   data-cursor
                 />
                 {errors.subject && (
-                  <p className="text-xs text-destructive/80 mt-1">{errors.subject.message}</p>
+                  <p className="text-xs text-red-400 mt-1 font-mono">{errors.subject.message}</p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest opacity-60">Message</label>
+                <label htmlFor="contact-message" className="text-xs uppercase tracking-widest text-gray-300 font-bold">Message</label>
                 <Textarea
+                  id="contact-message"
                   {...register("message")}
                   placeholder="Tell me about your project, team, or opportunity..."
                   aria-invalid={errors.message ? "true" : "false"}
-                  className="rounded-lg border-line/60 bg-transparent px-4 py-3 min-h-[120px] text-sm text-fg placeholder:text-muted/40 cursor-none"
+                  className="rounded-xl border-white/20 bg-white/5 px-4 py-3 min-h-[120px] text-sm text-white placeholder:text-gray-400 cursor-none"
                   data-cursor
                 />
                 {errors.message && (
-                  <p className="text-xs text-destructive/80 mt-1">{errors.message.message}</p>
+                  <p className="text-xs text-red-400 mt-1 font-mono">{errors.message.message}</p>
                 )}
               </div>
 
