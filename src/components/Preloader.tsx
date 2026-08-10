@@ -44,14 +44,14 @@ export function Preloader({ onComplete }: PreloaderProps) {
         isDone ? "opacity-0 invisible pointer-events-none" : "opacity-100 visible"
       }`}
     >
-      <div className="font-serif text-[clamp(2rem,7vw,5rem)] italic overflow-hidden">
+      <div className="font-serif text-[clamp(2rem,7vw,5rem)] italic overflow-hidden text-fg">
         <span
           className="inline-block animate-[rise_0.9s_var(--ease-custom)_forwards]"
           style={{
             transform: "translateY(110%)",
           }}
         >
-          anti·gravity
+          Utkarsh Rajput
         </span>
       </div>
       <div className="text-[clamp(2rem,7vw,5rem)] font-medium tabular-nums">
