@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 63588.5,
-      "change": -324.0,
-      "change_pct": -0.51,
+      "price": 63592.71,
+      "change": -319.79,
+      "change_pct": -0.5,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1880.4,
-      "change": 9.07,
-      "change_pct": 0.48,
+      "price": 1878.78,
+      "change": 7.45,
+      "change_pct": 0.4,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 76.09,
-      "change": 0.14,
-      "change_pct": 0.19,
+      "price": 76.3,
+      "change": 0.35,
+      "change_pct": 0.47,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 612.09,
-      "change": 13.4,
-      "change_pct": 2.24,
+      "price": 612.68,
+      "change": 13.99,
+      "change_pct": 2.34,
       "is_positive": true
     },
     {
@@ -437,7 +437,7 @@
       "currency": "$",
       "price": 0.19,
       "change": -0.0,
-      "change_pct": -2.38,
+      "change_pct": -2.34,
       "is_positive": false
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.02,
       "change": 0.01,
-      "change_pct": 1.01,
+      "change_pct": 0.85,
       "is_positive": true
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 3.36,
+      "change_pct": 3.97,
       "is_positive": true
     },
     {
@@ -461,7 +461,7 @@
       "currency": "$",
       "price": 0.79,
       "change": -0.02,
-      "change_pct": -2.38,
+      "change_pct": -2.22,
       "is_positive": false
     },
     {
@@ -469,7 +469,7 @@
       "currency": "$",
       "price": 8.76,
       "change": 0.47,
-      "change_pct": 5.7,
+      "change_pct": 5.71,
       "is_positive": true
     },
     {
@@ -910,6 +910,14 @@
       "price": 650.1,
       "change": -7.9,
       "change_pct": -1.2,
+      "is_positive": false
+    },
+    {
+      "symbol": "HAL",
+      "currency": "₹",
+      "price": 4909.0,
+      "change": -21.1,
+      "change_pct": -0.43,
       "is_positive": false
     },
     {
