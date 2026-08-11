@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64285.23,
-      "change": 372.73,
-      "change_pct": 0.58,
+      "price": 64304.77,
+      "change": 392.27,
+      "change_pct": 0.61,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1890.46,
-      "change": 19.13,
-      "change_pct": 1.02,
+      "price": 1889.51,
+      "change": 18.18,
+      "change_pct": 0.97,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 76.08,
-      "change": 0.13,
-      "change_pct": 0.18,
-      "is_positive": true
+      "price": 75.94,
+      "change": -0.01,
+      "change_pct": -0.01,
+      "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 607.31,
-      "change": 8.62,
-      "change_pct": 1.44,
+      "price": 612.3,
+      "change": 13.61,
+      "change_pct": 2.27,
       "is_positive": true
     },
     {
@@ -437,15 +437,15 @@
       "currency": "$",
       "price": 0.19,
       "change": -0.0,
-      "change_pct": -1.42,
+      "change_pct": -2.17,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.01,
-      "change": -0.0,
-      "change_pct": -0.42,
+      "change": -0.01,
+      "change_pct": -0.54,
       "is_positive": false
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 1.13,
+      "change_pct": 1.53,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.8,
+      "price": 0.79,
       "change": -0.01,
-      "change_pct": -0.74,
+      "change_pct": -1.42,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 8.65,
-      "change": 0.37,
-      "change_pct": 4.41,
+      "price": 8.68,
+      "change": 0.39,
+      "change_pct": 4.74,
       "is_positive": true
     },
     {
