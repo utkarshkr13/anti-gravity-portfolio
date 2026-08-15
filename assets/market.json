@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 62909.9,
-      "change": -67.71,
-      "change_pct": -0.11,
+      "price": 62948.05,
+      "change": -29.56,
+      "change_pct": -0.05,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1876.32,
-      "change": -4.05,
-      "change_pct": -0.22,
+      "price": 1877.33,
+      "change": -3.04,
+      "change_pct": -0.16,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 75.09,
-      "change": -0.24,
-      "change_pct": -0.31,
+      "price": 75.24,
+      "change": -0.09,
+      "change_pct": -0.11,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 610.61,
-      "change": 3.04,
-      "change_pct": 0.5,
+      "price": 610.79,
+      "change": 3.22,
+      "change_pct": 0.53,
       "is_positive": true
     },
     {
@@ -437,7 +437,7 @@
       "currency": "$",
       "price": 0.18,
       "change": -0.0,
-      "change_pct": -0.57,
+      "change_pct": -0.66,
       "is_positive": false
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.0,
       "change": 0.0,
-      "change_pct": 0.3,
+      "change_pct": 0.41,
       "is_positive": true
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.07,
       "change": -0.0,
-      "change_pct": -0.07,
+      "change_pct": -0.04,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.77,
+      "price": 0.78,
       "change": 0.01,
-      "change_pct": 1.37,
+      "change_pct": 1.79,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 9.24,
-      "change": 0.28,
-      "change_pct": 3.1,
+      "price": 9.34,
+      "change": 0.37,
+      "change_pct": 4.17,
       "is_positive": true
     },
     {
@@ -743,6 +743,14 @@
       "change": 305.5,
       "change_pct": 3.55,
       "is_positive": true
+    },
+    {
+      "symbol": "DIVISLAB",
+      "currency": "₹",
+      "price": 8477.0,
+      "change": -22.5,
+      "change_pct": -0.26,
+      "is_positive": false
     },
     {
       "symbol": "LUPIN",
