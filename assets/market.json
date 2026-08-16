@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 63038.47,
-      "change": 13.83,
-      "change_pct": 0.02,
+      "price": 63258.75,
+      "change": 234.11,
+      "change_pct": 0.37,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1881.92,
-      "change": 0.94,
-      "change_pct": 0.05,
+      "price": 1886.37,
+      "change": 5.39,
+      "change_pct": 0.29,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 75.44,
-      "change": 0.17,
-      "change_pct": 0.22,
+      "price": 75.49,
+      "change": 0.22,
+      "change_pct": 0.29,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 606.9,
-      "change": -0.22,
-      "change_pct": -0.04,
+      "price": 606.91,
+      "change": -0.21,
+      "change_pct": -0.03,
       "is_positive": false
     },
     {
@@ -437,23 +437,23 @@
       "currency": "$",
       "price": 0.18,
       "change": 0.0,
-      "change_pct": 0.1,
+      "change_pct": 0.44,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.0,
-      "change": -0.0,
-      "change_pct": -0.08,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.02,
+      "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 0.59,
+      "change_pct": 0.65,
       "is_positive": true
     },
     {
@@ -461,15 +461,15 @@
       "currency": "$",
       "price": 0.77,
       "change": 0.01,
-      "change_pct": 0.74,
+      "change_pct": 1.0,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 9.34,
-      "change": -0.12,
-      "change_pct": -1.28,
+      "price": 9.38,
+      "change": -0.09,
+      "change_pct": -0.92,
       "is_positive": false
     },
     {
