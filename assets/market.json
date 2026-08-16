@@ -403,41 +403,41 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 63034.02,
-      "change": 9.38,
-      "change_pct": 0.01,
+      "price": 63038.47,
+      "change": 13.83,
+      "change_pct": 0.02,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1882.45,
-      "change": 1.47,
-      "change_pct": 0.08,
+      "price": 1881.92,
+      "change": 0.94,
+      "change_pct": 0.05,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 75.31,
-      "change": 0.04,
-      "change_pct": 0.05,
+      "price": 75.44,
+      "change": 0.17,
+      "change_pct": 0.22,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 607.75,
-      "change": 0.63,
-      "change_pct": 0.1,
-      "is_positive": true
+      "price": 606.9,
+      "change": -0.22,
+      "change_pct": -0.04,
+      "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.18,
       "change": 0.0,
-      "change_pct": 0.13,
+      "change_pct": 0.1,
       "is_positive": true
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.0,
       "change": -0.0,
-      "change_pct": -0.15,
+      "change_pct": -0.08,
       "is_positive": false
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.07,
       "change": 0.0,
-      "change_pct": 0.58,
+      "change_pct": 0.59,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.76,
-      "change": 0.0,
-      "change_pct": 0.46,
+      "price": 0.77,
+      "change": 0.01,
+      "change_pct": 0.74,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 9.35,
-      "change": -0.11,
-      "change_pct": -1.21,
+      "price": 9.34,
+      "change": -0.12,
+      "change_pct": -1.28,
       "is_positive": false
     },
     {
