@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64261.78,
-      "change": -225.87,
-      "change_pct": -0.35,
+      "price": 64008.44,
+      "change": -479.21,
+      "change_pct": -0.74,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1905.84,
-      "change": -6.05,
-      "change_pct": -0.32,
+      "price": 1889.83,
+      "change": -22.06,
+      "change_pct": -1.15,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 75.84,
-      "change": -0.1,
-      "change_pct": -0.14,
+      "price": 75.18,
+      "change": -0.76,
+      "change_pct": -1.0,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 604.12,
-      "change": -1.09,
-      "change_pct": -0.18,
+      "price": 602.01,
+      "change": -3.2,
+      "change_pct": -0.53,
       "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.17,
-      "change": 0.0,
-      "change_pct": 0.02,
-      "is_positive": true
+      "change": -0.0,
+      "change_pct": -1.36,
+      "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.0,
-      "change": -0.0,
-      "change_pct": -0.27,
+      "price": 0.99,
+      "change": -0.01,
+      "change_pct": -1.3,
       "is_positive": false
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.07,
       "change": -0.0,
-      "change_pct": -0.16,
+      "change_pct": -1.05,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.76,
-      "change": -0.0,
-      "change_pct": -0.38,
+      "price": 0.73,
+      "change": -0.03,
+      "change_pct": -4.42,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 9.49,
-      "change": -0.04,
-      "change_pct": -0.45,
+      "price": 9.35,
+      "change": -0.19,
+      "change_pct": -2.0,
       "is_positive": false
     },
     {
