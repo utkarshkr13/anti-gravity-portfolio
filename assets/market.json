@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 64523.71,
-      "change": 36.06,
-      "change_pct": 0.06,
+      "price": 64678.69,
+      "change": 191.04,
+      "change_pct": 0.3,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 1912.23,
-      "change": 0.34,
-      "change_pct": 0.02,
+      "price": 1917.49,
+      "change": 5.6,
+      "change_pct": 0.29,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 76.96,
-      "change": 1.02,
-      "change_pct": 1.34,
+      "price": 77.09,
+      "change": 1.15,
+      "change_pct": 1.51,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 602.45,
-      "change": -2.76,
-      "change_pct": -0.46,
+      "price": 603.24,
+      "change": -1.97,
+      "change_pct": -0.32,
       "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.17,
-      "change": -0.0,
-      "change_pct": -0.63,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.26,
+      "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.0,
       "change": -0.0,
-      "change_pct": -0.3,
+      "change_pct": -0.02,
       "is_positive": false
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.07,
       "change": -0.0,
-      "change_pct": -0.44,
+      "change_pct": -0.24,
       "is_positive": false
     },
     {
@@ -461,15 +461,15 @@
       "currency": "$",
       "price": 0.75,
       "change": -0.01,
-      "change_pct": -1.36,
+      "change_pct": -1.44,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 9.48,
-      "change": -0.06,
-      "change_pct": -0.61,
+      "price": 9.53,
+      "change": -0.01,
+      "change_pct": -0.08,
       "is_positive": false
     },
     {
