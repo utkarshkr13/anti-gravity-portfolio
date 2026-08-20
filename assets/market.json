@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 72766.79,
-      "change": 3477.35,
-      "change_pct": 5.02,
+      "price": 73244.0,
+      "change": 3954.56,
+      "change_pct": 5.71,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2314.24,
-      "change": 62.31,
-      "change_pct": 2.77,
+      "price": 2334.11,
+      "change": 82.18,
+      "change_pct": 3.65,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 87.42,
-      "change": 2.06,
-      "change_pct": 2.41,
+      "price": 87.74,
+      "change": 2.38,
+      "change_pct": 2.79,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 654.93,
-      "change": 28.39,
-      "change_pct": 4.53,
+      "price": 657.1,
+      "change": 30.56,
+      "change_pct": 4.88,
       "is_positive": true
     },
     {
@@ -437,39 +437,39 @@
       "currency": "$",
       "price": 0.2,
       "change": 0.01,
-      "change_pct": 5.22,
+      "change_pct": 6.3,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.26,
-      "change": 0.15,
-      "change_pct": 14.02,
+      "price": 1.27,
+      "change": 0.17,
+      "change_pct": 15.18,
       "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.08,
-      "change": 0.0,
-      "change_pct": 6.09,
+      "change": 0.01,
+      "change_pct": 7.41,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.84,
-      "change": 0.05,
-      "change_pct": 6.64,
+      "price": 0.85,
+      "change": 0.06,
+      "change_pct": 7.55,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 10.59,
-      "change": 0.04,
-      "change_pct": 0.39,
+      "price": 10.7,
+      "change": 0.16,
+      "change_pct": 1.47,
       "is_positive": true
     },
     {
@@ -819,7 +819,7 @@
     {
       "symbol": "JINDALSTEL",
       "currency": "₹",
-      "price": 1118.9,
+      "price": 1116.9,
       "change": -1.2,
       "change_pct": -0.11,
       "is_positive": false
