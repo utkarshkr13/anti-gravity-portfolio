@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 76262.49,
-      "change": -813.57,
-      "change_pct": -1.06,
+      "price": 76114.61,
+      "change": -961.45,
+      "change_pct": -1.25,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2392.47,
-      "change": -30.81,
-      "change_pct": -1.27,
+      "price": 2390.35,
+      "change": -32.93,
+      "change_pct": -1.36,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 92.53,
-      "change": -1.37,
-      "change_pct": -1.46,
+      "price": 92.54,
+      "change": -1.36,
+      "change_pct": -1.45,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 686.47,
-      "change": -9.21,
-      "change_pct": -1.32,
+      "price": 686.6,
+      "change": -9.08,
+      "change_pct": -1.31,
       "is_positive": false
     },
     {
@@ -437,15 +437,15 @@
       "currency": "$",
       "price": 0.22,
       "change": -0.01,
-      "change_pct": -4.44,
+      "change_pct": -4.04,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.46,
+      "price": 1.45,
       "change": -0.01,
-      "change_pct": -0.57,
+      "change_pct": -0.93,
       "is_positive": false
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.09,
       "change": -0.0,
-      "change_pct": -2.05,
+      "change_pct": -1.97,
       "is_positive": false
     },
     {
@@ -461,7 +461,7 @@
       "currency": "$",
       "price": 0.89,
       "change": -0.03,
-      "change_pct": -3.47,
+      "change_pct": -3.19,
       "is_positive": false
     },
     {
@@ -469,7 +469,7 @@
       "currency": "$",
       "price": 11.27,
       "change": -0.38,
-      "change_pct": -3.26,
+      "change_pct": -3.27,
       "is_positive": false
     },
     {
