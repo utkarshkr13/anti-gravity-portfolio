@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 76788.43,
-      "change": -287.63,
-      "change_pct": -0.37,
-      "is_positive": false
+      "price": 77200.05,
+      "change": 123.98,
+      "change_pct": 0.16,
+      "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2415.57,
-      "change": -7.71,
-      "change_pct": -0.32,
-      "is_positive": false
+      "price": 2428.46,
+      "change": 5.18,
+      "change_pct": 0.21,
+      "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 93.83,
-      "change": -0.07,
-      "change_pct": -0.07,
-      "is_positive": false
+      "price": 94.22,
+      "change": 0.32,
+      "change_pct": 0.34,
+      "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 691.21,
-      "change": -4.47,
-      "change_pct": -0.64,
+      "price": 694.1,
+      "change": -1.58,
+      "change_pct": -0.23,
       "is_positive": false
     },
     {
@@ -437,7 +437,7 @@
       "currency": "$",
       "price": 0.22,
       "change": -0.0,
-      "change_pct": -1.73,
+      "change_pct": -1.11,
       "is_positive": false
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.49,
       "change": 0.03,
-      "change_pct": 1.92,
+      "change_pct": 2.07,
       "is_positive": true
     },
     {
@@ -453,15 +453,15 @@
       "currency": "$",
       "price": 0.09,
       "change": 0.0,
-      "change_pct": 0.31,
+      "change_pct": 0.83,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.91,
+      "price": 0.92,
       "change": -0.01,
-      "change_pct": -1.51,
+      "change_pct": -0.64,
       "is_positive": false
     },
     {
@@ -469,7 +469,7 @@
       "currency": "$",
       "price": 11.43,
       "change": -0.22,
-      "change_pct": -1.9,
+      "change_pct": -1.92,
       "is_positive": false
     },
     {
