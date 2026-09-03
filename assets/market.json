@@ -4,16 +4,16 @@
       "symbol": "AAPL",
       "currency": "$",
       "price": 324.96,
-      "change": -2.01,
-      "change_pct": -0.61,
+      "change": -1.91,
+      "change_pct": -0.58,
       "is_positive": false
     },
     {
       "symbol": "MSFT",
       "currency": "$",
       "price": 496.82,
-      "change": -3.35,
-      "change_pct": -0.67,
+      "change": -3.03,
+      "change_pct": -0.61,
       "is_positive": false
     },
     {
@@ -36,16 +36,16 @@
       "symbol": "TSLA",
       "currency": "$",
       "price": 357.01,
-      "change": -3.6,
-      "change_pct": -1.0,
+      "change": -3.4,
+      "change_pct": -0.94,
       "is_positive": false
     },
     {
       "symbol": "META",
       "currency": "$",
       "price": 592.85,
-      "change": 13.3,
-      "change_pct": 2.29,
+      "change": 14.06,
+      "change_pct": 2.43,
       "is_positive": true
     },
     {
@@ -53,23 +53,23 @@
       "currency": "$",
       "price": 254.98,
       "change": 0.72,
-      "change_pct": 0.29,
+      "change_pct": 0.28,
       "is_positive": true
     },
     {
       "symbol": "AMD",
       "currency": "$",
       "price": 457.06,
-      "change": -1.39,
-      "change_pct": -0.3,
+      "change": -2.45,
+      "change_pct": -0.53,
       "is_positive": false
     },
     {
       "symbol": "INTC",
       "currency": "$",
       "price": 90.05,
-      "change": 1.3,
-      "change_pct": 1.46,
+      "change": 1.2,
+      "change_pct": 1.35,
       "is_positive": true
     },
     {
@@ -108,7 +108,7 @@
       "symbol": "MU",
       "currency": "$",
       "price": 956.08,
-      "change": 25.26,
+      "change": 25.25,
       "change_pct": 2.71,
       "is_positive": true
     },
@@ -116,8 +116,8 @@
       "symbol": "NFLX",
       "currency": "$",
       "price": 82.73,
-      "change": 2.19,
-      "change_pct": 2.72,
+      "change": 2.18,
+      "change_pct": 2.71,
       "is_positive": true
     },
     {
@@ -157,7 +157,7 @@
       "currency": "$",
       "price": 169.46,
       "change": -7.53,
-      "change_pct": -4.26,
+      "change_pct": -4.25,
       "is_positive": false
     },
     {
@@ -180,15 +180,15 @@
       "symbol": "PANW",
       "currency": "$",
       "price": 328.48,
-      "change": -17.7,
-      "change_pct": -5.11,
+      "change": -17.52,
+      "change_pct": -5.06,
       "is_positive": false
     },
     {
       "symbol": "INTU",
       "currency": "$",
       "price": 342.94,
-      "change": -3.36,
+      "change": -3.37,
       "change_pct": -0.97,
       "is_positive": false
     },
@@ -300,7 +300,7 @@
       "symbol": "KO",
       "currency": "$",
       "price": 88.24,
-      "change": 0.35,
+      "change": 0.34,
       "change_pct": 0.39,
       "is_positive": true
     },
@@ -308,16 +308,16 @@
       "symbol": "PEP",
       "currency": "$",
       "price": 140.52,
-      "change": 0.58,
-      "change_pct": 0.41,
+      "change": 0.25,
+      "change_pct": 0.18,
       "is_positive": true
     },
     {
       "symbol": "NKE",
       "currency": "$",
       "price": 38.24,
-      "change": 0.19,
-      "change_pct": 0.49,
+      "change": 0.18,
+      "change_pct": 0.47,
       "is_positive": true
     },
     {
@@ -332,8 +332,8 @@
       "symbol": "SBUX",
       "currency": "$",
       "price": 106.72,
-      "change": 0.53,
-      "change_pct": 0.5,
+      "change": 0.54,
+      "change_pct": 0.51,
       "is_positive": true
     },
     {
@@ -403,74 +403,74 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 77118.91,
-      "change": -276.98,
-      "change_pct": -0.36,
-      "is_positive": false
+      "price": 77837.98,
+      "change": 527.8,
+      "change_pct": 0.68,
+      "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2382.46,
-      "change": -35.2,
-      "change_pct": -1.46,
-      "is_positive": false
+      "price": 2406.47,
+      "change": 15.17,
+      "change_pct": 0.63,
+      "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 99.65,
-      "change": -0.34,
-      "change_pct": -0.34,
-      "is_positive": false
+      "price": 100.93,
+      "change": 0.53,
+      "change_pct": 0.53,
+      "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 686.38,
-      "change": 3.64,
-      "change_pct": 0.53,
+      "price": 694.03,
+      "change": 6.04,
+      "change_pct": 0.88,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
-      "price": 0.2,
-      "change": 0.0,
-      "change_pct": 1.31,
+      "price": 0.21,
+      "change": 0.01,
+      "change_pct": 3.28,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.35,
-      "change": -0.0,
-      "change_pct": -0.33,
-      "is_positive": false
+      "price": 1.37,
+      "change": 0.02,
+      "change_pct": 1.49,
+      "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.08,
-      "change": -0.0,
-      "change_pct": -0.56,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 1.87,
+      "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.86,
-      "change": -0.01,
-      "change_pct": -0.85,
-      "is_positive": false
+      "price": 0.89,
+      "change": 0.02,
+      "change_pct": 2.33,
+      "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 11.06,
-      "change": -0.17,
-      "change_pct": -1.5,
-      "is_positive": false
+      "price": 11.2,
+      "change": 0.09,
+      "change_pct": 0.85,
+      "is_positive": true
     },
     {
       "symbol": "RELIANCE",
@@ -535,14 +535,6 @@
       "change": 1.4,
       "change_pct": 0.1,
       "is_positive": true
-    },
-    {
-      "symbol": "AXISBANK",
-      "currency": "₹",
-      "price": 1253.9,
-      "change": -0.7,
-      "change_pct": -0.06,
-      "is_positive": false
     },
     {
       "symbol": "KOTAKBANK",
