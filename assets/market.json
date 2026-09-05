@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 79947.86,
-      "change": 271.53,
-      "change_pct": 0.34,
+      "price": 79737.01,
+      "change": 60.68,
+      "change_pct": 0.08,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2476.98,
-      "change": 20.78,
-      "change_pct": 0.85,
+      "price": 2478.34,
+      "change": 22.14,
+      "change_pct": 0.9,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 103.81,
-      "change": 1.86,
-      "change_pct": 1.83,
+      "price": 103.3,
+      "change": 1.35,
+      "change_pct": 1.33,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 777.71,
-      "change": 56.44,
-      "change_pct": 7.82,
+      "price": 770.87,
+      "change": 49.6,
+      "change_pct": 6.88,
       "is_positive": true
     },
     {
@@ -437,7 +437,7 @@
       "currency": "$",
       "price": 0.22,
       "change": 0.01,
-      "change_pct": 4.23,
+      "change_pct": 3.78,
       "is_positive": true
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.42,
       "change": 0.02,
-      "change_pct": 1.38,
+      "change_pct": 1.17,
       "is_positive": true
     },
     {
@@ -453,7 +453,7 @@
       "currency": "$",
       "price": 0.09,
       "change": 0.01,
-      "change_pct": 8.32,
+      "change_pct": 6.99,
       "is_positive": true
     },
     {
@@ -461,15 +461,15 @@
       "currency": "$",
       "price": 0.91,
       "change": 0.01,
-      "change_pct": 1.18,
+      "change_pct": 1.5,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 12.04,
-      "change": 0.4,
-      "change_pct": 3.44,
+      "price": 12.02,
+      "change": 0.38,
+      "change_pct": 3.31,
       "is_positive": true
     },
     {
