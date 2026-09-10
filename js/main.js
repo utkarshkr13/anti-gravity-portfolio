@@ -106,13 +106,47 @@
   /* ---------- Theme Toggle with Liquid Sweep Transition ---------- */
   const html = document.documentElement;
   const THEME_KEY = 'ukr-portfolio-theme';
+  const themeStorage = {
+    get() {
+      try { return window.localStorage.getItem(THEME_KEY); } catch (_) { return null; }
+    },
+    set(value) {
+      try { window.localStorage.setItem(THEME_KEY, value); } catch (_) { /* Storage may be disabled. */ }
+    }
+  };
 
   // Load saved theme or default to dark
-  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+  const savedTheme = themeStorage.get() || 'dark';
   html.setAttribute('data-theme', savedTheme);
 
   const toggle = document.getElementById('themeToggle');
   const sweepCircle = document.getElementById('themeSweepCircle');
+  const navbar = document.getElementById('navbar');
+  const navMenuToggle = document.getElementById('navMenuToggle');
+
+  if (navbar && navMenuToggle) {
+    navMenuToggle.addEventListener('click', () => {
+      const isOpen = navbar.classList.toggle('menu-open');
+      navMenuToggle.setAttribute('aria-expanded', String(isOpen));
+      navMenuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    });
+
+    navbar.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        navbar.classList.remove('menu-open');
+        navMenuToggle.setAttribute('aria-expanded', 'false');
+        navMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !navbar.classList.contains('menu-open')) return;
+      navbar.classList.remove('menu-open');
+      navMenuToggle.setAttribute('aria-expanded', 'false');
+      navMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+      navMenuToggle.focus();
+    });
+  }
 
   if (toggle && sweepCircle) {
     toggle.addEventListener('click', (e) => {
@@ -145,7 +179,7 @@
       
       setTimeout(() => {
         html.setAttribute('data-theme', next);
-        localStorage.setItem(THEME_KEY, next);
+        themeStorage.set(next);
         window.dispatchEvent(new Event('theme-change'));
       }, 400);
       
@@ -160,7 +194,7 @@
       const current = html.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
-      localStorage.setItem(THEME_KEY, next);
+      themeStorage.set(next);
       if (typeof synth !== 'undefined') {
         synth.playToggle(next === 'dark');
       }
@@ -169,20 +203,22 @@
   }
 
   /* ---------- Smooth Scroll (Lenis) ---------- */
-  const lenis = new Lenis({
+  const lenis = typeof window.Lenis === 'function' ? new window.Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smooth: true,
     smoothTouch: false
-  });
+  }) : null;
 
   // Expose Lenis globally so other components can access or control it
-  window.lenis = lenis;
+  if (lenis) window.lenis = lenis;
 
   // Sync Lenis with GSAP ScrollTrigger
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
+  if (lenis && window.ScrollTrigger && window.gsap) {
+    lenis.on('scroll', window.ScrollTrigger.update);
+    window.gsap.ticker.add((time) => lenis.raf(time * 1000));
+    window.gsap.ticker.lagSmoothing(0);
+  }
 
   /* ============================================================
      1. CUSTOM CURSOR, FLUID TRAIL, MAGNETS & AUDIO INTERACTIONS
@@ -374,6 +410,7 @@
   /* ============================================================
      2. LENIS SKEW & GSAP LETTER-BY-LETTER REVEAL
      ============================================================ */
+  if (lenis && window.gsap) {
   let currentSkew = 0;
   let targetSkew = 0;
   
@@ -447,6 +484,7 @@
     });
   }
   initLetterByLetterReveal();
+  }
 
 
   /* ============================================================
@@ -735,12 +773,15 @@
           window.gsap.set('.reveal-char', { opacity: 1, y: '0%', rotateX: 0 });
         }
 
-        lenis.scrollTo(target, { 
-          offset: -80,
-          onComplete: () => {
-            isAnchorScrolling = false;
-          }
-        });
+        if (lenis) {
+          lenis.scrollTo(target, {
+            offset: -80,
+            onComplete: () => { isAnchorScrolling = false; }
+          });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          isAnchorScrolling = false;
+        }
       }
     });
   });
@@ -752,7 +793,13 @@
     const loaderBar = document.getElementById('loaderBar');
 
     if (!loader) {
-      window.initAnimations();
+      if (window.initAnimations) window.initAnimations();
+      return;
+    }
+
+    if (!window.gsap) {
+      loader.style.display = 'none';
+      if (window.initAnimations) window.initAnimations();
       return;
     }
 
@@ -765,7 +812,7 @@
           onComplete: () => {
             loader.style.display = 'none';
             // Fire animations after loader
-            window.initAnimations();
+            if (window.initAnimations) window.initAnimations();
             // Re-init lucide icons (deferred script, safe to call after DOM ready)
             if (window.lucide) window.lucide.createIcons();
           }
@@ -804,7 +851,11 @@
     });
 
     scrollTopBtn.addEventListener('click', () => {
-      lenis.scrollTo(0, { duration: 1.5, ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      if (lenis) {
+        lenis.scrollTo(0, { duration: 1.5, ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
   }
 
@@ -826,14 +877,14 @@
         
         const filterValue = btn.getAttribute('data-filter');
         
-        // Get Flip state
-        const state = Flip.getState(projectCards);
+        const canAnimateFilter = window.Flip && window.gsap && window.ScrollTrigger;
+        const state = canAnimateFilter ? window.Flip.getState(projectCards) : null;
         
         projectCards.forEach(card => {
           const category = card.getAttribute('data-category');
           
           // Kill active tweens to prevent layout stutter
-          gsap.killTweensOf(card);
+          if (window.gsap) window.gsap.killTweensOf(card);
           
           if (filterValue === 'all' || category === filterValue) {
             // Clear the display style
@@ -844,13 +895,14 @@
           }
         });
 
-        // Run Flip transition
-        Flip.from(state, {
-          duration: 0.5,
-          ease: 'power2.out',
-          absolute: true,
-          onComplete: () => ScrollTrigger.refresh()
-        });
+        if (canAnimateFilter) {
+          window.Flip.from(state, {
+            duration: 0.5,
+            ease: 'power2.out',
+            absolute: true,
+            onComplete: () => window.ScrollTrigger.refresh()
+          });
+        }
       });
     });
   }
@@ -869,7 +921,7 @@
         "Supported 40+ daily users during critical UAT cycles.",
         "Accelerated QA sign-offs, leading to successful zero-downtime go-live."
       ],
-      live: '#',
+      live: 'https://sap-tracker-mocha.vercel.app',
       code: "https://github.com/utkarshkr13/sap-tracker"
     },
     'client-inbox-tracker': {
@@ -899,8 +951,8 @@
         "Enabled automated, low-cost monitoring of agricultural yield indicators.",
         "Established stable SAR-optical dataset fusion workflow."
       ],
-      live: "#",
-      code: "#"
+      live: null,
+      code: null
     },
     'cityflo-bi': {
       title: "CityFlo BI Dashboards",
@@ -914,8 +966,8 @@
         "Directly supported operations in planning route updates.",
         "Supported price-elasticity modeling using competitor scrapers."
       ],
-      live: "#",
-      code: "#"
+      live: null,
+      code: null
     }
   };
 
@@ -923,8 +975,62 @@
   const modalOverlay = document.getElementById('modalOverlay');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const caseStudyBtns = document.querySelectorAll('.btn-case-study');
+  const modalWrapper = projectModal?.querySelector('.modal-wrapper');
 
-  if (projectModal && modalOverlay && modalCloseBtn && caseStudyBtns.length > 0) {
+  if (projectModal && modalOverlay && modalCloseBtn && modalWrapper && caseStudyBtns.length > 0) {
+    let modalTrigger = null;
+    const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    const closeModal = () => {
+      if (projectModal.getAttribute('aria-hidden') === 'true') return;
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      const navWrapper = document.querySelector('.nav-wrapper');
+      if (navWrapper) navWrapper.style.display = '';
+      if (window.lenis) window.lenis.start();
+
+      const finishClose = () => {
+        projectModal.style.display = 'none';
+        projectModal.setAttribute('aria-hidden', 'true');
+        modalTrigger?.focus();
+        modalTrigger = null;
+      };
+
+      if (window.gsap) {
+        window.gsap.to(modalWrapper, { y: 30, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: finishClose });
+        window.gsap.to(modalOverlay, { opacity: 0, duration: 0.3 });
+      } else {
+        finishClose();
+      }
+    };
+
+    const trapModalFocus = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusable = [...modalWrapper.querySelectorAll(focusableSelector)].filter((element) => !element.hidden);
+      if (focusable.length === 0) {
+        event.preventDefault();
+        modalWrapper.focus();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    projectModal.addEventListener('keydown', trapModalFocus);
+
     // Open Modal
     caseStudyBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -957,18 +1063,20 @@
         const liveBtn = document.getElementById('modalLiveLink');
         const codeBtn = document.getElementById('modalCodeLink');
 
-        if (data.live && data.live !== '#') {
+        if (data.live) {
           liveBtn.href = data.live;
-          liveBtn.style.display = 'inline-flex';
+          liveBtn.hidden = false;
         } else {
-          liveBtn.style.display = 'none';
+          liveBtn.removeAttribute('href');
+          liveBtn.hidden = true;
         }
 
-        if (data.code && data.code !== '#') {
+        if (data.code) {
           codeBtn.href = data.code;
-          codeBtn.style.display = 'inline-flex';
+          codeBtn.hidden = false;
         } else {
-          codeBtn.style.display = 'none';
+          codeBtn.removeAttribute('href');
+          codeBtn.hidden = true;
         }
 
         // Initialize Lucide icons
@@ -979,6 +1087,7 @@
         // Show Modal
         projectModal.style.display = 'flex';
         projectModal.setAttribute('aria-hidden', 'false');
+        modalTrigger = btn;
         document.body.classList.add('modal-open');
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
@@ -989,25 +1098,13 @@
         if (window.lenis) window.lenis.stop();
 
         // Animate elements
-        gsap.fromTo(modalOverlay, { opacity: 0 }, { opacity: 1, duration: 0.3 });
-        gsap.fromTo('.modal-wrapper', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, delay: 0.1, ease: 'power3.out' });
+        if (window.gsap) {
+          window.gsap.fromTo(modalOverlay, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+          window.gsap.fromTo(modalWrapper, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, delay: 0.1, ease: 'power3.out' });
+        }
+        window.setTimeout(() => modalCloseBtn.focus(), 0);
       });
     });
-
-    // Close Modal Function
-    const closeModal = () => {
-      document.body.classList.remove('modal-open');
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      const navWrapper = document.querySelector('.nav-wrapper');
-      if (navWrapper) navWrapper.style.display = '';
-      if (window.lenis) window.lenis.start();
-      gsap.to('.modal-wrapper', { y: 30, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => {
-        projectModal.style.display = 'none';
-        projectModal.setAttribute('aria-hidden', 'true');
-      }});
-      gsap.to(modalOverlay, { opacity: 0, duration: 0.3 });
-    };
 
     modalCloseBtn.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', closeModal);
