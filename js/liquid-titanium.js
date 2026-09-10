@@ -29,10 +29,10 @@
       vec3 n=normalize(vec3((surface(p+vec2(.008,0.))-h)/.008,
         (surface(p+vec2(0.,.008))-h)/.008, .75));
       vec3 r=reflect(vec3(0.,0.,-1.),n);
-      // Long softbox reflections give the surface a brushed liquid-metal finish.
-      float band=pow(max(0.,1.-abs(r.x*.6+r.y*.8-.18)),18.);
-      float edge=pow(max(0.,1.-abs(r.x*.85-r.y*.3+.35)),35.);
-      float sheen=pow(max(dot(n,normalize(vec3(-.6,.8,1.))),0.),8.);
+      // Tight reflections keep the metal legible rather than foggy.
+      float band=pow(max(0.,1.-abs(r.x*.6+r.y*.8-.18)),42.);
+      float edge=pow(max(0.,1.-abs(r.x*.85-r.y*.3+.35)),68.);
+      float sheen=pow(max(dot(n,normalize(vec3(-.6,.8,1.))),0.),18.);
       vec3 metal=vec3(.018,.035,.075)+vec3(.48,.72,1.)*band
         +vec3(.12,.35,.85)*edge+vec3(.07,.16,.34)*sheen;
       float quiet=smoothstep(.10,.60,length((uv-.5)*vec2(1.25,1.8)));
@@ -86,7 +86,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let frame = 0, last = 0, elapsed = 0, visible = true, lost = false;
   // Adapt pixel count, never skip animation frames. Hysteresis prevents quality oscillation.
-  let quality = 0.85, sampleTime = 0, sampleCount = 0, slowFrames = 0, stableWindows = 0;
+  let quality = 1, sampleTime = 0, sampleCount = 0, slowFrames = 0, stableWindows = 0;
   let fastestFrame = 1000 / 60;
   let x = 0, y = 0, targetX = 0, targetY = 0;
   function draw() {
@@ -99,7 +99,7 @@
   }
   function resize() {
     // Bound fragment cost even on high-DPI, ultrawide displays.
-    const scale = quality * Math.min(devicePixelRatio || 1, 1, 1200 / Math.max(hero.clientWidth, hero.clientHeight));
+    const scale = quality * Math.min(devicePixelRatio || 1, 1.5, 1600 / Math.max(hero.clientWidth, hero.clientHeight));
     const width = Math.max(1, Math.round(hero.clientWidth * scale));
     const height = Math.max(1, Math.round(hero.clientHeight * scale));
     if (canvas.width !== width || canvas.height !== height) {
