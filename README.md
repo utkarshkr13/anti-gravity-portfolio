@@ -1,53 +1,51 @@
-# 🚀 Utkarsh Kumar Rajput — Enterprise Product Portfolio
+# Utkarsh Kumar Rajput — Portfolio
 
-A high-performance, interactive portfolio designed to showcase enterprise product management, business analysis, and full-stack technical delivery. Engineered with a premium, glassmorphic UI, smooth scrolling, and dynamic data integrations.
+A focused portfolio for product management, business analysis, enterprise delivery, and practical internal tools.
 
-🔗 **Live Site:** [utkarsh.ind.in](https://www.utkarsh.ind.in/)
+**Live site:** [utkarsh.ind.in](https://www.utkarsh.ind.in/)
 
----
+## Highlights
 
-## 💎 Key Features
+- Product, workflow, and enterprise-delivery experience presented through clear case studies.
+- Responsive navigation with keyboard support, visible focus states, and an accessible mobile menu.
+- Dark and light themes.
+- Project filtering, case-study dialogs, smooth in-page navigation, and a contact form powered by Formspree.
+- An adaptive **Liquid Titanium** hero: a dependency-free WebGL surface with cursor response, blue reflections, light-theme support, reduced-motion support, off-screen pausing, WebGL recovery, and adaptive resolution.
 
-### 1. 🧭 Recruiter Command Palette (Ctrl+K / Cmd+K)
-Recruiters and hiring managers can access a modern navigation overlay by typing `Ctrl+K` or `Cmd+K`. The command palette supports keyboard-friendly section jumping, direct case-study triggers, and quick action shortcuts.
+## Technology
 
-### 2. 📊 Live Market Data Pipeline
-Features an automated, serverless pipeline powered by **GitHub Actions** and **Python (`yfinance` + `pandas`)**. Every hour, a scheduled cron task updates stock ticker data and writes it to `assets/market.json` to feed the live ticker on the page.
+- HTML, CSS, and modern browser JavaScript
+- GSAP, ScrollTrigger, Flip, and Lenis for progressive enhancement
+- Lucide for icons
+- Formspree for contact-form delivery
+- GitHub Pages for hosting
 
-### 3. 💼 Bento Grid & Smooth Scroll
-Utilizes a modular, Apple/Google-inspired bento grid for the bio details, location widgets, local timezone clocks, and delivery metrics. Integrated with **Lenis** for smooth, native-feeling scrolling.
+The essential portfolio content remains usable if optional animation libraries or WebGL are unavailable.
 
-### 4. 📂 Staggered Transitions & Interactive Accordions
-* Character-reveal animations staggered via **GSAP** and **ScrollTrigger**.
-* Timeline timelines and case-study disclosures that adjust padding and reveal metrics dynamically.
-* Lock scroll on modal overlays to guarantee desktop/mobile layout stability.
-
----
-
-## 🛠️ Tech Stack & Architecture
-
-* **Frontend**: Vanilla HTML5 · CSS3 (Custom Variables, CSS Properties) · ES6+ JavaScript
-* **Animation & Motion**: GSAP (GreenSock Animation Platform) · ScrollTrigger · Lenis Smooth Scroll
-* **APIs & Data**: yfinance (Yahoo Finance Python API) · GitHub Actions (CI/CD Pipeline)
-* **Icons & Assets**: Lucide Icons · Formspree (Serverless Inquiry Triage)
-
----
-
-## 💻 Setup & Development
-
-Run the portfolio locally in seconds:
+## Run locally
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/utkarshkr13/anti-gravity-portfolio.git
 cd anti-gravity-portfolio
-
-# 2. Spin up a local development server
-# Python 3
-python -m http.server 8000
-
-# Node/npm (alternative)
-npx http-server -p 8000
+node -e "const http=require('http'),fs=require('fs'),path=require('path');http.createServer((req,res)=>fs.readFile(path.join(process.cwd(),req.url==='/'?'index.html':req.url),(e,d)=>e?(res.writeHead(404),res.end()):res.end(d))).listen(4173)"
 ```
 
-Once running, navigate to `http://localhost:8000` in your web browser.
+Open [http://localhost:4173](http://localhost:4173).
+
+## Project structure
+
+```
+assets/     Images, résumé, QR code, and generated data
+css/        Base styling and interface refinements
+js/         Navigation, interactions, animation, and Liquid Titanium renderer
+index.html  Portfolio markup and integration points
+```
+
+## Deployment
+
+Pushes to `main` are published through GitHub Pages. The custom domain is configured in `CNAME`.
+
+## Contact
+
+- Email: [hello@utkarsh.ind.in](mailto:hello@utkarsh.ind.in)
+- LinkedIn: [Utkarsh Kumar Rajput](https://linkedin.com/in/utkarsh-kumar-rajput)
