@@ -54,6 +54,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap">
+  <noscript><style>#pageLoader{display:none!important}.btn-case-study{display:none!important}</style></noscript>
 </head>
 <body>
 
@@ -71,6 +72,13 @@
       <div class="loader-bar"><div class="loader-bar-inner" id="loaderBar"></div></div>
     </div>
   </div>
+  <script>
+    /* The portfolio must remain readable if a deferred script or CDN fails. */
+    window.setTimeout(function () {
+      var loader = document.getElementById('pageLoader');
+      if (loader) loader.style.display = 'none';
+    }, 3000);
+  </script>
 
   <!-- ===== Custom Cursor ===== -->
   <div class="cursor-dot" id="cursorDot"></div>
@@ -79,16 +87,22 @@
   <!-- ===== Navigation ===== -->
   <div class="nav-wrapper">
     <nav class="navbar" id="navbar">
-      <a href="#hero" class="nav-link active" data-cursor="hover">Home</a>
-      <a href="#about" class="nav-link" data-cursor="hover">About</a>
-      <a href="#experience" class="nav-link" data-cursor="hover">Experience</a>
-      <a href="#projects" class="nav-link" data-cursor="hover">Projects</a>
-      <a href="#skills" class="nav-link" data-cursor="hover">Skills</a>
-      <a href="#contact" class="nav-link" data-cursor="hover">Contact</a>
+      <div class="nav-links" id="primaryNav">
+        <a href="#hero" class="nav-link active" data-cursor="hover">Home</a>
+        <a href="#about" class="nav-link" data-cursor="hover">About</a>
+        <a href="#experience" class="nav-link" data-cursor="hover">Experience</a>
+        <a href="#projects" class="nav-link" data-cursor="hover">Projects</a>
+        <a href="#skills" class="nav-link" data-cursor="hover">Skills</a>
+        <a href="#contact" class="nav-link" data-cursor="hover">Contact</a>
+      </div>
       <div class="nav-divider"></div>
       <button class="theme-toggle" id="themeToggle" data-cursor="hover" aria-label="Toggle dark/light mode">
         <span class="icon-sun"><i data-lucide="sun" style="width:18px;height:18px"></i></span>
         <span class="icon-moon"><i data-lucide="moon" style="width:18px;height:18px"></i></span>
+      </button>
+      <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation menu">
+        <i data-lucide="menu" style="width:18px;height:18px"></i>
+        <span>Menu</span>
       </button>
     </nav>
   </div>
@@ -96,14 +110,8 @@
   <!-- ===== Hero Section ===== -->
   <section class="hero" id="hero">
 
-    <!-- YouTube Background (primary) — non-interactive -->
-    <div id="hero-video-bg" class="hero-video-bg" aria-hidden="true">
-      <div id="ytBgPlaceholder"></div>
-      <div class="hero-video-blocker" aria-hidden="true"></div>
-    </div>
-
-    <!-- Particle canvas (fallback when YouTube unavailable) -->
-    <canvas id="heroGlobe" class="hero-particles"></canvas>
+    <canvas id="liquidTitanium" aria-hidden="true"></canvas>
+    <script defer src="js/liquid-titanium.js"></script>
     <div class="hero-blur-tunnel"></div>
 
     <div class="hero-greeting reveal">Hello, I'm</div>
@@ -134,9 +142,11 @@
           Resume <i data-lucide="download" style="width:14px;height:14px;margin-left:6px;display:inline-block;vertical-align:middle;"></i>
         </a>
       </div>
-      <a href="#contact" class="cta-text-link" data-cursor="hover" id="ctaContact">
-        Get in Touch <span class="btn-arrow">→</span>
-      </a>
+      <div class="magnetic-wrap">
+        <a href="#contact" class="btn btn-secondary" data-cursor="hover" id="ctaContact">
+          Get in Touch <span class="btn-arrow">→</span>
+        </a>
+      </div>
     </div>
 
     <div class="hero-scroll-indicator reveal">
@@ -213,20 +223,7 @@
         </div>
       </div>
 
-      <!-- Bento Card 4: Clock & Status Widget (Row 2, spans 3 cols) -->
-      <div class="bento-card bento-clock reveal">
-        <div class="bento-badge"><i data-lucide="globe" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Time &amp; Location</div>
-        <div class="bento-clock-content">
-          <div class="bento-location">Mumbai, India</div>
-          <div class="bento-time" id="mumbaiTime">00:00:00 AM</div>
-          <div class="bento-availability">
-            <span class="availability-dot"></span>
-            <span class="availability-text">Open to Roles</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bento Card 5: Azure Certification Widget (Row 3, spans 12 cols) -->
+      <!-- Azure Certification Widget (Row 3, spans 12 cols) -->
       <div class="bento-card bento-cert reveal">
         <div class="bento-badge"><i data-lucide="shield-check" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Cloud &amp; Infrastructure</div>
         <div class="bento-cert-layout">
@@ -358,7 +355,7 @@
           <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
             <a href="https://sap-tracker-mocha.vercel.app" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">Live Application <span style="font-size:0.75rem;">↗</span></a>
             <a href="https://github.com/utkarshkr13/sap-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
-            <button class="btn btn-primary btn-case-study" data-project="sap-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">View Case Study</button>
+            <button type="button" class="btn btn-primary btn-case-study" data-project="sap-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags" style="margin-top: 15px;">
             <span>Vanilla JS</span><span>Clerk v5</span><span>Firebase Realtime DB</span><span>Chart.js</span><span>SheetJS</span><span>Vercel</span>
@@ -386,7 +383,7 @@
           <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
             <a href="https://client-inbox-tracker.vercel.app" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">Live Application <span style="font-size:0.75rem;">↗</span></a>
             <a href="https://github.com/utkarshkr13/client-inbox-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
-            <button class="btn btn-primary btn-case-study" data-project="client-inbox-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">View Case Study</button>
+            <button type="button" class="btn btn-primary btn-case-study" data-project="client-inbox-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags" style="margin-top: 15px;">
             <span>Next.js 14</span><span>TypeScript</span><span>Neon Postgres</span><span>Prisma ORM</span><span>Gmail API</span><span>NextAuth</span><span>Tailwind CSS</span><span>PWA</span>
@@ -405,7 +402,7 @@
           <h3 class="project-card-title">Satellite Crop Classification</h3>
           <p class="project-card-desc">A research project using Sentinel-1 SAR and Sentinel-2 optical imagery on Google Earth Engine to support crop identification and vegetation analysis with machine learning methods.</p>
           <div style="margin-top: 12px; margin-bottom: 12px;">
-            <button class="btn btn-secondary btn-case-study" data-project="satellite-crop" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%;" data-cursor="hover">View Case Study</button>
+            <button type="button" class="btn btn-secondary btn-case-study" data-project="satellite-crop" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%;" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags">
             <span>Remote Sensing</span><span>ML</span><span>Google Earth Engine</span><span>Python</span>
@@ -424,7 +421,7 @@
           <h3 class="project-card-title">CityFlo BI Dashboards</h3>
           <p class="project-card-desc">Interactive dashboards built for location heat maps, market analysis, and pricing support using Python, scraping workflows, and PostgreSQL-backed data models.</p>
           <div style="margin-top: 12px; margin-bottom: 12px;">
-            <button class="btn btn-secondary btn-case-study" data-project="cityflo-bi" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%;" data-cursor="hover">View Case Study</button>
+            <button type="button" class="btn btn-secondary btn-case-study" data-project="cityflo-bi" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%;" data-cursor="hover">View Case Study</button>
           </div>
           <div class="project-card-tags">
             <span>Tableau</span><span>Python</span><span>PostgreSQL</span><span>BeautifulSoup</span><span>Selenium</span>
@@ -557,8 +554,8 @@
       Open to product, analytics, and automation work. If you are exploring enterprise product delivery, RTM workflows, or AI-enabled operational tools, feel free to connect.
     </p>
 
-    <div class="contact-layout reveal" style="display: flex; flex-wrap: wrap; gap: var(--space-xl); justify-content: space-between; align-items: flex-start; margin-top: var(--space-lg);">
-      <div class="contact-links" style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: var(--space-md);">
+    <div class="contact-layout reveal">
+      <div class="contact-links">
         <a href="mailto:hello@utkarsh.ind.in" class="contact-link magnetic-wrap" data-cursor="hover">
           <div class="contact-link-icon"><i data-lucide="mail" style="width:22px;height:22px"></i></div>
           <div class="contact-link-label">Email</div>
@@ -572,7 +569,7 @@
           <div class="contact-link-value">Utkarsh Kumar Rajput</div>
         </a>
         
-        <div class="qr-code-wrapper" onmouseover="this.classList.add('hovered')" onmouseout="this.classList.remove('hovered')" style="align-self: center; margin-top: var(--space-md); margin-bottom: 8px;">
+        <div class="qr-code-wrapper" onmouseover="this.classList.add('hovered')" onmouseout="this.classList.remove('hovered')">
           <span class="qr-text left">Scan</span>
           <img src="assets/linkedin_qr.png" alt="LinkedIn QR Code" width="130" height="130" style="position: relative; z-index: 2; border-radius: 8px;">
           <span class="qr-text right">Me!</span>
@@ -581,7 +578,7 @@
       </div>
       
       <!-- Inline Contact Form -->
-      <form action="https://formspree.io/f/mnjropbv" method="POST" class="contact-form" style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 16px; background: var(--bg-subtle); padding: 24px; border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
+      <form action="https://formspree.io/f/mnjropbv" method="POST" class="contact-form">
         <h3 style="margin-bottom: 8px; font-size: 1.2rem; font-weight: 600;">Send a message</h3>
         <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
         <input type="email" name="email" placeholder="Your Email" autocomplete="email" required>
@@ -690,8 +687,8 @@
 
   <!-- ===== Case Study Modal ===== -->
   <div class="project-modal" id="projectModal" aria-hidden="true" style="display: none;">
-    <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="modal-wrapper">
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true"></div>
+    <div class="modal-wrapper" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
       <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close Case Study" data-cursor="hover">
         <i data-lucide="x" style="width:20px;height:20px"></i>
       </button>
@@ -731,8 +728,8 @@
           </div>
         </div>
         <div class="modal-footer" style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-color);display:flex;gap:12px;justify-content:flex-end">
-          <a href="#" target="_blank" class="btn btn-primary" id="modalLiveLink" style="padding:10px 20px;font-size:0.85rem;height:auto">Live Application ↗</a>
-          <a href="#" target="_blank" class="btn btn-secondary" id="modalCodeLink" style="padding:10px 20px;font-size:0.85rem;height:auto">GitHub Repository ↗</a>
+          <a target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="modalLiveLink" hidden style="padding:10px 20px;font-size:0.85rem;height:auto">Live Application ↗</a>
+          <a target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="modalCodeLink" hidden style="padding:10px 20px;font-size:0.85rem;height:auto">GitHub Repository ↗</a>
         </div>
       </div>
     </div>
@@ -763,6 +760,7 @@
 
       var canvas = document.getElementById('heroGlobe');
       var videoBg = document.getElementById('hero-video-bg');
+      if (!videoBg) return;
       var fallbackTimer = null;
       var videoReady = false;
 
