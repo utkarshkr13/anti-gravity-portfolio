@@ -253,6 +253,12 @@ ul, ol {
   transition: background var(--theme-transition), border-color var(--theme-transition), box-shadow var(--theme-transition);
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
 .navbar.hidden {
   transform: translateX(-50%) translateY(-120%);
 }
@@ -291,6 +297,20 @@ ul, ol {
   background: var(--border-color);
   transition: background var(--dur-fast), transform var(--dur-fast);
   font-size: 1.1rem;
+}
+
+.nav-menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  background: var(--border-color);
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 600;
 }
 
 .theme-toggle:hover {

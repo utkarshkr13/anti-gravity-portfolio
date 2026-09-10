@@ -599,6 +599,50 @@
 
 /* Mobile: stacked CTAs stay clean; badge can wrap */
 @media (max-width: 640px) {
+  .nav-wrapper {
+    width: auto;
+    max-width: calc(100vw - 32px);
+  }
+  .navbar {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: end;
+    gap: 8px;
+    width: auto;
+    max-width: 100%;
+    padding: 6px;
+  }
+  .theme-toggle {
+    position: static;
+    width: 36px;
+    height: 36px;
+    box-shadow: none;
+  }
+  .nav-links {
+    display: none;
+  }
+  .navbar.menu-open {
+    width: min(100%, 358px);
+  }
+  .navbar.menu-open .nav-links {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    order: 3;
+    width: 100%;
+  }
+  .navbar.menu-open .nav-link {
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .nav-divider {
+    display: none;
+  }
+  .nav-menu-toggle {
+    display: inline-flex;
+    justify-content: center;
+  }
   .availability-badge {
     white-space: normal;
     max-width: 92vw;
@@ -618,5 +662,257 @@
   }
   .certs-container {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---------- Accessibility and small-screen guardrails ---------- */
+/* Keep decorative transforms from creating a page-level horizontal scroll area. */
+html,
+body {
+  max-width: 100%;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* A consistent, high-contrast keyboard focus treatment across the interactive UI. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.nav-link:focus-visible,
+.theme-toggle:focus-visible,
+.nav-menu-toggle:focus-visible {
+  outline-offset: 2px;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+@media (max-width: 640px) {
+  /* The horizontal project rail remains intentional; cards fit comfortably in it. */
+  .projects-grid {
+    gap: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    scroll-padding-inline: 2px;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-inline: contain;
+  }
+
+  .projects-grid .project-card {
+    flex-basis: min(320px, calc(100vw - 3rem));
+    max-width: calc(100vw - 3rem);
+  }
+
+  .project-card-body {
+    padding: 1.15rem;
+  }
+
+  .project-card-links {
+    gap: 0.65rem !important;
+  }
+
+  .project-card-links .btn {
+    min-height: 42px;
+    padding-inline: 14px !important;
+  }
+
+  /* Inline minimum widths in the markup must not force a 320px viewport to scroll. */
+  .contact-layout,
+  .contact-links,
+  .contact-form {
+    min-width: 0 !important;
+    width: 100%;
+  }
+
+  .contact-layout {
+    gap: 1.25rem !important;
+  }
+
+  .contact-link {
+    width: 100%;
+    min-width: 0;
+    padding: 1rem;
+  }
+
+  .contact-link-value {
+    overflow-wrap: anywhere;
+  }
+
+  .contact-form {
+    padding: 1.1rem !important;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    min-width: 0;
+    font-size: 16px; /* Prevent iOS input zoom. */
+  }
+
+  .contact-form .btn {
+    align-self: stretch !important;
+    min-height: 46px;
+  }
+}
+
+/* Respect motion preferences while leaving every section and control available. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-video-bg iframe,
+  .hero-video-bg #ytBgPlaceholder,
+  .hero-particles,
+  .project-card-image img {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .project-card-details {
+    max-height: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+/* ---------- Refined hero and contact layout ---------- */
+#liquidTitanium {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse at center, #000 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 60%, transparent 100%);
+}
+
+/* Blue fallback and glow keep the metal's palette consistent at its masked edges. */
+.hero:has(#liquidTitanium) {
+  background: radial-gradient(ellipse at 50% 45%, #10284b, #060c19 75%);
+}
+.hero:has(#liquidTitanium)::before { background: none; }
+.hero:has(#liquidTitanium) .hero-blur-tunnel { display: none; }
+[data-theme="light"] .hero:has(#liquidTitanium) {
+  background: radial-gradient(ellipse at 50% 45%, #f6faff, #e5efff 85%);
+}
+
+/* A CSS-only hero avoids video loading states and the distracting particle grid. */
+.hero {
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 58% 48% at 50% 44%, rgba(82, 151, 107, 0.18), transparent 72%),
+    radial-gradient(ellipse 78% 55% at 50% 110%, rgba(18, 59, 40, 0.22), transparent 76%),
+    #060a0b;
+}
+
+.hero::before {
+  z-index: -1;
+  opacity: 0.55;
+}
+
+.hero-video-bg,
+.hero-particles {
+  display: none !important;
+}
+
+.hero-blur-tunnel {
+  width: min(820px, 94vw) !important;
+  height: 360px !important;
+  opacity: 0.34 !important;
+  background: radial-gradient(ellipse at center, rgba(132, 192, 143, 0.12), transparent 68%) !important;
+}
+
+.hero-cta-group .btn {
+  min-width: 154px;
+  justify-content: center;
+}
+
+/* Let the final call-to-action use the full browser width without side gutters. */
+.contact-section {
+  width: 100vw;
+  max-width: none;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: clamp(1.25rem, 7vw, 8rem);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(1.25rem, 3vw, 3rem);
+  align-items: start;
+  width: min(100%, 1320px);
+  margin: var(--space-xl) auto 0;
+  text-align: left;
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.contact-link {
+  min-height: 160px;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.qr-code-wrapper {
+  grid-column: 1 / -1;
+  justify-self: center;
+  align-self: center;
+  margin: 0 !important;
+}
+
+.qr-code-wrapper + p {
+  grid-column: 1 / -1;
+  margin: -0.35rem 0 0 !important;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100%;
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+}
+
+.contact-form .btn {
+  align-self: flex-start !important;
+}
+
+@media (max-width: 760px) {
+  .contact-section {
+    padding-inline: var(--space-md);
+  }
+
+  .contact-layout,
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-link,
+  .qr-code-wrapper,
+  .qr-code-wrapper + p {
+    grid-column: auto;
   }
 }
