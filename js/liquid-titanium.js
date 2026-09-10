@@ -98,8 +98,9 @@
     gl.drawArrays(gl.TRIANGLES, 0, 6);
   }
   function resize() {
-    // Bound fragment cost even on high-DPI, ultrawide displays.
-    const scale = quality * Math.min(devicePixelRatio || 1, 1.5, 1600 / Math.max(hero.clientWidth, hero.clientHeight));
+    // Start at native CSS resolution. The adaptive controller lowers only under real load;
+    // a fixed width ceiling made wide displays upscale a low-resolution canvas.
+    const scale = quality * Math.min(devicePixelRatio || 1, 1.25);
     const width = Math.max(1, Math.round(hero.clientWidth * scale));
     const height = Math.max(1, Math.round(hero.clientHeight * scale));
     if (canvas.width !== width || canvas.height !== height) {
