@@ -403,41 +403,41 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 81231.3,
-      "change": 354.02,
-      "change_pct": 0.44,
+      "price": 81775.52,
+      "change": 898.25,
+      "change_pct": 1.11,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2634.94,
-      "change": 23.83,
-      "change_pct": 0.91,
+      "price": 2648.76,
+      "change": 37.65,
+      "change_pct": 1.44,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 111.42,
-      "change": -1.19,
-      "change_pct": -1.06,
+      "price": 112.03,
+      "change": -0.58,
+      "change_pct": -0.52,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 768.53,
-      "change": 7.53,
-      "change_pct": 0.99,
+      "price": 768.03,
+      "change": 7.03,
+      "change_pct": 0.92,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
       "price": 0.23,
-      "change": 0.0,
-      "change_pct": 1.06,
+      "change": 0.01,
+      "change_pct": 2.48,
       "is_positive": true
     },
     {
@@ -445,7 +445,7 @@
       "currency": "$",
       "price": 1.43,
       "change": 0.04,
-      "change_pct": 2.73,
+      "change_pct": 2.79,
       "is_positive": true
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.09,
       "change": 0.0,
-      "change_pct": 1.44,
+      "change_pct": 2.78,
       "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 1.13,
-      "change": -0.01,
-      "change_pct": -0.7,
-      "is_positive": false
+      "price": 1.14,
+      "change": 0.0,
+      "change_pct": 0.23,
+      "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 12.44,
-      "change": 0.21,
-      "change_pct": 1.74,
+      "price": 12.6,
+      "change": 0.38,
+      "change_pct": 3.08,
       "is_positive": true
     },
     {
