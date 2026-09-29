@@ -168,4 +168,3 @@ git push origin main
 ```
 
 Expected: GitHub reports `main -> main`.
-
