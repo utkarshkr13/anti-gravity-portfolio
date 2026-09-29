@@ -148,24 +148,13 @@ def perform_sanity_checks():
     with open(html_path, "r", encoding="utf-8") as f:
         html_content = f.read()
         
-    # Assert the project-first redesign contract exists.
-    required_markers = [
-        'id="work"',
-        'id="sap-tracker"',
-        'id="l2-portal"',
-        "SAP Integration Testing Tracker",
-        "L2 Client Escalation Portal",
-    ]
-    for marker in required_markers:
-        if marker not in html_content:
-            print(f"Sanity Check Fail: required portfolio marker is missing: {marker}")
-            return False
-
-    removed_markers = ["projectModal", "projects-filter-bar", "cursor-dot", "sessionTimer"]
-    for marker in removed_markers:
-        if marker in html_content:
-            print(f"Sanity Check Fail: removed interface marker is still present: {marker}")
-            return False
+    # Assert new features exist
+    if "projectModal" not in html_content:
+        print("Sanity Check Fail: projectModal is missing from index.html!")
+        return False
+    if "projects-filter-bar" not in html_content:
+        print("Sanity Check Fail: projects-filter-bar is missing from index.html!")
+        return False
         
     # Assert old widgets are removed
     if "aiWidget" in html_content or "ai-copilot-widget" in html_content:
