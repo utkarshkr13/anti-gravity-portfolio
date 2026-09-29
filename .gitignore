@@ -16,3 +16,6 @@ Profile Image.jpg
 __pycache__/
 *.pyc
 
+
+# Local test dependencies
+node_modules/

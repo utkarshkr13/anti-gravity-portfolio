@@ -164,10 +164,10 @@ def perform_sanity_checks():
         print("Sanity Check Fail: easterEggsPanel/easter-eggs-panel was found in index.html but should be removed!")
         return False
         
-    # 2. Verify css/style.css exists
-    css_path = os.path.join(PORTFOLIO_DIR, "css", "style.css")
+    # 2. Verify the active portfolio stylesheet exists
+    css_path = os.path.join(PORTFOLIO_DIR, "css", "portfolio.css")
     if not os.path.exists(css_path) or os.path.getsize(css_path) == 0:
-        print("Sanity Check Fail: css/style.css is missing or empty!")
+        print("Sanity Check Fail: css/portfolio.css is missing or empty!")
         return False
         
     # 3. Check JSON assets are valid

@@ -1,0 +1,12 @@
+{
+  "name": "utkarsh-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "check": "node --check js/portfolio.js",
+    "test": "node tests/portfolio.spec.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
