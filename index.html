@@ -58,6 +58,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
   <!-- ===== Film grain removed ===== -->
 
   <!-- ===== Liquid Sweep Transition ===== -->
@@ -108,7 +110,14 @@
   </div>
 
   <!-- ===== Hero Section ===== -->
-  <section class="hero" id="hero">
+  <main id="mainContent" class="portfolio-journey">
+  <div class="city-backdrop" aria-hidden="true">
+    <div class="city-skyline city-skyline-far"></div>
+    <div class="city-skyline city-skyline-near"></div>
+    <div class="city-road-glow"></div>
+  </div>
+
+  <section class="hero" id="hero" data-route="01 · Gateway">
 
     <canvas id="liquidTitanium" aria-hidden="true"></canvas>
     <script defer src="js/liquid-titanium.js"></script>
@@ -155,7 +164,7 @@
   </section>
 
   <!-- ===== About Section ===== -->
-  <section class="section" id="about">
+  <section class="section" id="about" data-route="02 · Colaba">
     <div class="section-label reveal">About Me</div>
     <h2 class="section-title reveal" style="font-size: 2.2rem; line-height: 1.3;">I understand what users need, write it clearly, and <span class="accent-text">follow it through with engineering and QA.</span></h2>
 
@@ -243,7 +252,7 @@
   </section>
 
   <!-- ===== Experience Section ===== -->
-  <section class="section" id="experience">
+  <section class="section" id="experience" data-route="03 · Fort">
     <div class="section-label reveal">Experience</div>
     <h2 class="section-title reveal">Where I've made <span class="accent-text">impact.</span></h2>
     <p class="section-subtitle reveal">A journey through enterprise tech, data analytics, and healthcare innovation.</p>
@@ -320,7 +329,7 @@
   </section>
 
   <!-- ===== Projects Section ===== -->
-  <section class="section" id="projects">
+  <section class="section" id="projects" data-route="04 · Lower Parel">
     <div class="section-label reveal">Projects & Certifications</div>
     <h2 class="section-title reveal">Things I've <span class="accent-text">built & earned.</span></h2>
     <p class="section-subtitle reveal">From AI-powered RTM platforms to satellite-based crop classification.</p>
@@ -464,7 +473,7 @@
 
 
   <!-- ===== Skills Section ===== -->
-  <section class="section" id="skills">
+  <section class="section" id="skills" data-route="05 · Bandra">
     <div class="section-label reveal">Skills &amp; Tools</div>
     <h2 class="section-title reveal">My <span class="accent-text">toolkit.</span></h2>
     <p class="section-subtitle reveal text-letter-reveal">A blend of business acumen, technical proficiency, and analytical thinking.</p>
@@ -547,7 +556,7 @@
   </section>
 
   <!-- ===== Contact Section ===== -->
-  <section class="section contact-section" id="contact">
+  <section class="section contact-section" id="contact" data-route="06 · Marine Drive">
     <div class="section-label reveal">Get in Touch</div>
     <h2 class="section-title reveal">Let's build something<br><span class="accent-text">great together.</span></h2>
     <p class="section-subtitle reveal" style="margin: 0 auto; text-align: center; max-width: 700px;">
@@ -600,6 +609,10 @@
       <div style="min-width: 80px;"></div>
     </div>
   </footer>
+  </main>
+
+  <div class="journey-progress" aria-hidden="true"><span></span></div>
+  <div class="journey-label" aria-hidden="true"><span class="journey-label-dot"></span><span id="journeyLocation">Mumbai · 01</span></div>
 
   <button class="scroll-top-btn" id="scrollTopBtn" data-cursor="hover" aria-label="Scroll to Top">
     <i data-lucide="arrow-up" style="width:20px;height:20px"></i>
@@ -748,6 +761,7 @@
   <script defer src="js/magnetic.js"></script>
   <script defer src="js/animations.js"></script>
   <script defer src="js/main.js"></script>
+  <script defer src="js/mumbai-journey.js"></script>
 
   <!-- ===== YouTube Background Video ===== -->
   <script>
