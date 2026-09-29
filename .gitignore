@@ -15,4 +15,5 @@ Profile Image.jpg
 .agents/
 __pycache__/
 *.pyc
+tmp/
 
