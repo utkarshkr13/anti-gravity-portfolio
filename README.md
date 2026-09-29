@@ -1,51 +1,46 @@
-# Utkarsh Kumar Rajput — Portfolio
+# Utkarsh Rajput — Portfolio
 
-A focused portfolio for product management, business analysis, enterprise delivery, and practical internal tools.
+Personal portfolio for business analysis, internal tools, and data projects.
 
-**Live site:** [utkarsh.ind.in](https://www.utkarsh.ind.in/)
+**Live site:** https://www.utkarsh.ind.in/
 
-## Highlights
+## Frontend
 
-- Product, workflow, and enterprise-delivery experience presented through clear case studies.
-- Responsive navigation with keyboard support, visible focus states, and an accessible mobile menu.
-- Dark and light themes.
-- Project filtering, case-study dialogs, smooth in-page navigation, and a contact form powered by Formspree.
-- An adaptive **Liquid Titanium** hero: a dependency-free WebGL surface with cursor response, blue reflections, light-theme support, reduced-motion support, off-screen pausing, WebGL recovery, and adaptive resolution.
+- Static semantic HTML, one stylesheet (`css/portfolio.css`), and one deferred script (`js/portfolio.js`).
+- No framework, build step, CDN scripts, webfonts, canvas effects, or scroll hijacking.
+- Responsive project layouts, dark/light themes, project filters, and native project-note dialogs.
+- Content, contact links, navigation, and expandable project notes work without JavaScript.
+- Keyboard focus, modal focus restoration, reduced motion, and accessible filter announcements.
 
-## Technology
+Legacy styles and scripts remain in the repository for reference but are not loaded by the page. Scheduled data-refresh workflows remain unchanged; their cached data is not displayed.
 
-- HTML, CSS, and modern browser JavaScript
-- GSAP, ScrollTrigger, Flip, and Lenis for progressive enhancement
-- Lucide for icons
-- Formspree for contact-form delivery
-- GitHub Pages for hosting
+## Local preview
 
-The essential portfolio content remains usable if optional animation libraries or WebGL are unavailable.
-
-## Run locally
-
-```bash
-git clone https://github.com/utkarshkr13/anti-gravity-portfolio.git
-cd anti-gravity-portfolio
-node -e "const http=require('http'),fs=require('fs'),path=require('path');http.createServer((req,res)=>fs.readFile(path.join(process.cwd(),req.url==='/'?'index.html':req.url),(e,d)=>e?(res.writeHead(404),res.end()):res.end(d))).listen(4173)"
+```sh
+python -m http.server 4173
 ```
 
-Open [http://localhost:4173](http://localhost:4173).
+Open http://localhost:4173.
 
-## Project structure
+## Checks
 
+With the local server running:
+
+```sh
+npm ci
+npx playwright install chromium
+npm run check
+npm test
 ```
-assets/     Images, résumé, QR code, and generated data
-css/        Base styling and interface refinements
-js/         Navigation, interactions, animation, and Liquid Titanium renderer
-index.html  Portfolio markup and integration points
-```
+
+The browser check covers desktop/mobile overflow, both themes, image loading, filtering, keyboard dialogs, theme persistence, reduced motion, and the no-JavaScript fallback.
+
+## Content
+
+Edit `index.html` for visible copy; keep `data/PROFILE.yaml` aligned with profile changes. Project-note content lives in native `details` elements in the HTML and is reused by the dialog.
+
+The repository currently has no résumé PDF. The page uses an email request link. Add a current PDF before introducing a download link. Project imagery is labeled as a preview. Numerical performance claims have been omitted pending supporting measurements.
 
 ## Deployment
 
-Pushes to `main` are published through GitHub Pages. The custom domain is configured in `CNAME`.
-
-## Contact
-
-- Email: [hello@utkarsh.ind.in](mailto:hello@utkarsh.ind.in)
-- LinkedIn: [Utkarsh Kumar Rajput](https://linkedin.com/in/utkarsh-kumar-rajput)
+The site uses GitHub Pages with the custom domain in `CNAME`. Merge the redesign branch through a pull request to publish it through the existing deployment setup.
