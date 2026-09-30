@@ -10,7 +10,7 @@ A focused portfolio for product management, business analysis, enterprise delive
 - Responsive navigation with keyboard support, visible focus states, and an accessible mobile menu.
 - Dark and light themes.
 - Project filtering, case-study dialogs, smooth in-page navigation, and a contact form powered by Formspree.
-- An illustrated Mumbai harbour with the Gateway of India, Sea Link, waterfront reflections, pointer parallax and scroll response. Cached artwork, adaptive resolution, a pause control and reduced-motion support keep the scene lightweight.
+- An original cinematic Mumbai environment with the Gateway of India and Sea Link, animated water, atmospheric mist, pointer parallax and scroll-driven camera movement. A WebGL texture pass, adaptive resolution, a pause control, an image fallback and reduced-motion support keep the scene usable across devices.
 
 ## Technology
 

@@ -1,4 +1,7 @@
 /* A single fixed harbour scene. Page content, navigation and dialogs sit above it. */
+[data-theme="dark"] { color-scheme: dark; }
+[data-theme="light"] { color-scheme: light; }
+
 .city-backdrop {
   position: fixed;
   inset: 0;
@@ -9,9 +12,34 @@
 }
 
 .city-backdrop canvas {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.city-backdrop img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transform: scale(1.035);
+}
+.city-backdrop.scene-ready canvas { opacity: 1; }
+.city-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7,12,18,0.84), rgba(7,12,18,0.6) 30%, rgba(7,12,18,0.1) 62%, rgba(7,12,18,0.02)),
+    linear-gradient(0deg, rgba(7,12,18,0.45), transparent 28%);
+}
+[data-theme="light"] .city-backdrop::after {
+  background: linear-gradient(90deg, rgba(245,246,248,0.96), rgba(245,246,248,0.88) 32%, rgba(245,246,248,0.18) 70%, rgba(245,246,248,0.03));
 }
 
 #cursorTrailCanvas { display: none; }
@@ -27,7 +55,16 @@
 [data-theme="light"] .portfolio-journey .hero {
   min-height: 100svh;
   background: transparent;
+  align-items: flex-start;
+  text-align: left;
+  padding-inline: clamp(2rem, 7vw, 8rem);
 }
+
+.portfolio-journey .hero-name { font-size: clamp(3.4rem, 7.5vw, 7.5rem); }
+.portfolio-journey .hero-subtitle { width: 42%; max-width: 490px; line-height: 1.65; }
+.portfolio-journey .availability-badge { max-width: 44%; white-space: normal; text-align: left; }
+.portfolio-journey .hero-cta-group { max-width: 48%; justify-content: flex-start; }
+.portfolio-journey .hero-scroll-indicator { display: none; }
 
 .portfolio-journey .hero::before,
 .portfolio-journey .hero-blur-tunnel {
@@ -176,7 +213,14 @@
 }
 
 @media (max-width: 600px) {
-  .portfolio-journey .hero { padding-bottom: 100px; }
+  .portfolio-journey .hero { padding: 120px 24px 110px; justify-content: flex-start; }
+  .portfolio-journey .hero-subtitle { width: 100%; }
+  .portfolio-journey .availability-badge { max-width: 100%; }
+  .portfolio-journey .hero-cta-group { max-width: 100%; width: 100%; gap: 10px; }
+  .portfolio-journey .hero-cta-group .btn { min-height: 44px; }
+  .city-backdrop img { object-position: 68% 50%; }
+  .city-backdrop::after { background: linear-gradient(180deg, rgba(7,12,18,0.86), rgba(7,12,18,0.7) 52%, rgba(7,12,18,0.25)); }
+  [data-theme="light"] .city-backdrop::after { background: linear-gradient(180deg, rgba(245,246,248,0.95), rgba(245,246,248,0.85) 52%, rgba(245,246,248,0.35)); }
   .portfolio-journey .section-title { font-size: clamp(1.5rem, 6.5vw, 2rem) !important; }
   .journey-label { font-size: 8px; gap: 8px; }
   .journey-label button { padding-left: 8px; }
@@ -184,4 +228,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .portfolio-journey .project-card-image img { transform: none !important; transition: none; }
+  .city-backdrop img { transform: none !important; }
+  .city-backdrop canvas { transition: none; }
 }
