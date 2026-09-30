@@ -50,6 +50,7 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/ui-revamp.css">
+  <link rel="stylesheet" href="css/mumbai-journey.css">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,17 +111,13 @@
   </div>
 
   <!-- ===== Hero Section ===== -->
-  <main id="mainContent" class="portfolio-journey">
   <div class="city-backdrop" aria-hidden="true">
-    <div class="city-skyline city-skyline-far"></div>
-    <div class="city-skyline city-skyline-near"></div>
-    <div class="city-road-glow"></div>
+    <canvas id="mumbaiHarbour"></canvas>
   </div>
+  <main id="mainContent" class="portfolio-journey">
 
   <section class="hero" id="hero" data-route="01 · Gateway">
 
-    <canvas id="liquidTitanium" aria-hidden="true"></canvas>
-    <script defer src="js/liquid-titanium.js"></script>
     <div class="hero-blur-tunnel"></div>
 
     <div class="hero-greeting reveal">Hello, I'm</div>
@@ -612,7 +609,7 @@
   </main>
 
   <div class="journey-progress" aria-hidden="true"><span></span></div>
-  <div class="journey-label" aria-hidden="true"><span class="journey-label-dot"></span><span id="journeyLocation">Mumbai · 01</span></div>
+  <div class="journey-label"><span id="journeyLocation" aria-hidden="true">Mumbai · Gateway</span><button id="sceneMotionToggle" type="button" aria-label="Pause background animation" aria-pressed="false">Pause scene</button></div>
 
   <button class="scroll-top-btn" id="scrollTopBtn" data-cursor="hover" aria-label="Scroll to Top">
     <i data-lucide="arrow-up" style="width:20px;height:20px"></i>
@@ -761,6 +758,7 @@
   <script defer src="js/magnetic.js"></script>
   <script defer src="js/animations.js"></script>
   <script defer src="js/main.js"></script>
+  <script defer src="js/mumbai-harbour.js"></script>
   <script defer src="js/mumbai-journey.js"></script>
 
   <!-- ===== YouTube Background Video ===== -->

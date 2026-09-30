@@ -9,10 +9,14 @@
 
   /* ---------- Hero animations ---------- */
   function initHeroAnimations() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set('.hero-title-inner, .hero .reveal', { opacity: 1, y: 0 });
+      return;
+    }
     const tl = gsap.timeline({ delay: 0.2 });
 
     // Text reveal — slide up each line
-    tl.to('.hero-title-inner', {
+    tl.fromTo('.hero-title-inner', { y: 60 }, {
       y: 0,
       duration: 1.2,
       ease: 'power4.out',
@@ -20,7 +24,7 @@
     });
 
     // Fade in greeting, subtitle, CTAs, scroll indicator
-    tl.to('.hero .reveal', {
+    tl.fromTo('.hero .reveal', { opacity: 0, y: 24 }, {
       opacity: 1,
       y: 0,
       duration: 0.8,
@@ -513,6 +517,7 @@
 
   /* ---------- Skill tags floating animation ---------- */
   function initSkillTagFloat() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     gsap.utils.toArray('.skill-tag').forEach((tag, i) => {
       gsap.to(tag, {
         y: -3,
@@ -631,7 +636,7 @@
     initActiveNavLink();
     initSkillTagFloat();
     initTimelineStagger();
-    initTextLetterReveals();
+    // Body copy keeps normal word wrapping; whole-element reveals handle entry.
   };
 
   // Called by the YouTube fallback handler if video fails to load

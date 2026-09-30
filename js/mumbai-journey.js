@@ -18,29 +18,18 @@
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const fraction = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
     journey.style.setProperty('--journey-progress', fraction.toFixed(4));
-    progress.style.transform = `scaleY(${fraction})`;
-    const heroCanvas = document.getElementById('liquidTitanium');
-    if (heroCanvas) heroCanvas.style.opacity = String(0.22 * Math.max(0, 1 - fraction * 1.6));
+    progress.style.transform = `scaleX(${fraction})`;
+    window.dispatchEvent(new CustomEvent('journey-progress', { detail: fraction }));
+    const marker = window.innerHeight * 0.42;
+    const current = sections.slice().reverse().find(section => section.getBoundingClientRect().top <= marker);
+    setActiveSection(current || sections[0]);
   };
 
   const setActiveSection = (section) => {
     if (!section || activeSection === section.id) return;
     activeSection = section.id;
-    locationLabel.textContent = `Mumbai · ${section.dataset.route}`;
+    locationLabel.textContent = `Mumbai · ${section.dataset.route.replace(/^\d+\s*·\s*/, '')}`;
   };
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    if (!entries.some((entry) => entry.isIntersecting)) return;
-    const marker = window.innerHeight * 0.5;
-    const current = sections.reduce((nearest, section) => {
-      const distance = Math.abs(section.getBoundingClientRect().top - marker);
-      return !nearest || distance < nearest.distance ? { section, distance } : nearest;
-    }, null);
-    if (current) setActiveSection(current.section);
-  }, { rootMargin: '-20% 0px -55% 0px', threshold: [0, 0.05, 0.2] });
-
-  sections.forEach((section) => sectionObserver.observe(section));
-  setActiveSection(sections[0]);
 
   if (window.lenis && typeof window.lenis.on === 'function') {
     window.lenis.on('scroll', updateScroll);

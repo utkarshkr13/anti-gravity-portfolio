@@ -410,81 +410,8 @@
   /* ============================================================
      2. LENIS SKEW & GSAP LETTER-BY-LETTER REVEAL
      ============================================================ */
-  if (lenis && window.gsap) {
-  let currentSkew = 0;
-  let targetSkew = 0;
-  
-  lenis.on('scroll', (e) => {
-    targetSkew = e.velocity * 0.008; // scale factor
-    targetSkew = Math.max(-8, Math.min(8, targetSkew)); // clamp
-  });
-  
-  gsap.ticker.add(() => {
-    currentSkew += (targetSkew - currentSkew) * 0.08;
-    // Apply scroll skew to interactive cards
-    gsap.set('.project-card, .timeline-card, .stat-card, .cert-card', {
-      skewY: currentSkew,
-      force3D: true
-    });
-    targetSkew *= 0.92; // Damping
-  });
-
-  // Letter by Letter scroll reveal on headings
-  function initLetterByLetterReveal() {
-    const headings = document.querySelectorAll('.section-title');
-    headings.forEach(heading => {
-      // Don't process if already split
-      if (heading.querySelector('.char-span')) return;
-      
-      const splitNode = (node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const chars = node.textContent.split('');
-          const fragment = document.createDocumentFragment();
-          chars.forEach(char => {
-            const span = document.createElement('span');
-            span.className = 'char-span';
-            span.style.display = 'inline-block';
-            span.style.transformOrigin = 'center bottom';
-            span.style.whiteSpace = char === ' ' ? 'pre' : 'normal';
-            span.textContent = char;
-            fragment.appendChild(span);
-          });
-          node.parentNode.replaceChild(fragment, node);
-        } else {
-          const children = Array.from(node.childNodes);
-          children.forEach(child => splitNode(child));
-        }
-      };
-      
-      splitNode(heading);
-      const chars = heading.querySelectorAll('.char-span');
-      
-      gsap.fromTo(chars, 
-        { 
-          opacity: 0, 
-          y: 35, 
-          rotateX: -45, 
-          scale: 0.9 
-        },
-        {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          scale: 1,
-          duration: 0.7,
-          stagger: 0.015,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: heading,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    });
-  }
-  initLetterByLetterReveal();
-  }
+  // Section reveals are owned by animations.js. Preserve normal word wrapping
+  // and leave card transforms available for reveals, filters and hover feedback.
 
 
   /* ============================================================

@@ -1,0 +1,187 @@
+/* A single fixed harbour scene. Page content, navigation and dialogs sit above it. */
+.city-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #08131d;
+}
+
+.city-backdrop canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#cursorTrailCanvas { display: none; }
+
+.portfolio-journey {
+  position: relative;
+  z-index: 1;
+  --pointer-x: 0px;
+  --pointer-y: 0px;
+}
+
+.portfolio-journey .hero,
+[data-theme="light"] .portfolio-journey .hero {
+  min-height: 100svh;
+  background: transparent;
+}
+
+.portfolio-journey .hero::before,
+.portfolio-journey .hero-blur-tunnel {
+  display: none;
+}
+
+.portfolio-journey .hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Readable even when an animation CDN fails; GSAP sets its own entry states. */
+.portfolio-journey :is(.reveal, .reveal-left, .reveal-right, .reveal-scale) {
+  opacity: 1;
+  transform: none;
+}
+
+.portfolio-journey .hero-title-inner { transform: none; }
+
+.portfolio-journey .section {
+  background: linear-gradient(90deg, transparent, rgba(8, 19, 29, 0.9) 15%, rgba(8, 19, 29, 0.9) 85%, transparent);
+  scroll-margin-top: 100px;
+}
+
+[data-theme="light"] .portfolio-journey .section {
+  background: linear-gradient(90deg, transparent, rgba(245, 246, 248, 0.93) 15%, rgba(245, 246, 248, 0.93) 85%, transparent);
+}
+
+.portfolio-journey .footer {
+  background: var(--bg-primary);
+}
+
+.portfolio-journey .project-card-image img {
+  --image-x: 0deg;
+  --image-y: 0deg;
+  transform: perspective(760px) rotateX(var(--image-x)) rotateY(var(--image-y)) scale(1.02);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.portfolio-journey .project-card:hover .project-card-image img {
+  transform: perspective(760px) rotateX(var(--image-x)) rotateY(var(--image-y)) scale(1.07);
+}
+
+.journey-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 2px;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.journey-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.journey-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: fixed;
+  left: 24px;
+  bottom: 20px;
+  z-index: 2;
+  padding: 7px 12px;
+  color: var(--text-secondary);
+  background: var(--bg-nav);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font: 500 10px/1.4 var(--font-body);
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+
+.journey-label button {
+  pointer-events: auto;
+  color: var(--text-primary);
+  background: transparent;
+  border: 0;
+  border-left: 1px solid var(--border-color);
+  padding: 6px 0 6px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+.journey-label button:hover { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .journey-label button { display: none; }
+}
+
+.journey-label-dot { display: none; }
+
+.skip-link {
+  position: fixed;
+  z-index: 10001;
+  left: 12px;
+  top: 12px;
+  padding: 10px 14px;
+  color: var(--bg-primary);
+  background: var(--text-primary);
+  border-radius: 6px;
+  transform: translateY(-160%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* Keep the theme control in the navigation's layout, including tablet widths. */
+.nav-wrapper { width: 100%; left: 0; }
+.navbar { overflow: visible; }
+.theme-toggle {
+  position: relative;
+  inset: auto;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+}
+
+@media (max-width: 820px) {
+  .nav-wrapper { left: 16px; right: 16px; width: auto; max-width: none; }
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: auto;
+    max-width: 100%;
+    padding: 6px;
+    overflow: visible;
+  }
+  .nav-links { display: none; }
+  .nav-divider { display: none; }
+  .nav-menu-toggle { display: inline-flex; }
+  .navbar.menu-open { width: min(100%, 370px); border-radius: 20px; }
+  .navbar.menu-open .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    order: 3;
+    width: 100%;
+    gap: 4px;
+  }
+  .navbar.menu-open .nav-link { padding: 12px; text-align: center; }
+  .theme-toggle { position: relative; inset: auto; width: 36px; height: 36px; }
+  .journey-label { left: 12px; bottom: 12px; font-size: 9px; }
+}
+
+@media (max-width: 600px) {
+  .portfolio-journey .hero { padding-bottom: 100px; }
+  .portfolio-journey .section-title { font-size: clamp(1.5rem, 6.5vw, 2rem) !important; }
+  .journey-label { font-size: 8px; gap: 8px; }
+  .journey-label button { padding-left: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-journey .project-card-image img { transform: none !important; transition: none; }
+}
