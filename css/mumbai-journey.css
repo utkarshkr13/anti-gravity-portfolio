@@ -130,7 +130,8 @@
   align-items: center;
   gap: 12px;
   position: fixed;
-  left: 24px;
+  right: 24px;
+  left: auto;
   bottom: 20px;
   z-index: 2;
   padding: 7px 12px;
@@ -209,7 +210,7 @@
   }
   .navbar.menu-open .nav-link { padding: 12px; text-align: center; }
   .theme-toggle { position: relative; inset: auto; width: 36px; height: 36px; }
-  .journey-label { left: 12px; bottom: 12px; font-size: 9px; }
+  .journey-label { left: auto; right: 12px; bottom: 12px; font-size: 9px; }
 }
 
 @media (max-width: 600px) {
