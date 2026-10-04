@@ -403,74 +403,74 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 84801.99,
-      "change": 59.52,
-      "change_pct": 0.07,
+      "price": 85267.81,
+      "change": 525.34,
+      "change_pct": 0.62,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2691.46,
-      "change": 4.62,
-      "change_pct": 0.17,
+      "price": 2701.31,
+      "change": 14.47,
+      "change_pct": 0.54,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 120.57,
-      "change": 0.93,
-      "change_pct": 0.78,
+      "price": 121.28,
+      "change": 1.64,
+      "change_pct": 1.37,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 784.61,
-      "change": -2.61,
-      "change_pct": -0.33,
-      "is_positive": false
+      "price": 788.95,
+      "change": 1.73,
+      "change_pct": 0.22,
+      "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
-      "price": 0.24,
-      "change": -0.0,
-      "change_pct": -0.4,
-      "is_positive": false
+      "price": 0.25,
+      "change": 0.0,
+      "change_pct": 0.36,
+      "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.49,
-      "change": 0.0,
-      "change_pct": 0.26,
+      "price": 1.5,
+      "change": 0.02,
+      "change_pct": 1.02,
       "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
       "price": 0.09,
-      "change": -0.0,
-      "change_pct": -0.15,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.58,
+      "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 1.18,
-      "change": -0.0,
-      "change_pct": -0.34,
-      "is_positive": false
+      "price": 1.19,
+      "change": 0.01,
+      "change_pct": 0.64,
+      "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 13.99,
-      "change": -0.12,
-      "change_pct": -0.88,
-      "is_positive": false
+      "price": 14.12,
+      "change": 0.01,
+      "change_pct": 0.05,
+      "is_positive": true
     },
     {
       "symbol": "RELIANCE",
