@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 81108.17,
-      "change": -464.93,
-      "change_pct": -0.57,
+      "price": 80899.52,
+      "change": -673.58,
+      "change_pct": -0.83,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2369.64,
-      "change": -48.79,
-      "change_pct": -2.02,
+      "price": 2358.83,
+      "change": -59.6,
+      "change_pct": -2.46,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 102.27,
-      "change": -1.82,
-      "change_pct": -1.75,
+      "price": 102.42,
+      "change": -1.67,
+      "change_pct": -1.6,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 718.08,
-      "change": -11.23,
-      "change_pct": -1.54,
+      "price": 716.67,
+      "change": -12.64,
+      "change_pct": -1.73,
       "is_positive": false
     },
     {
@@ -437,15 +437,15 @@
       "currency": "$",
       "price": 0.22,
       "change": -0.01,
-      "change_pct": -3.61,
+      "change_pct": -4.04,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.31,
-      "change": -0.02,
-      "change_pct": -1.78,
+      "price": 1.3,
+      "change": -0.03,
+      "change_pct": -1.98,
       "is_positive": false
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -2.35,
+      "change_pct": -2.27,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 1.11,
+      "price": 1.1,
       "change": -0.04,
-      "change_pct": -3.43,
+      "change_pct": -3.9,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 12.14,
-      "change": -0.28,
-      "change_pct": -2.23,
+      "price": 12.05,
+      "change": -0.37,
+      "change_pct": -2.94,
       "is_positive": false
     },
     {
@@ -564,9 +564,9 @@
       "symbol": "BAJFINANCE",
       "currency": "₹",
       "price": 957.0,
-      "change": -23.0,
-      "change_pct": -2.35,
-      "is_positive": false
+      "change": 5.1,
+      "change_pct": 0.54,
+      "is_positive": true
     },
     {
       "symbol": "BAJAJFINSV",
@@ -612,9 +612,9 @@
       "symbol": "BAJAJ-AUTO",
       "currency": "₹",
       "price": 10250.0,
-      "change": -66.0,
-      "change_pct": -0.64,
-      "is_positive": false
+      "change": 20.0,
+      "change_pct": 0.2,
+      "is_positive": true
     },
     {
       "symbol": "HEROMOTOCO",
@@ -636,9 +636,9 @@
       "symbol": "TVSMOTOR",
       "currency": "₹",
       "price": 3969.7,
-      "change": -41.3,
-      "change_pct": -1.03,
-      "is_positive": false
+      "change": 0.0,
+      "change_pct": 0.0,
+      "is_positive": true
     },
     {
       "symbol": "ITC",
@@ -700,16 +700,16 @@
       "symbol": "GODREJCP",
       "currency": "₹",
       "price": 871.3,
-      "change": 16.3,
-      "change_pct": 1.91,
+      "change": 1.3,
+      "change_pct": 0.15,
       "is_positive": true
     },
     {
       "symbol": "TATACONSUM",
       "currency": "₹",
       "price": 987.9,
-      "change": 25.85,
-      "change_pct": 2.69,
+      "change": 1.85,
+      "change_pct": 0.19,
       "is_positive": true
     },
     {
@@ -756,16 +756,16 @@
       "symbol": "LUPIN",
       "currency": "₹",
       "price": 1953.2,
-      "change": 3.2,
-      "change_pct": 0.16,
+      "change": 10.2,
+      "change_pct": 0.52,
       "is_positive": true
     },
     {
       "symbol": "MAXHEALTH",
       "currency": "₹",
       "price": 852.5,
-      "change": -11.5,
-      "change_pct": -1.33,
+      "change": -0.5,
+      "change_pct": -0.06,
       "is_positive": false
     },
     {
@@ -844,8 +844,8 @@
       "symbol": "GRASIM",
       "currency": "₹",
       "price": 2873.0,
-      "change": -34.0,
-      "change_pct": -1.17,
+      "change": -1.9,
+      "change_pct": -0.07,
       "is_positive": false
     },
     {
