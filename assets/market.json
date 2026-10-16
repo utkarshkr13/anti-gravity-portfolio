@@ -403,33 +403,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 82314.9,
-      "change": 741.8,
-      "change_pct": 0.91,
+      "price": 82279.82,
+      "change": 147.59,
+      "change_pct": 0.18,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2458.52,
-      "change": 40.09,
-      "change_pct": 1.66,
+      "price": 2442.86,
+      "change": 3.01,
+      "change_pct": 0.12,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 105.92,
-      "change": 1.83,
-      "change_pct": 1.76,
+      "price": 105.54,
+      "change": 0.21,
+      "change_pct": 0.2,
       "is_positive": true
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 730.8,
-      "change": 1.49,
-      "change_pct": 0.2,
+      "price": 729.3,
+      "change": 0.65,
+      "change_pct": 0.09,
       "is_positive": true
     },
     {
@@ -437,15 +437,15 @@
       "currency": "$",
       "price": 0.23,
       "change": 0.0,
-      "change_pct": 0.2,
+      "change_pct": 0.1,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
       "price": 1.34,
-      "change": 0.01,
-      "change_pct": 0.69,
+      "change": 0.0,
+      "change_pct": 0.33,
       "is_positive": true
     },
     {
@@ -453,24 +453,24 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -0.37,
+      "change_pct": -0.02,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 1.14,
-      "change": -0.01,
-      "change_pct": -0.75,
-      "is_positive": false
+      "price": 1.15,
+      "change": 0.0,
+      "change_pct": 0.24,
+      "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 12.53,
-      "change": 0.11,
-      "change_pct": 0.91,
-      "is_positive": true
+      "price": 12.44,
+      "change": -0.01,
+      "change_pct": -0.05,
+      "is_positive": false
     },
     {
       "symbol": "RELIANCE",
@@ -507,8 +507,8 @@
     {
       "symbol": "HCLTECH",
       "currency": "₹",
-      "price": 1360.0,
-      "change": 15.0,
+      "price": 1348.0,
+      "change": 14.87,
       "change_pct": 1.12,
       "is_positive": true
     },
