@@ -403,49 +403,49 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 80165.12,
-      "change": -914.86,
-      "change_pct": -1.13,
+      "price": 80444.63,
+      "change": -635.34,
+      "change_pct": -0.78,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2319.79,
-      "change": -64.66,
-      "change_pct": -2.71,
+      "price": 2342.07,
+      "change": -42.38,
+      "change_pct": -1.78,
       "is_positive": false
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 100.37,
-      "change": -2.41,
-      "change_pct": -2.34,
+      "price": 101.37,
+      "change": -1.41,
+      "change_pct": -1.37,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 725.03,
-      "change": -13.79,
-      "change_pct": -1.87,
+      "price": 730.74,
+      "change": -8.08,
+      "change_pct": -1.09,
       "is_positive": false
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
-      "price": 0.2,
-      "change": -0.01,
-      "change_pct": -2.94,
+      "price": 0.21,
+      "change": -0.0,
+      "change_pct": -1.88,
       "is_positive": false
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.28,
-      "change": -0.02,
-      "change_pct": -1.41,
+      "price": 1.29,
+      "change": -0.0,
+      "change_pct": -0.22,
       "is_positive": false
     },
     {
@@ -453,23 +453,23 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -2.74,
+      "change_pct": -1.64,
       "is_positive": false
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 1.03,
+      "price": 1.04,
       "change": -0.05,
-      "change_pct": -4.83,
+      "change_pct": -4.17,
       "is_positive": false
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 11.41,
-      "change": -0.4,
-      "change_pct": -3.38,
+      "price": 11.57,
+      "change": -0.24,
+      "change_pct": -2.07,
       "is_positive": false
     },
     {
@@ -631,6 +631,14 @@
       "change": -33.5,
       "change_pct": -0.47,
       "is_positive": false
+    },
+    {
+      "symbol": "TVSMOTOR",
+      "currency": "₹",
+      "price": 3980.2,
+      "change": 2.2,
+      "change_pct": 0.06,
+      "is_positive": true
     },
     {
       "symbol": "ITC",
