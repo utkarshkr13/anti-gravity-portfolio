@@ -28,8 +28,8 @@
       "symbol": "GOOGL",
       "currency": "$",
       "price": 279.84,
-      "change": -1.27,
-      "change_pct": -0.45,
+      "change": -1.25,
+      "change_pct": -0.44,
       "is_positive": false
     },
     {
@@ -139,9 +139,9 @@
     {
       "symbol": "CRM",
       "currency": "$",
-      "price": 228.16,
-      "change": -3.18,
-      "change_pct": -1.37,
+      "price": 229.17,
+      "change": -2.17,
+      "change_pct": -0.94,
       "is_positive": false
     },
     {
@@ -171,9 +171,9 @@
     {
       "symbol": "SNOW",
       "currency": "$",
-      "price": 304.58,
-      "change": -8.67,
-      "change_pct": -2.77,
+      "price": 306.08,
+      "change": -7.17,
+      "change_pct": -2.29,
       "is_positive": false
     },
     {
@@ -267,9 +267,9 @@
     {
       "symbol": "COIN",
       "currency": "$",
-      "price": 140.35,
-      "change": -7.88,
-      "change_pct": -5.32,
+      "price": 143.54,
+      "change": -4.69,
+      "change_pct": -3.16,
       "is_positive": false
     },
     {
@@ -323,17 +323,17 @@
     {
       "symbol": "COST",
       "currency": "$",
-      "price": 1014.95,
-      "change": 1.95,
-      "change_pct": 0.19,
-      "is_positive": true
+      "price": 1012.28,
+      "change": -0.72,
+      "change_pct": -0.07,
+      "is_positive": false
     },
     {
       "symbol": "SBUX",
       "currency": "$",
-      "price": 104.11,
-      "change": -1.6,
-      "change_pct": -1.51,
+      "price": 103.67,
+      "change": -2.04,
+      "change_pct": -1.93,
       "is_positive": false
     },
     {
@@ -347,9 +347,9 @@
     {
       "symbol": "CAT",
       "currency": "$",
-      "price": 621.02,
-      "change": -6.3,
-      "change_pct": -1.0,
+      "price": 622.75,
+      "change": -4.57,
+      "change_pct": -0.73,
       "is_positive": false
     },
     {
@@ -403,73 +403,73 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 76808.87,
-      "change": -982.51,
-      "change_pct": -1.26,
+      "price": 77143.3,
+      "change": -59.1,
+      "change_pct": -0.08,
       "is_positive": false
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2237.59,
-      "change": -11.16,
-      "change_pct": -0.5,
-      "is_positive": false
+      "price": 2242.15,
+      "change": 0.97,
+      "change_pct": 0.04,
+      "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 94.41,
-      "change": -1.08,
-      "change_pct": -1.13,
+      "price": 96.12,
+      "change": -0.1,
+      "change_pct": -0.1,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 699.81,
-      "change": 2.23,
-      "change_pct": 0.32,
+      "price": 708.34,
+      "change": 5.0,
+      "change_pct": 0.71,
       "is_positive": true
     },
     {
       "symbol": "ADA-USD",
       "currency": "$",
-      "price": 0.19,
+      "price": 0.2,
       "change": 0.0,
-      "change_pct": 1.22,
+      "change_pct": 0.11,
       "is_positive": true
     },
     {
       "symbol": "XRP-USD",
       "currency": "$",
-      "price": 1.25,
-      "change": 0.01,
-      "change_pct": 1.01,
+      "price": 1.26,
+      "change": 0.0,
+      "change_pct": 0.26,
       "is_positive": true
     },
     {
       "symbol": "DOGE-USD",
       "currency": "$",
-      "price": 0.07,
-      "change": -0.0,
-      "change_pct": -0.28,
-      "is_positive": false
+      "price": 0.08,
+      "change": 0.0,
+      "change_pct": 0.42,
+      "is_positive": true
     },
     {
       "symbol": "DOT-USD",
       "currency": "$",
-      "price": 0.97,
-      "change": 0.06,
-      "change_pct": 6.48,
+      "price": 0.98,
+      "change": 0.0,
+      "change_pct": 0.44,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 11.07,
-      "change": 0.48,
-      "change_pct": 4.53,
+      "price": 11.67,
+      "change": 0.24,
+      "change_pct": 2.07,
       "is_positive": true
     },
     {
