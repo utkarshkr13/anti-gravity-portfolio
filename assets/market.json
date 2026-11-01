@@ -217,14 +217,6 @@
       "is_positive": false
     },
     {
-      "symbol": "MA",
-      "currency": "$",
-      "price": 638.01,
-      "change": -4.42,
-      "change_pct": -0.69,
-      "is_positive": false
-    },
-    {
       "symbol": "BAC",
       "currency": "$",
       "price": 50.01,
@@ -403,33 +395,33 @@
     {
       "symbol": "BTC-USD",
       "currency": "$",
-      "price": 77917.13,
-      "change": 476.2,
-      "change_pct": 0.61,
+      "price": 77788.82,
+      "change": 347.89,
+      "change_pct": 0.45,
       "is_positive": true
     },
     {
       "symbol": "ETH-USD",
       "currency": "$",
-      "price": 2264.87,
-      "change": 12.28,
-      "change_pct": 0.55,
+      "price": 2260.91,
+      "change": 8.32,
+      "change_pct": 0.37,
       "is_positive": true
     },
     {
       "symbol": "SOL-USD",
       "currency": "$",
-      "price": 94.48,
-      "change": -0.87,
-      "change_pct": -0.92,
+      "price": 94.2,
+      "change": -1.15,
+      "change_pct": -1.21,
       "is_positive": false
     },
     {
       "symbol": "BNB-USD",
       "currency": "$",
-      "price": 710.21,
-      "change": 7.58,
-      "change_pct": 1.08,
+      "price": 707.12,
+      "change": 4.49,
+      "change_pct": 0.64,
       "is_positive": true
     },
     {
@@ -437,7 +429,7 @@
       "currency": "$",
       "price": 0.19,
       "change": -0.0,
-      "change_pct": -0.1,
+      "change_pct": -0.41,
       "is_positive": false
     },
     {
@@ -445,7 +437,7 @@
       "currency": "$",
       "price": 1.25,
       "change": -0.0,
-      "change_pct": -0.18,
+      "change_pct": -0.15,
       "is_positive": false
     },
     {
@@ -453,7 +445,7 @@
       "currency": "$",
       "price": 0.08,
       "change": -0.0,
-      "change_pct": -0.07,
+      "change_pct": -0.43,
       "is_positive": false
     },
     {
@@ -461,15 +453,15 @@
       "currency": "$",
       "price": 0.95,
       "change": 0.0,
-      "change_pct": 0.21,
+      "change_pct": 0.39,
       "is_positive": true
     },
     {
       "symbol": "LINK-USD",
       "currency": "$",
-      "price": 11.54,
-      "change": -0.11,
-      "change_pct": -0.99,
+      "price": 11.4,
+      "change": -0.25,
+      "change_pct": -2.18,
       "is_positive": false
     },
     {
@@ -683,8 +675,8 @@
     {
       "symbol": "COLPAL",
       "currency": "₹",
-      "price": 1596.5,
-      "change": -31.5,
+      "price": 1572.5,
+      "change": -31.03,
       "change_pct": -1.93,
       "is_positive": false
     },
