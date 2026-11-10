@@ -5,35 +5,9 @@
 (function () {
   'use strict';
 
+  if (!window.gsap || !window.ScrollTrigger || !window.Flip) return;
   gsap.registerPlugin(ScrollTrigger, Flip);
 
-  /* ---------- Hero animations ---------- */
-  function initHeroAnimations() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set('.hero-title-inner, .hero .reveal', { opacity: 1, y: 0 });
-      return;
-    }
-    const tl = gsap.timeline({ delay: 0.2 });
-
-    // Text reveal — slide up each line
-    tl.fromTo('.hero-title-inner', { y: 60 }, {
-      y: 0,
-      duration: 1.2,
-      ease: 'power4.out',
-      stagger: 0.15
-    });
-
-    // Fade in greeting, subtitle, CTAs, scroll indicator
-    tl.fromTo('.hero .reveal', { opacity: 0, y: 24 }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      stagger: 0.12
-    }, '-=0.6');
-
-
-  }
   /* ---------- Hero — Full-Screen Dot Wave Matrix (Claude-style) ---------- */
   /* ---------- Hero — Full-Screen Dot Wave Matrix (Claude-style) with 3D depth, gravity well, and shockwaves ---------- */
   function initParticles() {
@@ -626,7 +600,6 @@
   }
 
   window.initAnimations = function () {
-    initHeroAnimations();
     // initParticles is NOT called here by default.
     // The YouTube background replaces particles.
     // If YouTube fails, showParticleFallback() in index.html calls window._startParticlesFallback().

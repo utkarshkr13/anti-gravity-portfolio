@@ -10,7 +10,7 @@ A focused portfolio for product management, business analysis, enterprise delive
 - Responsive navigation with keyboard support, visible focus states, and an accessible mobile menu.
 - Dark and light themes.
 - Project filtering, case-study dialogs, smooth in-page navigation, and a contact form powered by Formspree.
-- An original cinematic Mumbai environment with the Gateway of India and Sea Link, animated water, atmospheric mist, pointer parallax and scroll-driven camera movement. A WebGL texture pass, adaptive resolution, a pause control, an image fallback and reduced-motion support keep the scene usable across devices.
+- A framed Mumbai Harbour scene with animated water, a pause control, and a still image for reduced-motion preferences or when WebGL is unavailable.
 
 ## Technology
 
@@ -35,7 +35,7 @@ Open [http://localhost:4173](http://localhost:4173).
 ## Project structure
 
 ```
-assets/     Images, résumé, QR code, and generated data
+assets/     Images, QR code, and generated data
 css/        Base styling and interface refinements
 js/         Navigation, interactions, animation, and Liquid Titanium renderer
 index.html  Portfolio markup and integration points
@@ -43,7 +43,7 @@ index.html  Portfolio markup and integration points
 
 ## Deployment
 
-Pushes to `main` are published through GitHub Pages. The custom domain is configured in `CNAME`.
+Pushes to `main` are published through GitHub Pages. The custom domain is configured in `CNAME`. The site no longer consumes the market-data cache. Run **Refresh Market Data** manually in GitHub Actions if that cache is needed.
 
 ## Contact
 

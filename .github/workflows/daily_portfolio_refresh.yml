@@ -1,15 +1,18 @@
-name: Daily Portfolio Auto-Refresh
+name: Refresh Market Data
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs every day at 12:00 AM UTC (5:30 AM IST)
-  workflow_dispatch:      # Allows manual trigger from the GitHub Actions tab
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: refresh-market-data
+  cancel-in-progress: false
+
 jobs:
   refresh-market-data:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -40,6 +43,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No market data updates detected. Skipping commit."
           else
-            git commit -m "chore(auto-update): daily refresh of yfinance stock tickers [skip ci]"
+            git commit -m "chore(auto-update): refresh yfinance stock tickers [skip ci]"
             git push origin main
           fi

@@ -14,14 +14,14 @@
   <meta property="og:description" content="I turn requirements into working tools.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://utkarsh.ind.in/">
-  <meta property="og:image" content="https://utkarsh.ind.in/assets/og-cover.png">
+  <meta property="og:image" content="https://utkarsh.ind.in/assets/mumbai-cover.jpg">
   <meta property="og:site_name" content="Utkarsh Rajput Portfolio">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Utkarsh Rajput — Business Analyst &amp; Product Analyst">
   <meta name="twitter:description" content="I turn requirements into working tools.">
-  <meta name="twitter:image" content="https://utkarsh.ind.in/assets/og-cover.png">
+  <meta name="twitter:image" content="https://utkarsh.ind.in/assets/mumbai-cover.jpg">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2308090C'/><text y='53%' x='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter, -apple-system, sans-serif' font-size='60' font-weight='800' fill='%233b82f6'>U</text></svg>">
@@ -48,10 +48,9 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=editorial-1">
   <link rel="stylesheet" href="css/ui-revamp.css?v=mumbai-2">
-  <link rel="stylesheet" href="css/mumbai-journey.css?v=mumbai-3">
-  <link rel="preload" as="image" href="assets/mumbai-cinematic.png">
+  <link rel="stylesheet" href="css/mumbai-journey.css?v=editorial-1">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,9 +92,9 @@
     <nav class="navbar" id="navbar">
       <div class="nav-links" id="primaryNav">
         <a href="#hero" class="nav-link active" data-cursor="hover">Home</a>
+        <a href="#projects" class="nav-link" data-cursor="hover">Work</a>
         <a href="#about" class="nav-link" data-cursor="hover">About</a>
         <a href="#experience" class="nav-link" data-cursor="hover">Experience</a>
-        <a href="#projects" class="nav-link" data-cursor="hover">Projects</a>
         <a href="#skills" class="nav-link" data-cursor="hover">Skills</a>
         <a href="#contact" class="nav-link" data-cursor="hover">Contact</a>
       </div>
@@ -112,233 +111,47 @@
   </div>
 
   <!-- ===== Hero Section ===== -->
-  <div class="city-backdrop" aria-hidden="true">
-    <img id="mumbaiSceneImage" src="assets/mumbai-cinematic.png" alt="" width="1672" height="941" fetchpriority="high">
-    <canvas id="mumbaiHarbour"></canvas>
-  </div>
   <main id="mainContent" class="portfolio-journey">
 
-  <section class="hero" id="hero" data-route="01 · Gateway">
-
-    <div class="hero-blur-tunnel"></div>
-
-    <div class="hero-greeting reveal">Hello, I'm</div>
-
-    <h1 class="hero-name">
-      <span class="hero-title-line">
-        <span class="hero-title-inner">Utkarsh<span class="accent-text">.</span></span>
-      </span>
-    </h1>
-
-    <p class="hero-subtitle reveal">
-      I turn requirements into working tools. I’m a business analyst who also builds, working with client, engineering, and QA teams on software rollouts and tools that make testing and follow-ups easier.
-    </p>
-
-    <div class="availability-badge reveal">
-      <span class="availability-dot"></span>
-      Open to Business Analyst and Product Analyst roles · Mumbai, India
-    </div>
-
-    <div class="hero-cta-group reveal">
-      <div class="magnetic-wrap">
-        <a href="#projects" class="btn btn-primary" data-cursor="hover" id="ctaWork">
-          View My Work <span class="btn-arrow">→</span>
-        </a>
-      </div>
-      <div class="magnetic-wrap">
-        <a href="assets/resume.pdf" target="_blank" rel="noopener" class="btn btn-secondary" data-cursor="hover" id="ctaResume">
-          Resume <i data-lucide="download" style="width:14px;height:14px;margin-left:6px;display:inline-block;vertical-align:middle;"></i>
-        </a>
-      </div>
-      <div class="magnetic-wrap">
-        <a href="#contact" class="btn btn-secondary" data-cursor="hover" id="ctaContact">
-          Get in Touch <span class="btn-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-scroll-indicator reveal">
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ===== About Section ===== -->
-  <section class="section" id="about" data-route="02 · Colaba">
-    <div class="section-label reveal">About Me</div>
-    <h2 class="section-title reveal" style="font-size: 2.2rem; line-height: 1.3;">I understand what users need, write it clearly, and <span class="accent-text">follow it through with engineering and QA.</span></h2>
-
-    <div class="about-bento" id="aboutGridContainer">
-      <!-- Bento Card 1: Bio Text (Left, spans 8 cols) -->
-      <div class="bento-card bento-bio reveal-left">
-        <div class="bento-badge"><i data-lucide="user" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Biography</div>
-        <h3 class="bento-card-title">A Little About Me</h3>
-        <div class="bento-bio-content">
-          <p>
-            At SalesCode.ai, I worked on requirements, testing, and rollouts for FMCG clients in India, Saudi Arabia, and Nepal.
-          </p>
-          <p>
-            The work involved understanding what users needed, writing it clearly, and following it through with engineering and QA. When tracking work became a problem of its own, I started building tools to help.
-          </p>
-          <p>
-            I studied <strong>Electronics and Communication Engineering at VIT</strong>. Outside work, I enjoy photography and Formula 1.
-          </p>
+  <section class="hero" id="hero">
+    <div class="hero-layout">
+      <div class="hero-content">
+        <p class="hero-greeting">Business Analyst &amp; Product Analyst</p>
+        <h1 class="hero-name">Utkarsh Rajput<span class="accent-text">.</span></h1>
+        <p class="hero-subtitle">
+          I turn requirements into working tools. I work with client, engineering, and QA teams to ship software and simplify testing and follow-ups.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn btn-primary" id="ctaWork">View selected work <span aria-hidden="true">↘</span></a>
+          <a href="#experience" class="btn btn-secondary" id="ctaResume">View experience</a>
         </div>
+        <p class="hero-availability">Open to Business Analyst and Product Analyst roles · Mumbai, India</p>
       </div>
-
-      <!-- Bento Card 2: Interactive Slider (Right, spans 4 cols, spans 2 rows) -->
-      <div class="bento-card bento-slider reveal-right">
-        <div class="about-image-wrap">
-          <div class="about-slider" id="aboutSlider">
-            <div class="about-slide active" data-color="130, 132, 138">
-              <img src="assets/profile.jpg" alt="Utkarsh Kumar Rajput" loading="lazy">
-            </div>
-            <div class="about-slide" data-color="140, 119, 103">
-              <img src="assets/pf-3.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
-            </div>
-            <div class="about-slide" data-color="59, 59, 49">
-              <img src="assets/pf-4.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
-            </div>
-            <div class="about-slide" data-color="147, 155, 161">
-              <img src="assets/pf-5.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
-            </div>
-          </div>
-          <!-- Progress Indicators -->
-          <div class="slider-indicators" id="sliderIndicators">
-            <div class="indicator-dot active"><div class="indicator-fill"></div></div>
-            <div class="indicator-dot"><div class="indicator-fill"></div></div>
-            <div class="indicator-dot"><div class="indicator-fill"></div></div>
-            <div class="indicator-dot"><div class="indicator-fill"></div></div>
-          </div>
+      <figure class="hero-scene">
+        <div class="city-backdrop">
+          <img id="mumbaiSceneImage" src="assets/mumbai-cover.jpg" alt="The Gateway of India seen from Mumbai Harbour" width="1440" height="756" fetchpriority="high">
+          <canvas id="mumbaiHarbour" aria-hidden="true"></canvas>
         </div>
-      </div>
-
-      <!-- Bento Card 3: Enterprise Metrics Widget (Row 2, spans 5 cols) -->
-      <div class="bento-card bento-stats reveal">
-        <div class="bento-badge"><i data-lucide="bar-chart-3" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Delivery Impact</div>
-        <div class="bento-stats-grid">
-          <div class="bento-stat-item">
-            <div class="bento-stat-num" data-count="600">600+</div>
-            <div class="bento-stat-label">Jira Issues Owned</div>
-          </div>
-          <div class="bento-stat-item">
-            <div class="bento-stat-num" data-count="15">15+</div>
-            <div class="bento-stat-label">Hrs Saved / Wk</div>
-          </div>
-          <div class="bento-stat-item">
-            <div class="bento-stat-num" data-count="40">40+</div>
-            <div class="bento-stat-label">Daily Active Users</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Azure Certification Widget (Row 3, spans 12 cols) -->
-      <div class="bento-card bento-cert reveal">
-        <div class="bento-badge"><i data-lucide="shield-check" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Cloud &amp; Infrastructure</div>
-        <div class="bento-cert-layout">
-          <div class="bento-cert-badge-wrapper">
-            <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Microsoft Certified: Azure Administrator Associate" class="bento-cert-badge">
-          </div>
-          <div class="bento-cert-info">
-            <h4 class="bento-cert-title">Microsoft Certified: Azure Administrator Associate (AZ-104)</h4>
-            <p class="bento-cert-desc">Validates enterprise capability in managing cloud identities, resource governance, virtual networks, and hybrid storage structures.</p>
-          </div>
-          <div class="bento-cert-actions">
-            <span class="bento-cert-verified"><i data-lucide="shield-check" style="width:14px;height:14px;margin-right:6px;display:inline-block;vertical-align:middle;color:#10b981;"></i>Verified · Microsoft Learn · AZ-104</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Experience Section ===== -->
-  <section class="section" id="experience" data-route="03 · Fort">
-    <div class="section-label reveal">Experience</div>
-    <h2 class="section-title reveal">Where I've made <span class="accent-text">impact.</span></h2>
-    <p class="section-subtitle reveal">A journey through enterprise tech, data analytics, and healthcare innovation.</p>
-
-    <div class="timeline">
-      <!-- SalesCode.ai -->
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <div>
-              <div class="timeline-company">SalesCode.ai</div>
-              <div class="timeline-role">Business Analyst</div>
-            </div>
-            <div class="timeline-meta">
-              <span>📍 Gurgaon, India</span>
-              <span>📅 Apr 2025 – Jul 2026</span>
-            </div>
-          </div>
-          <ul class="timeline-details">
-            <li>Managed requirements and delivery across 4 concurrent enterprise client engagements, preparing BRDs, user stories, acceptance criteria, Jira backlogs, UAT plans, and release documentation.</li>
-            <li>Worked with product, engineering, QA, data science, and client teams through sprint planning, backlog refinement, UAT, defect triage, and production releases.</li>
-            <li>Built a centralized integration and testing platform across 3 client workstreams, reducing status-tracking effort by 40%.</li>
-            <li>Introduced AI-assisted workflows for user stories, acceptance criteria, and Confluence documentation, reducing requirements-drafting time by 30%.</li>
-            <li>Coordinated UAT and release readiness across India, Saudi Arabia, and Nepal, maintaining zero P1 defects across consecutive releases.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- CityFlo -->
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <div>
-              <div class="timeline-company">CityFlo</div>
-              <div class="timeline-role">Business Intelligence &amp; Marketing Intern</div>
-            </div>
-            <div class="timeline-meta">
-              <span>📍 Mumbai, India</span>
-              <span>📅 Sep 2023 – Nov 2023</span>
-            </div>
-          </div>
-          <ul class="timeline-details">
-            <li>Delivered location-based analytics and geospatial dashboards using Python and PostgreSQL, directly supporting operational pricing adjustments and route optimization.</li>
-            <li>Eliminated manual data entry bottlenecks by building automated scraping workflows, reducing weekly reporting overhead.</li>
-            <li>Drove campaign planning and digital outreach strategies through targeted market research and user demographic analysis.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Medide -->
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <div>
-              <div class="timeline-company">Medide, VIT Vellore</div>
-              <div class="timeline-role">Research and Data Analytics Head</div>
-            </div>
-            <div class="timeline-meta">
-              <span>📍 Vellore, India</span>
-              <span>📅 Jun 2023 – Oct 2023</span>
-            </div>
-          </div>
-          <ul class="timeline-details">
-            <li>Established a centralized tracking model for blood bank availability within a 15 km radius, ensuring data reliability for critical healthcare access.</li>
-            <li>Structured the conceptual product workflow for a clinic booking and appointment management system.</li>
-            <li>Informed advertising and monetization strategies through data-driven operational insights.</li>
-          </ul>
-        </div>
-      </div>
+        <figcaption class="journey-label">
+          <span>Mumbai · Gateway of India</span>
+          <button id="sceneMotionToggle" type="button" hidden>Pause scene</button>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- ===== Projects Section ===== -->
-  <section class="section" id="projects" data-route="04 · Lower Parel">
-    <div class="section-label reveal">Projects & Certifications</div>
-    <h2 class="section-title reveal">Things I've <span class="accent-text">built & earned.</span></h2>
-    <p class="section-subtitle reveal">From AI-powered RTM platforms to satellite-based crop classification.</p>
+  <section class="section" id="projects">
+    <div class="section-label">01 / Portfolio</div>
+    <h2 class="section-title">Selected work</h2>
+    <p class="section-subtitle">Tools for testing, support, and better operational decisions.</p>
 
     <!-- Projects Category Filters -->
-    <div class="projects-filter-bar reveal" style="display:flex; gap:12px; justify-content:center; margin-bottom:36px; flex-wrap:wrap">
-      <button class="filter-btn active" data-filter="all" data-cursor="hover">All</button>
-      <button class="filter-btn" data-filter="production" data-cursor="hover">Production Solutions</button>
-      <button class="filter-btn" data-filter="fullstack" data-cursor="hover">Full-Stack SaaS</button>
-      <button class="filter-btn" data-filter="analytics" data-cursor="hover">Analytics & BI</button>
+    <div class="projects-filter-bar" role="group" aria-label="Filter projects">
+      <button type="button" class="filter-btn active" aria-pressed="true" data-filter="all" data-cursor="hover">All</button>
+      <button type="button" class="filter-btn" aria-pressed="false" data-filter="production" data-cursor="hover">Production Solutions</button>
+      <button type="button" class="filter-btn" aria-pressed="false" data-filter="fullstack" data-cursor="hover">Full-Stack SaaS</button>
+      <button type="button" class="filter-btn" aria-pressed="false" data-filter="analytics" data-cursor="hover">Analytics & BI</button>
     </div>
 
     <div class="projects-grid">
@@ -441,7 +254,7 @@
 
     <!-- Certifications -->
     <div class="certs-container" style="margin-top: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);">
-      
+
       <div class="cert-card reveal">
         <div class="cert-icon"><i data-lucide="award" style="width:28px;height:28px;color:var(--accent)"></i></div>
         <div class="cert-info">
@@ -469,10 +282,175 @@
     </div>
   </section>
 
+  <!-- ===== About Section ===== -->
+  <section class="section" id="about">
+    <div class="section-label reveal">About Me</div>
+    <h2 class="section-title reveal" style="font-size: 2.2rem; line-height: 1.3;">I understand what users need, write it clearly, and <span class="accent-text">follow it through with engineering and QA.</span></h2>
+
+    <div class="about-bento" id="aboutGridContainer">
+      <!-- Bento Card 1: Bio Text (Left, spans 8 cols) -->
+      <div class="bento-card bento-bio reveal-left">
+        <div class="bento-badge"><i data-lucide="user" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Biography</div>
+        <h3 class="bento-card-title">A Little About Me</h3>
+        <div class="bento-bio-content">
+          <p>
+            At SalesCode.ai, I worked on requirements, testing, and rollouts for FMCG clients in India, Saudi Arabia, and Nepal.
+          </p>
+          <p>
+            The work involved understanding what users needed, writing it clearly, and following it through with engineering and QA. When tracking work became a problem of its own, I started building tools to help.
+          </p>
+          <p>
+            I studied <strong>Electronics and Communication Engineering at VIT</strong>. Outside work, I enjoy photography and Formula 1.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bento Card 2: Interactive Slider (Right, spans 4 cols, spans 2 rows) -->
+      <div class="bento-card bento-slider reveal-right">
+        <div class="about-image-wrap">
+          <div class="about-slider" id="aboutSlider">
+            <div class="about-slide active" data-color="130, 132, 138">
+              <img src="assets/profile.jpg" alt="Utkarsh Kumar Rajput" loading="lazy">
+            </div>
+            <div class="about-slide" data-color="140, 119, 103">
+              <img src="assets/pf-3.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
+            </div>
+            <div class="about-slide" data-color="59, 59, 49">
+              <img src="assets/pf-4.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
+            </div>
+            <div class="about-slide" data-color="147, 155, 161">
+              <img src="assets/pf-5.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
+            </div>
+          </div>
+          <!-- Progress Indicators -->
+          <div class="slider-indicators" id="sliderIndicators">
+            <div class="indicator-dot active"><div class="indicator-fill"></div></div>
+            <div class="indicator-dot"><div class="indicator-fill"></div></div>
+            <div class="indicator-dot"><div class="indicator-fill"></div></div>
+            <div class="indicator-dot"><div class="indicator-fill"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento Card 3: Enterprise Metrics Widget (Row 2, spans 5 cols) -->
+      <div class="bento-card bento-stats reveal">
+        <div class="bento-badge"><i data-lucide="bar-chart-3" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Delivery Impact</div>
+        <div class="bento-stats-grid">
+          <div class="bento-stat-item">
+            <div class="bento-stat-num" data-count="600">600+</div>
+            <div class="bento-stat-label">Jira Issues Owned</div>
+          </div>
+          <div class="bento-stat-item">
+            <div class="bento-stat-num" data-count="15">15+</div>
+            <div class="bento-stat-label">Hrs Saved / Wk</div>
+          </div>
+          <div class="bento-stat-item">
+            <div class="bento-stat-num" data-count="40">40+</div>
+            <div class="bento-stat-label">Daily Active Users</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Azure Certification Widget (Row 3, spans 12 cols) -->
+      <div class="bento-card bento-cert reveal">
+        <div class="bento-badge"><i data-lucide="shield-check" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Cloud &amp; Infrastructure</div>
+        <div class="bento-cert-layout">
+          <div class="bento-cert-badge-wrapper">
+            <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Microsoft Certified: Azure Administrator Associate" class="bento-cert-badge">
+          </div>
+          <div class="bento-cert-info">
+            <h4 class="bento-cert-title">Microsoft Certified: Azure Administrator Associate (AZ-104)</h4>
+            <p class="bento-cert-desc">Validates enterprise capability in managing cloud identities, resource governance, virtual networks, and hybrid storage structures.</p>
+          </div>
+          <div class="bento-cert-actions">
+            <span class="bento-cert-verified"><i data-lucide="shield-check" style="width:14px;height:14px;margin-right:6px;display:inline-block;vertical-align:middle;color:#10b981;"></i>Verified · Microsoft Learn · AZ-104</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Experience Section ===== -->
+  <section class="section" id="experience">
+    <div class="section-label reveal">Experience</div>
+    <h2 class="section-title reveal">Where I've made <span class="accent-text">impact.</span></h2>
+    <p class="section-subtitle reveal">A journey through enterprise tech, data analytics, and healthcare innovation.</p>
+
+    <div class="timeline">
+      <!-- SalesCode.ai -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">SalesCode.ai</div>
+              <div class="timeline-role">Business Analyst</div>
+            </div>
+            <div class="timeline-meta">
+              <span>📍 Gurgaon, India</span>
+              <span>📅 Apr 2025 – Jul 2026</span>
+            </div>
+          </div>
+          <ul class="timeline-details">
+            <li>Managed requirements and delivery across 4 concurrent enterprise client engagements, preparing BRDs, user stories, acceptance criteria, Jira backlogs, UAT plans, and release documentation.</li>
+            <li>Worked with product, engineering, QA, data science, and client teams through sprint planning, backlog refinement, UAT, defect triage, and production releases.</li>
+            <li>Built a centralized integration and testing platform across 3 client workstreams, reducing status-tracking effort by 40%.</li>
+            <li>Introduced AI-assisted workflows for user stories, acceptance criteria, and Confluence documentation, reducing requirements-drafting time by 30%.</li>
+            <li>Coordinated UAT and release readiness across India, Saudi Arabia, and Nepal, maintaining zero P1 defects across consecutive releases.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CityFlo -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">CityFlo</div>
+              <div class="timeline-role">Business Intelligence &amp; Marketing Intern</div>
+            </div>
+            <div class="timeline-meta">
+              <span>📍 Mumbai, India</span>
+              <span>📅 Sep 2023 – Nov 2023</span>
+            </div>
+          </div>
+          <ul class="timeline-details">
+            <li>Delivered location-based analytics and geospatial dashboards using Python and PostgreSQL, directly supporting operational pricing adjustments and route optimization.</li>
+            <li>Eliminated manual data entry bottlenecks by building automated scraping workflows, reducing weekly reporting overhead.</li>
+            <li>Drove campaign planning and digital outreach strategies through targeted market research and user demographic analysis.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Medide -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-company">Medide, VIT Vellore</div>
+              <div class="timeline-role">Research and Data Analytics Head</div>
+            </div>
+            <div class="timeline-meta">
+              <span>📍 Vellore, India</span>
+              <span>📅 Jun 2023 – Oct 2023</span>
+            </div>
+          </div>
+          <ul class="timeline-details">
+            <li>Established a centralized tracking model for blood bank availability within a 15 km radius, ensuring data reliability for critical healthcare access.</li>
+            <li>Structured the conceptual product workflow for a clinic booking and appointment management system.</li>
+            <li>Informed advertising and monetization strategies through data-driven operational insights.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 
   <!-- ===== Skills Section ===== -->
-  <section class="section" id="skills" data-route="05 · Bandra">
+  <section class="section" id="skills">
     <div class="section-label reveal">Skills &amp; Tools</div>
     <h2 class="section-title reveal">My <span class="accent-text">toolkit.</span></h2>
     <p class="section-subtitle reveal text-letter-reveal">A blend of business acumen, technical proficiency, and analytical thinking.</p>
@@ -555,7 +533,7 @@
   </section>
 
   <!-- ===== Contact Section ===== -->
-  <section class="section contact-section" id="contact" data-route="06 · Marine Drive">
+  <section class="section contact-section" id="contact">
     <div class="section-label reveal">Get in Touch</div>
     <h2 class="section-title reveal">Let's build something<br><span class="accent-text">great together.</span></h2>
     <p class="section-subtitle reveal" style="margin: 0 auto; text-align: center; max-width: 700px;">
@@ -588,9 +566,12 @@
       <!-- Inline Contact Form -->
       <form action="https://formspree.io/f/mnjropbv" method="POST" class="contact-form">
         <h3 style="margin-bottom: 8px; font-size: 1.2rem; font-weight: 600;">Send a message</h3>
-        <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
-        <input type="email" name="email" placeholder="Your Email" autocomplete="email" required>
-        <textarea name="message" placeholder="How can I help you?" rows="4" required style="resize: vertical;"></textarea>
+        <label for="contactName">Name</label>
+        <input id="contactName" type="text" name="name" autocomplete="name" required>
+        <label for="contactEmail">Email</label>
+        <input id="contactEmail" type="email" name="email" autocomplete="email" spellcheck="false" required>
+        <label for="contactMessage">Message</label>
+        <textarea id="contactMessage" name="message" rows="4" required></textarea>
         <button type="submit" class="btn btn-primary" data-cursor="hover" style="align-self: flex-start; padding: 12px 24px;">Send Message <i data-lucide="send" style="width:16px;height:16px;margin-left:6px;"></i></button>
       </form>
     </div>
@@ -611,7 +592,6 @@
   </main>
 
   <div class="journey-progress" aria-hidden="true"><span></span></div>
-  <div class="journey-label"><span id="journeyLocation" aria-hidden="true">Mumbai · Gateway</span><button id="sceneMotionToggle" type="button" aria-label="Pause background animation" aria-pressed="false">Pause scene</button></div>
 
   <button class="scroll-top-btn" id="scrollTopBtn" data-cursor="hover" aria-label="Scroll to Top">
     <i data-lucide="arrow-up" style="width:20px;height:20px"></i>
@@ -679,10 +659,10 @@
           </div>
           <span class="cmd-palette-item-shortcut">⌥T</span>
         </div>
-        <div class="cmd-palette-item" data-action="resume" data-cursor="hover">
+        <div class="cmd-palette-item" data-action="experience" data-cursor="hover">
           <div class="cmd-palette-item-left">
-            <div class="cmd-palette-item-icon"><i data-lucide="download" style="width:16px;height:16px"></i></div>
-            <div class="cmd-palette-item-title">Download Resume</div>
+            <div class="cmd-palette-item-icon"><i data-lucide="briefcase" style="width:16px;height:16px"></i></div>
+            <div class="cmd-palette-item-title">View experience</div>
           </div>
           <span class="cmd-palette-item-shortcut">⌥R</span>
         </div>
@@ -758,10 +738,10 @@
   <script defer src="js/cursor.js"></script>
   <script defer src="js/glow.js"></script>
   <script defer src="js/magnetic.js"></script>
-  <script defer src="js/animations.js?v=mumbai-2"></script>
-  <script defer src="js/main.js?v=mumbai-2"></script>
-  <script defer src="js/mumbai-harbour.js?v=mumbai-2"></script>
-  <script defer src="js/mumbai-journey.js?v=mumbai-2"></script>
+  <script defer src="js/animations.js?v=editorial-1"></script>
+  <script defer src="js/main.js?v=editorial-1"></script>
+  <script defer src="js/mumbai-harbour.js?v=editorial-1"></script>
+  <script defer src="js/mumbai-journey.js?v=editorial-1"></script>
 
   <!-- ===== YouTube Background Video ===== -->
   <script>
