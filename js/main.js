@@ -415,90 +415,6 @@
 
 
   /* ============================================================
-     3. HORIZONTAL DRAG-MOMENTUM CAROUSEL
-     ============================================================ */
-  function initProjectsCarousel() {
-    const grid = document.querySelector('.projects-grid');
-    if (!grid) return;
-    
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    let velX = 0;
-    let momentumID;
-    let lastX = 0;
-    
-    grid.addEventListener('mousedown', (e) => {
-      if (e.target.closest('a') || e.target.closest('button')) return;
-      
-      isDown = true;
-      grid.classList.add('active');
-      startX = e.pageX - grid.offsetLeft;
-      scrollLeft = grid.scrollLeft;
-      velX = 0;
-      cancelAnimationFrame(momentumID);
-    });
-    
-    grid.addEventListener('mouseleave', () => {
-      if (!isDown) return;
-      isDown = false;
-      grid.classList.remove('active');
-      beginMomentumScroll();
-    });
-    
-    grid.addEventListener('mouseup', () => {
-      if (!isDown) return;
-      isDown = false;
-      grid.classList.remove('active');
-      beginMomentumScroll();
-    });
-    
-    grid.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - grid.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      grid.scrollLeft = scrollLeft - walk;
-      
-      velX = x - lastX;
-      lastX = x;
-    });
-
-    // Touch events for drag-momentum
-    grid.addEventListener('touchstart', (e) => {
-      if (e.target.closest('a') || e.target.closest('button')) return;
-      isDown = true;
-      startX = e.touches[0].pageX - grid.offsetLeft;
-      scrollLeft = grid.scrollLeft;
-      velX = 0;
-      cancelAnimationFrame(momentumID);
-    }, { passive: true });
-
-    grid.addEventListener('touchend', () => {
-      isDown = false;
-      beginMomentumScroll();
-    });
-
-    grid.addEventListener('touchmove', (e) => {
-      if (!isDown) return;
-      const x = e.touches[0].pageX - grid.offsetLeft;
-      const walk = (x - startX) * 1.2;
-      grid.scrollLeft = scrollLeft - walk;
-      velX = x - lastX;
-      lastX = x;
-    }, { passive: true });
-    
-    function beginMomentumScroll() {
-      if (Math.abs(velX) < 0.5) return;
-      grid.scrollLeft -= velX;
-      velX *= 0.95; // Friction
-      momentumID = requestAnimationFrame(beginMomentumScroll);
-    }
-  }
-  initProjectsCarousel();
-
-
-  /* ============================================================
      4. GLOBAL COMMAND PALETTE SEARCH & TRIGGER LOGIC
      ============================================================ */
   function initCommandPalette() {
@@ -540,8 +456,7 @@
       { id: 'case-satellite', title: 'View Case Study: Satellite Crop Classification', category: 'Case Studies', icon: 'file-text', action: () => openCaseStudy('satellite-crop') },
       { id: 'case-cityflo', title: 'View Case Study: CityFlo BI Dashboards', category: 'Case Studies', icon: 'file-text', action: () => openCaseStudy('cityflo-bi') },
       
-      { id: 'toggle-theme', title: 'Toggle Theme (Dark / Light)', category: 'Actions', icon: 'sun', action: () => document.getElementById('themeToggle')?.click() },
-      { id: 'download-resume', title: 'Open Resume PDF', category: 'Actions', icon: 'download', action: () => window.open('assets/resume.pdf', '_blank') }
+      { id: 'toggle-theme', title: 'Toggle Theme (Dark / Light)', category: 'Actions', icon: 'sun', action: () => document.getElementById('themeToggle')?.click() }
     ];
     
     function openPalette() {
@@ -795,16 +710,16 @@
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         
-        // Update active class on buttons
-        filterBtns.forEach(b => {
-          b.classList.remove('active');
+        filterBtns.forEach(button => {
+          const selected = button === btn;
+          button.classList.toggle('active', selected);
+          button.setAttribute('aria-pressed', String(selected));
         });
-        
-        btn.classList.add('active');
         
         const filterValue = btn.getAttribute('data-filter');
         
-        const canAnimateFilter = window.Flip && window.gsap && window.ScrollTrigger;
+        const canAnimateFilter = window.Flip && window.gsap && window.ScrollTrigger &&
+          !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const state = canAnimateFilter ? window.Flip.getState(projectCards) : null;
         
         projectCards.forEach(card => {
@@ -1184,8 +1099,8 @@
           if (themeToggle) {
             setTimeout(() => themeToggle.click(), 350);
           }
-        } else if (action === 'resume') {
-          window.open('assets/resume.pdf', '_blank');
+        } else if (action === 'experience') {
+          document.getElementById('ctaResume')?.click();
         }
       });
     });
@@ -1204,8 +1119,7 @@
           if (themeItem) themeItem.click();
         } else if (e.key.toLowerCase() === 'r') {
           e.preventDefault();
-          const resumeItem = Array.from(cmdItems).find(item => item.getAttribute('data-action') === 'resume');
-          if (resumeItem) resumeItem.click();
+          document.getElementById('ctaResume')?.click();
         }
       }
     });
