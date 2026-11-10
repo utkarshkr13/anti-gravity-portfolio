@@ -10,7 +10,7 @@ A focused portfolio for product management, business analysis, enterprise delive
 - Responsive navigation with keyboard support, visible focus states, and an accessible mobile menu.
 - Dark and light themes.
 - Project filtering, case-study dialogs, smooth in-page navigation, and a contact form powered by Formspree.
-- A framed Mumbai Harbour scene with animated water, a pause control, and a still image for reduced-motion preferences or when WebGL is unavailable.
+- An interactive SVG illustration of the path from requirements to UAT to sign-off, with replay and reduced-motion support.
 
 ## Technology
 

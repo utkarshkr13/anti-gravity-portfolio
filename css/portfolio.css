@@ -1,4 +1,4 @@
-/* The harbour has its own frame so the rest of the portfolio can be read on solid surfaces. */
+/* Editorial layout, theme tokens, and the delivery illustration. */
 [data-theme="dark"] {
   color-scheme: dark;
   --bg-primary: #141712;
@@ -22,8 +22,6 @@
   --text-secondary: #4e5346;
   --editorial-accent: #405c36;
 }
-
-#cursorTrailCanvas { display: none; }
 
 .portfolio-journey {
   position: relative;
@@ -108,57 +106,6 @@
 
 .hero-scene { min-width: 0; }
 
-.city-backdrop {
-  position: relative;
-  aspect-ratio: 6 / 5;
-  overflow: hidden;
-  border-radius: 0.45rem;
-  background: #08131d;
-}
-
-.city-backdrop img,
-.city-backdrop canvas {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.city-backdrop img {
-  object-fit: cover;
-  object-position: 62% center;
-}
-
-.city-backdrop canvas {
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.city-backdrop.scene-ready canvas { opacity: 1; }
-
-.journey-label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 44px;
-  gap: 1rem;
-  color: var(--text-secondary);
-  font-size: 0.72rem;
-}
-
-.journey-label button {
-  min-height: 44px;
-  padding-inline: 0.4rem;
-  border: 0;
-  background: none;
-  color: var(--text-primary);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-  font: inherit;
-  cursor: pointer;
-}
-
 .portfolio-journey :is(.reveal, .reveal-left, .reveal-right, .reveal-scale) {
   opacity: 1;
   transform: none;
@@ -242,23 +189,6 @@
 
 .contact-form textarea { resize: vertical; }
 
-.journey-progress {
-  position: fixed;
-  inset: 0 0 auto;
-  height: 2px;
-  z-index: 9998;
-  pointer-events: none;
-}
-
-.journey-progress span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--editorial-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-}
-
 .skip-link {
   position: fixed;
   z-index: 10001;
@@ -313,13 +243,151 @@
 
 @media (max-width: 760px) {
   .hero-layout { grid-template-columns: 1fr; }
-  .city-backdrop { aspect-ratio: 16 / 9; }
   .portfolio-journey .projects-grid { grid-template-columns: 1fr; }
 }
 
+.flow-figure {
+  --flow-paper: #1c2119;
+  --flow-ink: #e9eddd;
+  --flow-rule: #555d4d;
+  --flow-signal: #f2ac75;
+  overflow: hidden;
+  border: 1px solid var(--flow-rule);
+  border-radius: 0.6rem;
+  background: var(--flow-paper);
+  color: var(--flow-ink);
+}
+
+[data-theme="light"] .flow-figure {
+  --flow-paper: #e9e5d7;
+  --flow-ink: #22271e;
+  --flow-rule: #787d6c;
+  --flow-signal: #a3401e;
+}
+
+.flow-header, .flow-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-inline: clamp(0.7rem, 2vw, 1.15rem);
+  border-color: var(--flow-rule);
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.flow-header {
+  min-height: 2.65rem;
+  border-bottom: 1px solid;
+  font-size: clamp(0.59rem, 1vw, 0.72rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flow-art { display: block; width: 100%; height: auto; }
+
+.flow-axis {
+  stroke: currentColor;
+  opacity: 0.22;
+  stroke-dasharray: 2 6;
+}
+
+.flow-wires {
+  stroke: var(--flow-rule);
+  stroke-width: 1.4;
+}
+
+.flow-input, .flow-gate, .flow-release {
+  stroke: var(--flow-rule);
+  stroke-width: 1.25;
+  transition: stroke 180ms ease;
+}
+
+.flow-input rect, .flow-gate rect, .flow-release circle { fill: var(--flow-paper); }
+.flow-gate path, .flow-release path { fill: none; }
+.flow-checks { stroke: var(--flow-signal); stroke-linecap: round; stroke-linejoin: round; }
+.flow-release circle.flow-orbit { fill: none; stroke-dasharray: 2 5; }
+.flow-packets { fill: var(--flow-signal); }
+
+.flow-labels {
+  fill: var(--flow-ink);
+  stroke: none;
+  font: 600 13px ui-monospace, Consolas, monospace;
+  letter-spacing: 0.035em;
+}
+
+.flow-coordinates { opacity: 0.78; }
+
+[data-stage="brief"] .flow-input,
+[data-stage="test"] .flow-gate,
+[data-stage="ship"] .flow-release { stroke: var(--flow-signal); stroke-width: 2; }
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-phase="verified"] .flow-checks {
+    stroke-dasharray: 60;
+    animation: flow-check 520ms ease-out both;
+  }
+
+  [data-phase="released"] .flow-release {
+    stroke: var(--flow-signal);
+  }
+
+  [data-phase="released"] .flow-release path {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: flow-stamp 420ms cubic-bezier(.2, .8, .2, 1) both;
+  }
+}
+
+@keyframes flow-check {
+  from { stroke-dashoffset: 60; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes flow-stamp {
+  from { opacity: 0; transform: scale(0.65); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.flow-controls {
+  border-top: 1px solid;
+  min-height: 3.4rem;
+}
+
+.flow-controls[hidden] { display: none; }
+.flow-steps { display: flex; gap: 0.2rem; }
+
+.flow-controls button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.2rem;
+  color: var(--flow-ink);
+  font: inherit;
+  font-size: 0.73rem;
+}
+
+.flow-controls button[aria-pressed="true"] {
+  color: var(--flow-signal);
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+.flow-controls button:focus-visible {
+  outline: 2px solid var(--flow-signal);
+  outline-offset: -2px;
+}
+
+.flow-replay:hover { color: var(--flow-signal); }
+
+.flow-caption {
+  min-height: 3.2em;
+  margin-top: 0.6rem;
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .city-backdrop canvas { display: none; }
-  .journey-label button { display: none; }
+  .flow-input, .flow-gate, .flow-release { transition: none; }
 }
 
 @media print {
