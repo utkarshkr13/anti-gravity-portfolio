@@ -141,7 +141,6 @@ body {
   background-color: var(--bg-primary);
   line-height: 1.7;
   overflow-x: hidden;
-  cursor: none;
   transition: background-color var(--theme-transition), color var(--theme-transition);
 }
 
@@ -153,11 +152,11 @@ body.modal-open {
 a {
   color: inherit;
   text-decoration: none;
-  cursor: none;
+  cursor: pointer;
 }
 
 button {
-  cursor: none;
+  cursor: pointer;
   border: none;
   background: none;
   font-family: inherit;
@@ -581,7 +580,7 @@ section[id] {
   padding: 8px 12px;
   border-radius: 8px;
   transition: color var(--dur-normal) var(--ease-out);
-  cursor: none;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1944,7 +1943,7 @@ body.egg-wanted {
   justify-content: center;
   align-items: flex-start;
   padding: 10vw;
-  cursor: none;
+  cursor: pointer;
 }
 .bsod-overlay h1 { font-size: 10vw; font-weight: normal; margin-bottom: 2rem; line-height: 1; }
 .bsod-overlay p { font-size: 2vw; max-width: 80%; margin-bottom: 1rem; }
@@ -2049,7 +2048,7 @@ body.egg-cyberpunk {
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
-  cursor: none;
+  cursor: pointer;
   transition: all 0.3s var(--ease-out);
 }
 
@@ -2122,7 +2121,7 @@ body.egg-cyberpunk {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: none;
+  cursor: pointer;
   transition: all 0.3s var(--ease-out);
   z-index: 10002;
 }
@@ -2842,7 +2841,7 @@ body.egg-cyberpunk {
   justify-content: space-between;
   padding: 10px 12px;
   border-radius: var(--radius-sm);
-  cursor: none;
+  cursor: pointer;
   transition: background 0.15s, color 0.15s;
   font-size: 0.9rem;
 }

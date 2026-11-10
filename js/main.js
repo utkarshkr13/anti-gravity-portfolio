@@ -1,107 +1,9 @@
 /* ============================================================
-   MAIN — Theme toggle, Lenis smooth scroll, page loader, nav
+   MAIN — Theme, navigation, and case studies
    ============================================================ */
 
 (function () {
   'use strict';
-
-  /* ---------- Web Audio Synth ---------- */
-  class TactileSynth {
-    constructor() {
-      this.ctx = null;
-    }
-    init() {
-      if (this.ctx) return;
-      try {
-        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-      } catch (e) {
-        console.warn("AudioContext not supported", e);
-      }
-    }
-    playClick() {
-      this.init();
-      if (!this.ctx) return;
-      if (this.ctx.state === 'suspended') this.ctx.resume();
-      const now = this.ctx.currentTime;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(550, now);
-      osc.frequency.exponentialRampToValueAtTime(100, now + 0.08);
-      gain.gain.setValueAtTime(0.06, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.09);
-    }
-    playHover() {
-      this.init();
-      if (!this.ctx) return;
-      if (this.ctx.state === 'suspended') this.ctx.resume();
-      const now = this.ctx.currentTime;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(900, now);
-      gain.gain.setValueAtTime(0.004, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.03);
-    }
-    playToggle(isDark) {
-      this.init();
-      if (!this.ctx) return;
-      if (this.ctx.state === 'suspended') this.ctx.resume();
-      const now = this.ctx.currentTime;
-      const osc1 = this.ctx.createOscillator();
-      const osc2 = this.ctx.createOscillator();
-      const gain1 = this.ctx.createGain();
-      const gain2 = this.ctx.createGain();
-      osc1.type = 'sine';
-      osc2.type = 'sine';
-      if (isDark) {
-        osc1.frequency.setValueAtTime(440, now);
-        osc1.frequency.setValueAtTime(440, now + 0.08);
-        osc2.frequency.setValueAtTime(330, now + 0.08);
-      } else {
-        osc1.frequency.setValueAtTime(330, now);
-        osc1.frequency.setValueAtTime(330, now + 0.08);
-        osc2.frequency.setValueAtTime(440, now + 0.08);
-      }
-      gain1.gain.setValueAtTime(0.03, now);
-      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-      gain2.gain.setValueAtTime(0, now);
-      gain2.gain.setValueAtTime(0.03, now + 0.08);
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.20);
-      osc1.connect(gain1);
-      gain1.connect(this.ctx.destination);
-      osc2.connect(gain2);
-      gain2.connect(this.ctx.destination);
-      osc1.start(now);
-      osc1.stop(now + 0.13);
-      osc2.start(now + 0.08);
-      osc2.stop(now + 0.21);
-    }
-  }
-  const synth = new TactileSynth();
-
-  /* ---------- Dynamic Theme Accent Color Loader ---------- */
-  fetch('assets/feature_inspiration.json')
-    .then(response => {
-      if (response.ok) return response.json();
-    })
-    .then(data => {
-      if (data && data.accent_h && data.accent_s && data.accent_l) {
-        document.documentElement.style.setProperty('--accent-h', data.accent_h);
-        document.documentElement.style.setProperty('--accent-s', data.accent_s);
-        document.documentElement.style.setProperty('--accent-l', data.accent_l);
-        console.log(`[Theme Engine] Injected dynamic accent color: HSL(${data.accent_h}, ${data.accent_s}, ${data.accent_l}) representing ${data.theme_name || 'custom'} theme.`);
-      }
-    })
-    .catch(error => console.log('Error loading design spotlight theme:', error));
 
   /* ---------- Theme Toggle with Liquid Sweep Transition ---------- */
   const html = document.documentElement;
@@ -148,16 +50,14 @@
     });
   }
 
-  if (toggle && sweepCircle) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (toggle && sweepCircle && !reducedMotion.matches) {
     toggle.addEventListener('click', (e) => {
       e.preventDefault();
       const current = html.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       
-      // Play toggle sound
-      if (typeof synth !== 'undefined') {
-        synth.playToggle(next === 'dark');
-      }
 
       // Position sweep circle
       const rect = toggle.getBoundingClientRect();
@@ -195,15 +95,13 @@
       const next = current === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       themeStorage.set(next);
-      if (typeof synth !== 'undefined') {
-        synth.playToggle(next === 'dark');
-      }
       window.dispatchEvent(new Event('theme-change'));
     });
   }
 
   /* ---------- Smooth Scroll (Lenis) ---------- */
-  const lenis = typeof window.Lenis === 'function' ? new window.Lenis({
+  const smoothScroll = window.matchMedia('(pointer: fine)').matches && !reducedMotion.matches;
+  const lenis = smoothScroll && typeof window.Lenis === 'function' ? new window.Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smooth: true,
@@ -220,466 +118,14 @@
     window.gsap.ticker.lagSmoothing(0);
   }
 
-  /* ============================================================
-     1. CUSTOM CURSOR, FLUID TRAIL, MAGNETS & AUDIO INTERACTIONS
-     ============================================================ */
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  
-  let mouseX = 0, mouseY = 0;
-  let dotX = 0, dotY = 0;
-  let ringX = 0, ringY = 0;
-  let ringWidth = 40, ringHeight = 40;
-  let targetRingWidth = 40, targetRingHeight = 40;
-  let hoveredMagnet = null;
-  let trailPoints = [];
-  const maxTrailPoints = 14;
-
-  let trailCanvas = null;
-  let trailCtx = null;
-
-  if (!isTouchDevice) {
-    // Dynamically create a canvas for the fluid trail
-    trailCanvas = document.createElement('canvas');
-    trailCanvas.id = 'cursorTrailCanvas';
-    trailCanvas.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:99998;';
-    document.body.appendChild(trailCanvas);
-    trailCtx = trailCanvas.getContext('2d');
-    
-    const resizeTrail = () => {
-      trailCanvas.width = window.innerWidth;
-      trailCanvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', resizeTrail);
-    resizeTrail();
-    
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      // Resume audio context on mouse move if browser blocks it on start
-      synth.init();
-    });
-    
-    // Hide default cursor
-    document.body.style.cursor = 'none';
-    
-    const animateCursor = () => {
-      dotX += (mouseX - dotX) * 0.22;
-      dotY += (mouseY - dotY) * 0.22;
-      
-      if (dot) {
-        dot.style.left = dotX + 'px';
-        dot.style.top = dotY + 'px';
-      }
-      
-      let targetX, targetY;
-      if (hoveredMagnet) {
-        const rect = hoveredMagnet.getBoundingClientRect();
-        targetX = rect.left + rect.width / 2;
-        targetY = rect.top + rect.height / 2;
-        targetRingWidth = rect.width + 12;
-        targetRingHeight = rect.height + 12;
-        if (ring) {
-          ring.classList.add('locked-on');
-          ring.style.borderRadius = getComputedStyle(hoveredMagnet).borderRadius;
-        }
-      } else {
-        targetX = mouseX;
-        targetY = mouseY;
-        targetRingWidth = 40;
-        targetRingHeight = 40;
-        if (ring) {
-          ring.classList.remove('locked-on');
-          ring.style.borderRadius = '50%';
-        }
-      }
-      
-      ringX += (targetX - ringX) * 0.14;
-      ringY += (targetY - ringY) * 0.14;
-      ringWidth += (targetRingWidth - ringWidth) * 0.15;
-      ringHeight += (targetRingHeight - ringHeight) * 0.15;
-      
-      if (ring) {
-        ring.style.left = ringX + 'px';
-        ring.style.top = ringY + 'px';
-        ring.style.width = ringWidth + 'px';
-        ring.style.height = ringHeight + 'px';
-      }
-      
-      // Draw fluid canvas trail
-      trailPoints.push({ x: mouseX, y: mouseY });
-      if (trailPoints.length > maxTrailPoints) {
-        trailPoints.shift();
-      }
-      
-      if (trailCtx) {
-        trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
-        if (trailPoints.length >= 2) {
-          const h = getComputedStyle(document.documentElement).getPropertyValue('--accent-h').trim() || 125;
-          const s = getComputedStyle(document.documentElement).getPropertyValue('--accent-s').trim() || '16%';
-          const l = getComputedStyle(document.documentElement).getPropertyValue('--accent-l').trim() || '46%';
-          
-          for (let i = 0; i < trailPoints.length - 1; i++) {
-            const p1 = trailPoints[i];
-            const p2 = trailPoints[i + 1];
-            const age = i / trailPoints.length;
-            const alpha = age * 0.28;
-            const lineWidth = 1 + age * 8;
-            
-            trailCtx.beginPath();
-            trailCtx.moveTo(p1.x, p1.y);
-            trailCtx.lineTo(p2.x, p2.y);
-            trailCtx.strokeStyle = `hsla(${h}, ${s}, ${l}, ${alpha})`;
-            trailCtx.lineWidth = lineWidth;
-            trailCtx.lineCap = 'round';
-            trailCtx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(animateCursor);
-    };
-    requestAnimationFrame(animateCursor);
-
-    // Click scale indicator on custom dot
-    document.addEventListener('mousedown', () => {
-      if (dot) dot.classList.add('clicking');
-    });
-    document.addEventListener('mouseup', () => {
-      if (dot) dot.classList.remove('clicking');
-    });
-
-    // Handle mouse out / in screen edges
-    document.addEventListener('mouseleave', () => {
-      if (dot) dot.style.opacity = '0';
-      if (ring) ring.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dotX = mouseX;
-      dotY = mouseY;
-      ringX = mouseX;
-      ringY = mouseY;
-      if (dot) dot.style.opacity = '1';
-      if (ring) ring.style.opacity = '0.5';
-    });
-  } else {
-    if (dot) dot.style.display = 'none';
-    if (ring) ring.style.display = 'none';
-  }
-
-  // Interactivity Binder — hover/click only (no magnetic position shift)
-  function bindElementInteractions(el) {
-    if (el._interactionsBound) return;
-    el._interactionsBound = true;
-
-    el.addEventListener('mouseenter', () => {
-      synth.playHover();
-      if (!isTouchDevice && dot && ring) {
-        dot.classList.add('hovering');
-        ring.classList.add('hovering');
-      }
-    });
-
-    el.addEventListener('mouseleave', () => {
-      if (!isTouchDevice && dot && ring) {
-        dot.classList.remove('hovering');
-        ring.classList.remove('hovering');
-      }
-    });
-
-    el.addEventListener('click', () => {
-      synth.playClick();
-    });
-  }
-
-  function bindAllInteractions() {
-    const selector = '.magnetic-wrap, .btn, .filter-btn, .theme-toggle, .contact-link, .nav-link, #scrollTopBtn, .btn-case-study, .modal-close-btn, .project-card';
-    document.querySelectorAll(selector).forEach(bindElementInteractions);
-  }
-  bindAllInteractions();
-
-  // Watch for dynamic DOM insertions to bind new elements
-  const interactionObserver = new MutationObserver(() => {
-    bindAllInteractions();
-  });
-  interactionObserver.observe(document.body, { childList: true, subtree: true });
-
-
-  /* ============================================================
-     2. LENIS SKEW & GSAP LETTER-BY-LETTER REVEAL
-     ============================================================ */
-  // Section reveals are owned by animations.js. Preserve normal word wrapping
-  // and leave card transforms available for reveals, filters and hover feedback.
-
-
-  /* ============================================================
-     4. GLOBAL COMMAND PALETTE SEARCH & TRIGGER LOGIC
-     ============================================================ */
-  function initCommandPalette() {
-    const palette = document.getElementById('cmdPalette');
-    const searchInput = document.getElementById('cmdPaletteSearch');
-    const listContainer = document.getElementById('cmdPaletteList');
-    const overlay = document.getElementById('cmdPaletteOverlay');
-    
-    if (!palette || !searchInput || !listContainer) return;
-    
-    let isOpen = false;
-    let filteredCommands = [];
-    let activeIndex = 0;
-    
-    const scrollToSection = (selector) => {
-      const target = document.querySelector(selector);
-      if (target && window.lenis) {
-        window.lenis.scrollTo(target, { offset: -60 });
-      }
-      closePalette();
-    };
-    
-    const openCaseStudy = (projectId) => {
-      closePalette();
-      const btn = document.querySelector(`.btn-case-study[data-project="${projectId}"]`);
-      if (btn) btn.click();
-    };
-    
-    const commands = [
-      { id: 'home', title: 'Go to Home', category: 'Navigation', icon: 'home', action: () => scrollToSection('#hero') },
-      { id: 'about', title: 'Go to About', category: 'Navigation', icon: 'user', action: () => scrollToSection('#about') },
-      { id: 'experience', title: 'Go to Experience', category: 'Navigation', icon: 'briefcase', action: () => scrollToSection('#experience') },
-      { id: 'projects', title: 'Go to Projects', category: 'Navigation', icon: 'folder', action: () => scrollToSection('#projects') },
-      { id: 'skills', title: 'Go to Skills', category: 'Navigation', icon: 'cpu', action: () => scrollToSection('#skills') },
-      { id: 'contact', title: 'Go to Contact', category: 'Navigation', icon: 'mail', action: () => scrollToSection('#contact') },
-      
-      { id: 'case-sap', title: 'View Case Study: SAP Integration Tracker', category: 'Case Studies', icon: 'file-text', action: () => openCaseStudy('sap-tracker') },
-      { id: 'case-inbox', title: 'View Case Study: L2 Escalation Portal', category: 'Case Studies', icon: 'file-text', action: () => openCaseStudy('client-inbox-tracker') },
-      { id: 'case-satellite', title: 'View Case Study: Satellite Crop Classification', category: 'Case Studies', icon: 'file-text', action: () => openCaseStudy('satellite-crop') },
-      { id: 'case-cityflo', title: 'View Case Study: CityFlo BI Dashboards', category: 'Case Studies', icon: 'file-text', action: () => openCaseStudy('cityflo-bi') },
-      
-      { id: 'toggle-theme', title: 'Toggle Theme (Dark / Light)', category: 'Actions', icon: 'sun', action: () => document.getElementById('themeToggle')?.click() }
-    ];
-    
-    function openPalette() {
-      isOpen = true;
-      palette.style.display = 'flex';
-      palette.setAttribute('aria-hidden', 'false');
-      gsap.to(overlay, { opacity: 1, duration: 0.25 });
-      gsap.fromTo('.cmd-palette-wrapper', { y: -30, scale: 0.97, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.3, ease: 'power3.out' });
-      
-      if (window.lenis) window.lenis.stop();
-      searchInput.value = '';
-      filterCommands('');
-      setTimeout(() => searchInput.focus(), 50);
-    }
-    
-    function closePalette() {
-      isOpen = false;
-      if (window.lenis) window.lenis.start();
-      gsap.to('.cmd-palette-wrapper', { y: -20, scale: 0.97, opacity: 0, duration: 0.2, ease: 'power2.in', onComplete: () => {
-        palette.style.display = 'none';
-        palette.setAttribute('aria-hidden', 'true');
-      }});
-      gsap.to(overlay, { opacity: 0, duration: 0.2 });
-    }
-    
-    function filterCommands(query) {
-      const q = query.toLowerCase().trim();
-      if (!q) {
-        filteredCommands = [...commands];
-      } else {
-        filteredCommands = commands.filter(cmd => 
-          cmd.title.toLowerCase().includes(q) || 
-          cmd.category.toLowerCase().includes(q)
-        );
-      }
-      activeIndex = 0;
-      renderCommands();
-    }
-    
-    function renderCommands() {
-      listContainer.innerHTML = '';
-      if (filteredCommands.length === 0) {
-        listContainer.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-tertiary); font-size: 0.9rem;">No results found.</div>';
-        return;
-      }
-      
-      const categories = {};
-      filteredCommands.forEach((cmd, index) => {
-        if (!categories[cmd.category]) {
-          categories[cmd.category] = [];
-        }
-        categories[cmd.category].push({ cmd, index });
-      });
-      
-      Object.keys(categories).forEach(cat => {
-        const groupTitle = document.createElement('div');
-        groupTitle.className = 'cmd-palette-group-title';
-        groupTitle.textContent = cat;
-        listContainer.appendChild(groupTitle);
-        
-        categories[cat].forEach(({ cmd, index }) => {
-          const item = document.createElement('div');
-          item.className = `cmd-palette-item ${index === activeIndex ? 'active' : ''}`;
-          item.setAttribute('data-index', index);
-          
-          item.innerHTML = `
-            <div class="cmd-palette-item-left">
-              <span class="cmd-palette-item-icon"><i data-lucide="${cmd.icon}" style="width:16px; height:16px"></i></span>
-              <span class="cmd-palette-item-title">${cmd.title}</span>
-            </div>
-            <span class="cmd-palette-item-shortcut">Action</span>
-          `;
-          
-          item.addEventListener('mouseenter', () => {
-            activeIndex = index;
-            updateActiveItem();
-          });
-          
-          item.addEventListener('click', () => {
-            cmd.action();
-          });
-          
-          listContainer.appendChild(item);
-        });
-      });
-      
-      if (window.lucide) {
-        window.lucide.createIcons({ node: listContainer });
-      }
-    }
-    
-    function updateActiveItem() {
-      const items = listContainer.querySelectorAll('.cmd-palette-item');
-      items.forEach(item => {
-        const index = parseInt(item.getAttribute('data-index'), 10);
-        if (index === activeIndex) {
-          item.classList.add('active');
-          item.scrollIntoView({ block: 'nearest' });
-        } else {
-          item.classList.remove('active');
-        }
-      });
-    }
-    
-    searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        activeIndex = (activeIndex + 1) % filteredCommands.length;
-        updateActiveItem();
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        activeIndex = (activeIndex - 1 + filteredCommands.length) % filteredCommands.length;
-        updateActiveItem();
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (filteredCommands[activeIndex]) {
-          filteredCommands[activeIndex].action();
-        }
-      } else if (e.key === 'Escape') {
-        e.preventDefault();
-        closePalette();
-      }
-    });
-    
-    searchInput.addEventListener('input', (e) => {
-      filterCommands(e.target.value);
-    });
-    
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        if (isOpen) {
-          closePalette();
-        } else {
-          openPalette();
-        }
-      }
-    });
-    
-    overlay.addEventListener('click', closePalette);
-  }
-  initCommandPalette();
-
-  /* ---------- Smooth anchor scrolling ---------- */
-  let isAnchorScrolling = false;
+  // Leave section links to the browser so the address bar, Back and focus work.
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        if (isAnchorScrolling) return;
-        isAnchorScrolling = true;
-
-        // Instantly resolve character animations to prevent stuck wavy baseline text
-        if (window.gsap) {
-          window.gsap.set('.reveal-char', { opacity: 1, y: '0%', rotateX: 0 });
-        }
-
-        if (lenis) {
-          lenis.scrollTo(target, {
-            offset: -80,
-            onComplete: () => { isAnchorScrolling = false; }
-          });
-        } else {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          isAnchorScrolling = false;
-        }
+    link.addEventListener('click', () => {
+      if (window.gsap) {
+        window.gsap.set('.reveal-char', { opacity: 1, y: '0%', rotateX: 0 });
       }
     });
   });
-
-  /* ---------- Page Loader ---------- */
-  function runLoader() {
-    const loader = document.getElementById('pageLoader');
-    const loaderName = document.getElementById('loaderName');
-    const loaderBar = document.getElementById('loaderBar');
-
-    if (!loader) {
-      if (window.initAnimations) window.initAnimations();
-      return;
-    }
-
-    if (!window.gsap) {
-      loader.style.display = 'none';
-      if (window.initAnimations) window.initAnimations();
-      return;
-    }
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        gsap.to(loader, {
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            loader.style.display = 'none';
-            // Fire animations after loader
-            if (window.initAnimations) window.initAnimations();
-            // Re-init lucide icons (deferred script, safe to call after DOM ready)
-            if (window.lucide) window.lucide.createIcons();
-          }
-        });
-      }
-    });
-
-    tl.to(loaderName, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: 'power3.out'
-    })
-    .to(loaderBar, {
-      width: '100%',
-      duration: 0.8,
-      ease: 'power2.inOut'
-    }, '-=0.3')
-    .to(loaderName, {
-      opacity: 0,
-      y: -10,
-      duration: 0.3,
-      ease: 'power2.in'
-    }, '+=0.1');
-  }
 
   /* ---------- Scroll to Top Button ---------- */
   const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -818,30 +264,35 @@
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const caseStudyBtns = document.querySelectorAll('.btn-case-study');
   const modalWrapper = projectModal?.querySelector('.modal-wrapper');
+  const modalBody = projectModal?.querySelector('.modal-container');
 
   if (projectModal && modalOverlay && modalCloseBtn && modalWrapper && caseStudyBtns.length > 0) {
     let modalTrigger = null;
+    let closingModal = false;
     const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
     const closeModal = () => {
-      if (projectModal.getAttribute('aria-hidden') === 'true') return;
-      document.body.classList.remove('modal-open');
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      const navWrapper = document.querySelector('.nav-wrapper');
-      if (navWrapper) navWrapper.style.display = '';
-      if (window.lenis) window.lenis.start();
+      if (closingModal || projectModal.getAttribute('aria-hidden') === 'true') return;
+      closingModal = true;
 
       const finishClose = () => {
         projectModal.style.display = 'none';
         projectModal.setAttribute('aria-hidden', 'true');
-        modalTrigger?.focus();
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        const navWrapper = document.querySelector('.nav-wrapper');
+        if (navWrapper) navWrapper.style.display = '';
+        if (window.lenis) window.lenis.start();
+        modalTrigger?.focus({ preventScroll: true });
         modalTrigger = null;
+        closingModal = false;
       };
 
-      if (window.gsap) {
-        window.gsap.to(modalWrapper, { y: 30, opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: finishClose });
-        window.gsap.to(modalOverlay, { opacity: 0, duration: 0.3 });
+      if (window.gsap && !reducedMotion.matches) {
+        window.gsap.killTweensOf([modalWrapper, modalOverlay]);
+        window.gsap.to(modalWrapper, { y: 30, opacity: 0, duration: 0.2, ease: 'power2.in', onComplete: finishClose });
+        window.gsap.to(modalOverlay, { opacity: 0, duration: 0.2 });
       } else {
         finishClose();
       }
@@ -928,6 +379,7 @@
 
         // Show Modal
         projectModal.style.display = 'flex';
+        if (modalBody) modalBody.scrollTop = 0;
         projectModal.setAttribute('aria-hidden', 'false');
         modalTrigger = btn;
         document.body.classList.add('modal-open');
@@ -940,11 +392,15 @@
         if (window.lenis) window.lenis.stop();
 
         // Animate elements
-        if (window.gsap) {
+        if (window.gsap && !reducedMotion.matches) {
           window.gsap.fromTo(modalOverlay, { opacity: 0 }, { opacity: 1, duration: 0.3 });
           window.gsap.fromTo(modalWrapper, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, delay: 0.1, ease: 'power3.out' });
+        } else {
+          modalWrapper.style.removeProperty('transform');
+          modalWrapper.style.removeProperty('opacity');
+          modalOverlay.style.removeProperty('opacity');
         }
-        window.setTimeout(() => modalCloseBtn.focus(), 0);
+        modalCloseBtn.focus({ preventScroll: true });
       });
     });
 
@@ -1017,6 +473,7 @@
     // Keyboard trigger: Cmd+K / Ctrl+K
     window.addEventListener('keydown', (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        if (projectModal?.getAttribute('aria-hidden') === 'false') return;
         e.preventDefault();
         if (cmdPalette.classList.contains('open')) {
           hidePalette();
@@ -1090,10 +547,8 @@
         hidePalette();
 
         if (action === 'nav' && target) {
-          const el = document.querySelector(target);
-          if (el && window.lenis) {
-            setTimeout(() => window.lenis.scrollTo(el, { offset: -60 }), 350);
-          }
+          const link = document.querySelector(`.nav-link[href="${target}"]`);
+          link?.click();
         } else if (action === 'theme') {
           const themeToggle = document.getElementById('themeToggle');
           if (themeToggle) {
@@ -1108,7 +563,7 @@
     // Alt + number shortcuts
     window.addEventListener('keydown', (e) => {
       if (e.altKey) {
-        if (e.key >= '1' && e.key <= '6') {
+        if (e.key >= '1' && e.key <= '5') {
           e.preventDefault();
           const navItems = Array.from(cmdItems).filter(item => item.getAttribute('data-action') === 'nav');
           const index = parseInt(e.key, 10) - 1;
@@ -1126,11 +581,8 @@
   }
 
   /* ---------- Run Everything ---------- */
-  if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', runLoader);
-  } else {
-    runLoader();
-  }
+  window.initAnimations?.();
+  window.lucide?.createIcons();
 
   /* ---------- Safety: Force-dismiss loader after 5s ---------- */
   setTimeout(() => {
