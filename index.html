@@ -50,7 +50,7 @@
 
   <link rel="stylesheet" href="css/style.css?v=flow-1">
   <link rel="stylesheet" href="css/ui-revamp.css?v=mumbai-2">
-  <link rel="stylesheet" href="css/portfolio.css?v=audit-1">
+  <link rel="stylesheet" href="css/portfolio.css?v=particles-1">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,75 +107,10 @@
         </div>
         <p class="hero-availability">Open to Business Analyst and Product Analyst roles · Mumbai, India</p>
       </div>
-      <figure class="hero-scene">
-        <div class="flow-figure" id="deliveryFlow" data-stage="brief">
-          <div class="flow-header">
-            <span>Field notes / 01</span>
-            <span>Requirements → release</span>
-          </div>
-          <svg class="flow-art" viewBox="0 0 600 372" aria-hidden="true">
-            <defs>
-              <pattern id="flowGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 H 0 V 20" fill="none" stroke="currentColor" stroke-opacity=".095"/>
-              </pattern>
-              <path id="flowTop" d="M107 88 H150 C210 88 202 153 258 153 H282"/>
-              <path id="flowMid" d="M107 182 H282"/>
-              <path id="flowLow" d="M107 276 H150 C210 276 202 211 258 211 H282"/>
-              <path id="flowOut" d="M414 182 H493"/>
-            </defs>
-            <rect x="1" y="1" width="598" height="370" fill="url(#flowGrid)"/>
-            <path class="flow-axis" d="M0 182 H600 M349 0 V372" fill="none"/>
-            <g class="flow-wires" fill="none">
-              <use href="#flowTop"/><use href="#flowMid"/><use href="#flowLow"/><use href="#flowOut"/>
-            </g>
-            <g class="flow-input" fill="none">
-              <rect x="41" y="65" width="66" height="47" rx="5"/>
-              <rect x="41" y="159" width="66" height="47" rx="5"/>
-              <rect x="41" y="253" width="66" height="47" rx="5"/>
-              <path d="M54 80h39m-39 8h29m-29 8h35 M54 175h39m-39 8h31m-31 8h25 M54 268h39m-39 8h22m-22 8h34"/>
-            </g>
-            <g class="flow-labels">
-              <text x="41" y="56">REQUEST</text>
-              <text x="41" y="150">RULE</text>
-              <text x="41" y="244">EDGE CASE</text>
-            </g>
-            <g class="flow-gate">
-              <rect x="282" y="113" width="132" height="138" rx="7"/>
-              <path d="M282 143h132"/>
-              <path class="flow-checks" d="m300 162 4 4 8-9m-12 26 4 4 8-9m-12 26 4 4 8-9"/>
-              <path d="M324 163h65m-65 21h50m-50 21h59"/>
-              <text class="flow-labels" x="299" y="133">UAT CHECKS</text>
-              <text class="flow-labels" x="299" y="231">03 / 03</text>
-            </g>
-            <g class="flow-release">
-              <circle cx="531" cy="182" r="50" class="flow-orbit"/>
-              <circle cx="531" cy="182" r="35"/>
-              <path d="m518 182 9 9 17-19"/>
-              <text class="flow-labels" x="531" y="253" text-anchor="middle">SIGNED OFF</text>
-            </g>
-            <g class="flow-packets" aria-hidden="true">
-              <circle r="5" opacity="0"><animateMotion id="flowPulseTop" begin="indefinite" dur="1.4s"><mpath href="#flowTop"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" begin="flowPulseTop.begin" end="flowPulseTop.end" dur="1.4s"/></circle>
-              <circle r="5" opacity="0"><animateMotion id="flowPulseMid" begin="indefinite" dur="1.25s"><mpath href="#flowMid"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" begin="flowPulseMid.begin" end="flowPulseMid.end" dur="1.25s"/></circle>
-              <circle r="5" opacity="0"><animateMotion id="flowPulseLow" begin="indefinite" dur="1.2s"><mpath href="#flowLow"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" begin="flowPulseLow.begin" end="flowPulseLow.end" dur="1.2s"/></circle>
-              <circle r="5" opacity="0"><animateMotion id="flowPulseOut" begin="indefinite" dur=".7s"><mpath href="#flowOut"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" begin="flowPulseOut.begin" end="flowPulseOut.end" dur=".7s"/></circle>
-            </g>
-            <g class="flow-labels flow-coordinates">
-              <text x="41" y="345">01 / BRIEF</text>
-              <text x="282" y="345">02 / TEST</text>
-              <text x="493" y="345">03 / SHIP</text>
-            </g>
-          </svg>
-          <div class="flow-controls" id="flowControls" hidden>
-            <div class="flow-steps" role="group" aria-label="Explore the delivery process">
-              <button type="button" data-flow-step="brief" aria-pressed="true">Brief</button>
-              <button type="button" data-flow-step="test" aria-pressed="false">Test</button>
-              <button type="button" data-flow-step="ship" aria-pressed="false">Ship</button>
-            </div>
-            <button type="button" class="flow-replay" id="flowReplay" aria-label="Replay delivery animation" hidden>↻ <span>Replay</span></button>
-          </div>
-        </div>
-        <figcaption class="flow-caption" id="flowCaption">Start with the request, the rules, and what could go wrong.</figcaption>
-      </figure>
+      <div class="hero-art" aria-hidden="true">
+        <span class="hero-art-fallback">UR</span>
+        <canvas id="heroParticles"></canvas>
+      </div>
     </div>
   </section>
 
@@ -631,7 +566,7 @@
   <!-- ===== App Scripts (deferred) ===== -->
   <script defer src="js/animations.js?v=flow-1"></script>
   <script defer src="js/main.js?v=audit-1"></script>
-  <script defer src="js/delivery-flow.js"></script>
+  <script defer src="js/hero-particles.js"></script>
 
   <!-- ===== YouTube Background Video ===== -->
   <script>
