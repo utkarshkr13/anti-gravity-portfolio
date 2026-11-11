@@ -393,3 +393,23 @@
 @media print {
   .hero-scene { display: none; }
 }
+
+.about-bento .bento-slider { grid-row: auto; }
+
+.contact-qr {
+  grid-column: 1 / -1;
+  justify-self: center;
+  display: grid;
+  justify-items: center;
+  gap: 0.65rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.contact-qr img {
+  display: block;
+  padding: 0.4rem;
+  background: #fff;
+  object-fit: contain;
+}
