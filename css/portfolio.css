@@ -350,3 +350,35 @@
 
 .case-example dt { margin-top: 0.9rem; font-weight: 600; }
 .case-example dd { margin: 0.15rem 0 0; color: var(--text-secondary); }
+
+
+/* Optional personal notes stay out of the main reading path. */
+.portfolio-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.portfolio-note summary {
+  width: fit-content;
+  min-height: 44px;
+  padding-block: 0.55rem;
+  color: var(--editorial-accent);
+  cursor: pointer;
+}
+
+.portfolio-note summary:focus-visible {
+  outline: 2px solid var(--editorial-accent);
+  outline-offset: 3px;
+}
+
+.portfolio-note p {
+  max-width: 43ch;
+  margin: 0 0 0.5rem;
+}
+
+.footer .portfolio-note {
+  width: fit-content;
+  margin: 0.75rem auto 0;
+}
+
+.footer .portfolio-note summary { margin-inline: auto; }

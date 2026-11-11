@@ -1,0 +1,57 @@
+.case-example .evidence-record {
+  margin-block: 1.5rem 0;
+  padding: clamp(0.85rem, 3vw, 1.4rem);
+  border: 1px solid var(--border-color-hover);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+}
+
+.evidence-record h3 {
+  font: 400 clamp(1.25rem, 3vw, 1.65rem)/1.2 Georgia, Cambria, serif;
+}
+
+.evidence-record h4 {
+  margin-top: 1.35rem;
+  font-size: 0.95rem;
+}
+
+.evidence-record .evidence-checklist {
+  padding-inline-start: 1.25rem;
+}
+
+.evidence-record .evidence-checklist li {
+  padding-inline-start: 0.3rem;
+}
+
+.evidence-record .evidence-checklist li::marker {
+  color: var(--editorial-accent);
+  font-weight: 700;
+}
+
+.evidence-record .evidence-comparison {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.65rem;
+  margin-top: 0.55rem;
+  padding: 0;
+  list-style: none;
+}
+
+.evidence-record .evidence-comparison li {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border-inline-start: 2px solid var(--editorial-accent);
+  background: var(--bg-card);
+}
+
+.evidence-record li > span {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.evidence-record .evidence-deadline {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}

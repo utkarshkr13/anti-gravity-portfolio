@@ -1,0 +1,161 @@
+.signoff {
+  --signoff-rule: color-mix(in srgb, var(--text-primary) 24%, transparent);
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(1.25rem, 4vw, 3.5rem);
+  align-items: start;
+  padding: clamp(1rem, 4vw, 3rem);
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--signoff-rule);
+  border-radius: 0.8rem;
+  scroll-margin-top: 6rem;
+}
+
+.signoff [hidden] {
+  display: none;
+}
+
+.signoff-label {
+  color: var(--editorial-accent);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.signoff h3 {
+  margin-block: 0.4rem 0.8rem;
+  font: 400 clamp(1.75rem, 4vw, 3.15rem)/1.06 Georgia, Cambria, serif;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.signoff-brief > p:not(.signoff-label),
+.signoff-fallback,
+.signoff-result {
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.signoff-brief > p:not(.signoff-label),
+.signoff-reason,
+.signoff-next dd {
+  color: var(--text-secondary);
+}
+
+.signoff-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 1.25rem 0 0;
+}
+
+.signoff-comparison > div {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--signoff-rule);
+  border-radius: 0.4rem;
+  background: var(--bg-primary);
+}
+
+.signoff-comparison > div:last-child {
+  border-color: color-mix(in srgb, currentColor 48%, transparent);
+}
+
+.signoff dt {
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.signoff dd {
+  margin: 0.2rem 0 0;
+}
+
+.signoff-comparison dd {
+  font-weight: 650;
+}
+
+.signoff-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.signoff-choices button {
+  min-height: 44px;
+  min-width: 4.4rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--signoff-rule);
+  border-radius: 0.35rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font: 650 0.84rem/1.2 var(--font-body, system-ui, sans-serif);
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.signoff-choices button:hover {
+  border-color: var(--editorial-accent);
+}
+
+.signoff-choices button[aria-pressed="true"] {
+  border-color: var(--editorial-accent);
+  background: var(--editorial-accent);
+  color: var(--bg-primary);
+}
+
+.signoff :is(button, summary):focus-visible {
+  outline: 2px solid var(--editorial-accent);
+  outline-offset: 3px;
+}
+
+.signoff-result {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  min-height: 3.3rem;
+  border-inline-start: 2px solid var(--editorial-accent);
+  background: var(--bg-primary);
+}
+
+.signoff-verdict {
+  font-weight: 650;
+}
+
+.signoff-reason:not(:empty) {
+  margin-top: 0.4rem;
+}
+
+.signoff-next {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0.8rem 0 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--signoff-rule);
+}
+
+.signoff-next dt {
+  color: var(--text-primary);
+  font-weight: 650;
+}
+
+.signoff-fallback summary {
+  color: var(--editorial-accent);
+  cursor: pointer;
+}
+
+.signoff-fallback p {
+  margin: 0.7rem 0 0;
+}
+
+@media (max-width: 670px) {
+  .signoff {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signoff-choices button {
+    transition: none;
+  }
+}

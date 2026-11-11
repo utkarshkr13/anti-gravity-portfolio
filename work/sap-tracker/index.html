@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/css/style.css?v=flow-1">
   <link rel="stylesheet" href="/css/ui-revamp.css?v=mumbai-2">
   <link rel="stylesheet" href="/css/portfolio.css?v=audit-1">
+  <link rel="stylesheet" href="/css/case-evidence.css">
 </head>
 <body>
   <main class="case-page">
@@ -30,15 +31,25 @@
       <section>
         <h2>What I built</h2>
         <p>As the business analyst and builder, I set up a tracker for test entries and results. The shared status model let a test stay blocked with a reason until a retest recorded a result. Readiness views made pending work visible without asking teams to reconcile separate status updates.</p>
+        <p>I made the test result and the next action visible together. A blocked result tells QA and delivery why the test cannot pass and who should investigate.</p>
       </section>
       <section class="case-example">
         <h2>Example walkthrough</h2>
-        <p>This synthetic example illustrates the workflow without using client data.</p>
+        <p>Synthetic UAT record. The scenario, test ID, and results below are illustrative.</p>
         <dl>
-        <dt>Scenario</dt><dd>An order-status integration test returns an unexpected status.</dd>
-        <dt>Record</dt><dd>Test INT-014 is blocked. The expected status is Confirmed, the observed status is Pending, and the integration team owns the investigation.</dd>
-        <dt>Retest</dt><dd>After the mapping is corrected, QA runs the same scenario and records the actual result before marking the test passed.</dd>
+          <dt>Scenario</dt><dd>An order-status integration test returns an unexpected status.</dd>
+          <dt>Record</dt><dd>Test INT-014 is blocked. The expected status is Confirmed, the observed status is Pending, and the integration team owns the investigation.</dd>
+          <dt>Retest</dt><dd>After the mapping is corrected, QA runs the same scenario and records the actual result before marking the test passed.</dd>
         </dl>
+        <div class="evidence-record">
+          <h3>INT-014 · Order status after confirmation</h3>
+          <ol class="evidence-checklist">
+            <li><strong>Record what happened</strong><span>Expected <code>Confirmed</code>. Observed <code>Pending</code>. Keep the test blocked and record the mismatch.</span></li>
+            <li><strong>Assign the investigation</strong><span>The integration team checks where the status mapping differs from the acceptance criterion. QA keeps the original result.</span></li>
+            <li><strong>Retest against the same criterion</strong><span>After the mapping is corrected, QA reruns the scenario and records the new result. Mark the test passed when the evidence shows <code>Confirmed</code>.</span></li>
+          </ol>
+        </div>
+        <p><a href="/#signoff-demo">Try the sign-off decision</a></p>
       </section>
       <section>
         <h2>Outcome</h2>
