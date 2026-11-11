@@ -52,7 +52,7 @@
   <link rel="stylesheet" href="css/ui-revamp.css?v=mumbai-2">
   <link rel="stylesheet" href="css/portfolio.css?v=chapters-1">
   <link rel="stylesheet" href="css/signoff.css?v=1">
-  <link rel="stylesheet" href="css/chapters.css">
+  <link rel="stylesheet" href="css/chapters.css?v=detail-1">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,150 +198,67 @@
         <a class="work-chapter__link" href="/work/client-inbox-tracker/">Explore the escalation case study <span aria-hidden="true">↗</span></a>
       </header>
 
-      <figure class="work-chapter__visual">
-        <div class="chapter-console">
-          <div class="chapter-console__header">
-            <div>
-              <p class="chapter-console__label">ESC-027</p>
-              <p class="chapter-console__title">Missing order confirmation</p>
-            </div>
-            <span class="chapter-status chapter-status--waiting">Reply due 14:00</span>
-          </div>
-          <ol class="chapter-console__rows chapter-console__timeline">
-            <li class="chapter-console__row">
-              <span class="chapter-console__time">10:00</span>
-              <div><strong>Message arrives</strong><span class="chapter-console__detail">A distributor reports an order with no confirmation.</span></div>
-            </li>
-            <li class="chapter-console__row">
-              <span class="chapter-console__time">10:04</span>
-              <div><strong>Order Support takes ownership</strong><span class="chapter-console__detail">The routing rule matches the order issue.</span></div>
-            </li>
-            <li class="chapter-console__row">
-              <span class="chapter-console__time">14:00</span>
-              <div><strong>Customer update due</strong><span class="chapter-console__detail">The owner sends an update separately from internal notes.</span></div>
-            </li>
-          </ol>
-          <p class="chapter-console__foot"><strong>Exception</strong> An unrecognized issue stays in triage for manual assignment.</p>
+      <figure class="work-chapter__visual routing-exercise" id="routing-exercise">
+        <div class="routing-thread">
+          <header>
+            <p class="chapter-console__label">10:00 · Incoming message</p>
+            <p class="chapter-console__title">A distributor is waiting for an update.</p>
+          </header>
+          <details name="routing-path" open>
+            <summary>Order reference is present</summary>
+            <dl>
+              <div><dt>Customer message</dt><dd>“Order A-104 was submitted. Can you confirm its status?”</dd></div>
+              <div><dt>Assignment</dt><dd>Order Support owns the next reply. The response is due at 14:00.</dd></div>
+              <div><dt>Internal note</dt><dd>Check the order status with integration support.</dd></div>
+              <div><dt>Customer reply</dt><dd>“We’re checking the order status and will update you by 14:00.”</dd></div>
+            </dl>
+          </details>
+          <details name="routing-path">
+            <summary>Order reference is missing</summary>
+            <dl>
+              <div><dt>Customer message</dt><dd>“Our order still hasn’t come through.”</dd></div>
+              <div><dt>Assignment</dt><dd>The triage team keeps the ticket until it can identify the order. The response is still due at 14:00.</dd></div>
+              <div><dt>Internal note</dt><dd>Request the order reference before assigning the investigation.</dd></div>
+              <div><dt>Customer reply</dt><dd>“Could you share your order reference so we can check the status?”</dd></div>
+            </dl>
+          </details>
         </div>
-        <figcaption>Sample escalation with synthetic messages and timestamps.</figcaption>
+        <figcaption>Try either routing path. The messages, order reference, and times are synthetic.</figcaption>
       </figure>
     </div>
   </section>
 
   <!-- ===== Projects Section ===== -->
   <section class="section" id="projects">
-    <div class="section-label">01 / Portfolio</div>
     <h2 class="section-title">Selected work</h2>
-    <p class="section-subtitle">Tools for testing, support, and better operational decisions.</p>
-
-    <!-- Projects Category Filters -->
-    <div class="projects-filter-bar" role="group" aria-label="Filter projects">
-      <button type="button" class="filter-btn active" aria-pressed="true" data-filter="all">All</button>
-      <button type="button" class="filter-btn" aria-pressed="false" data-filter="production">Production Solutions</button>
-      <button type="button" class="filter-btn" aria-pressed="false" data-filter="fullstack">Internal Tools</button>
-      <button type="button" class="filter-btn" aria-pressed="false" data-filter="analytics">Analytics & BI</button>
+    <div class="work-index">
+      <article class="work-index__row">
+        <div><p>Business Analyst / Builder</p><h3>SAP Integration Testing Tracker</h3></div>
+        <p>Made test results, blockers, and sign-off visible across three workstreams.</p>
+        <div class="work-index__actions">
+          <a href="/work/sap-tracker/" class="case-page-link">Read SAP case study</a>
+          <button type="button" class="btn-case-study" data-project="sap-tracker" aria-label="Quick view of SAP Integration Testing Tracker">Quick view</button>
+        </div>
+      </article>
+      <article class="work-index__row">
+        <div><p>Business Analyst / Builder</p><h3>L2 Client Escalation Portal</h3></div>
+        <p>Gave support teams a shared view of ownership, notes, and reply deadlines.</p>
+        <div class="work-index__actions">
+          <a href="/work/client-inbox-tracker/" class="case-page-link">Read L2 case study</a>
+          <button type="button" class="btn-case-study" data-project="client-inbox-tracker" aria-label="Quick view of L2 Client Escalation Portal">Quick view</button>
+        </div>
+      </article>
+      <article class="work-index__row">
+        <div><p>Business Intelligence &amp; Marketing Intern</p><h3>CityFlo BI Dashboards</h3></div>
+        <p>Mapped location data to support route and pricing decisions.</p>
+        <div class="work-index__actions"><button type="button" class="btn-case-study" data-project="cityflo-bi" aria-label="View CityFlo BI Dashboards case study">View case study</button></div>
+      </article>
+      <article class="work-index__row">
+        <div><p>VIT Capstone Project Contributor</p><h3>Satellite Crop Classification</h3></div>
+        <p>Combined radar and optical imagery to classify crop types.</p>
+        <div class="work-index__actions"><button type="button" class="btn-case-study" data-project="satellite-crop" aria-label="View Satellite Crop Classification case study">View case study</button></div>
+      </article>
     </div>
-
-    <div class="projects-grid">
-
-      <!-- Project 1: SAP Integration Testing Tracker -->
-      <div class="project-card featured reveal-scale" data-category="production">
-        <div class="project-card-image">
-          <img src="assets/project-tracker.png" alt="SAP Integration Testing Tracker" loading="lazy">
-          <div class="project-card-overlay"></div>
-        </div>
-        <div class="project-card-body">
-          <div class="project-card-category">Integration Testing Platform</div>
-          <h3 class="project-card-title">SAP Integration Testing Tracker</h3>
-          <p class="project-card-desc">Testing updates were spread across spreadsheets and follow-ups. I built a shared tracker so the teams involved could see test results, pending issues, and what still needed sign-off.</p>
-          <div class="project-card-details" style="margin: 12px 0; font-size: 0.9rem; opacity: 0.85; line-height: 1.6;">
-            <ul style="margin: 6px 0 0 16px; padding: 0; list-style-type: disc;">
-              <li>Centralized test entry management with CRUD-based workflows.</li>
-              <li>Tracked integration progress across SAP and Salescode API touchpoints.</li>
-              <li><strong>Impact:</strong> Reduced status-tracking effort by 40% across 3 client workstreams.</li>
-            </ul>
-          </div>
-          <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
-            <a href="/work/sap-tracker/" class="btn btn-primary case-page-link">Read case study</a>
-            <a href="https://sap-tracker-mocha.vercel.app" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;">Internal app (sign-in required) <span style="font-size:0.75rem;">↗</span></a>
-            <a href="https://github.com/utkarshkr13/sap-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
-            <button type="button" class="btn btn-primary btn-case-study" data-project="sap-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;">Quick view</button>
-          </div>
-          <div class="project-card-tags" style="margin-top: 15px;">
-            <span>Vanilla JS</span><span>Clerk v5</span><span>Firebase Realtime DB</span><span>Chart.js</span><span>SheetJS</span><span>Vercel</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2: L2 Client Escalation Portal -->
-      <div class="project-card featured reveal-scale" data-category="fullstack">
-        <div class="project-card-image">
-          <img src="assets/project-l2-escalation.png" alt="L2 Client Escalation Portal" loading="lazy">
-          <div class="project-card-overlay"></div>
-        </div>
-        <div class="project-card-body">
-          <div class="project-card-category">Internal Escalation Tool</div>
-          <h3 class="project-card-title">L2 Client Escalation Portal</h3>
-          <p class="project-card-desc">A real-time ticket triage system built to reduce Gmail-based escalation friction and improve SLA tracking for business analysts and support leads. It supports ticket sync, assignment routing, private internal notes, and follow-up reminders.</p>
-          <div class="project-card-details" style="margin: 12px 0; font-size: 0.9rem; opacity: 0.85; line-height: 1.6;">
-            <ul style="margin: 6px 0 0 16px; padding: 0; list-style-type: disc;">
-              <li>Auto-routes incoming tickets based on email fields and ownership rules.</li>
-              <li>Keeps internal notes separate from external communication.</li>
-              <li><strong>Outcome:</strong> Brought tickets, assignments, internal notes, and reminders into one operational view.</li>
-            </ul>
-          </div>
-          <div class="project-card-links" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
-            <a href="/work/client-inbox-tracker/" class="btn btn-primary case-page-link">Read case study</a>
-            <a href="https://client-inbox-tracker.vercel.app" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;">Internal app (sign-in required) <span style="font-size:0.75rem;">↗</span></a>
-            <a href="https://github.com/utkarshkr13/client-inbox-tracker" target="_blank" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.8rem; height: auto;">GitHub Repository <span style="font-size:0.75rem;">↗</span></a>
-            <button type="button" class="btn btn-primary btn-case-study" data-project="client-inbox-tracker" style="padding: 6px 14px; font-size: 0.8rem; height: auto;">Quick view</button>
-          </div>
-          <div class="project-card-tags" style="margin-top: 15px;">
-            <span>Next.js 14</span><span>TypeScript</span><span>Neon Postgres</span><span>Prisma ORM</span><span>Gmail API</span><span>NextAuth</span><span>Tailwind CSS</span><span>PWA</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 3: Satellite Crop Classification -->
-      <div class="project-card reveal-scale" data-category="analytics">
-        <div class="project-card-image">
-          <img src="assets/project-satellite.jpg" alt="Satellite Crop Classification" loading="lazy">
-          <div class="project-card-overlay"></div>
-        </div>
-        <div class="project-card-body">
-          <div class="project-card-category">VIT Capstone Project</div>
-          <h3 class="project-card-title">Satellite Crop Classification</h3>
-          <p class="project-card-desc">A research project using Sentinel-1 SAR and Sentinel-2 optical imagery on Google Earth Engine to support crop identification and vegetation analysis with machine learning methods.</p>
-          <div style="margin-top: 12px; margin-bottom: 12px;">
-            <button type="button" class="btn btn-secondary btn-case-study" data-project="satellite-crop" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%;">View Case Study</button>
-          </div>
-          <div class="project-card-tags">
-            <span>Remote Sensing</span><span>ML</span><span>Google Earth Engine</span><span>Python</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4: CityFlo BI Dashboards -->
-      <div class="project-card reveal-scale" data-category="analytics">
-        <div class="project-card-image">
-          <img src="assets/project-cityflo.png" alt="CityFlo BI Dashboards" loading="lazy">
-          <div class="project-card-overlay"></div>
-        </div>
-        <div class="project-card-body">
-          <div class="project-card-category">Business Intelligence Dashboard</div>
-          <h3 class="project-card-title">CityFlo BI Dashboards</h3>
-          <p class="project-card-desc">Interactive dashboards built for location heat maps, market analysis, and pricing support using Python, scraping workflows, and PostgreSQL-backed data models.</p>
-          <div style="margin-top: 12px; margin-bottom: 12px;">
-            <button type="button" class="btn btn-secondary btn-case-study" data-project="cityflo-bi" style="padding: 6px 12px; font-size: 0.75rem; height: auto; width: 100%;">View Case Study</button>
-          </div>
-          <div class="project-card-tags">
-            <span>Tableau</span><span>Python</span><span>PostgreSQL</span><span>BeautifulSoup</span><span>Selenium</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
   </section>
 
   <!-- ===== About Section ===== -->
@@ -380,9 +297,6 @@
             <div class="about-slide" data-color="140, 119, 103">
               <img src="assets/pf-3.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
             </div>
-            <div class="about-slide" data-color="59, 59, 49">
-              <img src="assets/pf-4.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
-            </div>
             <div class="about-slide" data-color="147, 155, 161">
               <img src="assets/pf-5.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
             </div>
@@ -390,7 +304,6 @@
           <!-- Progress Indicators -->
           <div class="slider-indicators" id="sliderIndicators">
             <div class="indicator-dot active"><div class="indicator-fill"></div></div>
-            <div class="indicator-dot"><div class="indicator-fill"></div></div>
             <div class="indicator-dot"><div class="indicator-fill"></div></div>
             <div class="indicator-dot"><div class="indicator-fill"></div></div>
           </div>
@@ -536,6 +449,10 @@
         <button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 12px 24px;">Send Message <i data-lucide="send" style="width:16px;height:16px;margin-left:6px;"></i></button>
       </form>
     </div>
+    <figure class="contact-photo">
+      <img src="assets/pf-4.jpeg" width="1024" height="1280" alt="Utkarsh standing beside a waterfall against a moss-covered rock wall" loading="lazy" decoding="async">
+      <figcaption>Water tracing the rock face beside a wall of moss.</figcaption>
+    </figure>
   </section>
 
   <!-- ===== Footer ===== -->
@@ -681,13 +598,12 @@
   <!-- ===== Third-party Libraries (deferred — non-render-blocking) ===== -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
   <script defer src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
 
   <!-- ===== App Scripts (deferred) ===== -->
-  <script defer src="js/animations.js?v=flow-1"></script>
-  <script defer src="js/main.js?v=audit-1"></script>
+  <script defer src="js/animations.js?v=detail-1"></script>
+  <script defer src="js/main.js?v=detail-1"></script>
   <script defer src="js/hero-particles.js"></script>
   <script defer src="js/signoff.js?v=1"></script>
 

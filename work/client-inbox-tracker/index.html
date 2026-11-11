@@ -14,10 +14,10 @@
   <link rel="stylesheet" href="/css/style.css?v=flow-1">
   <link rel="stylesheet" href="/css/ui-revamp.css?v=mumbai-2">
   <link rel="stylesheet" href="/css/portfolio.css?v=audit-1">
-  <link rel="stylesheet" href="/css/case-evidence.css">
+  <link rel="stylesheet" href="/css/case-evidence.css?v=detail-1">
 </head>
 <body>
-  <main class="case-page">
+  <main class="case-page case-page--l2">
     <nav aria-label="Portfolio"><a href="/#projects">← Selected work</a></nav>
     <article>
       <header>
@@ -32,6 +32,10 @@
         <h2>What I built</h2>
         <p>As the business analyst and builder, I built a workflow that syncs incoming tickets, routes messages using their fields, and shows SLA countdowns. The case view separates the team’s internal notes from external correspondence.</p>
         <p>I designed the workflow so an incoming message could become an assigned ticket with a visible response deadline. Cases without a routing match stay visible for a person to assign.</p>
+      </section>
+      <section class="case-decision">
+        <h2>Decision I made</h2>
+        <p>I used rule-based assignment for recognizable issues and left ambiguous messages in manual triage. That leaves some work for the support team, but it keeps the reply deadline visible while a person decides who should own the case. I also separated investigation notes from customer updates so each has a clear audience.</p>
       </section>
       <section class="case-example">
         <h2>Example walkthrough</h2>
@@ -55,6 +59,7 @@
           </ul>
         </div>
       </section>
+      <p><a href="/#routing-exercise">Try both routing paths</a></p>
       <section>
         <h2>Outcome</h2>
         <p>Tickets, assignments, notes, and reminders became visible in one place. The example shows the workflow and does not quantify any change in response time.</p>

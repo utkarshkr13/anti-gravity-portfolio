@@ -5,8 +5,8 @@
 (function () {
   'use strict';
 
-  if (!window.gsap || !window.ScrollTrigger || !window.Flip) return;
-  gsap.registerPlugin(ScrollTrigger, Flip);
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- Hero — Full-Screen Dot Wave Matrix (Claude-style) ---------- */
   /* ---------- Hero — Full-Screen Dot Wave Matrix (Claude-style) with 3D depth, gravity well, and shockwaves ---------- */
