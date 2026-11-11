@@ -50,7 +50,9 @@
 
   <link rel="stylesheet" href="css/style.css?v=flow-1">
   <link rel="stylesheet" href="css/ui-revamp.css?v=mumbai-2">
-  <link rel="stylesheet" href="css/portfolio.css?v=particles-1">
+  <link rel="stylesheet" href="css/portfolio.css?v=chapters-1">
+  <link rel="stylesheet" href="css/signoff.css?v=1">
+  <link rel="stylesheet" href="css/chapters.css">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,7 +104,7 @@
           I turn client requirements into workflows, UAT checks, and releases. My work spans FMCG software delivery in India, Saudi Arabia, and Nepal, including tools for integration testing and escalation tracking.
         </p>
         <div class="hero-cta-group">
-          <a href="#projects" class="btn btn-primary" id="ctaWork">View selected work <span aria-hidden="true">↘</span></a>
+          <a href="#sap-chapter" class="btn btn-primary" id="ctaWork">Explore the SAP project <span aria-hidden="true">↘</span></a>
           <a href="#experience" class="btn btn-secondary" id="ctaResume">View experience</a>
         </div>
         <p class="hero-availability">Open to Business Analyst and Product Analyst roles · Mumbai, India</p>
@@ -111,6 +113,118 @@
         <span class="hero-art-fallback">UR</span>
         <canvas id="heroParticles"></canvas>
       </div>
+    </div>
+  </section>
+
+  <section class="work-chapter work-chapter--sap" id="sap-chapter" aria-labelledby="sap-chapter-title">
+    <div class="work-chapter__inner">
+      <div class="work-chapter__spread">
+        <header class="work-chapter__intro">
+          <p class="work-chapter__project">SAP Integration Testing Tracker</p>
+          <h2 id="sap-chapter-title">What’s blocking this release?</h2>
+          <p>Test results were scattered across spreadsheets and follow-up messages. I built a shared tracker so QA and delivery teams could see what had passed, who owned each blocker, and what still needed sign-off.</p>
+          <a class="work-chapter__link" href="/work/sap-tracker/">Explore the SAP case study <span aria-hidden="true">↗</span></a>
+        </header>
+
+        <figure class="work-chapter__visual">
+          <div class="chapter-console">
+            <div class="chapter-console__header">
+              <div>
+                <p class="chapter-console__label">Integration testing</p>
+                <p class="chapter-console__title">Release readiness</p>
+              </div>
+              <span class="chapter-status chapter-status--blocked">On hold</span>
+            </div>
+            <ul class="chapter-console__rows">
+              <li class="chapter-console__row">
+                <div><span class="chapter-console__label">INT-012</span><strong>Order sync</strong><span class="chapter-console__detail">Confirmation received</span></div>
+                <span class="chapter-status chapter-status--done">Passed</span>
+              </li>
+              <li class="chapter-console__row">
+                <div><span class="chapter-console__label">INT-014</span><strong>Order status mapping</strong><span class="chapter-console__detail">Expected Confirmed, received Pending</span></div>
+                <span class="chapter-status chapter-status--blocked">Blocked</span>
+              </li>
+              <li class="chapter-console__row">
+                <div><span class="chapter-console__label">INT-016</span><strong>Duplicate order handling</strong><span class="chapter-console__detail">Retest complete</span></div>
+                <span class="chapter-status chapter-status--waiting">Sign-off due</span>
+              </li>
+            </ul>
+            <p class="chapter-console__foot"><strong>Next action</strong> Integration team checks the status mapping. QA repeats the test with the same input.</p>
+          </div>
+          <figcaption>Sample release tracker with synthetic test records.</figcaption>
+        </figure>
+      </div>
+      <section class="signoff" id="signoff-demo" aria-labelledby="signoff-title">
+        <div class="signoff-brief">
+          <p class="signoff-label">Synthetic UAT exercise</p>
+          <h3 id="signoff-title">Would you sign off?</h3>
+          <p>The confirmation request has finished. Compare the expected order status with the result and choose what you’d record.</p>
+          <dl class="signoff-comparison">
+            <div><dt>Expected status</dt><dd>Confirmed</dd></div>
+            <div><dt>Actual status</dt><dd>Pending</dd></div>
+          </dl>
+        </div>
+
+        <details class="signoff-fallback">
+          <summary>See the analyst’s decision</summary>
+          <p><strong>Block sign-off.</strong> Pending doesn’t meet the acceptance criterion. Assign the discrepancy to the integration owner and ask QA to rerun the scenario once it’s resolved. A captured <strong>Confirmed</strong> result for the same scenario supports sign-off.</p>
+        </details>
+
+        <div class="signoff-interactive" hidden>
+          <div class="signoff-choices" role="group" aria-label="Choose a UAT decision">
+            <button type="button" data-signoff-choice="pass" aria-pressed="false" aria-controls="signoff-result">Pass</button>
+            <button type="button" data-signoff-choice="block" aria-pressed="false" aria-controls="signoff-result">Block</button>
+            <button type="button" data-signoff-choice="retest" aria-pressed="false" aria-controls="signoff-result">Retest</button>
+          </div>
+          <div class="signoff-result" id="signoff-result" role="status" aria-atomic="true">
+            <p class="signoff-verdict">Choose how you’d record the result.</p>
+            <p class="signoff-reason"></p>
+            <dl class="signoff-next" hidden>
+              <div><dt>Next owner</dt><dd class="signoff-owner"></dd></div>
+              <div><dt>Evidence needed</dt><dd class="signoff-evidence"></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="work-chapter work-chapter--l2" id="l2-chapter" aria-labelledby="l2-chapter-title">
+    <div class="work-chapter__inner work-chapter__spread">
+      <header class="work-chapter__intro">
+        <p class="work-chapter__project">L2 Client Escalation Portal</p>
+        <h2 id="l2-chapter-title">Who owns the next reply?</h2>
+        <p>A shared inbox held the conversation, but ownership and deadlines were hard to find. I built an internal tool that assigns escalations, shows when a reply is due, and keeps internal notes separate from customer updates.</p>
+        <a class="work-chapter__link" href="/work/client-inbox-tracker/">Explore the escalation case study <span aria-hidden="true">↗</span></a>
+      </header>
+
+      <figure class="work-chapter__visual">
+        <div class="chapter-console">
+          <div class="chapter-console__header">
+            <div>
+              <p class="chapter-console__label">ESC-027</p>
+              <p class="chapter-console__title">Missing order confirmation</p>
+            </div>
+            <span class="chapter-status chapter-status--waiting">Reply due 14:00</span>
+          </div>
+          <ol class="chapter-console__rows chapter-console__timeline">
+            <li class="chapter-console__row">
+              <span class="chapter-console__time">10:00</span>
+              <div><strong>Message arrives</strong><span class="chapter-console__detail">A distributor reports an order with no confirmation.</span></div>
+            </li>
+            <li class="chapter-console__row">
+              <span class="chapter-console__time">10:04</span>
+              <div><strong>Order Support takes ownership</strong><span class="chapter-console__detail">The routing rule matches the order issue.</span></div>
+            </li>
+            <li class="chapter-console__row">
+              <span class="chapter-console__time">14:00</span>
+              <div><strong>Customer update due</strong><span class="chapter-console__detail">The owner sends an update separately from internal notes.</span></div>
+            </li>
+          </ol>
+          <p class="chapter-console__foot"><strong>Exception</strong> An unrecognized issue stays in triage for manual assignment.</p>
+        </div>
+        <figcaption>Sample escalation with synthetic messages and timestamps.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -249,6 +363,10 @@
           <p>
             I studied <strong>Electronics and Communication Engineering at VIT</strong>. Outside work, I enjoy photography and Formula 1.
           </p>
+          <details class="portfolio-note">
+            <summary>Pit wall</summary>
+            <p>A Formula 1 pit wall watches timing, tyre wear, and gaps before making a call. Release sign-off has a similar constraint. The next decision depends on what the team knows before the window closes.</p>
+          </details>
         </div>
       </div>
 
@@ -426,6 +544,10 @@
 
       <p style="margin: 0; flex: 1; text-align: center;">Designed & Built by <a href="#hero">Utkarsh Rajput</a> · 2026</p>
     </div>
+    <details class="portfolio-note">
+      <summary>Site notes</summary>
+      <p>The specks in the hero are drawn from the shapes of the letters U and R. With reduced motion enabled, they begin in place.</p>
+    </details>
   </footer>
   </main>
 
@@ -567,6 +689,7 @@
   <script defer src="js/animations.js?v=flow-1"></script>
   <script defer src="js/main.js?v=audit-1"></script>
   <script defer src="js/hero-particles.js"></script>
+  <script defer src="js/signoff.js?v=1"></script>
 
   <!-- ===== YouTube Background Video ===== -->
   <script>

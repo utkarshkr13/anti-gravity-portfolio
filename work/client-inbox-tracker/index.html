@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/css/style.css?v=flow-1">
   <link rel="stylesheet" href="/css/ui-revamp.css?v=mumbai-2">
   <link rel="stylesheet" href="/css/portfolio.css?v=audit-1">
+  <link rel="stylesheet" href="/css/case-evidence.css">
 </head>
 <body>
   <main class="case-page">
@@ -30,15 +31,29 @@
       <section>
         <h2>What I built</h2>
         <p>As the business analyst and builder, I built a workflow that syncs incoming tickets, routes messages using their fields, and shows SLA countdowns. The case view separates the team’s internal notes from external correspondence.</p>
+        <p>I designed the workflow so an incoming message could become an assigned ticket with a visible response deadline. Cases without a routing match stay visible for a person to assign.</p>
       </section>
       <section class="case-example">
         <h2>Example walkthrough</h2>
-        <p>This synthetic example illustrates the workflow without using client data.</p>
+        <p>Synthetic escalation record. The message, ticket ID, and deadline below are illustrative.</p>
         <dl>
-        <dt>Scenario</dt><dd>A distributor reports that a submitted order has no confirmation.</dd>
-        <dt>Routing</dt><dd>A recognizable order issue goes to order support. A message that cannot be matched stays in the triage queue for manual assignment.</dd>
-        <dt>Follow-up</dt><dd>The owner checks the response deadline, leaves the investigation in an internal note, and sends a separate customer update.</dd>
+          <dt>Scenario</dt><dd>A distributor reports that a submitted order has no confirmation.</dd>
+          <dt>Routing</dt><dd>A recognizable order issue goes to order support. A message that cannot be matched stays in the triage queue for manual assignment.</dd>
+          <dt>Follow-up</dt><dd>The owner checks the response deadline, leaves the investigation in an internal note, and sends a separate customer update.</dd>
         </dl>
+        <div class="evidence-record">
+          <h3>ESC-028 · Missing order confirmation</h3>
+          <p class="evidence-deadline">Example next reply due at <time datetime="15:30">3:30 p.m.</time></p>
+          <ul class="evidence-comparison">
+            <li><strong>Rule matches</strong><span>An order reference and an order issue are present. Route to order support and show the assigned queue.</span></li>
+            <li><strong>Routing exception</strong><span>The message is ambiguous. Leave it in triage for manual assignment and keep the deadline visible.</span></li>
+          </ul>
+          <h4>Two records, two audiences</h4>
+          <ul class="evidence-comparison">
+            <li><strong>Internal note</strong><span>“Check the status mapping with integration support. Confirmation is still pending.”</span></li>
+            <li><strong>Customer update</strong><span>“We received your report and are checking the order status. We’ll update you by 3:30 p.m.”</span></li>
+          </ul>
+        </div>
       </section>
       <section>
         <h2>Outcome</h2>

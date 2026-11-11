@@ -1,0 +1,189 @@
+/* Feature chapters use distinct colors for the two work stories. */
+.work-chapter {
+  --chapter-ink: #f1f8ef;
+  --chapter-muted: #c1d3c9;
+  --chapter-accent: #c8f0aa;
+  --chapter-line: #56736b;
+  --chapter-panel: #173330;
+  position: relative;
+  padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 6vw, 6rem);
+  scroll-margin-top: 90px;
+  color: var(--chapter-ink);
+  background: radial-gradient(ellipse at 84% 5%, #2e594d 0, transparent 63%), #102823;
+}
+
+.work-chapter--l2 {
+  --chapter-ink: #fff3fa;
+  --chapter-muted: #e1cbdc;
+  --chapter-accent: #ffbfda;
+  --chapter-line: #87627f;
+  --chapter-panel: #382338;
+  background: radial-gradient(ellipse at 77% 0%, #60415e 0, transparent 64%), #2b1c2c;
+}
+
+.work-chapter__inner {
+  max-width: 1260px;
+  margin-inline: auto;
+}
+
+.work-chapter__spread {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: center;
+}
+
+.work-chapter__intro h2 {
+  margin-block: 0.2em;
+  font: 400 clamp(3rem, 6.5vw, 7rem)/0.94 Georgia, Cambria, serif;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+
+.work-chapter__intro p:not(.work-chapter__project) {
+  max-width: 40ch;
+  color: var(--chapter-muted);
+}
+
+.work-chapter__project,
+.chapter-console__label,
+.chapter-console__time {
+  color: var(--chapter-accent);
+  font: 500 0.73rem/1.5 ui-monospace, Consolas, monospace;
+  letter-spacing: 0.05em;
+}
+
+.work-chapter__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 44px;
+  margin-top: 1rem;
+  color: var(--chapter-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.work-chapter__link:hover { text-decoration-thickness: 2px; }
+
+.work-chapter .signoff {
+  margin-top: clamp(2rem, 5vw, 4rem);
+  scroll-margin-top: 90px;
+}
+
+.work-chapter__visual {
+  min-width: 0;
+  margin: 0;
+}
+
+.work-chapter__visual figcaption {
+  margin-top: 0.8rem;
+  color: var(--chapter-muted);
+  font-size: 0.76rem;
+}
+
+.chapter-console {
+  overflow: hidden;
+  border: 1px solid var(--chapter-line);
+  border-radius: 0.85rem;
+  background: var(--chapter-panel);
+  box-shadow: 0 22px 60px #11171355;
+  font-size: 0.875rem;
+}
+
+.chapter-console__header,
+.chapter-console__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: clamp(0.85rem, 2.4vw, 1.45rem);
+}
+
+.chapter-console__header {
+  background: #0003;
+}
+
+.chapter-console__title {
+  font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.28;
+  text-wrap: balance;
+}
+
+.chapter-console__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chapter-console__row {
+  border-top: 1px solid var(--chapter-line);
+}
+
+.chapter-console__row strong,
+.chapter-console__detail { display: block; }
+
+.chapter-console__detail {
+  margin-top: 0.14rem;
+  color: var(--chapter-muted);
+  line-height: 1.4;
+}
+
+.chapter-status {
+  flex: none;
+  padding: 0.3rem 0.52rem;
+  border: 1px solid currentColor;
+  border-radius: 0.3rem;
+  font: 500 0.72rem/1.2 ui-monospace, Consolas, monospace;
+  white-space: nowrap;
+}
+
+.chapter-status--blocked { color: #ffbfab; }
+.chapter-status--done { color: #c8f0aa; }
+.chapter-status--waiting { color: #ffdd9b; }
+
+.chapter-console__timeline .chapter-console__row {
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.chapter-console__time {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.chapter-console__foot {
+  margin: 0;
+  padding: clamp(0.85rem, 2.4vw, 1.45rem);
+  border-top: 1px solid var(--chapter-line);
+  color: var(--chapter-muted);
+  line-height: 1.55;
+}
+
+.chapter-console__foot strong {
+  margin-inline-end: 0.35em;
+  color: var(--chapter-ink);
+}
+
+@media (max-width: 780px) {
+  .work-chapter__spread { grid-template-columns: minmax(0, 1fr); }
+  .work-chapter__intro h2 { max-width: 12ch; }
+}
+
+/* The panels stay readable and in order where view timelines are unavailable. */
+@supports (animation-timeline: view()) {
+  @media (min-width: 781px) and (prefers-reduced-motion: no-preference) {
+    .work-chapter__visual {
+      animation: chapter-arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 85%;
+    }
+
+    @keyframes chapter-arrive {
+      from { opacity: 0.68; transform: translateY(48px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  }
+}
