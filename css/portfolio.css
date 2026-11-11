@@ -413,3 +413,53 @@
   background: #fff;
   object-fit: contain;
 }
+
+#projectModal a[hidden] { display: none !important; }
+
+.contact-disclosure {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.case-page-link {
+  min-height: 44px;
+  padding-inline: 0.9rem;
+}
+
+.case-page {
+  width: min(100% - 2.5rem, 760px);
+  margin: 0 auto;
+  padding-block: clamp(2rem, 7vw, 5rem);
+}
+
+.case-page header { padding-block: 2.5rem 1.5rem; }
+
+.case-page h1,
+.case-page h2 {
+  font-family: Georgia, Cambria, serif;
+  font-weight: 400;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.case-page h1 { font-size: clamp(2.65rem, 8vw, 5.2rem); }
+.case-page h2 { font-size: clamp(1.75rem, 4vw, 2.6rem); }
+.case-page section { margin-top: 2.25rem; }
+.case-page p, .case-page li { margin-top: 0.7rem; }
+.case-page ul { padding-inline-start: 1.25rem; }
+
+.case-page a {
+  color: var(--editorial-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.case-example {
+  padding: clamp(1rem, 4vw, 1.8rem);
+  border: 1px solid var(--border-color-hover);
+  border-radius: 0.65rem;
+  background: var(--bg-card);
+}
+
+.case-example dt { margin-top: 0.9rem; font-weight: 600; }
+.case-example dd { margin: 0.15rem 0 0; color: var(--text-secondary); }

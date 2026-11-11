@@ -214,11 +214,11 @@
     },
     'client-inbox-tracker': {
       title: "L2 Client Escalation Portal",
-      category: "Full-stack SaaS Product",
+      category: "Internal Escalation Tool",
       role: "Business Analyst / Builder",
       stack: "Next.js 14, TypeScript, Neon Postgres, Prisma ORM, Gmail API, NextAuth, Tailwind CSS, PWA",
       problem: "Enterprise FMCG support requests got lost in chaotic shared inbox loops. Business analysts and support teams struggled to track SLA breaches, assign ownership, and maintain private resolution logs.",
-      strategy: "Designed a real-time ticketing SaaS that auto-syncs with corporate emails using Gmail API. Implemented automated regex-based ticket routing, SLA countdown indicators, and a dual-pane interface to keep internal BA notes isolated from customer views.",
+      strategy: "Designed an internal ticketing tool that auto-syncs with corporate emails using Gmail API. Implemented automated regex-based ticket routing, SLA countdown indicators, and a dual-pane interface to keep internal BA notes isolated from customer views.",
       impact: [
         "Centralized tickets, assignments, internal notes, and follow-up reminders.",
         "Made ownership and pending actions easier to track outside email threads.",
@@ -230,14 +230,13 @@
     'satellite-crop': {
       title: "Satellite Crop Classification",
       category: "VIT Capstone Project",
-      role: "Research & Data Analytics Head",
+      role: "VIT Capstone Project Contributor",
       stack: "Remote Sensing, Machine Learning, Google Earth Engine, Python",
       problem: "Traditional ground surveys for crop identification are slow, expensive, and fail to track regional agricultural trends under cloudy weather conditions.",
       strategy: "Built a remote-sensing analytics workflow that combines Sentinel-1 SAR (radar) and Sentinel-2 (optical) imagery on Google Earth Engine. Pre-processed datasets to filter cloud cover and trained Random Forest models to classify crop types.",
       impact: [
-        "Achieved high classification accuracy for regional crop mapping.",
-        "Enabled automated, low-cost monitoring of agricultural yield indicators.",
-        "Established stable SAR-optical dataset fusion workflow."
+        "Combined Sentinel-1 radar and Sentinel-2 optical imagery in one workflow.",
+        "Trained a Random Forest model to classify crop types."
       ],
       live: null,
       code: null
@@ -245,14 +244,13 @@
     'cityflo-bi': {
       title: "CityFlo BI Dashboards",
       category: "Business Intelligence Dashboard",
-      role: "Business Intelligence & Marketing Analyst",
+      role: "Business Intelligence & Marketing Intern",
       stack: "Tableau, Python, PostgreSQL, BeautifulSoup, Selenium",
       problem: "Commuter route optimization and pricing changes were slow because data was scattered across third-party sources and required manual reporting.",
       strategy: "Created automated selenium-based scraping pipelines to extract location intelligence. Modeled databases in PostgreSQL to support Tableau geospatial heatmaps and pricing analytics.",
       impact: [
-        "Replaced manual reporting bottlenecks entirely.",
-        "Directly supported operations in planning route updates.",
-        "Supported price-elasticity modeling using competitor scrapers."
+        "Automated parts of the data collection and reporting workflow.",
+        "Built views the operations team could use to assess routes and pricing."
       ],
       live: null,
       code: null
@@ -346,7 +344,6 @@
           const div = document.createElement('div');
           div.style.cssText = "padding:12px; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:8px;";
           div.innerHTML = `
-            <div style="font-size:0.75rem; color:var(--text-tertiary); margin-bottom:4px; display:flex; align-items:center; gap:4px;"><i data-lucide="check" style="width:12px; height:12px; color:#10b981;"></i> KPI Achieved</div>
             <div style="font-size:0.82rem; font-weight:600; color:var(--text-primary); line-height:1.4;">${item}</div>
           `;
           impactContainer.appendChild(div);
