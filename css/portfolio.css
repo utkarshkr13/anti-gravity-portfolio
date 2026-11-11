@@ -382,3 +382,12 @@
 }
 
 .footer .portfolio-note summary { margin-inline: auto; }
+
+.portfolio-journey :is(.section-label, .bento-badge, .bento-cert-verified) {
+  color: var(--editorial-accent);
+}
+
+.footer p { color: var(--text-secondary); }
+.footer p a { color: inherit; text-decoration: underline; }
+.footer p a:hover { opacity: 1; }
+#projectModal .meta-label { color: var(--text-secondary); }

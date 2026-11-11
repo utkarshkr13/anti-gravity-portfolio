@@ -50,9 +50,9 @@
 
   <link rel="stylesheet" href="css/style.css?v=flow-1">
   <link rel="stylesheet" href="css/ui-revamp.css?v=mumbai-2">
-  <link rel="stylesheet" href="css/portfolio.css?v=chapters-1">
+  <link rel="stylesheet" href="css/portfolio.css?v=polish-1">
   <link rel="stylesheet" href="css/signoff.css?v=1">
-  <link rel="stylesheet" href="css/chapters.css?v=detail-1">
+  <link rel="stylesheet" href="css/chapters.css?v=polish-1">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,7 +75,7 @@
     <nav class="navbar" id="navbar">
       <div class="nav-links" id="primaryNav">
         <a href="#hero" class="nav-link active">Home</a>
-        <a href="#projects" class="nav-link">Work</a>
+        <a href="#sap-chapter" class="nav-link">Work</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#contact" class="nav-link">Contact</a>
@@ -104,7 +104,7 @@
           I turn client requirements into workflows, UAT checks, and releases. My work spans FMCG software delivery in India, Saudi Arabia, and Nepal, including tools for integration testing and escalation tracking.
         </p>
         <div class="hero-cta-group">
-          <a href="#sap-chapter" class="btn btn-primary" id="ctaWork">Explore the SAP project <span aria-hidden="true">↘</span></a>
+          <a href="#sap-chapter" class="btn btn-primary" id="ctaWork">Try the SAP sign-off <span aria-hidden="true">↘</span></a>
           <a href="#experience" class="btn btn-secondary" id="ctaResume">View experience</a>
         </div>
         <p class="hero-availability">Open to Business Analyst and Product Analyst roles · Mumbai, India</p>
@@ -122,10 +122,44 @@
         <header class="work-chapter__intro">
           <p class="work-chapter__project">SAP Integration Testing Tracker</p>
           <h2 id="sap-chapter-title">What’s blocking this release?</h2>
-          <p>Test results were scattered across spreadsheets and follow-up messages. I built a shared tracker so QA and delivery teams could see what had passed, who owned each blocker, and what still needed sign-off.</p>
+          <p>I built a shared tracker so QA and delivery could see what passed, what was blocked, and who owned the next action.</p>
           <a class="work-chapter__link" href="/work/sap-tracker/">Explore the SAP case study <span aria-hidden="true">↗</span></a>
         </header>
+        <section class="signoff" id="signoff-demo" aria-labelledby="signoff-title">
+          <div class="signoff-brief">
+            <p class="signoff-label">Synthetic UAT exercise</p>
+            <h3 id="signoff-title">Would you sign off?</h3>
+            <p>The request has finished. What would you record?</p>
+            <dl class="signoff-comparison">
+              <div><dt>Expected status</dt><dd>Confirmed</dd></div>
+              <div><dt>Actual status</dt><dd>Pending</dd></div>
+            </dl>
+          </div>
 
+          <details class="signoff-fallback">
+            <summary>See the analyst’s decision</summary>
+            <p><strong>Block sign-off.</strong> Pending doesn’t meet the acceptance criterion. Assign the discrepancy to the integration owner and ask QA to rerun the scenario once it’s resolved. A captured <strong>Confirmed</strong> result for the same scenario supports sign-off.</p>
+          </details>
+
+          <div class="signoff-interactive" hidden>
+            <div class="signoff-choices" role="group" aria-label="Choose a UAT decision">
+              <button type="button" data-signoff-choice="pass" aria-pressed="false" aria-controls="signoff-result">Pass</button>
+              <button type="button" data-signoff-choice="block" aria-pressed="false" aria-controls="signoff-result">Block</button>
+              <button type="button" data-signoff-choice="retest" aria-pressed="false" aria-controls="signoff-result">Retest</button>
+            </div>
+            <div class="signoff-result" id="signoff-result" role="status" aria-atomic="true">
+              <p class="signoff-verdict"></p>
+              <p class="signoff-reason"></p>
+              <dl class="signoff-next" hidden>
+                <div><dt>Next owner</dt><dd class="signoff-owner"></dd></div>
+                <div><dt>Evidence needed</dt><dd class="signoff-evidence"></dd></div>
+              </dl>
+            </div>
+          </div>
+        </section>
+      </div>
+      <details class="release-ledger">
+        <summary>See the full release ledger</summary>
         <figure class="work-chapter__visual">
           <div class="chapter-console">
             <div class="chapter-console__header">
@@ -153,39 +187,7 @@
           </div>
           <figcaption>Sample release tracker with synthetic test records.</figcaption>
         </figure>
-      </div>
-      <section class="signoff" id="signoff-demo" aria-labelledby="signoff-title">
-        <div class="signoff-brief">
-          <p class="signoff-label">Synthetic UAT exercise</p>
-          <h3 id="signoff-title">Would you sign off?</h3>
-          <p>The confirmation request has finished. Compare the expected order status with the result and choose what you’d record.</p>
-          <dl class="signoff-comparison">
-            <div><dt>Expected status</dt><dd>Confirmed</dd></div>
-            <div><dt>Actual status</dt><dd>Pending</dd></div>
-          </dl>
-        </div>
-
-        <details class="signoff-fallback">
-          <summary>See the analyst’s decision</summary>
-          <p><strong>Block sign-off.</strong> Pending doesn’t meet the acceptance criterion. Assign the discrepancy to the integration owner and ask QA to rerun the scenario once it’s resolved. A captured <strong>Confirmed</strong> result for the same scenario supports sign-off.</p>
-        </details>
-
-        <div class="signoff-interactive" hidden>
-          <div class="signoff-choices" role="group" aria-label="Choose a UAT decision">
-            <button type="button" data-signoff-choice="pass" aria-pressed="false" aria-controls="signoff-result">Pass</button>
-            <button type="button" data-signoff-choice="block" aria-pressed="false" aria-controls="signoff-result">Block</button>
-            <button type="button" data-signoff-choice="retest" aria-pressed="false" aria-controls="signoff-result">Retest</button>
-          </div>
-          <div class="signoff-result" id="signoff-result" role="status" aria-atomic="true">
-            <p class="signoff-verdict">Choose how you’d record the result.</p>
-            <p class="signoff-reason"></p>
-            <dl class="signoff-next" hidden>
-              <div><dt>Next owner</dt><dd class="signoff-owner"></dd></div>
-              <div><dt>Evidence needed</dt><dd class="signoff-evidence"></dd></div>
-            </dl>
-          </div>
-        </div>
-      </section>
+      </details>
     </div>
   </section>
 
@@ -204,24 +206,29 @@
             <p class="chapter-console__label">10:00 · Incoming message</p>
             <p class="chapter-console__title">A distributor is waiting for an update.</p>
           </header>
-          <details name="routing-path" open>
-            <summary>Order reference is present</summary>
-            <dl>
+          <fieldset class="routing-paths">
+            <legend>Choose an incoming message</legend>
+            <div class="routing-options">
+              <label><input type="radio" name="routing-path" id="routing-present" checked> Order reference present</label>
+              <label><input type="radio" name="routing-path" id="routing-missing"> Order reference missing</label>
+            </div>
+            <div class="routing-path routing-path--present">
+  <dl>
               <div><dt>Customer message</dt><dd>“Order A-104 was submitted. Can you confirm its status?”</dd></div>
               <div><dt>Assignment</dt><dd>Order Support owns the next reply. The response is due at 14:00.</dd></div>
               <div><dt>Internal note</dt><dd>Check the order status with integration support.</dd></div>
               <div><dt>Customer reply</dt><dd>“We’re checking the order status and will update you by 14:00.”</dd></div>
             </dl>
-          </details>
-          <details name="routing-path">
-            <summary>Order reference is missing</summary>
-            <dl>
+            </div>
+            <div class="routing-path routing-path--missing">
+  <dl>
               <div><dt>Customer message</dt><dd>“Our order still hasn’t come through.”</dd></div>
               <div><dt>Assignment</dt><dd>The triage team keeps the ticket until it can identify the order. The response is still due at 14:00.</dd></div>
               <div><dt>Internal note</dt><dd>Request the order reference before assigning the investigation.</dd></div>
               <div><dt>Customer reply</dt><dd>“Could you share your order reference so we can check the status?”</dd></div>
             </dl>
-          </details>
+            </div>
+          </fieldset>
         </div>
         <figcaption>Try either routing path. The messages, order reference, and times are synthetic.</figcaption>
       </figure>
@@ -237,7 +244,6 @@
         <p>Made test results, blockers, and sign-off visible across three workstreams.</p>
         <div class="work-index__actions">
           <a href="/work/sap-tracker/" class="case-page-link">Read SAP case study</a>
-          <button type="button" class="btn-case-study" data-project="sap-tracker" aria-label="Quick view of SAP Integration Testing Tracker">Quick view</button>
         </div>
       </article>
       <article class="work-index__row">
@@ -245,7 +251,6 @@
         <p>Gave support teams a shared view of ownership, notes, and reply deadlines.</p>
         <div class="work-index__actions">
           <a href="/work/client-inbox-tracker/" class="case-page-link">Read L2 case study</a>
-          <button type="button" class="btn-case-study" data-project="client-inbox-tracker" aria-label="Quick view of L2 Client Escalation Portal">Quick view</button>
         </div>
       </article>
       <article class="work-index__row">
@@ -409,31 +414,17 @@
 
   <!-- ===== Contact Section ===== -->
   <section class="section contact-section" id="contact">
-    <div class="section-label reveal">Get in Touch</div>
-    <h2 class="section-title reveal">Contact</h2>
-    <p class="section-subtitle reveal" style="margin: 0 auto; text-align: center; max-width: 700px;">
-      Have a role or project that could be a good fit? Email me with a little context. You can also find me on LinkedIn.
-    </p>
-
-    <div class="contact-layout reveal">
-      <div class="contact-links">
-        <a href="mailto:hello@utkarsh.ind.in" class="contact-link">
-          <div class="contact-link-icon"><i data-lucide="mail" style="width:22px;height:22px"></i></div>
-          <div class="contact-link-label">Email</div>
-          <div class="contact-link-value">hello@utkarsh.ind.in</div>
-        </a>
-        <a href="https://www.linkedin.com/in/utkarsh-kumar-rajput-76b673232/" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <div class="contact-link-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-          </div>
-          <div class="contact-link-label">LinkedIn</div>
-          <div class="contact-link-value">Utkarsh Kumar Rajput</div>
-        </a>
-
-        <figure class="contact-qr">
-          <img src="assets/linkedin_qr.png" width="160" height="160" alt="QR code for Utkarsh Kumar Rajput’s LinkedIn profile" loading="lazy">
-          <figcaption>Scan to connect on LinkedIn</figcaption>
-        </figure>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-layout">
+      <div class="contact-methods">
+        <a href="mailto:hello@utkarsh.ind.in">hello@utkarsh.ind.in</a>
+        <div class="contact-linkedin">
+          <a href="https://www.linkedin.com/in/utkarsh-kumar-rajput-76b673232/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+          <figure class="contact-qr">
+            <img src="assets/linkedin_qr.png" width="112" height="112" alt="QR code for Utkarsh Kumar Rajput’s LinkedIn profile" loading="lazy">
+            <figcaption>Scan to connect on LinkedIn</figcaption>
+          </figure>
+        </div>
       </div>
 
       <!-- Inline Contact Form -->
@@ -504,7 +495,7 @@
           </div>
           <span class="cmd-palette-item-shortcut">⌥3</span>
         </div>
-        <div class="cmd-palette-item" data-action="nav" data-target="#projects">
+        <div class="cmd-palette-item" data-action="nav" data-target="#sap-chapter">
           <div class="cmd-palette-item-left">
             <div class="cmd-palette-item-icon"><i data-lucide="folder-git-2" style="width:16px;height:16px"></i></div>
             <div class="cmd-palette-item-title">Go to Projects</div>
@@ -602,8 +593,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
 
   <!-- ===== App Scripts (deferred) ===== -->
-  <script defer src="js/animations.js?v=detail-1"></script>
-  <script defer src="js/main.js?v=detail-1"></script>
+  <script defer src="js/animations.js?v=polish-1"></script>
+  <script defer src="js/main.js?v=polish-1"></script>
   <script defer src="js/hero-particles.js"></script>
   <script defer src="js/signoff.js?v=1"></script>
 

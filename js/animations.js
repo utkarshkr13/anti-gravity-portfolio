@@ -467,28 +467,6 @@
     // The navbar will remain permanently locked and fully visible.
   }
 
-  /* ---------- Active nav link on scroll ---------- */
-  function initActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    sections.forEach(section => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top 40%',
-        end: 'bottom 40%',
-        onEnter: () => setActiveLink(section.id),
-        onEnterBack: () => setActiveLink(section.id)
-      });
-    });
-
-    function setActiveLink(id) {
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-      });
-    }
-  }
-
   /* ---------- Skill tags floating animation ---------- */
   function initSkillTagFloat() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -606,7 +584,6 @@
     initAboutSlider();
     initScrollReveals();
     initNavBarScroll();
-    initActiveNavLink();
     initSkillTagFloat();
     initTimelineStagger();
     // Body copy keeps normal word wrapping; whole-element reveals handle entry.

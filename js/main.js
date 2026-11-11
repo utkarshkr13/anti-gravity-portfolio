@@ -118,6 +118,26 @@
     window.gsap.ticker.lagSmoothing(0);
   }
 
+  const sectionLinks = [...document.querySelectorAll('.nav-link')].map(link => ({
+    link,
+    section: document.querySelector(link.getAttribute('href'))
+  })).filter(item => item.section);
+
+  function updateCurrentSection() {
+    const marker = window.innerHeight * 0.4;
+    const current = sectionLinks.findLast(item => item.section.getBoundingClientRect().top <= marker);
+    sectionLinks.forEach(({ link }) => {
+      const active = link === current?.link;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  window.addEventListener('scroll', updateCurrentSection, { passive: true });
+  window.addEventListener('resize', updateCurrentSection);
+  updateCurrentSection();
+
   // Leave section links to the browser so the address bar, Back and focus work.
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', () => {
@@ -148,36 +168,6 @@
   }
 
   const projectDetailsData = {
-    'sap-tracker': {
-      title: "SAP Integration Testing Tracker",
-      category: "Integration Testing Platform",
-      role: "Business Analyst / Builder",
-      stack: "Vanilla JS, Clerk v5, Firebase Realtime DB, Chart.js, SheetJS, Vercel",
-      problem: "Testing updates were spread across spreadsheets and follow-ups. Teams lacked one shared view of test results, pending issues, and sign-off status.",
-      strategy: "Built a centralized testing tracker with a shared status model, CRUD workflows, API readiness tracking, and visual progress summaries across 3 client workstreams.",
-      impact: [
-        "Reduced status-tracking effort by 40% across 3 client workstreams.",
-        "Made pending issues and sign-off status visible in one shared view.",
-        "Created a consistent workflow for test entries and release reporting."
-      ],
-      live: 'https://sap-tracker-mocha.vercel.app',
-      code: "https://github.com/utkarshkr13/sap-tracker"
-    },
-    'client-inbox-tracker': {
-      title: "L2 Client Escalation Portal",
-      category: "Internal Escalation Tool",
-      role: "Business Analyst / Builder",
-      stack: "Next.js 14, TypeScript, Neon Postgres, Prisma ORM, Gmail API, NextAuth, Tailwind CSS, PWA",
-      problem: "Enterprise FMCG support requests got lost in chaotic shared inbox loops. Business analysts and support teams struggled to track SLA breaches, assign ownership, and maintain private resolution logs.",
-      strategy: "Designed an internal ticketing tool that auto-syncs with corporate emails using Gmail API. Implemented automated regex-based ticket routing, SLA countdown indicators, and a dual-pane interface to keep internal BA notes isolated from customer views.",
-      impact: [
-        "Centralized tickets, assignments, internal notes, and follow-up reminders.",
-        "Made ownership and pending actions easier to track outside email threads.",
-        "Created real-time visibility for ticket status and ownership."
-      ],
-      live: "https://client-inbox-tracker.vercel.app",
-      code: "https://github.com/utkarshkr13/client-inbox-tracker"
-    },
     'satellite-crop': {
       title: "Satellite Crop Classification",
       category: "VIT Capstone Project",

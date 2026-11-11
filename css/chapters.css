@@ -210,16 +210,6 @@
 
 .routing-thread header { padding-bottom: 1rem; }
 
-.routing-thread details { border-top: 1px solid var(--chapter-line); }
-
-.routing-thread summary {
-  min-height: 44px;
-  padding-block: 0.7rem;
-  color: var(--chapter-accent);
-  cursor: pointer;
-  font-weight: 600;
-}
-
 .routing-thread dl {
   display: grid;
   gap: 0.55rem;
@@ -300,4 +290,118 @@
 @media (max-width: 780px) {
   .work-index__row { grid-template-columns: minmax(0, 1fr); }
   .work-index__actions { flex-wrap: wrap; justify-content: flex-start; }
+}
+
+.work-chapter--sap .work-chapter__spread { align-items: start; }
+
+.work-chapter--sap .signoff {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+  margin: 0;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.work-chapter--sap .signoff h3 { margin-block-end: 0.4rem; }
+.work-chapter--sap .signoff-comparison { margin-top: 0.7rem; }
+
+.signoff-result:has(.signoff-verdict:empty) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.release-ledger { margin-top: clamp(1.25rem, 4vw, 2.5rem); }
+.release-ledger summary {
+  width: fit-content;
+  min-height: 44px;
+  padding-block: 0.55rem;
+  color: var(--chapter-accent);
+  cursor: pointer;
+}
+
+.release-ledger figure { margin-top: 0.75rem; }
+
+.routing-paths {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.routing-paths legend { font-size: 0.82rem; color: var(--chapter-muted); }
+
+.routing-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  margin-block: 0.4rem 0.8rem;
+}
+
+.routing-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--chapter-line);
+  border-radius: 0.35rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.routing-options label:has(input:checked) { border-color: var(--chapter-accent); }
+.routing-options input { accent-color: var(--chapter-accent); }
+
+@supports selector(:has(*)) {
+  .routing-paths:has(#routing-present:checked) .routing-path--missing,
+  .routing-paths:has(#routing-missing:checked) .routing-path--present { display: none; }
+}
+
+@media (max-width: 780px) {
+  .work-chapter { padding-block: 2.5rem; }
+  .work-chapter__spread { gap: 1rem; }
+}
+
+#contact.contact-section { padding-block: clamp(2.75rem, 7vw, 5.5rem); }
+
+#contact .contact-layout {
+  margin-top: 1.4rem;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+#contact .contact-methods {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+}
+
+.contact-methods a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  width: fit-content;
+  color: var(--editorial-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.contact-linkedin {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.contact-linkedin .contact-qr { max-width: 8rem; text-align: center; }
+
+#contact .contact-photo {
+  width: min(100%, 260px);
+  margin-top: 1.5rem;
+}
+
+#contact .contact-photo img { max-height: 175px; }
+
+@media (max-width: 760px) {
+  #contact .contact-layout { grid-template-columns: 1fr; }
+  #contact .contact-form { padding: 1rem; gap: 0.65rem; }
 }
