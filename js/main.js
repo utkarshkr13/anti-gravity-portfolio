@@ -147,55 +147,6 @@
     });
   }
 
-  /* ---------- Project Category Filters ---------- */
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-
-  if (filterBtns.length > 0 && projectCards.length > 0) {
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        filterBtns.forEach(button => {
-          const selected = button === btn;
-          button.classList.toggle('active', selected);
-          button.setAttribute('aria-pressed', String(selected));
-        });
-        
-        const filterValue = btn.getAttribute('data-filter');
-        
-        const canAnimateFilter = window.Flip && window.gsap && window.ScrollTrigger &&
-          !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const state = canAnimateFilter ? window.Flip.getState(projectCards) : null;
-        
-        projectCards.forEach(card => {
-          const category = card.getAttribute('data-category');
-          
-          // Kill active tweens to prevent layout stutter
-          if (window.gsap) window.gsap.killTweensOf(card);
-          
-          if (filterValue === 'all' || category === filterValue) {
-            // Clear the display style
-            card.style.display = '';
-          } else {
-            // Hide card
-            card.style.display = 'none';
-          }
-        });
-
-        if (canAnimateFilter) {
-          window.Flip.from(state, {
-            duration: 0.5,
-            ease: 'power2.out',
-            absolute: true,
-            onComplete: () => window.ScrollTrigger.refresh()
-          });
-        }
-      });
-    });
-  }
-
-  /* ---------- Project Case Study Modals ---------- */
   const projectDetailsData = {
     'sap-tracker': {
       title: "SAP Integration Testing Tracker",

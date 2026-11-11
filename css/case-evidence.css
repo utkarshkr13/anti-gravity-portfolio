@@ -55,3 +55,29 @@
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
+
+.case-page--sap { --case-accent: #bce3ae; }
+.case-page--l2 { --case-accent: #ffc4e2; }
+
+.case-page--sap article > header {
+  border-bottom: 3px double var(--case-accent);
+  padding-bottom: 1.5rem;
+}
+
+.case-page--l2 article > header {
+  padding: clamp(1.25rem, 5vw, 3rem);
+  margin-top: 1.5rem;
+  border: 1px solid #886480;
+  border-radius: 1.3rem 1.3rem 1.3rem 0.25rem;
+  background: #382338;
+}
+
+.case-page .case-decision {
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid var(--case-accent);
+}
+
+.case-page :is(nav a, .case-example a) { color: var(--case-accent); }
+.case-page--sap .case-example { border-radius: 0.15rem; border-top: 3px double var(--case-accent); }
+.case-page--l2 .case-example { background: #302130; border-color: #886480; border-radius: 1.3rem 1.3rem 1.3rem 0.25rem; }
+.case-page--l2 .evidence-comparison li { border-radius: 0.7rem 0.7rem 0.7rem 0.15rem; }
