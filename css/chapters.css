@@ -363,18 +363,30 @@
   .work-chapter__spread { gap: 1rem; }
 }
 
-#contact.contact-section { padding-block: clamp(2.75rem, 7vw, 5.5rem); }
+#contact.contact-section {
+  width: 100%;
+  margin-inline: 0;
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+
+#contact.contact-section::before { content: none; }
 
 #contact .contact-layout {
-  margin-top: 1.4rem;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  grid-template-areas: "methods form" "photo form";
+  grid-template-rows: auto 1fr;
+  gap: 1.25rem clamp(2rem, 6vw, 5rem);
+  width: min(100%, 1040px);
+  margin: 0 auto;
 }
 
-#contact .contact-methods {
+.contact-methods {
+  grid-area: methods;
   display: grid;
-  align-content: start;
-  gap: 0.6rem;
+  gap: 0.55rem;
 }
+
+.contact-methods .section-title { margin: 0 0 0.3rem; }
 
 .contact-methods a {
   display: inline-flex;
@@ -384,25 +396,57 @@
   color: var(--editorial-accent);
   text-decoration: underline;
   text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
 }
 
 .contact-linkedin {
   display: flex;
-  align-items: flex-start;
-  gap: 0.8rem;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1rem);
   flex-wrap: wrap;
 }
 
-.contact-linkedin .contact-qr { max-width: 8rem; text-align: center; }
+.contact-linkedin .contact-qr { width: 112px; text-align: center; }
+
+#contact .contact-form {
+  grid-area: form;
+  min-height: 0;
+  gap: 0.9rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: var(--bg-card);
+}
+
+.contact-form h3 { font-size: 1.2rem; }
+
+.contact-field {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+#contact .contact-field :is(input, textarea) {
+  min-width: 0;
+  border-color: var(--text-secondary);
+}
+
+#contact .contact-field :is(input, textarea):focus-visible {
+  outline: 2px solid var(--editorial-accent);
+  outline-offset: 2px;
+}
 
 #contact .contact-photo {
+  grid-area: photo;
   width: min(100%, 260px);
-  margin-top: 1.5rem;
+  margin: 0;
 }
 
 #contact .contact-photo img { max-height: 175px; }
 
 @media (max-width: 760px) {
-  #contact .contact-layout { grid-template-columns: 1fr; }
-  #contact .contact-form { padding: 1rem; gap: 0.65rem; }
+  #contact .contact-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "methods" "form" "photo";
+    grid-template-rows: auto;
+    gap: 1.25rem;
+  }
 }

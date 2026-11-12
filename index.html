@@ -52,7 +52,7 @@
   <link rel="stylesheet" href="css/ui-revamp.css?v=mumbai-2">
   <link rel="stylesheet" href="css/portfolio.css?v=polish-1">
   <link rel="stylesheet" href="css/signoff.css?v=1">
-  <link rel="stylesheet" href="css/chapters.css?v=polish-2">
+  <link rel="stylesheet" href="css/chapters.css?v=contact-2">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -414,9 +414,9 @@
 
   <!-- ===== Contact Section ===== -->
   <section class="section contact-section" id="contact">
-    <h2 class="section-title">Contact</h2>
     <div class="contact-layout">
       <div class="contact-methods">
+        <h2 class="section-title">Contact</h2>
         <a href="mailto:hello@utkarsh.ind.in">hello@utkarsh.ind.in</a>
         <div class="contact-linkedin">
           <a href="https://www.linkedin.com/in/utkarsh-kumar-rajput-76b673232/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
@@ -429,21 +429,27 @@
 
       <!-- Inline Contact Form -->
       <form action="https://formspree.io/f/mnjropbv" method="POST" class="contact-form">
-        <h3 style="margin-bottom: 8px; font-size: 1.2rem; font-weight: 600;">Send a message</h3>
+        <h3>Send a message</h3>
         <p class="contact-disclosure">Your message and contact details are sent to Utkarsh through Formspree.</p>
-        <label for="contactName">Name</label>
-        <input id="contactName" type="text" name="name" autocomplete="name" required>
-        <label for="contactEmail">Email</label>
-        <input id="contactEmail" type="email" name="email" autocomplete="email" spellcheck="false" required>
-        <label for="contactMessage">Message</label>
-        <textarea id="contactMessage" name="message" rows="4" required></textarea>
-        <button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 12px 24px;">Send Message <i data-lucide="send" style="width:16px;height:16px;margin-left:6px;"></i></button>
+        <div class="contact-field">
+          <label for="contactName">Name</label>
+          <input id="contactName" type="text" name="name" autocomplete="name" required>
+        </div>
+        <div class="contact-field">
+          <label for="contactEmail">Email</label>
+          <input id="contactEmail" type="email" name="email" autocomplete="email" spellcheck="false" required>
+        </div>
+        <div class="contact-field">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message <i data-lucide="send" style="width:16px;height:16px;margin-left:6px;"></i></button>
       </form>
+      <figure class="contact-photo">
+        <img src="assets/pf-4.jpeg" width="1024" height="1280" alt="Utkarsh standing beside a waterfall against a moss-covered rock wall" loading="lazy" decoding="async">
+        <figcaption>Water tracing the rock face beside a wall of moss.</figcaption>
+      </figure>
     </div>
-    <figure class="contact-photo">
-      <img src="assets/pf-4.jpeg" width="1024" height="1280" alt="Utkarsh standing beside a waterfall against a moss-covered rock wall" loading="lazy" decoding="async">
-      <figcaption>Water tracing the rock face beside a wall of moss.</figcaption>
-    </figure>
   </section>
 
   <!-- ===== Footer ===== -->
