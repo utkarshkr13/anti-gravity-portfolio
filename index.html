@@ -52,7 +52,7 @@
   <link rel="stylesheet" href="css/ui-revamp.css?v=mumbai-2">
   <link rel="stylesheet" href="css/portfolio.css?v=polish-1">
   <link rel="stylesheet" href="css/signoff.css?v=1">
-  <link rel="stylesheet" href="css/chapters.css?v=contact-cards-1">
+  <link rel="stylesheet" href="css/chapters.css?v=contact-grid-1">
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -302,6 +302,9 @@
             <div class="about-slide" data-color="140, 119, 103">
               <img src="assets/pf-3.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
             </div>
+            <div class="about-slide" data-color="59, 59, 49">
+              <img src="assets/pf-4.jpeg" alt="Utkarsh beside a waterfall" width="1024" height="1280" loading="lazy">
+            </div>
             <div class="about-slide" data-color="147, 155, 161">
               <img src="assets/pf-5.jpeg" alt="Utkarsh Kumar Rajput Photography" loading="lazy">
             </div>
@@ -309,6 +312,7 @@
           <!-- Progress Indicators -->
           <div class="slider-indicators" id="sliderIndicators">
             <div class="indicator-dot active"><div class="indicator-fill"></div></div>
+            <div class="indicator-dot"><div class="indicator-fill"></div></div>
             <div class="indicator-dot"><div class="indicator-fill"></div></div>
             <div class="indicator-dot"><div class="indicator-fill"></div></div>
           </div>
@@ -414,28 +418,26 @@
 
   <!-- ===== Contact Section ===== -->
   <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+    <h2 class="section-title" id="contact-title">Contact</h2>
     <div class="contact-layout">
-      <div class="contact-methods">
-        <h2 class="section-title" id="contact-title">Contact</h2>
-        <div class="contact-links">
-          <a href="mailto:hello@utkarsh.ind.in" class="contact-link">
-            <div class="contact-link-icon"><i data-lucide="mail" style="width:22px;height:22px"></i></div>
-            <div class="contact-link-label">Email</div>
-            <div class="contact-link-value">hello@utkarsh.ind.in</div>
-          </a>
-          <a href="https://www.linkedin.com/in/utkarsh-kumar-rajput-76b673232/" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <div class="contact-link-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-            </div>
-            <div class="contact-link-label">LinkedIn</div>
-            <div class="contact-link-value">Utkarsh Kumar Rajput</div>
-          </a>
+      <div class="contact-links">
+        <a href="mailto:hello@utkarsh.ind.in" class="contact-link">
+          <div class="contact-link-icon"><i data-lucide="mail" style="width:22px;height:22px"></i></div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">hello@utkarsh.ind.in</div>
+        </a>
+        <a href="https://www.linkedin.com/in/utkarsh-kumar-rajput-76b673232/" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <div class="contact-link-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">Utkarsh Kumar Rajput</div>
+        </a>
 
-          <figure class="contact-qr">
-            <img src="assets/linkedin_qr.png" width="112" height="112" alt="QR code for Utkarsh Kumar Rajput’s LinkedIn profile" loading="lazy">
-            <figcaption>Scan to connect on LinkedIn</figcaption>
-          </figure>
-        </div>
+        <figure class="contact-qr">
+          <img src="assets/linkedin_qr.png" width="112" height="112" alt="QR code for Utkarsh Kumar Rajput’s LinkedIn profile" loading="lazy">
+          <figcaption>Scan to connect on LinkedIn</figcaption>
+        </figure>
       </div>
 
       <!-- Inline Contact Form -->
@@ -456,10 +458,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Send Message <i data-lucide="send" style="width:16px;height:16px;margin-left:6px;"></i></button>
       </form>
-      <figure class="contact-photo">
-        <img src="assets/pf-4.jpeg" width="1024" height="1280" alt="Utkarsh standing beside a waterfall against a moss-covered rock wall" loading="lazy" decoding="async">
-        <figcaption>Water tracing the rock face beside a wall of moss.</figcaption>
-      </figure>
     </div>
   </section>
 
