@@ -397,6 +397,15 @@
   border-top: 1px solid var(--border-color-hover);
 }
 
+#contact .contact-card-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--editorial-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 #contact .contact-form {
   min-height: 0;
   gap: 0.9rem;
