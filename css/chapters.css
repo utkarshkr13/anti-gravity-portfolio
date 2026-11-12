@@ -373,17 +373,12 @@
 #contact.contact-section::before { content: none; }
 
 #contact .contact-layout {
-  --contact-padding: clamp(1.25rem, 4vw, 2.75rem);
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   grid-template-areas: "methods form" "photo form";
   grid-template-rows: auto 1fr;
-  gap: 1.25rem var(--contact-padding);
+  gap: 1.25rem clamp(1.25rem, 4vw, 3rem);
   width: min(100%, 1100px);
   margin: 0 auto;
-  padding: var(--contact-padding);
-  border: 1px solid var(--border-color-hover);
-  border-radius: 1rem;
-  background: var(--bg-card);
 }
 
 .contact-methods {
@@ -397,38 +392,27 @@
   font-size: clamp(2.6rem, 5vw, 4.5rem);
 }
 
-.contact-methods a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  width: fit-content;
-  color: var(--editorial-accent);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-  overflow-wrap: anywhere;
+#contact .contact-links {
+  gap: 0.8rem;
 }
 
-.contact-linkedin {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem 0.85rem;
-  flex-wrap: wrap;
+#contact .contact-link {
+  min-width: 0;
+  min-height: 135px;
+  padding: 0.85rem 0.6rem;
+  border-color: var(--border-color-hover);
 }
 
-.contact-linkedin .contact-qr {
-  width: 112px;
-  text-align: center;
-}
+#contact .contact-link-label { color: var(--text-secondary); }
+#contact .contact-link-value { overflow-wrap: anywhere; }
+#contact .contact-qr { text-align: center; }
 
 #contact .contact-form {
   grid-area: form;
   min-height: 0;
   gap: 0.9rem;
-  padding: 0 0 0 var(--contact-padding);
-  border: 0;
-  border-inline-start: 1px solid var(--border-color-hover);
-  border-radius: 0;
-  background: none;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: var(--bg-card);
 }
 
 .contact-form h3 { font-size: 1.2rem; }
@@ -466,8 +450,6 @@
   }
 
   #contact .contact-form {
-    padding: 1.25rem 0 0;
-    border-inline-start: 0;
-    border-block-start: 1px solid var(--border-color-hover);
+    padding: 1rem;
   }
 }
