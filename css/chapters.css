@@ -266,27 +266,6 @@
   text-underline-offset: 0.22em;
 }
 
-.contact-photo {
-  width: min(100%, 560px);
-  margin: clamp(2rem, 6vw, 4rem) auto 0;
-}
-
-.contact-photo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 420px;
-  object-fit: cover;
-  object-position: center 68%;
-  border-radius: 0.35rem;
-}
-
-.contact-photo figcaption {
-  margin-top: 0.65rem;
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-}
-
 @media (max-width: 780px) {
   .work-index__row { grid-template-columns: minmax(0, 1fr); }
   .work-index__actions { flex-wrap: wrap; justify-content: flex-start; }
@@ -372,28 +351,29 @@
 
 #contact.contact-section::before { content: none; }
 
+#contact #contact-title,
 #contact .contact-layout {
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  grid-template-areas: "methods form" "photo form";
-  grid-template-rows: auto 1fr;
-  gap: 1.25rem clamp(1.25rem, 4vw, 3rem);
   width: min(100%, 1100px);
-  margin: 0 auto;
+  margin-inline: auto;
+  text-align: left;
 }
 
-.contact-methods {
-  grid-area: methods;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.contact-methods .section-title {
-  margin: 0 0 0.3rem;
+#contact #contact-title {
+  margin-block: 0 clamp(1.25rem, 3vw, 2rem);
   font-size: clamp(2.6rem, 5vw, 4.5rem);
 }
 
+#contact .contact-layout {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.25rem, 4vw, 3rem);
+  margin-block: 0;
+}
+
 #contact .contact-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
   gap: 0.8rem;
+  margin: 0;
 }
 
 #contact .contact-link {
@@ -405,10 +385,19 @@
 
 #contact .contact-link-label { color: var(--text-secondary); }
 #contact .contact-link-value { overflow-wrap: anywhere; }
-#contact .contact-qr { text-align: center; }
+
+#contact .contact-qr {
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  justify-items: start;
+  gap: 0.85rem;
+  padding-block: 0.85rem;
+  border-top: 1px solid var(--border-color-hover);
+}
 
 #contact .contact-form {
-  grid-area: form;
   min-height: 0;
   gap: 0.9rem;
   padding: clamp(1rem, 3vw, 2rem);
@@ -433,23 +422,12 @@
   outline-offset: 2px;
 }
 
-#contact .contact-photo {
-  grid-area: photo;
-  width: min(100%, 260px);
-  margin: 0;
+@media (max-width: 840px) {
+  #contact .contact-layout { grid-template-columns: minmax(0, 1fr); }
+  #contact .contact-form { padding: 1rem; }
 }
 
-#contact .contact-photo img { max-height: 175px; }
-
-@media (max-width: 840px) {
-  #contact .contact-layout {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "methods" "form" "photo";
-    grid-template-rows: auto;
-    gap: 1.25rem;
-  }
-
-  #contact .contact-form {
-    padding: 1rem;
-  }
+@media (max-width: 440px) {
+  #contact .contact-links { grid-template-columns: minmax(0, 1fr); }
+  #contact .contact-link { min-height: 105px; }
 }
